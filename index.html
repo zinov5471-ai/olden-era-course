@@ -1025,12 +1025,29 @@ function t(key, ...args) {
 }
 
 // ---------- Init ----------
+// ---------- Visitor counter (private, checked only via the key's URL) ----------
+const VISIT_COUNTER_KEY = 'charmroad_olden_era_bot_unique_visitors_2026';
+
+async function countFirstVisit() {
+  try {
+    const alreadyCounted = await Storage.get('visit_counted');
+    if (alreadyCounted) return;
+    await fetch(`https://countapi.mileshilliard.com/api/v1/hit/${VISIT_COUNTER_KEY}`);
+    await Storage.set('visit_counted', '1');
+  } catch (e) {
+    // Silently ignore — never block the app if the counter service is unavailable
+    console.error('Visit counter failed:', e);
+  }
+}
+
 async function init() {
   const savedLang = await Storage.get('lang');
   const saved = await Storage.get('completed_lessons');
   if (saved) {
     try { completed = new Set(JSON.parse(saved)); } catch(e) {}
   }
+
+  countFirstVisit();
 
   if (savedLang === 'ru' || savedLang === 'en') {
     currentLang = savedLang;
