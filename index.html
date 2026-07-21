@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Olden Era: С нуля / From Scratch</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #14121F;
+    --bg-elevated: #1D1A2E;
+    --gold: #C9A15C;
+    --gold-dim: #7A6538;
+    --violet: #8B6FC9;
+    --parchment: #EDE6D6;
+    --parchment-dim: #A8A2B8;
+    --danger: #C9605C;
+    --success: #6FA97A;
+    --radius: 14px;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color: transparent;}
+  html,body{margin:0; padding:0;}
+  body{
+    background: radial-gradient(ellipse at top, #201C33 0%, var(--bg) 55%);
+    color: var(--parchment);
+    font-family: 'Manrope', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  h1,h2,h3, .display{
+    font-family: 'Cinzel', serif;
+    letter-spacing: 0.02em;
+  }
+  #app{
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 20px 18px 40px;
+    min-height: 100vh;
+  }
+
+  /* ---------- Language select screen ---------- */
+  .lang-view{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    min-height: 90vh;
+    text-align:center;
+  }
+  .lang-view .badge{
+    font-size: 40px;
+    margin-bottom: 16px;
+  }
+  .lang-view h1{
+    font-size: 24px;
+    margin: 0 0 8px;
+  }
+  .lang-view p{
+    color: var(--parchment-dim);
+    font-size: 14px;
+    margin: 0 0 28px;
+  }
+  .lang-options{
+    display:flex;
+    flex-direction:column;
+    gap: 12px;
+    width: 100%;
+    max-width: 320px;
+  }
+  .lang-btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap: 10px;
+    background: var(--bg-elevated);
+    border: 1px solid rgba(201,161,92,0.2);
+    color: var(--parchment);
+    font-family:'Manrope';
+    font-weight: 700;
+    font-size: 15px;
+    padding: 16px;
+    border-radius: 12px;
+    cursor:pointer;
+  }
+  .lang-btn:active{ transform: scale(0.98); }
+  .lang-btn .flag{ font-size: 20px; }
+
+  /* ---------- Header ---------- */
+  .app-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom: 18px;
+  }
+  .app-header .eyebrow{
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--gold);
+    font-weight: 700;
+  }
+  .app-header h1{
+    font-size: 22px;
+    margin: 2px 0 0;
+    color: var(--parchment);
+  }
+  .lang-toggle{
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(201,161,92,0.2);
+    color: var(--parchment-dim);
+    font-family:'Manrope';
+    font-size: 12px;
+    font-weight: 700;
+    padding: 7px 12px;
+    border-radius: 20px;
+    cursor:pointer;
+    flex-shrink:0;
+  }
+
+  /* ---------- Charge indicator (signature element) ---------- */
+  .charges{
+    display:flex;
+    gap: 6px;
+    margin-top: 10px;
+  }
+  .charge-dot{
+    flex:1;
+    height: 6px;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.08);
+    position: relative;
+    overflow: hidden;
+  }
+  .charge-dot.filled{
+    background: linear-gradient(90deg, var(--gold-dim), var(--gold));
+    box-shadow: 0 0 10px rgba(201,161,92,0.55);
+  }
+  .charge-dot.current::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+    animation: shimmer 1.8s infinite;
+  }
+  @keyframes shimmer{
+    0%{ transform: translateX(-100%);}
+    100%{ transform: translateX(100%);}
+  }
+
+  .progress-label{
+    font-size: 12px;
+    color: var(--parchment-dim);
+    margin-top: 8px;
+  }
+
+  /* ---------- Lesson list ---------- */
+  .lesson-list{
+    display:flex;
+    flex-direction:column;
+    gap: 10px;
+    margin-top: 18px;
+  }
+  .lesson-card{
+    display:flex;
+    align-items:center;
+    gap: 14px;
+    background: var(--bg-elevated);
+    border: 1px solid rgba(201,161,92,0.12);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    cursor:pointer;
+    transition: transform .15s ease, border-color .15s ease;
+  }
+  .lesson-card:active{ transform: scale(0.98); }
+  .lesson-card.done{ border-color: rgba(111,169,122,0.4); }
+  .lesson-card.locked{ opacity: 0.45; }
+  .lesson-num{
+    font-family:'Cinzel', serif;
+    font-size: 13px;
+    font-weight: 700;
+    width: 30px;
+    height:30px;
+    border-radius: 50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background: rgba(201,161,92,0.12);
+    color: var(--gold);
+    flex-shrink:0;
+  }
+  .lesson-card.done .lesson-num{
+    background: rgba(111,169,122,0.18);
+    color: var(--success);
+  }
+  .lesson-title{
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--parchment);
+  }
+  .lesson-sub{
+    font-size: 12px;
+    color: var(--parchment-dim);
+    margin-top: 2px;
+  }
+  .lesson-check{
+    margin-left:auto;
+    font-size: 18px;
+    color: var(--success);
+  }
+
+  /* ---------- Lesson view ---------- */
+  .lesson-view{ display:none; }
+  .lesson-view.active{ display:block; }
+  #home-view.hidden{ display:none; }
+  #lang-view.hidden{ display:none; }
+
+  .back-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    background:none;
+    border:none;
+    color: var(--parchment-dim);
+    font-family:'Manrope';
+    font-size: 13px;
+    padding: 6px 0;
+    margin-bottom: 10px;
+    cursor:pointer;
+  }
+  .lesson-eyebrow{
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--violet);
+    font-weight: 700;
+  }
+  .lesson-view h2{
+    font-size: 20px;
+    margin: 6px 0 14px;
+    color: var(--parchment);
+  }
+  .lesson-body p{
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--parchment);
+    margin: 0 0 14px;
+  }
+  .lesson-img{
+    width: 100%;
+    border-radius: var(--radius);
+    display: block;
+    margin-bottom: 16px;
+    border: 1px solid rgba(201,161,92,0.18);
+    background: rgba(255,255,255,0.03);
+  }
+  .tip-box{
+    background: rgba(139,111,201,0.12);
+    border-left: 3px solid var(--violet);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--parchment);
+    margin: 16px 0;
+  }
+  .tip-box b{ color: var(--violet); }
+
+  /* ---------- Quiz ---------- */
+  .quiz{
+    margin-top: 22px;
+    background: var(--bg-elevated);
+    border-radius: var(--radius);
+    padding: 16px;
+    border: 1px solid rgba(201,161,92,0.15);
+  }
+  .quiz-q{
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--parchment);
+  }
+  .quiz-opt{
+    display:block;
+    width:100%;
+    text-align:left;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: var(--parchment);
+    font-family:'Manrope';
+    font-size: 13.5px;
+    padding: 11px 14px;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    cursor:pointer;
+  }
+  .quiz-opt.correct{
+    border-color: var(--success);
+    background: rgba(111,169,122,0.15);
+  }
+  .quiz-opt.wrong{
+    border-color: var(--danger);
+    background: rgba(201,96,92,0.15);
+  }
+  .quiz-feedback{
+    font-size: 13px;
+    margin-top: 8px;
+    color: var(--parchment-dim);
+    display:none;
+  }
+  .quiz-feedback.show{ display:block; }
+
+  .primary-btn{
+    width:100%;
+    background: linear-gradient(135deg, var(--gold), var(--gold-dim));
+    color: #1A1508;
+    font-family:'Manrope';
+    font-weight: 800;
+    font-size: 15px;
+    border:none;
+    border-radius: 12px;
+    padding: 14px;
+    margin-top: 20px;
+    cursor:pointer;
+    display:none;
+  }
+  .primary-btn.show{ display:block; }
+  .primary-btn:active{ transform: scale(0.98); }
+
+  /* ---------- Completion ---------- */
+  .completion{
+    text-align:center;
+    padding: 40px 10px;
+    display:none;
+  }
+  .completion.show{ display:block; }
+  .completion .badge{
+    font-size: 48px;
+    margin-bottom: 12px;
+  }
+</style>
+</head>
+<body>
+
+<div id="app">
+
+  <!-- LANGUAGE SELECT VIEW -->
+  <div class="lang-view" id="lang-view">
+    <div class="badge">📜</div>
+    <h1>Olden Era</h1>
+    <p>Choose your language / Выберите язык</p>
+    <div class="lang-options">
+      <button class="lang-btn" onclick="selectLanguage('ru')"><span class="flag">🇷🇺</span> Русский</button>
+      <button class="lang-btn" onclick="selectLanguage('en')"><span class="flag">🇬🇧</span> English</button>
+    </div>
+  </div>
+
+  <!-- HOME VIEW -->
+  <div id="home-view" class="hidden">
+    <div class="app-header">
+      <div>
+        <div class="eyebrow" id="home-eyebrow"></div>
+        <h1 id="home-title"></h1>
+      </div>
+      <button class="lang-toggle" onclick="toggleLanguage()" id="lang-toggle-btn"></button>
+    </div>
+
+    <div class="charges" id="charges-row"></div>
+    <div class="progress-label" id="progress-label"></div>
+
+    <div class="lesson-list" id="lesson-list"></div>
+  </div>
+
+  <!-- LESSON VIEW -->
+  <div class="lesson-view" id="lesson-view">
+    <button class="back-btn" onclick="goHome()" id="back-btn-label">← All lessons</button>
+    <div class="lesson-eyebrow" id="lv-eyebrow"></div>
+    <h2 id="lv-title"></h2>
+    <div class="lesson-body" id="lv-body"></div>
+
+    <div id="lv-quiz"></div>
+
+    <button class="primary-btn" id="complete-btn" onclick="completeLesson()"></button>
+  </div>
+
+  <!-- COMPLETION VIEW -->
+  <div class="completion" id="completion-view">
+    <div class="badge">🏆</div>
+    <h2 id="completion-title"></h2>
+    <p style="color:var(--parchment-dim); font-size:14px;" id="completion-text"></p>
+    <button class="primary-btn show" onclick="goHome()" id="completion-btn"></button>
+  </div>
+
+</div>
+
+<script>
+const tg = window.Telegram ? window.Telegram.WebApp : null;
+if (tg) {
+  tg.ready();
+  tg.expand();
+  tg.setHeaderColor('#14121F');
+  tg.setBackgroundColor('#14121F');
+}
+
+// ---------- Storage: Telegram CloudStorage with localStorage fallback ----------
+const Storage = {
+  async get(key) {
+    return new Promise((resolve) => {
+      if (tg && tg.CloudStorage) {
+        tg.CloudStorage.getItem(key, (err, value) => resolve(err ? null : value));
+      } else {
+        resolve(localStorage.getItem(key));
+      }
+    });
+  },
+  async set(key, value) {
+    return new Promise((resolve) => {
+      if (tg && tg.CloudStorage) {
+        tg.CloudStorage.setItem(key, value, () => resolve());
+      } else {
+        localStorage.setItem(key, value);
+        resolve();
+      }
+    });
+  }
+};
+
+// ---------- UI strings ----------
+const STRINGS = {
+  ru: {
+    homeEyebrow: 'CharmRoad · Курс новичка',
+    homeTitle: 'Olden Era: с нуля',
+    progressLabel: (done, total) => `Пройдено ${done} из ${total}`,
+    langToggle: 'EN',
+    backBtn: '← Все уроки',
+    completeBtn: 'Урок пройден →',
+    completionTitle: 'Курс пройден!',
+    completionText: 'Теперь ты знаешь основы Olden Era лучше, чем 90% новичков. Возвращайся, если что-то забудешь.',
+    completionBtn: 'К списку уроков',
+    tipLabel: 'Совет:',
+    correctFeedback: 'Точно!',
+    wrongFeedback: 'Не совсем — правильный ответ подсвечен зелёным.'
+  },
+  en: {
+    homeEyebrow: 'CharmRoad · Beginner Course',
+    homeTitle: 'Olden Era: From Scratch',
+    progressLabel: (done, total) => `Completed ${done} of ${total}`,
+    langToggle: 'RU',
+    backBtn: '← All lessons',
+    completeBtn: 'Lesson complete →',
+    completionTitle: 'Course complete!',
+    completionText: 'You now know Olden Era basics better than 90% of newcomers. Come back anytime you forget something.',
+    completionBtn: 'Back to lessons',
+    tipLabel: 'Tip:',
+    correctFeedback: 'Correct!',
+    wrongFeedback: 'Not quite — the correct answer is highlighted in green.'
+  }
+};
+
+let currentLang = 'ru';
+
+// ---------- Lesson content (bilingual) ----------
+const LESSONS = [
+  {
+    id: 'concentration',
+    image: 'images/concentration.jpg',
+    ru: {
+      title: 'Концентрация и заряды',
+      eyebrow: 'Механика 1',
+      body: [
+        'Концентрация — общий боевой ресурс на всю армию, который копится прямо во время боя. Стрелковые юниты дают 1 очко за атаку, юниты ближнего боя — 2 очка. Ещё 1 очко вы получаете, когда враг атакует вашего юнита — то есть даже когда вас бьют, это полезно.',
+        'Когда накопилось 6 очков — у вас есть 1 заряд концентрации. Одновременно можно держать максимум 3 заряда.',
+        'Важно: это общий пул на всю армию, а не у каждого юнита свой. Значит, передовая линия, принимающая удары, «кормит» зарядами весь отряд, включая ваших магов и стрелков в тылу.',
+        'Для быстрого использования способностей есть отдельная панель зарядов — кнопки от 1 до 0 на клавиатуре соответствуют ей слева направо, так способность активируется без наведения мышкой.'
+      ],
+      tip: 'Если вы уже на максимуме из трёх зарядов — срочно тратьте их, иначе новые очки пропадут впустую. Исключение — заклинание «Взрыв энергии»: оно сильнее, чем больше у вас зарядов.',
+      quizzes: [
+        { q: 'Сколько очков концентрации даёт юнит ближнего боя за одну атаку?', options: ['1 очко', '2 очка', '3 очка'], correct: 1 },
+        { q: 'Концентрация — это ресурс...', options: ['Отдельный у каждого юнита', 'Общий на всю армию героя', 'Общий на обе стороны боя'], correct: 1 }
+      ]
+    },
+    en: {
+      title: 'Concentration & Charges',
+      eyebrow: 'Mechanic 1',
+      body: [
+        'Concentration is a shared combat resource for your whole army, built up during battle. Ranged units generate 1 point per attack, melee units generate 2 points. You also get 1 point whenever an enemy attacks your unit — so even getting hit is useful.',
+        'Once you have gathered 6 points, you get 1 concentration charge. You can hold a maximum of 3 charges at once.',
+        'Important: this is a shared pool for the whole army, not a per-unit resource. That means your front line taking hits "feeds" charges to the whole army, including your mages and shooters in the back.',
+        'There is a dedicated charge panel for quick ability use — keys 1 through 0 map to it left to right, so you can activate abilities without aiming with the mouse.'
+      ],
+      tip: 'If you are already at the max of 3 charges, spend them fast or new points will be wasted. Exception: the "Energy Burst" spell — it is stronger the more charges you have.',
+      quizzes: [
+        { q: 'How many concentration points does a melee unit generate per attack?', options: ['1 point', '2 points', '3 points'], correct: 1 },
+        { q: 'Concentration is a resource that is...', options: ['Separate for each unit', 'Shared across your whole army', 'Shared between both sides of the battle'], correct: 1 }
+      ]
+    }
+  },
+  {
+    id: 'hero-strike',
+    image: 'images/hero-strike.jpg',
+    ru: {
+      title: 'Навыки и удар героя',
+      eyebrow: 'Механика 2',
+      body: [
+        'Способности юнитов стоят от 1 до 3 зарядов концентрации в зависимости от мощности эффекта. Есть и бесплатные способности — например, переключение стрелка в ближний бой.',
+        'Главная способность героя — «удар героя»: раз за раунд герой может ударить любого врага, обычно за 1 заряд. Некоторые герои-специалисты усиливают удар особыми эффектами.',
+        'Есть навык «Ратное дело», который делает удары героя с руки полностью бесплатными — то есть герой может бить вообще без трат концентрации. Это меняет то, как стоит планировать заряды в затяжных боях.'
+      ],
+      tip: 'Правой кнопкой мыши кликните на любого юнита на поле — увидите все его характеристики и активные эффекты.',
+      quizzes: [
+        { q: 'Сколько раз за раунд герой может использовать «удар героя»?', options: ['1 раз', '2 раза', 'Без ограничений'], correct: 0 },
+        { q: 'Что делает навык «Ратное дело»?', options: ['Увеличивает урон удара героя вдвое', 'Делает удары героя бесплатными по концентрации', 'Даёт герою второй удар за раунд'], correct: 1 }
+      ]
+    },
+    en: {
+      title: 'Unit Skills & Hero Strike',
+      eyebrow: 'Mechanic 2',
+      body: [
+        'Unit abilities cost 1 to 3 concentration charges depending on how powerful the effect is. Some abilities are free — like switching a shooter into melee stance.',
+        'The hero main ability is "Hero Strike": once per round, the hero can hit any enemy, usually for 1 charge. Some specialist heroes add extra effects to it.',
+        'There is a skill called "Soldier Trade" that makes the hero melee strikes completely free — no concentration cost at all. That changes how you should plan charges in long fights.'
+      ],
+      tip: 'Right-click any unit on the battlefield to see all its stats and active effects.',
+      quizzes: [
+        { q: 'How many times per round can the hero use "Hero Strike"?', options: ['1 time', '2 times', 'Unlimited'], correct: 0 },
+        { q: 'What does the "Soldier Trade" skill do?', options: ['Doubles hero strike damage', 'Makes hero strikes free of concentration cost', 'Gives the hero a second strike per round'], correct: 1 }
+      ]
+    }
+  },
+  {
+    id: 'single-stacks',
+    image: 'images/single-stacks.jpg',
+    ru: {
+      title: 'Одиночные стеки',
+      eyebrow: 'Механика 3',
+      body: [
+        'Можно отделить одного юнита от стека (Ctrl + клик) или разделить стек пополам (Shift + клик). Одиночный юнит — живой щит: он блокирует путь к вашим ценным стрелкам и принимает контратаку на себя.',
+        'В Olden Era одиночки ещё полезнее: они тоже генерируют очки концентрации, когда атакуют или получают урон.',
+        'Не всегда стоит отправлять в одиночку самого слабого юнита. Если у кого-то есть полезная пассивная способность, работающая даже в малом числе — именно его выгоднее ставить одиночкой.'
+      ],
+      tip: 'Чем больше у вас стрелковых стеков — тем лучше. Стрелки генерируют концентрацию откуда угодно на поле, ближники — только вблизи.',
+      quizzes: [
+        { q: 'Что позволяет сделать одиночный юнит-«щит»?', options: ['Увеличить общий урон отряда', 'Принять контратаку на себя вместо ценного стека', 'Автоматически вылечить армию'], correct: 1 },
+        { q: 'Какого юнита не всегда стоит отправлять в одиночку?', options: ['Самого слабого без исключений', 'Того, у кого полезная пассивка работает и в малом числе — его стоит оценить отдельно', 'Любого, разницы нет'], correct: 1 }
+      ]
+    },
+    en: {
+      title: 'Single Stacks',
+      eyebrow: 'Mechanic 3',
+      body: [
+        'You can split off one unit from a stack (Ctrl + click) or split a stack in half (Shift + click). A single unit acts as a living shield: it blocks the path to your valuable shooters and soaks up the counterattack.',
+        'In Olden Era, single units are even more useful: they also generate concentration points when attacking or taking damage.',
+        'It is not always best to send in your weakest unit alone. If a unit has a useful passive that still works at small numbers, it might be more valuable as the lone stack instead.'
+      ],
+      tip: 'The more shooter stacks you have, the better. Shooters generate concentration from anywhere on the field; melee units only up close.',
+      quizzes: [
+        { q: 'What does a single "shield" unit let you do?', options: ['Increase the whole army damage', 'Take the counterattack instead of a valuable stack', 'Automatically heal the army'], correct: 1 },
+        { q: 'Which unit should you not automatically send in alone?', options: ['The weakest one, no exceptions', 'One whose useful passive still works at low numbers — worth evaluating separately', 'Any unit, it makes no difference'], correct: 1 }
+      ]
+    }
+  },
+  {
+    id: 'hotkeys',
+    image: 'images/hotkeys.jpg',
+    ru: {
+      title: 'Горячие клавиши',
+      eyebrow: 'Механика 4',
+      body: [
+        'Alt на карте мира подсвечивает все интерактивные объекты — легко что-то пропустить без этого. O — гильдия магов, B — книга заклинаний, Tab — следующий герой/город.',
+        'В бою: W — пропустить ход юнита и дать ему походить позже, D — защитная стойка.',
+        'Отдельная панель зарядов концентрации привязана к клавишам 1–0 — можно активировать способности без наведения мышью, что сильно ускоряет бой в поздней игре с большим количеством способностей.'
+      ],
+      tip: 'Горячие клавиши можно переназначить в меню игры, если стандартные неудобны.',
+      quizzes: [
+        { q: 'Какая клавиша подсвечивает все интерактивные объекты на карте мира?', options: ['Tab', 'Alt', 'O'], correct: 1 },
+        { q: 'Какие клавиши соответствуют панели зарядов концентрации?', options: ['Стрелки', 'F1–F12', 'Цифры 1–0'], correct: 2 }
+      ]
+    },
+    en: {
+      title: 'Hotkeys',
+      eyebrow: 'Mechanic 4',
+      body: [
+        'Alt on the world map highlights all interactive objects — easy to miss something without it. O opens the Mage Guild, B opens the spellbook, Tab switches to the next hero or town.',
+        'In combat: W skips a unit turn to act later, D is defensive stance.',
+        'A dedicated concentration charge panel is bound to keys 1 through 0 — you can activate abilities without aiming with the mouse, which speeds up combat a lot once you have many abilities in the late game.'
+      ],
+      tip: 'Hotkeys can be rebound in the game menu if the defaults do not suit you.',
+      quizzes: [
+        { q: 'Which key highlights all interactive objects on the world map?', options: ['Tab', 'Alt', 'O'], correct: 1 },
+        { q: 'Which keys map to the concentration charge panel?', options: ['Arrow keys', 'F1–F12', 'Number keys 1–0'], correct: 2 }
+      ]
+    }
+  },
+  {
+    id: 'combat-tactics',
+    image: 'images/combat-tactics.jpg',
+    ru: {
+      title: 'Тактика в бою',
+      eyebrow: 'Механика 5',
+      body: [
+        'В начале боя оцените: кто сильнее в дальнем бою, стоит ли подождать и накопить преимущество, есть ли у вас быстрые юниты, до которых враг пока не доберётся.',
+        'Хитрость с инициативой: если самый быстрый юнит нажмёт «Ждать» — он станет последним в этом раунде и первым в следующем, то есть походит два раза подряд.',
+        'При равной инициативе первым ходит юнит, стоящий левее в порядке отряда — мелочь, которая иногда решает, кто нанесёт решающий удар первым.'
+      ],
+      tip: 'Умение минимизировать потери — самый важный навык в любой части «Героев», не только в Olden Era.',
+      quizzes: [
+        { q: 'Что происходит, если самый быстрый юнит нажимает «Ждать»?', options: ['Он пропускает следующий ход', 'Он ходит последним в этом раунде и первым в следующем', 'Он теряет инициативу навсегда'], correct: 1 },
+        { q: 'При равной инициативе у двух юнитов первым ходит...', options: ['Тот, что стоит левее в порядке отряда', 'Тот, у кого больше здоровья', 'Определяется случайно'], correct: 0 }
+      ]
+    },
+    en: {
+      title: 'Combat Tactics',
+      eyebrow: 'Mechanic 5',
+      body: [
+        'At the start of a battle, ask yourself: who is stronger at range, is it worth waiting to build an advantage, do you have fast units the enemy cannot reach yet.',
+        'An initiative trick: if your fastest unit hits "Wait", it becomes last in this round and first in the next — meaning it acts twice in a row.',
+        'When two units have equal initiative, the one positioned further left in the roster order acts first — a small detail that sometimes decides who lands the decisive hit.'
+      ],
+      tip: 'Minimizing losses is the single most important skill in any Heroes game, not just Olden Era.',
+      quizzes: [
+        { q: 'What happens if the fastest unit hits "Wait"?', options: ['It skips its next turn', 'It acts last this round and first next round', 'It permanently loses initiative'], correct: 1 },
+        { q: 'With equal initiative, which of two units acts first?', options: ['The one further left in the roster order', 'The one with more health', 'It is random'], correct: 0 }
+      ]
+    }
+  },
+  {
+    id: 'morale-luck',
+    image: 'images/morale-luck.jpg',
+    ru: {
+      title: 'Мораль и удача',
+      eyebrow: 'Механика 6',
+      body: [
+        'Боевой дух (мораль) и удача — два независимых параметра со значениями от –3 до +3 у каждого отряда. Мораль даёт шанс на дополнительный ход в этом же раунде: каждая единица морали — это примерно +4% к шансу. Отрицательная мораль может заставить юнита полностью пропустить ход.',
+        'Удача работает иначе: она даёт шанс на увеличенный урон при ударе (около +6% за единицу), а отрицательная удача — шанс на уменьшенный урон.',
+        'Мораль армии сильно зависит от её состава: если все отряды героя из одной фракции — мораль всех юнитов +1. За каждую дополнительную фракцию в армии мораль снижается на –1. Поэтому смешанные армии стоит собирать осознанно, а не случайно.'
+      ],
+      tip: 'Ищите артефакты и законы фракции на боевой дух — иногда они важнее банальной прибавки к атаке или защите, особенно если вы играете смешанной армией.',
+      quizzes: [
+        { q: 'Что даёт положительная мораль отряду?', options: ['Шанс на дополнительный ход в этом раунде', 'Прибавку к защите', 'Иммунитет к дебаффам'], correct: 0 },
+        { q: 'Как влияет на мораль армии смешивание нескольких фракций в одном войске?', options: ['Никак не влияет', 'Повышает мораль', 'Снижает мораль на –1 за каждую доп. фракцию'], correct: 2 }
+      ]
+    },
+    en: {
+      title: 'Morale & Luck',
+      eyebrow: 'Mechanic 6',
+      body: [
+        'Morale and luck are two independent stats ranging from –3 to +3 per unit. Morale gives a chance for a bonus turn in the same round: roughly +4% per point. Negative morale can make a unit skip its turn entirely.',
+        'Luck works differently: it gives a chance for increased damage on a hit (around +6% per point), while negative luck gives a chance for reduced damage.',
+        'Army morale depends heavily on composition: if all of the hero stacks belong to one faction, every unit gets +1 morale. Each additional faction in the army lowers morale by –1. So mixed armies should be built deliberately, not by accident.'
+      ],
+      tip: 'Look for artifacts and faction laws that boost morale — sometimes they matter more than a flat attack or defense bonus, especially if you are running a mixed-faction army.',
+      quizzes: [
+        { q: 'What does positive morale give a unit?', options: ['A chance at a bonus turn this round', 'A defense bonus', 'Immunity to debuffs'], correct: 0 },
+        { q: 'How does mixing several factions in one army affect morale?', options: ['No effect at all', 'It raises morale', 'It lowers morale by –1 per extra faction'], correct: 2 }
+      ]
+    }
+  },
+  {
+    id: 'magic-schools',
+    image: 'images/magic-schools.jpg',
+    ru: {
+      title: 'Магия: школы, тиры, уровни',
+      eyebrow: 'Механика 7',
+      body: [
+        'Пять школ магии: Магия дня (баффы), Магия ночи (дебаффы), Боевая магия (прямой урон), Тайная магия (контроль поля) и нейтральная магия отдельно.',
+        'Тир и уровень заклинания — разные вещи! Тир — постоянное свойство, открывается стройкой гильдии магов (1–5). Уровень — от 1 до 4, зависит от навыков героя, артефактов и объектов на карте.',
+        'У заклинаний есть кулдаун после использования, а иногда в кулдаун уходит вся школа целиком на раунд — сильный маг умеет миксовать разные школы, а не спамить одно и то же заклинание.'
+      ],
+      tip: 'Когда герой возвращается в город с гильдией магов — оставьте его там на ход, чтобы бесплатно восстановить ману.',
+      quizzes: [
+        { q: 'Чем отличается тир заклинания от его уровня?', options: ['Это одно и то же', 'Тир — постоянное свойство от гильдии, уровень меняется от навыков и артефактов', 'Уровень определяет школу магии'], correct: 1 },
+        { q: 'Что происходит, если школа магии ушла в кулдаун?', options: ['Ничего, кулдаун только у отдельных заклинаний', 'Все заклинания этой школы недоступны раунд', 'Мана героя обнуляется'], correct: 1 }
+      ]
+    },
+    en: {
+      title: 'Magic: Schools, Tiers, Levels',
+      eyebrow: 'Mechanic 7',
+      body: [
+        'There are five schools of magic: Day Magic (buffs), Night Magic (debuffs), Battle Magic (direct damage), Arcane Magic (battlefield control), and Neutral Magic as a separate category.',
+        'Tier and level are not the same thing! Tier is a permanent property, unlocked by building the Mage Guild (levels 1–5). Level ranges from 1 to 4 and depends on hero skills, artifacts, and map objects.',
+        'Spells have a cooldown after use, and sometimes an entire school goes on cooldown for a round — a strong mage knows how to mix schools instead of spamming the same spell.'
+      ],
+      tip: 'When your hero returns to a town with a Mage Guild, leave them there for a turn to restore mana for free.',
+      quizzes: [
+        { q: 'What is the difference between a spell tier and its level?', options: ['They are the same thing', 'Tier is a fixed property from the guild, level changes with skills and artifacts', 'Level determines the school of magic'], correct: 1 },
+        { q: 'What happens when a school of magic goes on cooldown?', options: ['Nothing, only individual spells have cooldowns', 'All spells from that school are unavailable for a round', 'The hero mana resets to zero'], correct: 1 }
+      ]
+    }
+  },
+  {
+    id: 'neutral-magic',
+    image: 'images/neutral-magic.jpg',
+    ru: {
+      title: 'Нейтральная магия',
+      eyebrow: 'Механика 8',
+      body: [
+        'Нейтральная магия — самые мощные заклинания в игре (телепорт в город, врата измерений). Они не получаются через гильдию — вместо этого тратятся прозрения из обсерватории.',
+        'Прозрения появляются, когда накопится достаточно астрологических очков, которые производят ваши города.',
+        'Чем дальше в игре — тем больше очков требуется для следующего прозрения, но и сами города со временем производят их больше, так что баланс держится на протяжении всей партии.'
+      ],
+      tip: 'Выучив телепорт в город, всегда держите запас маны на одно применение — так можно вернуться, восстановить ману и забрать юнитов за один ход.',
+      quizzes: [
+        { q: 'За что покупается нейтральная магия?', options: ['За золото в гильдии магов', 'За прозрения в обсерватории', 'За печати законов фракции'], correct: 1 },
+        { q: 'Что производит астрологические очки для прозрений?', options: ['Ваши города', 'Бой с нейтралами', 'Разбор артефактов'], correct: 0 }
+      ]
+    },
+    en: {
+      title: 'Neutral Magic',
+      eyebrow: 'Mechanic 8',
+      body: [
+        'Neutral Magic contains the most powerful spells in the game (Town Portal, Dimension Door). You do not get them from the Mage Guild — instead, you spend Insights earned in the Observatory.',
+        'Insights appear once you have accumulated enough Astrology points, which your towns produce over time.',
+        'The further into the game, the more points the next Insight requires — but your towns also produce more over time, so the balance holds throughout the whole match.'
+      ],
+      tip: 'Once you learn Town Portal, always keep enough mana for one cast — that lets you return, restore mana, and pick up fresh units all in a single turn.',
+      quizzes: [
+        { q: 'What do you spend to get Neutral Magic spells?', options: ['Gold at the Mage Guild', 'Insights from the Observatory', 'Faction law seals'], correct: 1 },
+        { q: 'What produces the Astrology points needed for Insights?', options: ['Your towns', 'Fighting neutral creatures', 'Disenchanting artifacts'], correct: 0 }
+      ]
+    }
+  },
+  {
+    id: 'faction-laws',
+    image: 'images/faction-laws.jpg',
+    ru: {
+      title: 'Законы фракции',
+      eyebrow: 'Механика 9',
+      body: [
+        'Города каждый ход производят очки законов, которые конвертируются в печати. Печати тратятся на фракционные бонусы для юнитов, экономики и героев.',
+        'Экономические законы выгоднее брать как можно раньше — они работают весь остаток игры. Законы на прирост юнитов лучше брать в последний день недели, раньше они всё равно не сработают.',
+        'У каждой фракции свои уникальные законы: например, Храм часто силён законами на мораль и дешёвую стройку, а Некрополь — законами вокруг некромантии.'
+      ],
+      tip: 'В начале карты полистайте все законы, даже заблокированные — это поможет понять, стоит ли вкладываться в очки законов.',
+      quizzes: [
+        { q: 'Когда выгоднее всего брать экономические законы?', options: ['В последний день недели', 'Как можно раньше', 'Не важно когда'], correct: 1 },
+        { q: 'Отличаются ли законы фракций друг от друга по содержанию?', options: ['Нет, у всех фракций одинаковый набор', 'Да, у каждой фракции свои уникальные законы', 'Только у двух фракций из шести'], correct: 1 }
+      ]
+    },
+    en: {
+      title: 'Faction Laws',
+      eyebrow: 'Mechanic 9',
+      body: [
+        'Towns produce Law points every turn, which convert into Seals. Seals are spent to unlock faction bonuses for units, economy, and heroes.',
+        'Economic laws are best taken as early as possible since they work for the rest of the game. Growth laws for unit numbers are best saved for the last day of the week, since they do not trigger any earlier anyway.',
+        'Each faction has its own unique set of laws: for example, the Temple is often strong with morale and cheap-construction laws, while the Necropolis leans on necromancy-focused laws.'
+      ],
+      tip: 'At the start of a map, browse through all the laws, even locked ones — it helps you decide whether investing in law points is worth it at all.',
+      quizzes: [
+        { q: 'When is it best to take economic laws?', options: ['On the last day of the week', 'As early as possible', 'Timing does not matter'], correct: 1 },
+        { q: 'Do faction laws differ in content between factions?', options: ['No, every faction has the same set', 'Yes, each faction has its own unique laws', 'Only two of the six factions differ'], correct: 1 }
+      ]
+    }
+  },
+  {
+    id: 'alchemy-dust',
+    image: 'images/alchemy-dust.jpg',
+    ru: {
+      title: 'Алхимическая пыль',
+      eyebrow: 'Механика 10',
+      body: [
+        'Новый ресурс вместо серы. Нужен для апгрейдов: жилищ юнитов, заклинаний в обсерватории, некоторых артефактов.',
+        'Получить пыль можно в алхимической лаборатории (перемолов кристаллы, самоцветы и ртуть в равном количестве), разобрав ненужные артефакты и свитки заклинаний из инвентаря героя, или через поздний алхимический склад в городе.',
+        'Алхимический склад строится только после прохождения большей части экономического дерева построек — то есть это не ресурс для быстрого старта, а скорее вложение в середину и конец партии.'
+      ],
+      tip: 'Главный вопрос с пылью: вкладывать в юнитов, артефакты или заклинания — ресурс всегда в дефиците.',
+      quizzes: [
+        { q: 'Какой ресурс в Olden Era заменила алхимическая пыль?', options: ['Дерево', 'Серу', 'Золото'], correct: 1 },
+        { q: 'Что нужно принести в алхимическую лабораторию, чтобы получить пыль?', options: ['Только золото', 'Равное количество кристаллов, самоцветов и ртути', 'Любой ненужный юнит'], correct: 1 }
+      ]
+    },
+    en: {
+      title: 'Alchemical Dust',
+      eyebrow: 'Mechanic 10',
+      body: [
+        'A new resource replacing Sulfur. Needed for upgrades: unit dwellings, Observatory spells, and certain artifacts.',
+        'You can get dust from the Alchemical Lab (by grinding equal amounts of crystals, gems, and mercury), by disenchanting unneeded artifacts and spell scrolls from the hero inventory, or from the late-game Alchemical Warehouse in town.',
+        'The Alchemical Warehouse only becomes available after building through most of the economic tech tree — so it is not a fast-start resource, more of a mid-to-late game investment.'
+      ],
+      tip: 'The main question with dust is always: invest in units, artifacts, or spells — the resource is always scarce.',
+      quizzes: [
+        { q: 'Which resource did Alchemical Dust replace in Olden Era?', options: ['Wood', 'Sulfur', 'Gold'], correct: 1 },
+        { q: 'What do you need to bring to the Alchemical Lab to get dust?', options: ['Only gold', 'Equal amounts of crystals, gems, and mercury', 'Any unwanted unit'], correct: 1 }
+      ]
+    }
+  },
+  {
+    id: 'map-zones',
+    image: 'images/map-zones.jpg',
+    ru: {
+      title: 'Зоны и охранники',
+      eyebrow: 'Механика 11',
+      body: [
+        'Карта делится на зоны с собственными объектами и обычно хотя бы одним городом. Между зонами стоят охранники — без победы над ними дальше не пройти.',
+        'Через охранников нельзя перепрыгнуть телепортом или полётом — они почти всегда стоят прямо на дороге.',
+        'Есть отдельные «сокровищные зоны» — там охрана значительно сильнее, зато и награды соответствующие. Если контролируете зону — ваши юниты получают бонусы к характеристикам на её территории.'
+      ],
+      tip: 'Умение понять, когда вы уже готовы ломиться в следующую зону, — один из ключевых навыков в этой игре.',
+      quizzes: [
+        { q: 'Можно ли обойти охранника с помощью заклинания телепорта?', options: ['Да, всегда', 'Нет, они блокируют дорогу', 'Только на лёгкой сложности'], correct: 1 },
+        { q: 'Что получают ваши юниты, если вы контролируете зону?', options: ['Дополнительное золото автоматически', 'Бонусы к характеристикам на территории зоны', 'Бесплатный найм в этой зоне'], correct: 1 }
+      ]
+    },
+    en: {
+      title: 'Map Zones & Guardians',
+      eyebrow: 'Mechanic 11',
+      body: [
+        'The map is divided into zones, each with its own objects and usually at least one town. Guardians stand between zones — you cannot move on without defeating them.',
+        'You cannot skip past guardians with Teleport or Fly spells — they almost always sit directly on the road.',
+        'There are separate "treasure zones" with much stronger guards but correspondingly better rewards. If you control a zone, your units get stat bonuses within its territory.'
+      ],
+      tip: 'Knowing when you are actually ready to push into the next zone is one of the key skills in this game.',
+      quizzes: [
+        { q: 'Can you bypass a guardian using a Teleport spell?', options: ['Yes, always', 'No, they block the road', 'Only on easy difficulty'], correct: 1 },
+        { q: 'What do your units get if you control a zone?', options: ['Automatic bonus gold', 'Stat bonuses within that zone territory', 'Free recruitment in that zone'], correct: 1 }
+      ]
+    }
+  },
+  {
+    id: 'movement',
+    image: 'images/movement.jpg',
+    ru: {
+      title: 'Движение и рельеф',
+      eyebrow: 'Механика 12',
+      body: [
+        'Скорость юнитов больше не замедляет героя на карте — медленные существа больше не тянут всю армию вниз, как в старых частях серии.',
+        'Каждая фракция имеет родной рельеф: на нём юниты получают +1 к инициативе, а герой двигается без штрафа. На чужом рельефе каждый шаг стоит больше очков движения.',
+        'Если ресурс лежит прямо рядом с героем — подберите его, это не тратит очки движения. А дорога всегда быстрее даже родного рельефа, особенно когда вы уже достаточно усилились и не нужно подбирать каждую мелкую награду.'
+      ],
+      tip: 'Двигайте главного героя последним за ход — пусть разведчики и второстепенные герои сначала соберут ресурсы и засветят карту.',
+      quizzes: [
+        { q: 'Что даёт герою родной рельеф фракции?', options: ['Движение без штрафа очков движения', 'Дополнительное золото', 'Бесплатный найм юнитов'], correct: 0 },
+        { q: 'Замедляют ли медленные юниты передвижение героя на карте в Olden Era?', options: ['Да, как в старых Героях', 'Нет, скорость юнитов на это не влияет', 'Только если их больше половины армии'], correct: 1 }
+      ]
+    },
+    en: {
+      title: 'Movement & Terrain',
+      eyebrow: 'Mechanic 12',
+      body: [
+        'Unit speed no longer slows the hero down on the map — slow creatures no longer drag the whole army down like in older entries in the series.',
+        'Each faction has a native terrain: on it, units get +1 initiative and the hero moves without penalty. On foreign terrain, each step costs more movement points.',
+        'If a resource is sitting right next to the hero, picking it up does not cost movement points. Roads are always faster than even native terrain, especially once you are strong enough that you do not need to grab every small pickup.'
+      ],
+      tip: 'Move your main hero last each turn — let scouts and secondary heroes gather resources and reveal the map first.',
+      quizzes: [
+        { q: 'What does a faction native terrain give the hero?', options: ['Movement without a movement point penalty', 'Extra gold', 'Free unit recruitment'], correct: 0 },
+        { q: 'Do slow units slow down the hero map movement in Olden Era?', options: ['Yes, like in older Heroes games', 'No, unit speed does not affect it', 'Only if they are more than half the army'], correct: 1 }
+      ]
+    }
+  }
+];
+
+const TOTAL = LESSONS.length;
+let completed = new Set();
+let currentLessonIndex = null;
+let quizAnswered = [];
+
+// ---------- Language handling ----------
+async function selectLanguage(lang) {
+  currentLang = lang;
+  await Storage.set('lang', lang);
+  document.getElementById('lang-view').classList.add('hidden');
+  document.getElementById('home-view').classList.remove('hidden');
+  renderHome();
+}
+
+async function toggleLanguage() {
+  currentLang = currentLang === 'ru' ? 'en' : 'ru';
+  await Storage.set('lang', currentLang);
+  renderHome();
+}
+
+function t(key, ...args) {
+  const val = STRINGS[currentLang][key];
+  return typeof val === 'function' ? val(...args) : val;
+}
+
+// ---------- Init ----------
+async function init() {
+  const savedLang = await Storage.get('lang');
+  const saved = await Storage.get('completed_lessons');
+  if (saved) {
+    try { completed = new Set(JSON.parse(saved)); } catch(e) {}
+  }
+
+  if (savedLang === 'ru' || savedLang === 'en') {
+    currentLang = savedLang;
+    document.getElementById('lang-view').classList.add('hidden');
+    document.getElementById('home-view').classList.remove('hidden');
+    renderHome();
+  }
+}
+
+function renderHome() {
+  document.getElementById('completion-view').classList.remove('show');
+  document.getElementById('lesson-view').classList.remove('active');
+  document.getElementById('home-view').classList.remove('hidden');
+
+  document.getElementById('home-eyebrow').textContent = t('homeEyebrow');
+  document.getElementById('home-title').textContent = t('homeTitle');
+  document.getElementById('lang-toggle-btn').textContent = t('langToggle');
+  document.getElementById('back-btn-label').textContent = t('backBtn');
+  document.getElementById('complete-btn').textContent = t('completeBtn');
+  document.getElementById('completion-title').textContent = t('completionTitle');
+  document.getElementById('completion-text').textContent = t('completionText');
+  document.getElementById('completion-btn').textContent = t('completionBtn');
+
+  const chargesRow = document.getElementById('charges-row');
+  chargesRow.innerHTML = '';
+  LESSONS.forEach((l, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'charge-dot' + (completed.has(l.id) ? ' filled' : '') + (i === firstIncompleteIndex() ? ' current' : '');
+    chargesRow.appendChild(dot);
+  });
+  document.getElementById('progress-label').textContent = t('progressLabel', completed.size, TOTAL);
+
+  const list = document.getElementById('lesson-list');
+  list.innerHTML = '';
+  LESSONS.forEach((l, i) => {
+    const content = l[currentLang];
+    const card = document.createElement('div');
+    const isDone = completed.has(l.id);
+    card.className = 'lesson-card' + (isDone ? ' done' : '');
+    card.onclick = () => openLesson(i);
+    card.innerHTML = `
+      <div class="lesson-num">${i+1}</div>
+      <div>
+        <div class="lesson-title">${content.title}</div>
+        <div class="lesson-sub">${content.eyebrow}</div>
+      </div>
+      ${isDone ? '<div class="lesson-check">✓</div>' : ''}
+    `;
+    list.appendChild(card);
+  });
+
+  if (completed.size === TOTAL) {
+    document.getElementById('home-view').classList.add('hidden');
+    document.getElementById('completion-view').classList.add('show');
+  }
+}
+
+function firstIncompleteIndex() {
+  for (let i = 0; i < LESSONS.length; i++) {
+    if (!completed.has(LESSONS[i].id)) return i;
+  }
+  return LESSONS.length - 1;
+}
+
+function openLesson(index) {
+  currentLessonIndex = index;
+  const l = LESSONS[index];
+  const content = l[currentLang];
+  quizAnswered = new Array(content.quizzes.length).fill(false);
+
+  document.getElementById('home-view').classList.add('hidden');
+  document.getElementById('lesson-view').classList.add('active');
+
+  document.getElementById('back-btn-label').textContent = t('backBtn');
+  document.getElementById('lv-eyebrow').textContent = content.eyebrow;
+  document.getElementById('lv-title').textContent = content.title;
+
+  const body = document.getElementById('lv-body');
+  const imageHtml = l.image
+    ? `<img src="${l.image}" class="lesson-img" alt="${content.title}" loading="lazy" onerror="this.style.display='none'">`
+    : '';
+  body.innerHTML = imageHtml + content.body.map(p => `<p>${p}</p>`).join('') +
+    `<div class="tip-box"><b>${t('tipLabel')}</b> ${content.tip}</div>`;
+
+  const quizContainer = document.getElementById('lv-quiz');
+  quizContainer.innerHTML = '';
+  document.getElementById('complete-btn').className = 'primary-btn';
+  document.getElementById('complete-btn').textContent = t('completeBtn');
+
+  content.quizzes.forEach((quiz, qIndex) => {
+    const block = document.createElement('div');
+    block.className = 'quiz';
+    block.style.marginTop = qIndex === 0 ? '22px' : '14px';
+    block.innerHTML = `
+      <div class="quiz-q">${qIndex + 1}. ${quiz.q}</div>
+      <div class="quiz-opts-${qIndex}"></div>
+      <div class="quiz-feedback" id="quiz-feedback-${qIndex}"></div>
+    `;
+    quizContainer.appendChild(block);
+
+    const optsWrap = block.querySelector(`.quiz-opts-${qIndex}`);
+    quiz.options.forEach((opt, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'quiz-opt';
+      btn.textContent = opt;
+      btn.onclick = () => answerQuiz(qIndex, i, quiz.correct);
+      optsWrap.appendChild(btn);
+    });
+  });
+
+  if (tg && tg.HapticFeedback) tg.HapticFeedback.impactOccurred('light');
+  window.scrollTo(0,0);
+}
+
+function answerQuiz(quizIndex, chosen, correct) {
+  const block = document.querySelectorAll('#lv-quiz .quiz')[quizIndex];
+  const opts = block.querySelectorAll('.quiz-opt');
+  opts.forEach((btn, i) => {
+    btn.onclick = null;
+    if (i === correct) btn.classList.add('correct');
+    else if (i === chosen) btn.classList.add('wrong');
+  });
+  const feedback = document.getElementById(`quiz-feedback-${quizIndex}`);
+  feedback.textContent = chosen === correct ? t('correctFeedback') : t('wrongFeedback');
+  feedback.classList.add('show');
+
+  quizAnswered[quizIndex] = true;
+  if (quizAnswered.every(Boolean)) {
+    document.getElementById('complete-btn').classList.add('show');
+  }
+
+  if (tg && tg.HapticFeedback) {
+    tg.HapticFeedback.notificationOccurred(chosen === correct ? 'success' : 'error');
+  }
+}
+
+async function completeLesson() {
+  const l = LESSONS[currentLessonIndex];
+  completed.add(l.id);
+  await Storage.set('completed_lessons', JSON.stringify([...completed]));
+  renderHome();
+}
+
+function goHome() {
+  renderHome();
+}
+
+init();
+</script>
+</body>
+</html>
