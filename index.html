@@ -982,15 +982,245 @@ const TOPICS = [
   }
     ]
   },
-  {
-    id: 'temple',
-    icon: '⚔️',
-    ru: { title: 'Фракция Храм' },
-    en: { title: 'Temple Faction' },
-    lessons: []
-  }
-];
-
+ {
+  id: 'temple',
+  icon: '⚔️',
+  ru: { title: 'Фракция Храм' },
+  en: { title: 'Temple Faction' },
+  lessons: [
+    {
+      id: 'righteousness',
+      image: 'images/righteousness.jpg',
+      ru: {
+        title: 'Праведность — ключевой навык Храма',
+        eyebrow: 'Фракционный навык',
+        body: [
+          'Фракционный навык Храма называется «Праведность». Это главная фишка, которая делает фракцию такой сильной и прощающей ошибки.',
+          'Каждый раз, когда твой отряд убивает противника или сам погибает в бою — герой получает +1 к атаке, защите, силе магии и знанию. Эффект суммируется! За один бой можно накопить очень серьёзную прибавку.',
+          'Базовая длительность эффекта — 2 раунда. Прокачка навыка может увеличить её до 3–4 раундов, что делает навык ещё более ценным в затяжных сражениях.',
+          'В дереве развития есть две главные развилки. Первая работает только на родной земле Храма (зелёный ландшафт). Она даёт либо временную ману за каждое срабатывание, либо способность снимать все негативные эффекты с цели и снижать урон в ближнем бою на 15%.',
+          'Вторая развилка — «Смертельный распад» — полностью блокирует лечение выбранного вражеского отряда. Это мощно против фракций с сильным лечением.',
+          'На верхнем уровне есть «Сила веры» — она увеличивает сам эффект: вместо +1 к статам даёт +2. Это лучший выбор для долгих боёв, потому что разница в силе становится абсурдной.'
+        ],
+        tip: 'Следи за счётчиком! Если герой получил +6 к атаке за бой — ты всё делаешь правильно. Праведность особенно сильно раскрывается в затяжных сражениях с большим количеством убийств.',
+        quizzes: [
+          { q: 'Что даёт герою фракционный навык «Праведность» при убийстве врага или гибели своего отряда?', options: ['Только золото', '+1 к атаке, защите, силе магии и знанию', 'Временную неуязвимость'], correct: 1 },
+          { q: 'Как называется развилка навыка, которая полностью блокирует лечение выбранного вражеского отряда?', options: ['Сила веры', 'Смертельный распад', 'Блюститель'], correct: 1 }
+        ]
+      },
+      en: {
+        title: 'Righteousness — Temple\'s Key Skill',
+        eyebrow: 'Faction Skill',
+        body: [
+          'Temple\'s faction skill is called "Righteousness". This is the main feature that makes the faction so strong and forgiving of mistakes.',
+          'Every time your squad kills an enemy or dies in battle — the hero gains +1 to attack, defense, spell power, and knowledge. The effect stacks! In one fight, you can accumulate a very serious bonus.',
+          'The base duration is 2 rounds. Upgrading the skill can increase it to 3–4 rounds, making it even more valuable in prolonged battles.',
+          'The skill tree has two main forks. The first one only works on Temple\'s native terrain (green landscape). It gives either temporary mana per trigger, or the ability to remove all negative effects from a target and reduce melee damage taken by 15%.',
+          'The second fork — "Fatal Decay" — completely blocks healing for the chosen enemy squad. This is powerful against factions with strong healing.',
+          'At the top level there is "Power of Faith" — it increases the effect itself: instead of +1 to stats it gives +2. This is the best choice for long battles, because the difference in power becomes absurd.'
+        ],
+        tip: 'Watch the counter! If your hero got +6 to attack in one battle — you\'re doing everything right. Righteousness is especially strong in prolonged battles with a lot of kills.',
+        quizzes: [
+          { q: 'What does the faction skill "Righteousness" give the hero when an enemy is killed or an allied squad dies?', options: ['Only gold', '+1 to attack, defense, spell power, and knowledge', 'Temporary invulnerability'], correct: 1 },
+          { q: 'What is the name of the skill fork that completely blocks healing for the chosen enemy squad?', options: ['Power of Faith', 'Fatal Decay', 'Keeper'], correct: 1 }
+        ]
+      }
+    },
+    {
+      id: 'swordsman-crossbowman',
+      image: 'images/swordsman-crossbowman.jpg',
+      ru: {
+        title: 'Мечник и Арбалетчик — основа армии',
+        eyebrow: 'Начальные юниты',
+        body: [
+          'Мечник — это твой основной танк первого тира. У него хорошее здоровье и встроенное снижение урона от выстрелов на 30%. Это идеальный юнит, чтобы идти первым под обстрел.',
+          'Первый грейд Мечника — Капитан стражи. Он получает прибавку к атаке, защите и инициативе, а также двойной удар.',
+          'Второй грейд — Защитник зари. У него меньше атаки, но больше защиты и здоровья. Плюс — аура, снижающая урон от выстрелов всем соседним отрядам. Отличный выбор для защиты стрелков.',
+          'Арбалетчик — лучший стартовый стрелок фракции. У него 10 здоровья и приличный урон, но без грейда стреляет один раз и почти не используется.',
+          'Основной грейд — Сокольничий. Он даёт двойной выстрел, что по сути удваивает урон. Важный нюанс: каждый из двух ударов отдельно генерирует очки концентрации. Если бить слабые цели — концентрация набирается очень быстро.',
+          'Альтернативный грейд — Тяжёлый арбалетчик. Он получает навык «Снайпер» и наносит полный урон независимо от расстояния. У него выше инициатива, и он лучше заходит под объекты в позднем лейте.'
+        ],
+        tip: 'Сокольничий — отличный выбор для ранней игры, потому что двойной выстрел удваивает генерацию концентрации. Тяжёлый арбалетчик сильнее в поздней игре, когда важна дальность и инициатива.',
+        quizzes: [
+          { q: 'Какое снижение урона от выстрелов имеет Мечник по умолчанию?', options: ['15%', '30%', '50%'], correct: 1 },
+          { q: 'Какой грейд Арбалетчика даёт двойной выстрел?', options: ['Тяжёлый арбалетчик', 'Сокольничий', 'Защитник зари'], correct: 1 }
+        ]
+      },
+      en: {
+        title: 'Swordsman and Crossbowman — Army Backbone',
+        eyebrow: 'Starting Units',
+        body: [
+          'The Swordsman is your main tier-1 tank. He has good health and built-in 30% ranged damage reduction. This is the perfect unit to send in first under fire.',
+          'The first Swordsman upgrade is the Guard Captain. He gains bonuses to attack, defense and initiative, as well as a double strike.',
+          'The second upgrade is the Dawn Defender. He has less attack but more defense and health. Plus — an aura that reduces ranged damage for all adjacent squads. An excellent choice for protecting shooters.',
+          'The Crossbowman is the faction\'s best starting shooter. He has 10 health and decent damage, but without an upgrade he fires once and is almost never used.',
+          'The main upgrade is the Falconer. It gives a double shot, effectively doubling damage. Important nuance: each of the two hits separately generates concentration points. If you hit weak targets — concentration builds up very quickly.',
+          'The alternative upgrade is the Heavy Crossbowman. He gains the "Sniper" skill and deals full damage regardless of distance. He has higher initiative and is better for late-game objectives.'
+        ],
+        tip: 'The Falconer is an excellent choice for the early game because double shot doubles concentration generation. The Heavy Crossbowman is stronger in the late game when range and initiative matter more.',
+        quizzes: [
+          { q: 'What ranged damage reduction does the Swordsman have by default?', options: ['15%', '30%', '50%'], correct: 1 },
+          { q: 'Which Crossbowman upgrade gives a double shot?', options: ['Heavy Crossbowman', 'Falconer', 'Dawn Defender'], correct: 1 }
+        ]
+      }
+    },
+    {
+      id: 'griffin-priestess',
+      image: 'images/griffin-priestess.jpg',
+      ru: {
+        title: 'Грифон и Жрица Солнца — путь к элите',
+        eyebrow: 'Развилка и поддержка',
+        body: [
+          'Грифон — это обязательная ступенька развития. Через него идёт вся дальнейшая отстройка фракции: без грифонов не построить ни жриц, ни кавалерию, ни ангелов. У него 9-я инициатива и он умеет летать.',
+          'Основной грейд — Храмовый грифон. Его фишка — контратакует неограниченное число раз за раунд. Это делает его отличным защитником.',
+          'Альтернативный грейд — Сторожевой грифон. У него стабильнее урон, выше защита, и он контратакует каждый раз, когда бьют его соседа. Лучший выбор для оборонительной тактики.',
+          'Жрица Солнца — это стрелковый юнит поддержки. У неё 35 здоровья и положительный боевой дух уже на старте.',
+          'Основной грейд — Иерофантида. Она получает «Омовение» — способность снимать все негативные эффекты и полностью лечить союзников. Это бесценно против фракций, которые заливают дебаффами.',
+          'Альтернативный грейд — Вестница солнца. Она делает больший упор в урон и получает бонус за каждый наложенный бафф. Выбирайте её, если вам нужно больше огневой мощи, а не лечения.'
+        ],
+        tip: 'Иерофантида особенно полезна в поздней игре, когда враги начинают кидать сильные дебаффы вроде «Сумерек», которые мешают стрелять. Омовение может переломить ход боя.',
+        quizzes: [
+          { q: 'Какой грейд Грифона контратакует неограниченное число раз за раунд?', options: ['Сторожевой грифон', 'Храмовый грифон', 'Солнечный грифон'], correct: 1 },
+          { q: 'Что даёт Жрице Солнца грейд «Иерофантида»?', options: ['Двойной выстрел', 'Омовение — снятие дебаффов и полное лечение', 'Неуязвимость к магии'], correct: 1 }
+        ]
+      },
+      en: {
+        title: 'Griffin and Sun Priestess — Path to Elite',
+        eyebrow: 'Fork and Support',
+        body: [
+          'The Griffin is a mandatory stepping stone. All further faction development goes through it: without griffins, you cannot build priestesses, cavalry, or angels. It has 9th initiative and can fly.',
+          'The main upgrade is the Temple Griffin. Its feature — counterattacks an unlimited number of times per round. This makes it an excellent defender.',
+          'The alternative upgrade is the Watch Griffin. It has more stable damage, higher defense, and counterattacks every time its neighbor is hit. A better choice for defensive tactics.',
+          'The Sun Priestess is a ranged support unit. She has 35 health and positive morale from the start.',
+          'The main upgrade is the Hierophant. She gains "Ablution" — the ability to remove all negative effects and fully heal allies. This is invaluable against factions that spam debuffs.',
+          'The alternative upgrade is the Sun Herald. She focuses more on damage and gains a bonus for each buff applied. Choose her if you need more firepower rather than healing.'
+        ],
+        tip: 'The Hierophant is especially useful in the late game when enemies start throwing strong debuffs like "Twilight" that prevent shooting. Ablution can turn the tide of battle.',
+        quizzes: [
+          { q: 'Which Griffin upgrade counterattacks an unlimited number of times per round?', options: ['Watch Griffin', 'Temple Griffin', 'Sun Griffin'], correct: 1 },
+          { q: 'What does the Sun Priestess get from the "Hierophant" upgrade?', options: ['Double shot', 'Ablution — debuff removal and full heal', 'Magic immunity'], correct: 1 }
+        ]
+      }
+    },
+    {
+      id: 'cavalry-inquisitor',
+      image: 'images/cavalry-inquisitor.jpg',
+      ru: {
+        title: 'Кавалерия и Инквизитор — ударная сила',
+        eyebrow: 'Тяжёлые юниты',
+        body: [
+          'Кавалерия Храма — это юнит с 85 здоровья. Её главная фишка: чем дальше она пробежала перед атакой, тем больше урона — +5% за каждый гекс.',
+          'Важный нюанс по порядку действий: если у тебя уже есть грейд кавалерии, перед атакой сначала используй активный навык на скорость и инициативу, а потом уже атакуй. Это даёт дополнительный бонус +2 к атаке.',
+          'Основной грейд — Благородная кавалерия. Она получает рост инициативы и игнорирование защиты врага.',
+          'Альтернативный грейд — Солнечная кавалерия. Вместо активного навыка у неё пассивный бонус к атаке за каждый бафф на отряде. Судя по статам, её выбирают чаще.',
+          'Инквизитор — это крепкий боец ближнего боя. У него 90 здоровья, хорошая защита и полный иммунитет к магическому урону.',
+          'Он также умеет снимать с себя эффекты, ограничивающие движение — может добежать даже после контроля. Это стоит держать в голове, если играешь против Храма.',
+          'Основной грейд Инквизитора даёт рост здоровья и защиты, а также генерацию концентрации при получении урона. Альтернативный — Карательница — даёт больше урона и магическую атаку по области.'
+        ],
+        tip: 'Порядок действий для Кавалерии критически важен! Сначала жми на скорость, потом атакуй. Если сделаешь наоборот — потеряешь +2 к атаке. Эта мелочь часто решает исход боя.',
+        quizzes: [
+          { q: 'Сколько процентов урона получает Кавалерия за каждый гекс пробега перед атакой?', options: ['3%', '5%', '10%'], correct: 1 },
+          { q: 'От какого типа урона Инквизитор имеет полный иммунитет?', options: ['От стрелкового', 'От магического', 'От огненного'], correct: 1 }
+        ]
+      },
+      en: {
+        title: 'Cavalry and Inquisitor — Striking Force',
+        eyebrow: 'Heavy Units',
+        body: [
+          'Temple Cavalry is a unit with 85 health. Its main feature: the further it runs before attacking, the more damage — +5% per hex.',
+          'Important nuance on order of actions: if you already have a cavalry upgrade, before attacking first use the active skill for speed and initiative, then attack. This gives an additional +2 to attack.',
+          'The main upgrade is Noble Cavalry. It gains initiative growth and ignores enemy defense.',
+          'The alternative upgrade is Sun Cavalry. Instead of an active skill, it has a passive attack bonus for each buff on the squad. According to stats, it is chosen more often.',
+          'The Inquisitor is a tough melee fighter. He has 90 health, good defense, and full immunity to magic damage.',
+          'He can also remove movement-restricting effects from himself — he can reach you even after control. This is worth keeping in mind if you\'re playing against Temple.',
+          'The Inquisitor\'s main upgrade gives health and defense growth, plus concentration generation when taking damage. The alternative — Punisher — gives more damage and an area magic attack.'
+        ],
+        tip: 'The order of actions for Cavalry is critically important! First use speed, then attack. If you do it the other way — you lose +2 to attack. This small detail often decides the outcome of a battle.',
+        quizzes: [
+          { q: 'What percentage of damage does Cavalry gain for each hex run before attacking?', options: ['3%', '5%', '10%'], correct: 1 },
+          { q: 'What type of damage does the Inquisitor have full immunity to?', options: ['Ranged', 'Magic', 'Fire'], correct: 1 }
+        ]
+      }
+    },
+    {
+      id: 'angel',
+      image: 'images/angel.jpg',
+      ru: {
+        title: 'Ангел — вершина Храма',
+        eyebrow: 'Элитный юнит',
+        body: [
+          'Ангел — это вершина фракции Храм. У него 225 здоровья, и он является стрелковым юнитом. Важный момент: лечение на него не действует, потому что он воплощение.',
+          'Главная фишка Ангела — он автоматически копирует на себя любой положительный эффект с других союзников. Поставили щит на танка — ангел получит такой же щит бесплатно. Это делает его невероятно живучим при правильной поддержке.',
+          'Основной грейд — Архангел. Он получает навыки «Снайпер» и «Дуэлянт» — больше нет штрафа за стрельбу в ближнем бою. Это универсальный боец.',
+          'Альтернативный грейд — Апофеоз. У него 300 здоровья и аура чистоты: все соседние союзники становятся неуязвимы к негативным эффектам.',
+          'По описаниям игроков, Апофеоз выбирают чаще. Он живучее и обнуляет вражеский контроль рядом с собой. Особенно полезен против фракций, которые полагаются на дебаффы.'
+        ],
+        tip: 'Ангел копирует баффы автоматически, поэтому стратегия с ним проста: баффайте других юнитов, и ангел станет сильнее бесплатно. Апофеоз особенно хорош, если враг использует много дебаффов.',
+        quizzes: [
+          { q: 'Сколько здоровья у базового Ангела?', options: ['150', '225', '300'], correct: 1 },
+          { q: 'Что делает аура чистоты у Апофеоза?', options: ['Увеличивает урон соседей', 'Делает соседних союзников неуязвимыми к негативным эффектам', 'Лечит соседей каждый раунд'], correct: 1 }
+        ]
+      },
+      en: {
+        title: 'Angel — Temple\'s Pinnacle',
+        eyebrow: 'Elite Unit',
+        body: [
+          'The Angel is the pinnacle of the Temple faction. He has 225 health and is a ranged unit. Important: healing does not work on him because he is an embodiment.',
+          'The Angel\'s main feature — he automatically copies any positive effect from other allies onto himself. Put a shield on the tank — the angel gets the same shield for free. This makes him incredibly survivable with proper support.',
+          'The main upgrade is the Archangel. He gains "Sniper" and "Duelist" skills — no more ranged penalty in melee. This is a versatile fighter.',
+          'The alternative upgrade is Apotheosis. He has 300 health and a purity aura: all adjacent allies become immune to negative effects.',
+          'According to player reports, Apotheosis is chosen more often. He is more survivable and nullifies enemy control around him. Especially useful against factions that rely on debuffs.'
+        ],
+        tip: 'The Angel copies buffs automatically, so the strategy is simple: buff other units, and the angel becomes stronger for free. Apotheosis is especially good if the enemy uses a lot of debuffs.',
+        quizzes: [
+          { q: 'How much health does the base Angel have?', options: ['150', '225', '300'], correct: 1 },
+          { q: 'What does the purity aura from Apotheosis do?', options: ['Increases neighbor damage', 'Makes adjacent allies immune to negative effects', 'Heals neighbors every round'], correct: 1 }
+        ]
+      }
+    },
+    {
+      id: 'laws-buildings-pvp',
+      image: 'images/temple-laws-buildings.jpg',
+      ru: {
+        title: 'Законы, постройки и PvP-мета',
+        eyebrow: 'Стратегия и развитие',
+        body: [
+          'Законы фракции — важная часть стратегии. «Поход инквизиции» даёт бонус урона против призванных существ. «Герои из казны» — бонус к боевому духу всем героям. Его берут почти всегда первым.',
+          '«Стремление к совершенству» продлевает положительные эффекты. «Элитная кавалерия» даёт прирост кавалерии в городах. Есть законы для тренировки в ближнем бою и для стрелков — прямые бонусы к урону.',
+          'На верхних уровнях есть закон, дающий возможность изучать заклинания любого ранга вне зависимости от прокачанной школы. До него доходят редко, но если дошли — это серьёзно усиливает героя.',
+          'Уникальные постройки: «Дирижабль разведки» — одна из лучших построек в игре. Строится в первый день и сразу засвечивает карту вокруг. Это даёт огромное преимущество в разведке.',
+          '«Гильдия шести ветров» — можно отправить героя на тренировку на день и получить постоянный бонус к характеристике. Полезно, если у героя уже полная мана.',
+          'Из минусов Храма — выход в ангелов долгий, около пяти дней при стандартном темпе. Это на день дольше, чем у некоторых других фракций.',
+          'В PvP чаще всего банят Джона Джоусена, Пустельгу и Старого лорда Мандала. Из оставшихся часто берут Эос Вознесённую или героя с ПИПОЙ. Кеандру берут редко — дорого отыгрывать.'
+        ],
+        tip: 'Начинай с «Дирижабля разведки» в первый же день — это даст тебе информацию, которая сэкономит много ходов. А «Герои из казны» — отличный первый закон для усиления всех героев.',
+        quizzes: [
+          { q: 'Какую постройку Храма стоит возводить в первый день?', options: ['Гильдию магов', 'Дирижабль разведки', 'Казармы'], correct: 1 },
+          { q: 'Какой герой часто банится в PvP наряду с Джоном Джоусеном и Пустельгой?', options: ['Эос Вознесённая', 'Старый лорд Мандал', 'Кеандра'], correct: 1 }
+        ]
+      },
+      en: {
+        title: 'Laws, Buildings & PvP Meta',
+        eyebrow: 'Strategy & Development',
+        body: [
+          'Faction laws are an important part of strategy. "Inquisition March" gives a damage bonus against summoned creatures. "Heroes from the Treasury" gives a morale bonus to all heroes. It is almost always taken first.',
+          '"Striving for Perfection" extends positive effects. "Elite Cavalry" gives cavalry growth in cities. There are laws for melee and ranged training — direct damage bonuses.',
+          'At the upper levels there is a law that allows learning spells of any rank regardless of the leveled school. Few reach it, but if you do — it seriously strengthens the hero.',
+          'Unique buildings: "Scouting Airship" — one of the best buildings in the game. Built on the first day and immediately reveals the map around. This gives a huge scouting advantage.',
+          '"Six Winds Guild" — you can send a hero for a day of training and get a permanent stat bonus. Useful if the hero already has full mana.',
+          'Temple\'s downside — the path to angels is long, about five days at standard tempo. This is a day longer than some other factions.',
+          'In PvP, John Jousen, Kestrel, and Old Lord Mandal are most often banned. Eos Ascended or a hero with PIP are often picked from the remaining ones. Keandra is rarely picked — expensive to play.'
+        ],
+        tip: 'Start with the "Scouting Airship" on the first day — it gives you information that will save you many turns. And "Heroes from the Treasury" is an excellent first law for strengthening all heroes.',
+        quizzes: [
+          { q: 'Which Temple building should you build on the first day?', options: ['Mage Guild', 'Scouting Airship', 'Barracks'], correct: 1 },
+          { q: 'Which hero is often banned in PvP alongside John Jousen and Kestrel?', options: ['Eos Ascended', 'Old Lord Mandal', 'Keandra'], correct: 1 }
+        ]
+      }
+    }
+  ]
+}
+]
 let currentTopicIndex = null;
 let completed = new Set();
 let currentLessonIndex = null;
