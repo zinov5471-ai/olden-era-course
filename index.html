@@ -930,11 +930,7 @@ async function init() {
   }
 }
 
-function renderHome() {
-  document.getElementById('completion-view').classList.remove('show');
-  document.getElementById('lesson-view').classList.remove('active');
-  document.getElementById('home-view').classList.remove('hidden');
-
+function renderHome(forceList) {
   document.getElementById('home-eyebrow').textContent = t('homeEyebrow');
   document.getElementById('home-title').textContent = t('homeTitle');
   document.getElementById('lang-toggle-btn').textContent = t('langToggle');
@@ -972,9 +968,14 @@ function renderHome() {
     list.appendChild(card);
   });
 
-  if (completed.size === TOTAL) {
+  document.getElementById('lesson-view').classList.remove('active');
+
+  if (!forceList && completed.size === TOTAL) {
     document.getElementById('home-view').classList.add('hidden');
     document.getElementById('completion-view').classList.add('show');
+  } else {
+    document.getElementById('home-view').classList.remove('hidden');
+    document.getElementById('completion-view').classList.remove('show');
   }
 }
 
@@ -1065,7 +1066,7 @@ async function completeLesson() {
 }
 
 function goHome() {
-  renderHome();
+  renderHome(true);
 }
 
 init();
