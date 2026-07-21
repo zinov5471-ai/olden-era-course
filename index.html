@@ -395,34 +395,69 @@
 </div>
 
 <script>
-const tg = window.Telegram ? window.Telegram.WebApp : null;
-if (tg) {
-  tg.ready();
-  tg.expand();
-  tg.setHeaderColor('#14121F');
-  tg.setBackgroundColor('#14121F');
+let tg = null;
+try {
+  tg = window.Telegram ? window.Telegram.WebApp : null;
+  if (tg) {
+    tg.ready();
+    tg.expand();
+    tg.setHeaderColor('#14121F');
+    tg.setBackgroundColor('#14121F');
+  }
+} catch (e) {
+  console.error('Telegram WebApp init failed, continuing without it:', e);
+  tg = null;
 }
 
 // ---------- Storage: Telegram CloudStorage with localStorage fallback ----------
+function cloudStorageAvailable() {
+  try {
+    if (!tg || !tg.CloudStorage) return false;
+    if (typeof tg.isVersionAtLeast === 'function') {
+      return tg.isVersionAtLeast('6.9');
+    }
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+function withTimeout(promise, ms, fallbackValue) {
+  return Promise.race([
+    promise,
+    new Promise((resolve) => setTimeout(() => resolve(fallbackValue), ms))
+  ]);
+}
+
 const Storage = {
   async get(key) {
-    return new Promise((resolve) => {
-      if (tg && tg.CloudStorage) {
+    if (!cloudStorageAvailable()) {
+      return localStorage.getItem(key);
+    }
+    const cloudPromise = new Promise((resolve) => {
+      try {
         tg.CloudStorage.getItem(key, (err, value) => resolve(err ? null : value));
-      } else {
+      } catch (e) {
         resolve(localStorage.getItem(key));
       }
     });
+    return withTimeout(cloudPromise, 1200, localStorage.getItem(key));
   },
   async set(key, value) {
-    return new Promise((resolve) => {
-      if (tg && tg.CloudStorage) {
+    if (!cloudStorageAvailable()) {
+      localStorage.setItem(key, value);
+      return;
+    }
+    const cloudPromise = new Promise((resolve) => {
+      try {
         tg.CloudStorage.setItem(key, value, () => resolve());
-      } else {
+      } catch (e) {
         localStorage.setItem(key, value);
         resolve();
       }
     });
+    await withTimeout(cloudPromise, 1200, null);
+    localStorage.setItem(key, value); // mirror locally as a safety net
   }
 };
 
@@ -857,11 +892,15 @@ let quizAnswered = [];
 
 // ---------- Language handling ----------
 async function selectLanguage(lang) {
-  currentLang = lang;
-  await Storage.set('lang', lang);
-  document.getElementById('lang-view').classList.add('hidden');
-  document.getElementById('home-view').classList.remove('hidden');
-  renderHome();
+  try {
+    currentLang = lang;
+    await Storage.set('lang', lang);
+    document.getElementById('lang-view').classList.add('hidden');
+    document.getElementById('home-view').classList.remove('hidden');
+    renderHome();
+  } catch (e) {
+    console.error('selectLanguage error:', e);
+  }
 }
 
 async function toggleLanguage() {
