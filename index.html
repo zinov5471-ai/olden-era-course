@@ -209,6 +209,53 @@
     font-size: 18px;
     color: var(--success);
   }
+  .topic-icon{
+    font-size: 20px;
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: rgba(201,161,92,0.1);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+  }
+  .topic-progress{
+    font-size: 11px;
+    color: var(--parchment-dim);
+    margin-top: 2px;
+  }
+  .soon-badge{
+    margin-left:auto;
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 700;
+    color: var(--parchment-dim);
+    background: rgba(255,255,255,0.06);
+    padding: 4px 10px;
+    border-radius: 20px;
+    flex-shrink:0;
+  }
+  .lesson-card.soon{
+    opacity: 0.6;
+    cursor: default;
+  }
+  .lesson-card.soon:active{ transform: none; }
+  .support-link{
+    display:block;
+    width:100%;
+    text-align:center;
+    background: none;
+    border: none;
+    color: var(--parchment-dim);
+    font-family:'Manrope';
+    font-size: 12.5px;
+    padding: 18px 0 4px;
+    cursor:pointer;
+    opacity: 0.7;
+  }
+  .support-link:active{ opacity: 1; }
 
   /* ---------- Lesson view ---------- */
   .lesson-view{ display:none; }
@@ -356,8 +403,22 @@
     </div>
   </div>
 
-  <!-- HOME VIEW -->
+  <!-- TOPICS VIEW -->
+  <div id="topics-view" class="hidden">
+    <div class="app-header">
+      <div>
+        <div class="eyebrow" id="topics-eyebrow"></div>
+        <h1 id="topics-title"></h1>
+      </div>
+      <button class="lang-toggle" onclick="toggleLanguage()" id="topics-lang-toggle-btn"></button>
+    </div>
+    <div class="lesson-list" id="topics-list"></div>
+    <button class="support-link" onclick="openDonate()" id="support-link-label"></button>
+  </div>
+
+  <!-- HOME VIEW (lessons within a topic) -->
   <div id="home-view" class="hidden">
+    <button class="back-btn" onclick="goTopics()" id="topics-back-label">← Themes</button>
     <div class="app-header">
       <div>
         <div class="eyebrow" id="home-eyebrow"></div>
@@ -371,6 +432,7 @@
 
     <div class="lesson-list" id="lesson-list"></div>
   </div>
+
 
   <!-- LESSON VIEW -->
   <div class="lesson-view" id="lesson-view">
@@ -390,6 +452,7 @@
     <h2 id="completion-title"></h2>
     <p style="color:var(--parchment-dim); font-size:14px;" id="completion-text"></p>
     <button class="primary-btn show" onclick="goHome()" id="completion-btn"></button>
+    <button class="support-link" onclick="openDonate()" id="completion-support-label"></button>
   </div>
 
 </div>
@@ -466,37 +529,71 @@ const STRINGS = {
   ru: {
     homeEyebrow: 'CharmRoad · Курс новичка',
     homeTitle: 'Olden Era: с нуля',
+    topicsEyebrow: 'CharmRoad',
+    topicsTitle: 'Выбери тему',
     progressLabel: (done, total) => `Пройдено ${done} из ${total}`,
     langToggle: 'EN',
     backBtn: '← Все уроки',
+    backToTopics: '← Темы',
+    comingSoon: 'Скоро',
     completeBtn: 'Урок пройден →',
-    completionTitle: 'Курс пройден!',
-    completionText: 'Теперь ты знаешь основы Olden Era лучше, чем 90% новичков. Возвращайся, если что-то забудешь.',
+    completionTitle: 'Тема пройдена!',
+    completionText: 'Ты прошёл все уроки этой темы. Возвращайся, если что-то забудешь, или выбери другую тему.',
     completionBtn: 'К списку уроков',
     tipLabel: 'Совет:',
     correctFeedback: 'Точно!',
-    wrongFeedback: 'Не совсем — правильный ответ подсвечен зелёным.'
+    wrongFeedback: 'Не совсем — правильный ответ подсвечен зелёным.',
+    supportLink: '❤️ Поддержать канал'
   },
   en: {
     homeEyebrow: 'CharmRoad · Beginner Course',
     homeTitle: 'Olden Era: From Scratch',
+    topicsEyebrow: 'CharmRoad',
+    topicsTitle: 'Choose a Topic',
     progressLabel: (done, total) => `Completed ${done} of ${total}`,
     langToggle: 'RU',
     backBtn: '← All lessons',
+    backToTopics: '← Themes',
+    comingSoon: 'Coming soon',
     completeBtn: 'Lesson complete →',
-    completionTitle: 'Course complete!',
-    completionText: 'You now know Olden Era basics better than 90% of newcomers. Come back anytime you forget something.',
+    completionTitle: 'Topic complete!',
+    completionText: 'You have finished all lessons in this topic. Come back anytime, or pick another topic.',
     completionBtn: 'Back to lessons',
     tipLabel: 'Tip:',
     correctFeedback: 'Correct!',
-    wrongFeedback: 'Not quite — the correct answer is highlighted in green.'
+    wrongFeedback: 'Not quite — the correct answer is highlighted in green.',
+    supportLink: '❤️ Support the channel'
   }
 };
 
 let currentLang = 'ru';
+const DONATE_URL = 'https://www.donationalerts.com/r/charmroad';
 
-// ---------- Lesson content (bilingual) ----------
-const LESSONS = [
+function setText(id, value) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = value;
+}
+
+function openDonate() {
+  try {
+    if (tg && typeof tg.openLink === 'function') {
+      tg.openLink(DONATE_URL);
+    } else {
+      window.open(DONATE_URL, '_blank');
+    }
+  } catch (e) {
+    window.open(DONATE_URL, '_blank');
+  }
+}
+
+// ---------- Topics & lesson content (bilingual) ----------
+const TOPICS = [
+  {
+    id: 'basics',
+    icon: '📜',
+    ru: { title: 'Основы игры' },
+    en: { title: 'Game Basics' },
+    lessons: [
   {
     id: 'concentration',
     image: 'images/concentration.jpg',
@@ -883,9 +980,18 @@ const LESSONS = [
       ]
     }
   }
+    ]
+  },
+  {
+    id: 'temple',
+    icon: '⚔️',
+    ru: { title: 'Фракция Храм' },
+    en: { title: 'Temple Faction' },
+    lessons: []
+  }
 ];
 
-const TOTAL = LESSONS.length;
+let currentTopicIndex = null;
 let completed = new Set();
 let currentLessonIndex = null;
 let quizAnswered = [];
@@ -896,8 +1002,8 @@ async function selectLanguage(lang) {
     currentLang = lang;
     await Storage.set('lang', lang);
     document.getElementById('lang-view').classList.add('hidden');
-    document.getElementById('home-view').classList.remove('hidden');
-    renderHome();
+    document.getElementById('topics-view').classList.remove('hidden');
+    renderTopics();
   } catch (e) {
     console.error('selectLanguage error:', e);
   }
@@ -906,7 +1012,11 @@ async function selectLanguage(lang) {
 async function toggleLanguage() {
   currentLang = currentLang === 'ru' ? 'en' : 'ru';
   await Storage.set('lang', currentLang);
-  renderHome();
+  if (!document.getElementById('home-view').classList.contains('hidden')) {
+    renderHome(true);
+  } else {
+    renderTopics();
+  }
 }
 
 function t(key, ...args) {
@@ -925,33 +1035,91 @@ async function init() {
   if (savedLang === 'ru' || savedLang === 'en') {
     currentLang = savedLang;
     document.getElementById('lang-view').classList.add('hidden');
-    document.getElementById('home-view').classList.remove('hidden');
-    renderHome();
+    document.getElementById('topics-view').classList.remove('hidden');
+    renderTopics();
   }
 }
 
+// ---------- Topics screen ----------
+function topicProgress(topic) {
+  const done = topic.lessons.filter(l => completed.has(l.id)).length;
+  return { done, total: topic.lessons.length };
+}
+
+function renderTopics() {
+  document.getElementById('lesson-view').classList.remove('active');
+  document.getElementById('completion-view').classList.remove('show');
+  document.getElementById('home-view').classList.add('hidden');
+  document.getElementById('topics-view').classList.remove('hidden');
+
+  setText('topics-eyebrow', t('topicsEyebrow'));
+  setText('topics-title', t('topicsTitle'));
+  setText('topics-lang-toggle-btn', t('langToggle'));
+  setText('support-link-label', t('supportLink'));
+
+  const list = document.getElementById('topics-list');
+  list.innerHTML = '';
+  TOPICS.forEach((topic, i) => {
+    const content = topic[currentLang];
+    const isEmpty = topic.lessons.length === 0;
+    const { done, total } = topicProgress(topic);
+    const card = document.createElement('div');
+    card.className = 'lesson-card' + (isEmpty ? ' soon' : '');
+    card.onclick = () => openTopic(i);
+    card.innerHTML = `
+      <div class="topic-icon">${topic.icon}</div>
+      <div>
+        <div class="lesson-title">${content.title}</div>
+        <div class="topic-progress">${isEmpty ? '' : t('progressLabel', done, total)}</div>
+      </div>
+      ${isEmpty ? `<div class="soon-badge">${t('comingSoon')}</div>` : (done === total ? '<div class="lesson-check">✓</div>' : '')}
+    `;
+    list.appendChild(card);
+  });
+}
+
+function openTopic(index) {
+  const topic = TOPICS[index];
+  if (topic.lessons.length === 0) return; // coming soon, not clickable
+  currentTopicIndex = index;
+  document.getElementById('topics-view').classList.add('hidden');
+  document.getElementById('home-view').classList.remove('hidden');
+  renderHome();
+}
+
+function goTopics() {
+  renderTopics();
+}
+
 function renderHome(forceList) {
-  document.getElementById('home-eyebrow').textContent = t('homeEyebrow');
-  document.getElementById('home-title').textContent = t('homeTitle');
-  document.getElementById('lang-toggle-btn').textContent = t('langToggle');
-  document.getElementById('back-btn-label').textContent = t('backBtn');
-  document.getElementById('complete-btn').textContent = t('completeBtn');
-  document.getElementById('completion-title').textContent = t('completionTitle');
-  document.getElementById('completion-text').textContent = t('completionText');
-  document.getElementById('completion-btn').textContent = t('completionBtn');
+  const topic = TOPICS[currentTopicIndex];
+  const lessons = topic.lessons;
+  const total = lessons.length;
+
+  setText('home-eyebrow', topic[currentLang].title);
+  setText('home-title', t('homeTitle'));
+  setText('topics-back-label', t('backToTopics'));
+  setText('lang-toggle-btn', t('langToggle'));
+  setText('back-btn-label', t('backBtn'));
+  setText('complete-btn', t('completeBtn'));
+  setText('completion-title', t('completionTitle'));
+  setText('completion-text', t('completionText'));
+  setText('completion-btn', t('completionBtn'));
+  setText('completion-support-label', t('supportLink'));
 
   const chargesRow = document.getElementById('charges-row');
   chargesRow.innerHTML = '';
-  LESSONS.forEach((l, i) => {
+  lessons.forEach((l, i) => {
     const dot = document.createElement('div');
     dot.className = 'charge-dot' + (completed.has(l.id) ? ' filled' : '') + (i === firstIncompleteIndex() ? ' current' : '');
     chargesRow.appendChild(dot);
   });
-  document.getElementById('progress-label').textContent = t('progressLabel', completed.size, TOTAL);
+  const doneCount = lessons.filter(l => completed.has(l.id)).length;
+  setText('progress-label', t('progressLabel', doneCount, total));
 
   const list = document.getElementById('lesson-list');
   list.innerHTML = '';
-  LESSONS.forEach((l, i) => {
+  lessons.forEach((l, i) => {
     const content = l[currentLang];
     const card = document.createElement('div');
     const isDone = completed.has(l.id);
@@ -970,7 +1138,7 @@ function renderHome(forceList) {
 
   document.getElementById('lesson-view').classList.remove('active');
 
-  if (!forceList && completed.size === TOTAL) {
+  if (!forceList && total > 0 && doneCount === total) {
     document.getElementById('home-view').classList.add('hidden');
     document.getElementById('completion-view').classList.add('show');
   } else {
@@ -980,24 +1148,25 @@ function renderHome(forceList) {
 }
 
 function firstIncompleteIndex() {
-  for (let i = 0; i < LESSONS.length; i++) {
-    if (!completed.has(LESSONS[i].id)) return i;
+  const lessons = TOPICS[currentTopicIndex].lessons;
+  for (let i = 0; i < lessons.length; i++) {
+    if (!completed.has(lessons[i].id)) return i;
   }
-  return LESSONS.length - 1;
+  return lessons.length - 1;
 }
 
 function openLesson(index) {
   currentLessonIndex = index;
-  const l = LESSONS[index];
+  const l = TOPICS[currentTopicIndex].lessons[index];
   const content = l[currentLang];
   quizAnswered = new Array(content.quizzes.length).fill(false);
 
   document.getElementById('home-view').classList.add('hidden');
   document.getElementById('lesson-view').classList.add('active');
 
-  document.getElementById('back-btn-label').textContent = t('backBtn');
-  document.getElementById('lv-eyebrow').textContent = content.eyebrow;
-  document.getElementById('lv-title').textContent = content.title;
+  setText('back-btn-label', t('backBtn'));
+  setText('lv-eyebrow', content.eyebrow);
+  setText('lv-title', content.title);
 
   const body = document.getElementById('lv-body');
   const imageHtml = l.image
@@ -1009,7 +1178,7 @@ function openLesson(index) {
   const quizContainer = document.getElementById('lv-quiz');
   quizContainer.innerHTML = '';
   document.getElementById('complete-btn').className = 'primary-btn';
-  document.getElementById('complete-btn').textContent = t('completeBtn');
+  setText('complete-btn', t('completeBtn'));
 
   content.quizzes.forEach((quiz, qIndex) => {
     const block = document.createElement('div');
@@ -1059,7 +1228,7 @@ function answerQuiz(quizIndex, chosen, correct) {
 }
 
 async function completeLesson() {
-  const l = LESSONS[currentLessonIndex];
+  const l = TOPICS[currentTopicIndex].lessons[currentLessonIndex];
   completed.add(l.id);
   await Storage.set('completed_lessons', JSON.stringify([...completed]));
   renderHome();
