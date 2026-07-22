@@ -588,7 +588,214 @@ function openDonate() {
 
 // ---------- Topics & lesson content (bilingual) ----------
 const TOPICS = [
+ 
   {
+    id: 'patch-11',
+    icon: '🔧',
+    ru: { title: 'Патч 11: Главные изменения' },
+    en: { title: 'Patch 11: Main Changes' },
+    lessons: [
+      {
+        id: 'patch-11-necromancy-system',
+        image: 'images/patch-11-necromancy-system.jpg',
+        ru: {
+          title: 'Некромантия: новая система',
+          eyebrow: 'Патч 11 — главное изменение',
+          body: [
+            'В патче 11 разработчики полностью переработали механику некромантии. Теперь это совершенно новая система, которая меняет подход к игре за Некрополь.',
+            'Главное изменение: теперь вы можете поднимать нежить, даже если в вашей армии нет существа соответствующего уровня! Например, победив отряд 7-го уровня, вы сможете создать Вампира, даже если у вас не было Вампиров в армии.',
+            'По умолчанию существа поднимаются в базовой версии: 1-й уровень → Скелет, 2-й → Призрак , 3-й → Оживщий питомец, 4-й → Гробокопальщик, 5-й → Лич, 6-й → Зловещий рыцарь, 7-й → Вампир.',
+            'Если в армии есть улучшенная версия существа, то и подниматься будет улучшенная версия. Если есть несколько видов улучшений — поднимется та, которых больше в армии.',
+            'Начальный запас энергии некромантии значительно увеличен: с 1000 до 3000 для базового уровня. Однако стоимость поднятия существ выросла в разы. Например, поднятие скелета теперь стоит 20 энергии (было 5), а Вампира — 2000 энергии (было 500).',
+            'Новый интерфейс: теперь в окне результатов боя можно выбрать — поднять нежить или конвертировать энергию. Это даёт больше контроля над ресурсами.'
+          ],
+          tip: 'Новая некромантия требует пересмотра стратегии. Теперь вы можете гибко поднимать любых существ, но энергия стала более ценным ресурсом. Планируйте, кого поднимать, особенно на высоких уровнях — Вампир стоит 2000 энергии!',
+          quizzes: [
+            { q: 'Что изменилось в патче 11 для некромантии?', options: ['Теперь можно поднимать нежить даже без соответствующих существ в армии', 'Некромантия перестала работать', 'Увеличили количество скелетов'], correct: 0 },
+            { q: 'Сколько энергии теперь стоит поднятие Вампира в патче 11?', options: ['500', '1000', '2000'], correct: 2 }
+          ]
+        },
+        en: {
+          title: 'Necromancy: New System',
+          eyebrow: 'Patch 11 — Main Change',
+          body: [
+            'In patch 11, the developers completely reworked the necromancy mechanic. This is now a completely new system that changes the approach to playing Necropolis.',
+            'The main change: now you can raise undead even if you don\'t have a creature of the corresponding level in your army! For example, after defeating a tier 7 squad, you can create a Vampire even if you didn\'t have Vampires in your army.',
+            'By default, creatures are raised in their basic version: tier 1 → Skeleton, tier 2 → Wight, tier 3 → Undead Pet, tier 4 → Graverobber, tier 5 → Lich, tier 6 → Death Knight, tier 7 → Vampire.',
+            'If you have an upgraded version of a creature in your army, the upgraded version will be raised. If there are multiple upgrades, the one with more units in the army will be raised.',
+            'The initial necromancy energy pool has been significantly increased: from 1000 to 3000 for the basic level. However, the cost of raising creatures has increased many times over. For example, raising a Skeleton now costs 20 energy (was 5), and a Vampire costs 2000 energy (was 500).',
+            'New interface: in the battle results window, you can now choose — raise undead or convert energy. This gives more control over resources.'
+          ],
+          tip: 'The new necromancy requires a strategy rethink. You can now flexibly raise any creatures, but energy has become a more valuable resource. Plan who to raise, especially at high tiers — a Vampire costs 2000 energy!',
+          quizzes: [
+            { q: 'What changed in patch 11 for necromancy?', options: ['You can now raise undead even without the corresponding creatures in your army', 'Necromancy stopped working', 'The number of skeletons was increased'], correct: 0 },
+            { q: 'How much energy does raising a Vampire now cost in patch 11?', options: ['500', '1000', '2000'], correct: 2 }
+          ]
+        }
+      },
+      {
+        id: 'patch-11-avatar',
+        image: 'images/patch-11-avatar.jpg',
+        ru: {
+          title: 'Призыв Аватара: переработка',
+          eyebrow: 'Патч 11 — заклинания',
+          body: [
+            'В патче 11 заклинание "Призыв Аватара" было полностью переработано. Оно стало менее универсальным, но более гибким в настройке.',
+            'Аватар теперь всегда умирает от 3 ударов, независимо от уровня навыка и бонусов к здоровью. Это делает его предсказуемым и уязвимым к фокусированному огню.',
+            'Базовый урон Аватара снижен с 12-12 до 10-10. Зависимость урона от силы магии героя также уменьшена: теперь каждый уровень даёт +6-6, +8-8 или +10-10 урона (вместо 12-12 на всех уровнях).',
+            'Заклинание перенесено на 4-й уровень и имеет кулдаун 5 раундов (включая раунд каста).',
+            'Улучшения Аватара изменены: "Яростный Аватар" даёт +40% к урону (было +25%). "Быстрый Аватар" даёт +2 к скорости и инициативе (было +1).',
+            'Новое улучшение: "Призыв разрушения" — герой и все союзники наносят +50% урона всем призванным существам. Отличный выбор против других призывателей!'
+          ],
+          tip: 'Аватар больше не является "танком". Используйте его как ударный юнит на 3 хода. Улучшения теперь критически важны — без них Аватар слишком слаб. "Призыв разрушения" — отличный выбор против Некрополя и других фракций с призывами.',
+          quizzes: [
+            { q: 'Сколько ударов теперь выдерживает Аватар в патче 11?', options: ['2 удара', '3 удара', 'Зависит от здоровья'], correct: 1 },
+            { q: 'Что даёт новое улучшение "Призыв разрушения"?', options: ['Увеличивает здоровье Аватара', '+50% урона всем призванным существам', 'Удваивает атаку Аватара'], correct: 1 }
+          ]
+        },
+        en: {
+          title: 'Summon Avatar: Reworked',
+          eyebrow: 'Patch 11 — Spells',
+          body: [
+            'In patch 11, the "Summon Avatar" spell was completely reworked. It became less universal but more flexible in customization.',
+            'The Avatar now always dies from 3 hits, regardless of skill level and health bonuses. This makes it predictable and vulnerable to focused fire.',
+            'Base damage of the Avatar was reduced from 12-12 to 10-10. The damage scaling from hero spell power was also reduced: now each level gives +6-6, +8-8, or +10-10 damage (instead of 12-12 at all levels).',
+            'The spell was moved to level 4 and has a cooldown of 5 rounds (including the cast round).',
+            'Avatar upgrades were changed: "Fury Avatar" gives +40% damage (was +25%). "Swift Avatar" gives +2 speed and initiative (was +1).',
+            'New upgrade: "Summon Destruction" — the hero and all allies deal +50% damage to all summoned creatures. An excellent choice against other summoners!'
+          ],
+          tip: 'The Avatar is no longer a "tank". Use it as a strike unit for 3 turns. Upgrades are now critically important — without them, the Avatar is too weak. "Summon Destruction" is an excellent choice against Necropolis and other factions with summons.',
+          quizzes: [
+            { q: 'How many hits can the Avatar now withstand in patch 11?', options: ['2 hits', '3 hits', 'Depends on health'], correct: 1 },
+            { q: 'What does the new "Summon Destruction" upgrade give?', options: ['Increases Avatar health', '+50% damage to all summoned creatures', 'Doubles Avatar attack'], correct: 1 }
+          ]
+        }
+      },
+      {
+        id: 'patch-11-necropolis-units',
+        image: 'images/patch-11-necropolis-units.jpg',
+        ru: {
+          title: 'Баланс юнитов: Некрополь',
+          eyebrow: 'Патч 11 — изменения существ',
+          body: [
+            'В патче 11 ключевые изменения затронули Некрополь. Призраки получили ослабление вампиризма: теперь восстанавливают 30% урона (было 40%).',
+            'Вампиры, наоборот, получили усиление: вампиризм увеличен с 40% до 50%. Это делает их ещё более грозными в ближнем бою.',
+            'Зловещие рыцари стали более уязвимыми: их здоровье снижено со 100 до 80. Однако разные улучшения получили корректировки урона и инициативы для большей специализации.',
+            'Личи: урон базовой версии увеличен (12-16 → 13-16), но у некоторых улучшений атака снижена.',
+            'Изменения затронули и жилища: стоимость построек 2-го уровня повышена, а 6-го уровня — снижена. Это меняет экономику развития фракции.'
+          ],
+          tip: 'Вампиры теперь ещё сильнее — используйте их как главную ударную силу. Зловещие рыцари стали более хрупкими, поэтому защищайте их баффами и не отправляйте в одиночку против сильных стрелков.',
+          quizzes: [
+            { q: 'Сколько процентов урона теперь восстанавливают Призраки в патче 11?', options: ['20%', '30%', '40%'], correct: 1 },
+            { q: 'Какое изменение получили Вампиры в патче 11?', options: ['Уменьшено здоровье', 'Вампиризм увеличен с 40% до 50%', 'Снижена скорость'], correct: 1 }
+          ]
+        },
+        en: {
+          title: 'Unit Balance: Necropolis',
+          eyebrow: 'Patch 11 — Creature Changes',
+          body: [
+            'In patch 11, key changes affected Necropolis. Wights received a vampirism nerf: now restore 30% of damage dealt (was 40%).',
+            'Vampires, on the other hand, received a buff: vampirism increased from 40% to 50%. This makes them even more formidable in melee combat.',
+            'Death Knights became more vulnerable: their health was reduced from 100 to 80. However, different upgrades received adjustments to damage and initiative for greater specialization.',
+            'Liches: damage of the basic version was increased (12-16 → 13-16), but some upgrades had their attack reduced.',
+            'Changes also affected dwellings: the cost of tier 2 buildings was increased, and tier 6 buildings — decreased. This changes the faction\'s development economy.'
+          ],
+          tip: 'Vampires are now even stronger — use them as your main striking force. Death Knights have become more fragile, so protect them with buffs and don\'t send them alone against strong shooters.',
+          quizzes: [
+            { q: 'What percentage of damage do Wights now restore in patch 11?', options: ['20%', '30%', '40%'], correct: 1 },
+            { q: 'What change did Vampires receive in patch 11?', options: ['Health decreased', 'Vampirism increased from 40% to 50%', 'Speed reduced'], correct: 1 }
+          ]
+        }
+      
+      
+      },
+      {
+        id: 'patch-11-templates',
+        image: 'images/patch-11-templates.jpg',
+        ru: {
+          title: 'Новые шаблоны и режимы',
+          eyebrow: 'Патч 11 — карты',
+          body: [
+            'Патч 11 добавил несколько новых шаблонов карт для PvP-режимов.',
+            '**Jebus Tournament** (Классический режим): Шаблон, основанный на принципах Jebus Cross. На 1-й неделе (дни 6, 7) и 2-й неделе (дни 1, 3, 5, 7) проходят турнирные бои. Формат — 3 победы из 5. Все бои ведутся стартовым героем! Если герой погиб до начала боя — автоматическое поражение.',
+            '**Outcast Tournament** (Режим "Один герой"): Турнирный формат 2 победы из 3. Бои проходят на 2-й неделе (день 1, день 6) и 3-й неделе (день 4).',
+            '**Mix** (Режим "Один герой"): Шаблон в стиле Exodus с фокусом на развитие города и продвижение по замкам.',
+            '**Galaxy** (Режим "Один герой"): Гибридный шаблон, где важно и развитие города, и захват объектов на карте.',
+            'Обновлена система бан/пик: теперь игрок 1 и игрок 2 назначаются случайно (не по времени ожидания). Порядок: Игрок 1 банит → Игрок 2 банит → Игрок 1 выбирает → Игрок 2 выбирает.'
+          ],
+          tip: 'Новые турнирные шаблоны требуют особого внимания к стартовому герою — в Jebus Tournament вы не сможете его сменить. Выбирайте универсального героя с хорошими стартовыми навыками!',
+          quizzes: [
+            { q: 'В каком новом шаблоне все бои ведутся стартовым героем?', options: ['Outcast Tournament', 'Jebus Tournament', 'Galaxy'], correct: 1 },
+            { q: 'Как теперь определяется, кто будет игроком 1 при бане/пике?', options: ['По времени ожидания в очереди', 'Случайно', 'По рангу игрока'], correct: 1 }
+          ]
+        },
+        en: {
+          title: 'New Templates and Modes',
+          eyebrow: 'Patch 11 — Maps',
+          body: [
+            'Patch 11 added several new map templates for PvP modes.',
+            '**Jebus Tournament** (Classic Mode): A template based on Jebus Cross principles. Tournament battles occur on week 1 (days 6, 7) and week 2 (days 1, 3, 5, 7). Format — 3 out of 5 wins. All battles are fought with the starting hero! If the hero dies before the battle — automatic defeat.',
+            '**Outcast Tournament** ("One Hero" Mode): Tournament format, 2 out of 3 wins. Battles occur on week 2 (day 1, day 6) and week 3 (day 4).',
+            '**Mix** ("One Hero" Mode): Exodus-style template focusing on city development and castle progression.',
+            '**Galaxy** ("One Hero" Mode): A hybrid template where both city development and capturing map objects are important.',
+            'The ban/pick system has been updated: now player 1 and player 2 are assigned randomly (not by queue time). Order: Player 1 bans → Player 2 bans → Player 1 picks → Player 2 picks.'
+          ],
+          tip: 'New tournament templates require special attention to the starting hero — in Jebus Tournament, you can\'t change him. Choose a versatile hero with good starting skills!',
+          quizzes: [
+            { q: 'Which new template uses the starting hero for all battles?', options: ['Outcast Tournament', 'Jebus Tournament', 'Galaxy'], correct: 1 },
+            { q: 'How is player 1 determined for ban/pick now?', options: ['By queue waiting time', 'Randomly', 'By player rank'], correct: 1 }
+          ]
+        }
+      },
+      {
+        id: 'patch-11-general',
+        image: 'images/patch-11-general.jpg',
+        ru: {
+          title: 'Законы, навыки и общие изменения',
+          eyebrow: 'Патч 11 — остальные правки',
+          body: [
+            'Патч 11 также принёс множество изменений в законы, навыки и общую механику.',
+            '**Законы Некрополя:** "Бессмертие" ослаблен (10/20/30% вместо 20/40/60%). "Кровавая жажда" изменён: теперь даёт +60% вампиризма на 1-м уровне (вместо +50/100% на 2-х уровнях).',
+            '**Навыки:** "Реальность" (Reality) — добавлен новый навык "Страж реальности", снижающий силу магии врага на 10%. "Магия битвы" ослаблена: бонусы атаки/защиты теперь 15/20/25% (было 15/25/35%).',
+            '**Боевая магия:** Базовая механика возвращена к исходным значениям после нерфа силовых героев.',
+            '**Интерфейс:** Улучшен интерфейс некромантии, добавлены подсказки о том, какая нежить будет поднята. В окне результатов боя можно выбрать поднятие или конвертацию.',
+            '**Артефакты:** Новые артефакты дают иммунитет к определённым эффектам (сон, ярость, блокировка атаки).',
+            '**Исправления багов:** Исправлен баг с бесконечными ресурсами у Храма, фиксы для Драконов, Лазутчиков и многих других.'
+          ],
+          tip: 'Закон "Кровавая жажда" стал более точечным — берите его только если планируете использовать Вампиров. Навык "Страж реальности" отлично работает против магов — сочетайте его с "Ночной магией" для двойного эффекта.',
+          quizzes: [
+            { q: 'Что даёт новый навык "Страж реальности" (Reality Guard)?', options: ['+10% к защите', 'Снижает силу магии врага на 10%', 'Увеличивает урон героя'], correct: 1 },
+            { q: 'Какой закон Некрополя был изменён в патче 11?', options: ['Тёмные алтари', 'Кровавая жажда (Bloodthirst)', 'Костяные стены'], correct: 1 }
+          ]
+        },
+        en: {
+          title: 'Laws, Skills and General Changes',
+          eyebrow: 'Patch 11 — Other Fixes',
+          body: [
+            'Patch 11 also brought many changes to laws, skills, and general mechanics.',
+            '**Necropolis Laws:** "Immortality" weakened (10/20/30% instead of 20/40/60%). "Bloodthirst" changed: now gives +60% vampirism at level 1 (instead of +50/100% over 2 levels).',
+            '**Skills:** "Reality" — new skill "Reality Guard" added, reducing enemy spell power by 10%. "Battle Magic" weakened: attack/defense bonuses are now 15/20/25% (was 15/25/35%).',
+            '**Battle Magic:** Base mechanic restored to original values after the strength hero nerf.',
+            '**Interface:** Necromancy interface improved, hints added about which undead will be raised. In the battle results window, you can choose between raising or converting.',
+            '**Artifacts:** New artifacts grant immunity to certain effects (sleep, rage, attack block).',
+            '**Bug fixes:** Fixed the infinite resources bug for Temple, fixes for Dragons, Scouts, and many others.'
+          ],
+          tip: 'The "Bloodthirst" law has become more focused — take it only if you plan to use Vampires. The "Reality Guard" skill works great against mages — combine it with "Night Magic" for double effect.',
+          quizzes: [
+            { q: 'What does the new "Reality Guard" skill do?', options: ['+10% to defense', 'Reduces enemy spell power by 10%', 'Increases hero damage'], correct: 1 },
+            { q: 'Which Necropolis law was changed in patch 11?', options: ['Dark Altars', 'Bloodthirst', 'Bone Walls'], correct: 1 }
+          ]
+        }
+      }
+    ]
+  }
+
+
+
+
+
+,
+{
     id: 'basics',
     icon: '📜',
     ru: { title: 'Основы игры' },
