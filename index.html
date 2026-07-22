@@ -588,7 +588,153 @@ function openDonate() {
 
 // ---------- Topics & lesson content (bilingual) ----------
 const TOPICS = [
- 
+   {
+    id: 'patch-12',
+    icon: '🔧',
+    ru: { title: 'Патч 12: Баланс и исправления' },
+    en: { title: 'Patch 12: Balance & Fixes' },
+    lessons: [
+      {
+        id: 'patch-12-sorcery',
+        image: 'images/patch-12-sorcery.jpg',
+        ru: {
+          title: 'Маги снова в деле',
+          eyebrow: 'Патч 12 — баланс магии',
+          body: [
+            'В патче 12 разработчики признали, что в патче 11 перестарались с ослаблением магов в режиме Арены. Исправляем ситуацию!',
+            'Навык "Волшебство" (Sorcery) получил усиление: бонус к магическому урону увеличен с 10/20/30% до 20/30/40%. Теперь маги снова могут наносить серьёзный урон.',
+            'Специалисты по магии получили новую формулу расчёта бонуса. Теперь он составляет 15% + 5% за каждые 3 уровня героя (вместо 10% + 1% за каждый уровень). Это делает их сильнее в поздней игре.',
+            'Чтобы сбалансировать усиление магов, разработчики немного снизили количество существ, предлагаемых на старте в режиме Арены. Это не даёт магам слишком легкого старта.'
+          ],
+          tip: 'Если ты играешь за мага в Арене — теперь самое время попробовать новые билды. Волшебство на 20/30/40% даёт серьёзный прирост урона. А новая формула для специалистов делает их особенно сильными на высоких уровнях.',
+          quizzes: [
+            { q: 'Какой бонус к магическому урону теперь даёт навык "Волшебство" на максимальном уровне?', options: ['30%', '40%', '50%'], correct: 1 },
+            { q: 'Как изменилась формула бонуса для специалистов по магии?', options: ['15% + 5% за 3 уровня', '20% + 10% за 2 уровня', '10% + 1% за уровень'], correct: 0 }
+          ]
+        },
+        en: {
+          title: 'Mages Are Back in Action',
+          eyebrow: 'Patch 12 — Magic Balance',
+          body: [
+            'In patch 12, the developers acknowledged that they overdid the mage nerf in patch 11 for the Arena mode. Fixing the situation!',
+            'The Sorcery skill received a buff: magic damage bonus increased from 10/20/30% to 20/30/40%. Mages can now deal serious damage again.',
+            'Magic specialists received a new bonus formula: now it\'s 15% + 5% for every 3 hero levels (instead of 10% + 1% per level). This makes them stronger in the late game.',
+            'To balance the mage buff, the developers slightly reduced the number of starting creatures in Arena mode. This prevents mages from having too easy of a start.'
+          ],
+          tip: 'If you play a mage in Arena — now is the time to try new builds. Sorcery at 20/30/40% gives a serious damage boost. The new formula for specialists makes them especially strong at high levels.',
+          quizzes: [
+            { q: 'What magic damage bonus does Sorcery now give at max level?', options: ['30%', '40%', '50%'], correct: 1 },
+            { q: 'What is the new bonus formula for magic specialists?', options: ['15% + 5% per 3 levels', '20% + 10% per 2 levels', '10% + 1% per level'], correct: 0 }
+          ]
+        }
+      },
+      {
+        id: 'patch-12-crash-fixes',
+        image: 'images/patch-12-crash-fixes.jpg',
+        ru: {
+          title: 'Исправления вылетов',
+          eyebrow: 'Патч 12 — стабильность',
+          body: [
+            'Патч 12 в первую очередь направлен на стабильность игры. Исправлены несколько ситуаций, которые приводили к вылетам (крашам).',
+            'Jebus Tournament: игра больше не вылетает, если у одного из игроков в начале турнирного боя отсутствует стартовый герой.',
+            '"Удар героя": исправлена горячая клавиша для этой способности. Теперь она работает как задумано.',
+            'Синхронные ходы: таймер матча больше не работает некорректно у обоих игроков, когда синхронные ходы остановлены.',
+            '"Мираж": вылеты при использовании "Удара героя" врагом, находящимся под эффектом "Миража", устранены.',
+            'Режим Арены: игра перестает вылетать, если противник покидает матч во время выбора цели для способности.'
+          ],
+          tip: 'Если у тебя раньше были вылеты в Jebus Tournament или при использовании "Удара героя" — теперь они должны быть исправлены. Обнови игру и проверь!',
+          quizzes: [
+            { q: 'Какой режим больше не вылетает при отсутствии стартового героя у игрока?', options: ['Арена', 'Jebus Tournament', 'Кампания'], correct: 1 },
+            { q: 'Что исправили для способности "Удар героя"?', options: ['Урон', 'Горячую клавишу', 'Дальность'], correct: 1 }
+          ]
+        },
+        en: {
+          title: 'Crash Fixes',
+          eyebrow: 'Patch 12 — Stability',
+          body: [
+            'Patch 12 is primarily focused on game stability. Several crash situations have been fixed.',
+            'Jebus Tournament: the game no longer crashes if one of the players is missing their starting hero at the beginning of a tournament battle.',
+            'Hero Strike: the hotkey for this ability has been fixed. It now works as intended.',
+            'Synchronous turns: the match timer no longer works incorrectly for both players when synchronous turns are stopped.',
+            'Mirage: crashes when using Hero Strike on an enemy under the effect of Mirage have been fixed.',
+            'Arena mode: the game no longer crashes if the opponent leaves the match while choosing a target for an ability.'
+          ],
+          tip: 'If you used to have crashes in Jebus Tournament or when using Hero Strike — they should now be fixed. Update the game and check!',
+          quizzes: [
+            { q: 'Which mode no longer crashes when a player is missing their starting hero?', options: ['Arena', 'Jebus Tournament', 'Campaign'], correct: 1 },
+            { q: 'What was fixed for the Hero Strike ability?', options: ['Damage', 'Hotkey', 'Range'], correct: 1 }
+          ]
+        }
+      },
+      {
+        id: 'patch-12-map-templates',
+        image: 'images/patch-12-map-templates.jpg',
+        ru: {
+          title: 'Изменения шаблонов карт',
+          eyebrow: 'Патч 12 — карты',
+          body: [
+            'В патче 12 изменились несколько популярных шаблонов карт.',
+            'Sprint: с этого шаблона наконец-то полностью убраны "Конюшни" (Stables). Теперь они не будут мешать.',
+            'Jebus Tournament: стартовые зоны игроков стали немного меньше, а стража у ворот в центр карты ослаблена. Это делает игру более динамичной.',
+            'Helltide: объекты "Точка баланса" больше не могут появляться на боковых территориях игроков. Это убирает случайные дисбалансы.'
+          ],
+          tip: 'Если ты играешь на шаблоне Jebus Tournament — теперь легче пробиваться в центр карты. А на Sprint больше не будет Конюшен, которые могли давать нечестное преимущество.',
+          quizzes: [
+            { q: 'Что убрали с шаблона Sprint?', options: ['Артефакты', 'Конюшни (Stables)', 'Города'], correct: 1 },
+            { q: 'Что изменилось в шаблоне Jebus Tournament?', options: ['Добавили новых нейтралов', 'Стартовые зоны стали меньше', 'Убрали города'], correct: 1 }
+          ]
+        },
+        en: {
+          title: 'Map Template Changes',
+          eyebrow: 'Patch 12 — Maps',
+          body: [
+            'In patch 12, several popular map templates were changed.',
+            'Sprint: Stables have finally been completely removed from this template. They will no longer interfere.',
+            'Jebus Tournament: starting zones have become slightly smaller, and the guard at the gates to the center of the map has been weakened. This makes the game more dynamic.',
+            'Helltide: Balance Point objects can no longer appear on the side territories of players. This removes random imbalances.'
+          ],
+          tip: 'If you play on the Jebus Tournament template — it\'s now easier to break through to the center of the map. And on Sprint, there will be no more Stables that could give an unfair advantage.',
+          quizzes: [
+            { q: 'What was removed from the Sprint template?', options: ['Artifacts', 'Stables', 'Towns'], correct: 1 },
+            { q: 'What changed in the Jebus Tournament template?', options: ['Added new neutrals', 'Starting zones are smaller', 'Removed towns'], correct: 1 }
+          ]
+        }
+      },
+      {
+        id: 'patch-12-localization',
+        image: 'images/patch-12-localization.jpg',
+        ru: {
+          title: 'Локализация и мелкие правки',
+          eyebrow: 'Патч 12 — перевод и другое',
+          body: [
+            'В патче 12 исправлена ошибка в китайской локализации, где перевод Ангелов и Архангелов был ошибочно заменен на устаревший термин. Теперь всё правильно.',
+            'Также в патче исправлены мелкие ошибки интерфейса и текстов, которые могли вводить игроков в заблуждение.',
+            'Разработчики продолжают работать над стабильностью игры и обещают следить за обратной связью игроков.'
+          ],
+          tip: 'Если ты играешь на китайском языке — проверь, правильно ли теперь отображаются Ангелы и Архангелы. Остальные изменения касаются в основном интерфейса и не влияют на геймплей.',
+          quizzes: [
+            { q: 'Какую ошибку локализации исправили в патче 12?', options: ['Названия юнитов Рощи', 'Перевод Ангелов и Архангелов', 'Названия заклинаний'], correct: 1 },
+            { q: 'Что ещё исправлено в патче 12?', options: ['Мелкие ошибки интерфейса и текстов', 'Добавлены новые юниты', 'Изменена механика боя'], correct: 0 }
+          ]
+        },
+        en: {
+          title: 'Localization and Minor Fixes',
+          eyebrow: 'Patch 12 — Translation & More',
+          body: [
+            'In patch 12, a localization error was fixed in Chinese, where the translation of Angels and Archangels was mistakenly replaced with an outdated term. Now everything is correct.',
+            'The patch also fixes minor interface and text errors that could mislead players.',
+            'The developers continue to work on game stability and promise to monitor player feedback.'
+          ],
+          tip: 'If you play in Chinese — check if Angels and Archangels are now displayed correctly. Other changes mainly concern the interface and do not affect gameplay.',
+          quizzes: [
+            { q: 'Which localization error was fixed in patch 12?', options: ['Grove unit names', 'Angel and Archangel translation', 'Spell names'], correct: 1 },
+            { q: 'What else was fixed in patch 12?', options: ['Minor interface and text errors', 'New units added', 'Combat mechanics changed'], correct: 0 }
+          ]
+        }
+      }
+    ]
+  }
+  ,
   {
     id: 'patch-11',
     icon: '🔧',
@@ -1426,8 +1572,259 @@ const TOPICS = [
       }
     }
   ]
-}
+},
+  {
+    id: 'necropolis',
+    icon: '💀',
+    ru: { title: 'Фракция Некрополь' },
+    en: { title: 'Necropolis Faction' },
+    lessons: [
+      {
+        id: 'necromancy',
+        image: 'images/necromancy.jpg',
+        ru: {
+          title: 'Некромантия — главный навык',
+          eyebrow: 'Фракционный навык',
+          body: [
+            'Некромантия — это ключевая механика Некрополя. После победы в бою часть сильнейшего отряда врага превращается в нежить того же уровня, усиливая твою армию без затрат золота.',
+            'Количество поднимаемых существ зависит от уровня навыка некромантии и силы вражеского отряда. Базовый уровень даёт 10%, Продвинутый — 15% от сильнейшего стека врага.',
+            'Некромантия работает только с отрядами 3-го уровня и выше. Слабые нейтралы не дадут скелетов — фокусируйся на сильных противниках.',
+            'Начальный запас энергии некромантии: 3000 (Базовый) / 4000 (Продвинутый) / 5000 (Экспертный). Стоимость поднятия существ: Скелет — 20 энергии, Вампир — 2000 энергии.',
+            'За каждый уровень некромантии скелеты получают +2 к защите. Это делает их значительно живучее в поздней игре.'
+          ],
+          tip: 'Некромантия — это снежный ком. Чем больше и сильнее врагов ты побеждаешь, тем быстрее растёт армия. В начале игры выбирай бои с отрядами 3-го уровня и выше, чтобы получить максимальную отдачу. Закон "Бессмертие" увеличивает генерацию очков законов — бери его первым.',
+          quizzes: [
+            { q: 'Сколько процентов от сильнейшего стека врага даёт Продвинутая некромантия?', options: ['5%', '10%', '15%'], correct: 2 },
+            { q: 'Сколько энергии стоит поднятие Вампира в патче 11?', options: ['500', '1000', '2000'], correct: 2 }
+          ]
+        },
+        en: {
+          title: 'Necromancy — The Main Skill',
+          eyebrow: 'Faction Skill',
+          body: [
+            'Necromancy is the key mechanic of Necropolis. After victory, part of the strongest enemy stack is transformed into undead of the same tier, strengthening your army without spending gold.',
+            'The number of raised creatures depends on the necromancy skill level and the enemy stack\'s strength. Basic gives 10%, Advanced gives 15% of the strongest enemy stack.',
+            'Necromancy only works against tier 3 and above. Weak neutrals won\'t give skeletons — focus on stronger opponents.',
+            'Starting necromancy energy: 3000 (Basic) / 4000 (Advanced) / 5000 (Expert). Raising cost: Skeleton — 20 energy, Vampire — 2000 energy.',
+            'For each level of necromancy, skeletons get +2 defense. This makes them much more survivable in the late game.'
+          ],
+          tip: 'Necromancy is a snowball. The more and stronger enemies you defeat, the faster your army grows. At the start, choose battles against tier 3 and above to get the most value. The "Laws of the Immortals" law increases law point generation — take it first.',
+          quizzes: [
+            { q: 'What percentage of the strongest enemy stack does Advanced Necromancy give?', options: ['5%', '10%', '15%'], correct: 2 },
+            { q: 'How much energy does raising a Vampire cost in patch 11?', options: ['500', '1000', '2000'], correct: 2 }
+          ]
+        }
+      },
+      {
+        id: 'skeletons-ghosts',
+        image: 'images/skeletons-ghosts.jpg',
+        ru: {
+          title: 'Скелеты и Призраки — основа армии',
+          eyebrow: 'Начальные юниты',
+          body: [
+            'Скелеты — это самый массовый юнит Некрополя. Они дешёвые (35 золота), их много, и они получают бонусы от некромантии.',
+            'Грейд "Скелет-лучник" даёт им дальний бой — это приоритетный апгрейд в первую неделю! Без него армия Некрополя не имеет дальнего урона.',
+            'Призрак (Wight) — это юнит 2-го уровня с вампиризмом 30%. Он восстанавливает здоровье за нанесённый урон.',
+            'Апгрейды Призрака: Дух и Фантом. Оба улучшают его боевые характеристики и вампиризм.',
+            'Призраки имеют базовое здоровье 8 и хорошую инициативу (5), что делает их отличным живым щитом для скелетов-лучников.',
+            'В патче 11 Призраки получили ослабление вампиризма (40% → 30%), но остались важной частью ранней армии.'
+          ],
+          tip: 'В первую неделю главная цель — построить жилище скелетов-лучников и улучшить всех скелетов. Это стоит 10 золота за каждого скелета, но окупается многократно. 100 скелетов-лучников — это уже серьёзная сила!',
+          quizzes: [
+            { q: 'Какой апгрейд скелетов даёт им дальний бой?', options: ['Скелет-воин', 'Скелет-лучник', 'Скелет-рыцарь'], correct: 1 },
+            { q: 'Как называются апгрейды Призрака?', options: ['Восставший и Мститель', 'Дух и Фантом', 'Тень и Приведение'], correct: 1 }
+          ]
+        },
+        en: {
+          title: 'Skeletons and Ghosts — Army Backbone',
+          eyebrow: 'Starting Units',
+          body: [
+            'Skeletons are the most numerous unit of Necropolis. They are cheap (35 gold), plentiful, and receive bonuses from necromancy.',
+            'The "Skeleton Archer" upgrade gives them ranged combat — this is the priority upgrade in the first week! Without it, the Necropolis army has no ranged damage.',
+            'Ghost (Wight) is a tier 2 unit with 30% vampirism. It restores health from damage dealt.',
+            'Ghost upgrades: Spirit and Phantom. Both improve combat characteristics and vampirism.',
+            'Ghosts have 8 base health and good initiative (5), making them an excellent living shield for Skeleton Archers.',
+            'In patch 11, Ghosts received a vampirism nerf (40% → 30%), but they remain an important part of the early army.'
+          ],
+          tip: 'In the first week, the main goal is to build the Skeleton Archer dwelling and upgrade all skeletons. It costs 10 gold per skeleton, but pays for itself many times over. 100 Skeleton Archers is already a serious force!',
+          quizzes: [
+            { q: 'Which Skeleton upgrade gives ranged combat?', options: ['Skeleton Warrior', 'Skeleton Archer', 'Skeleton Knight'], correct: 1 },
+            { q: 'What are the Ghost upgrades called?', options: ['Wight and Avenger', 'Spirit and Phantom', 'Shadow and Apparition'], correct: 1 }
+          ]
+        }
+      },
+      {
+        id: 'undead-pet-graverobber',
+        image: 'images/undead-pet-graverobber.jpg',
+        ru: {
+          title: 'Неживой пёс и Могильщик — специалисты',
+          eyebrow: 'Средние юниты',
+          body: [
+            'Неживой пёс (Undead Pet) — это юнит 3-го уровня, хорош в ближнем бою. У него 14 здоровья, базовый урон 3-5.',
+            'Апгрейды: Баргест (инициатива 8, скорость 6) и Бронированный пёс (защита 8, здоровье 18). Первый силён в атаке, второй — в защите.',
+            'Могильщик (Graverobber) — юнит 4-го уровня с дальней атакой и способностью призывать скелетов на поле боя.',
+            'Апгрейды: Торговец смертью (урон 7-10, инициатива 5) и Смотритель псарни (атака 14, скорость 6). Торговец смертью сильнее в уроне, Смотритель псарни — в призыве.',
+            'Могильщик особенно полезен в затяжных боях, так как призыв скелетов создаёт численное преимущество.'
+          ],
+          tip: 'Баргест — отличный выбор для агрессивной игры, Бронированный пёс — для защиты стрелков. Могильщик с апгрейдом в Смотрителя псарни даёт больше призывов — идеально для затяжных боёв.',
+          quizzes: [
+            { q: 'Какой апгрейд Неживого пса даёт инициативу 8?', options: ['Бронированный пёс', 'Баргест', 'Сторожевой пёс'], correct: 1 },
+            { q: 'Какую способность имеет Могильщик?', options: ['Лечение союзников', 'Призыв скелетов', 'Наложение проклятий'], correct: 1 }
+          ]
+        },
+        en: {
+          title: 'Undead Pet and Graverobber — Specialists',
+          eyebrow: 'Mid-Tier Units',
+          body: [
+            'Undead Pet is a tier 3 unit, good in melee combat. Has 14 health, base damage 3-5.',
+            'Upgrades: Barghest (initiative 8, speed 6) and Armoured Hound (defense 8, health 18). The first is strong in attack, the second in defense.',
+            'Graverobber is a tier 4 unit with ranged attack and the ability to summon skeletons on the battlefield.',
+            'Upgrades: Merchant of Death (damage 7-10, initiative 5) and Kennelmaster (attack 14, speed 6). Merchant of Death is stronger in damage, Kennelmaster in summoning.',
+            'Graverobber is especially useful in prolonged battles, as summoning skeletons creates numerical advantage.'
+          ],
+          tip: 'Barghest is an excellent choice for aggressive play, Armoured Hound for protecting shooters. Graverobber with Kennelmaster upgrade gives more summons — ideal for prolonged battles.',
+          quizzes: [
+            { q: 'Which Undead Pet upgrade gives initiative 8?', options: ['Armoured Hound', 'Barghest', 'Watch Hound'], correct: 1 },
+            { q: 'What ability does Graverobber have?', options: ['Heal allies', 'Summon skeletons', 'Curse enemies'], correct: 1 }
+          ]
+        }
+      },
+      {
+        id: 'liches-dread-knights',
+        image: 'images/liches-dread-knights.jpg',
+        ru: {
+          title: 'Личи и Рыцари ужаса — сила и магия',
+          eyebrow: 'Тяжёлые юниты',
+          body: [
+            'Личи (Lich) — юнит 5-го уровня с дальним боем и способностью "Перемотка смерти": восстанавливает здоровье и может воскрешать павших союзников.',
+            'Базовый урон Лича: 12-16. Апгрейды: Чумной лич (урон 16-16, атака 16) и Кровавый лич (защита 16, урон 12-16). Первый силён в атаке, второй — в выживаемости и лечении.',
+            'В патче 11 стоимость Личей увеличена на 15%, а у некоторых улучшений изменена атака и защита.',
+            'Рыцарь ужаса (Dread Knight) — юнит 6-го уровня, тяжёлая кавалерия с высоким уроном и способностью "Смертельный удар" (шанс мгновенно убить врага).',
+            'Здоровье: 100. Апгрейды: Аватар войны (двойная атака, инициатива 11) и Пустотелый жнец (урон 22-24, инициатива 10).',
+            'В патче 12 скорость Рыцарей ужаса на карте снижена на 1, здоровье уменьшено со 100 до 80.'
+          ],
+          tip: 'Личи — основа устойчивости армии. Сохраняй очки концентрации для "Перемотки смерти" — воскрешение стека стоит дороже любого другого заклинания. Рыцари ужаса — отличная ударная сила, но стали более хрупкими, защищай их баффами.',
+          quizzes: [
+            { q: 'Какой юнит имеет способность "Перемотка смерти"?', options: ['Рыцарь ужаса', 'Лич', 'Вампир'], correct: 1 },
+            { q: 'Какое изменение получили Рыцари ужаса в патче 12?', options: ['Увеличена атака', 'Снижена скорость на карте на 1', 'Добавлена новая способность'], correct: 1 }
+          ]
+        },
+        en: {
+          title: 'Liches and Dread Knights — Power and Magic',
+          eyebrow: 'Heavy Units',
+          body: [
+            'Lich is a tier 5 unit with ranged attack and the "Rewind Death" ability: restores health and can resurrect fallen allies.',
+            'Base Lich damage: 12-16. Upgrades: Pestilent Lich (damage 16-16, attack 16) and Sanguine Lich (defense 16, damage 12-16). The first is strong in attack, the second in survivability and healing.',
+            'In patch 11, Lich cost increased by 15%, and some upgrades had attack and defense adjusted.',
+            'Dread Knight is a tier 6 unit, heavy cavalry with high damage and "Death Strike" (chance to instantly kill an enemy).',
+            'Health: 100. Upgrades: Avatar of War (double attack, initiative 11) and Hollow Reaper (damage 22-24, initiative 10).',
+            'In patch 12, Dread Knight map speed reduced by 1, health reduced from 100 to 80.'
+          ],
+          tip: 'Liches are the army\'s sustainability backbone. Save Focus points for "Rewind Death" — resurrecting a stack is worth more than any other ability. Dread Knights are a great striking force but have become more fragile — protect them with buffs.',
+          quizzes: [
+            { q: 'Which unit has the "Rewind Death" ability?', options: ['Dread Knight', 'Lich', 'Vampire'], correct: 1 },
+            { q: 'What change did Dread Knights receive in patch 12?', options: ['Attack increased', 'Map speed reduced by 1', 'New ability added'], correct: 1 }
+          ]
+        }
+      },
+      {
+        id: 'vampire',
+        image: 'images/vampire.jpg',
+        ru: {
+          title: 'Вампир — вершина Некрополя',
+          eyebrow: 'Элитный юнит 7-го уровня',
+          body: [
+            'Вампир (Vampire) — это вершина фракции Некрополь, юнит 7-го уровня. Это элитный боец ближнего боя с уникальными способностями.',
+            'Здоровье: 150, урон: 25-25. Вампиры не получают ответного удара при атаке — это их главная тактическая фишка. Они могут вырезать вражеских стрелков и магов без потерь.',
+            'Вампиризм: восстанавливает здоровье за каждый нанесённый урон. В патче 11 вампиризм увеличен с 40% до 50%.',
+            'Апгрейды: Вампир-лорд (здоровье 175, защита 26, урон 30-30, инициатива 13) — мощный боец; Вампир-учёный (атака 27, урон 30-30) — магический уклон.',
+            'Закон "Кровавая жажда" (Bloodthirst) увеличивает вампиризм на 60%. Это делает Вампиров практически бессмертными в затяжных боях.'
+          ],
+          tip: 'Вампир — король против стрелков и магов. Отправляй его в тыл врага, он не получит контратаку и восстановит здоровье за счёт вампиризма. Вампир-лорд — лучший выбор для ближнего боя, Вампир-учёный — для магической поддержки. Закон Bloodthirst обязателен в поздней игре.',
+          quizzes: [
+            { q: 'Какого тира Вампир в Некрополе?', options: ['5-го тира', '6-го тира', '7-го тира'], correct: 2 },
+            { q: 'Какой закон усиливает вампиризм Вампиров?', options: ['Бессмертие (Laws of the Immortals)', 'Кровавая жажда (Bloodthirst)', 'Лунная благодать (Moon\'s Grace)'], correct: 1 }
+          ]
+        },
+        en: {
+          title: 'Vampire — Necropolis Pinnacle',
+          eyebrow: 'Elite Unit Tier 7',
+          body: [
+            'Vampire is the pinnacle of the Necropolis faction, a tier 7 unit. This is an elite melee fighter with unique abilities.',
+            'Health: 150, damage: 25-25. Vampires do not receive a counterattack — this is their main tactical feature. They can take out enemy shooters and mages without losses.',
+            'Vampirism: restores health for each damage dealt. In patch 11, vampirism increased from 40% to 50%.',
+            'Upgrades: Vampire Lord (health 175, defense 26, damage 30-30, initiative 13) — powerful fighter; Vampire Scholar (attack 27, damage 30-30) — magic evasion.',
+            'The "Bloodthirst" law increases vampirism by 60%. This makes Vampires nearly immortal in prolonged battles.'
+          ],
+          tip: 'The Vampire is the king against shooters and mages. Send him into the enemy rear — he won\'t get counterattacked and will restore health through vampirism. Vampire Lord is the best choice for melee combat, Vampire Scholar for magic support. The Bloodthirst law is mandatory in the late game.',
+          quizzes: [
+            { q: 'What tier is the Vampire in Necropolis?', options: ['Tier 5', 'Tier 6', 'Tier 7'], correct: 2 },
+            { q: 'Which law enhances Vampire vampirism?', options: ['Laws of the Immortals', 'Bloodthirst', 'Moon\'s Grace'], correct: 1 }
+          ]
+        }
+      },
+      {
+        id: 'necropolis-laws-buildings',
+        image: 'images/necropolis-laws-buildings.jpg',
+        ru: {
+          title: 'Законы, постройки и герои Некрополя',
+          eyebrow: 'Стратегия и развитие',
+          body: [
+            'Ключевые законы: "Бессмертие" (Laws of the Immortals) — +10/20/30% к очкам законов. Бери первым для ускорения развития.',
+            '"Кровавая жажда" (Bloodthirst) — +60% к вампиризму. Бери в поздней игре, когда есть Вампиры.',
+            '"Земля смерти" (Terra Mortis) — даёт бонус родной земли даже вне её территории. Важно, так как родная земля Некрополя встречается редко.',
+            'Уникальные постройки: "Преобразователь нежити" (Undead Transformer) — превращает любых существ (из других фракций или дипломатией) в нежить того же уровня. Ключ к быстрому росту армии!',
+            '"Колодец душ" (Well of Souls) — восстанавливает всю ману герою при посещении. "Вечный змей" (Everserpent) — даёт +10 защиты всем юнитам и -50% урона от удачи.',
+            'Лучшие герои: Онкос (специализация на скелетах); Фунерелла (Продвинутая некромантия); Марл (Мастерская паутина + Логистика); Король королей (Дипломатия).',
+            'Стартовая стратегия: День 1-2 — строй жилище скелетов-лучников. День 3-4 — улучшай скелетов. День 5-7 — строй Преобразователь нежити и начинай захват карты.'
+          ],
+          tip: 'Строй "Преобразователь нежити" как можно раньше — он позволяет конвертировать любых существ в нежить. Закон "Бессмертие" бери первым для ускорения развития. Онкос — лучший стартовый герой для стратегии со скелетами.',
+          quizzes: [
+            { q: 'Какая уникальная постройка превращает существ в нежить?', options: ['Колодец душ', 'Преобразователь нежити', 'Вечный змей'], correct: 1 },
+            { q: 'Какой герой имеет специализацию на скелетах?', options: ['Фунерелла', 'Онкос', 'Марл'], correct: 1 }
+          ]
+        },
+        en: {
+          title: 'Necropolis Laws, Buildings and Heroes',
+          eyebrow: 'Strategy & Development',
+          body: [
+            'Key laws: "Laws of the Immortals" — +10/20/30% to law points. Take it first for faster development.',
+            '"Bloodthirst" — +60% to vampirism. Take it in the late game when you have Vampires.',
+            '"Terra Mortis" — gives native terrain bonus even outside its territory. Important because Necropolis native terrain is rare.',
+            'Unique buildings: "Undead Transformer" — turns any creatures (from other factions or diplomacy) into undead of the same tier. Key to rapid army growth!',
+            '"Well of Souls" — restores all mana to the hero on visit. "Everserpent" — gives +10 defense to all units and -50% luck damage.',
+            'Best heroes: Onkos (skeleton specialization); Funerella (Advanced Necromancy); Marl (Masterful Web + Logistics); King-of-Kings (Diplomacy).',
+            'Starting strategy: Day 1-2 — build Skeleton Archer dwelling. Day 3-4 — upgrade all skeletons. Day 5-7 — build Undead Transformer and start map capture.'
+          ],
+          tip: 'Build "Undead Transformer" as early as possible — it allows you to convert any creatures into undead. The "Laws of the Immortals" law — take it first for faster development. Onkos is the best starting hero for skeleton strategy.',
+          quizzes: [
+            { q: 'Which unique building turns creatures into undead?', options: ['Well of Souls', 'Undead Transformer', 'Everserpent'], correct: 1 },
+            { q: 'Which hero has specialization in skeletons?', options: ['Funerella', 'Onkos', 'Marl'], correct: 1 }
+          ]
+        }
+      }
+    ]
+  }
+,
+{
+    id: 'coming-soon-grove',
+    icon: '🌿',
+    ru: { title: 'Фракция Роща — гайд для новичков' },
+    en: { title: 'Grove Faction — Beginner Guide' },
+    lessons: []
+  },
+  {
+    id: 'coming-soon-pvp-secrets',
+    icon: '🧠',
+    ru: { title: 'Секреты PvP' },
+    en: { title: 'PvP Secrets' },
+    lessons: []
+  }
+
+
+
 ]
+
 let currentTopicIndex = null;
 let completed = new Set();
 let currentLessonIndex = null;
@@ -1609,11 +2006,46 @@ function firstIncompleteIndex() {
   return lessons.length - 1;
 }
 
+function shuffleQuizOptions(quiz) {
+  // Создаём массив с индексами [0, 1, 2]
+  const indices = [0, 1, 2];
+  // Перемешиваем индексы случайно
+  for (let i = indices.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [indices[i], indices[j]] = [indices[j], indices[i]];
+  }
+  
+  // Находим правильный ответ
+  const correctAnswer = quiz.options[quiz.correct];
+  
+  // Создаём новый массив options в перемешанном порядке
+  const shuffledOptions = indices.map(i => quiz.options[i]);
+  
+  // Находим новый индекс правильного ответа
+  const newCorrectIndex = shuffledOptions.indexOf(correctAnswer);
+  
+  return {
+    options: shuffledOptions,
+    correct: newCorrectIndex
+  };
+}
+
 function openLesson(index) {
   currentLessonIndex = index;
   const l = TOPICS[currentTopicIndex].lessons[index];
   const content = l[currentLang];
-  quizAnswered = new Array(content.quizzes.length).fill(false);
+  
+  // Перемешиваем вопросы
+  const shuffledQuizzes = content.quizzes.map(quiz => {
+    const shuffled = shuffleQuizOptions(quiz);
+    return {
+      q: quiz.q,
+      options: shuffled.options,
+      correct: shuffled.correct
+    };
+  });
+  
+  quizAnswered = new Array(shuffledQuizzes.length).fill(false);
 
   document.getElementById('home-view').classList.add('hidden');
   document.getElementById('lesson-view').classList.add('active');
@@ -1634,7 +2066,7 @@ function openLesson(index) {
   document.getElementById('complete-btn').className = 'primary-btn';
   setText('complete-btn', t('completeBtn'));
 
-  content.quizzes.forEach((quiz, qIndex) => {
+  shuffledQuizzes.forEach((quiz, qIndex) => {
     const block = document.createElement('div');
     block.className = 'quiz';
     block.style.marginTop = qIndex === 0 ? '22px' : '14px';
@@ -1656,7 +2088,7 @@ function openLesson(index) {
   });
 
   if (tg && tg.HapticFeedback) tg.HapticFeedback.impactOccurred('light');
-  window.scrollTo(0,0);
+  window.scrollTo(0, 0);
 }
 
 function answerQuiz(quizIndex, chosen, correct) {
