@@ -38,6 +38,8 @@
     margin: 0 auto;
     padding: 20px 18px 40px;
     min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
   }
 
   /* ---------- Language select screen ---------- */
@@ -260,8 +262,63 @@
   /* ---------- Lesson view ---------- */
   .lesson-view{ display:none; }
   .lesson-view.active{ display:block; }
-  #home-view.hidden{ display:none; }
   #lang-view.hidden{ display:none; }
+
+  /* ===== ОТДЕЛЬНЫЕ СТРАНИЦЫ С АНИМАЦИЕЙ ===== */
+  #topics-view,
+  #home-view,
+  #lesson-view {
+    position: relative;
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    background: transparent;
+    padding: 0;
+    min-height: 80vh;
+  }
+
+  /* Скрытые страницы */
+  #topics-view.hidden,
+  #home-view.hidden,
+  #lesson-view.hidden {
+    display: block !important;
+    opacity: 0;
+    transform: translateX(30px);
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 80vh;
+  }
+
+  /* Видимые страницы */
+  #topics-view:not(.hidden),
+  #home-view:not(.hidden),
+  #lesson-view:not(.hidden) {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+    position: relative;
+  }
+
+  /* Анимация входа */
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  #home-view:not(.hidden) {
+    animation: slideIn 0.35s ease forwards;
+  }
+
+  #lesson-view.active {
+    animation: slideIn 0.35s ease forwards;
+  }
 
   .back-btn{
     display:inline-flex;
@@ -386,6 +443,15 @@
     font-size: 48px;
     margin-bottom: 12px;
   }
+
+  /* Визуальный разделитель страниц */
+  .page-divider {
+    background: linear-gradient(90deg, var(--gold-dim), var(--gold), var(--gold-dim));
+    height: 2px;
+    margin: 4px 0 18px;
+    opacity: 0.3;
+    border-radius: 2px;
+  }
 </style>
 </head>
 <body>
@@ -404,7 +470,7 @@
   </div>
 
   <!-- TOPICS VIEW -->
-  <div id="topics-view" class="hidden">
+  <div id="topics-view">
     <div class="app-header">
       <div>
         <div class="eyebrow" id="topics-eyebrow"></div>
@@ -418,7 +484,8 @@
 
   <!-- HOME VIEW (lessons within a topic) -->
   <div id="home-view" class="hidden">
-    <button class="back-btn" onclick="goTopics()" id="topics-back-label">← Themes</button>
+    <button class="back-btn" onclick="goTopics()" id="topics-back-label">← Темы</button>
+    <div class="page-divider"></div>
     <div class="app-header">
       <div>
         <div class="eyebrow" id="home-eyebrow"></div>
@@ -433,10 +500,10 @@
     <div class="lesson-list" id="lesson-list"></div>
   </div>
 
-
   <!-- LESSON VIEW -->
   <div class="lesson-view" id="lesson-view">
-    <button class="back-btn" onclick="goHome()" id="back-btn-label">← All lessons</button>
+    <button class="back-btn" onclick="goHome()" id="back-btn-label">← Все уроки</button>
+    <div class="page-divider"></div>
     <div class="lesson-eyebrow" id="lv-eyebrow"></div>
     <h2 id="lv-title"></h2>
     <div class="lesson-body" id="lv-body"></div>
@@ -520,7 +587,7 @@ const Storage = {
       }
     });
     await withTimeout(cloudPromise, 1200, null);
-    localStorage.setItem(key, value); // mirror locally as a safety net
+    localStorage.setItem(key, value);
   }
 };
 
@@ -1820,8 +1887,6 @@ const TOPICS = [
     en: { title: 'PvP Secrets' },
     lessons: []
   }
-
-
 
 ]
 
