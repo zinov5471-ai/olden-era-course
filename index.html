@@ -121,6 +121,53 @@
     flex-shrink:0;
   }
 
+  /* ===== ПРОГРЕСС-БАР ===== */
+  .progress-wrap {
+    margin: 12px 0 18px;
+  }
+  .progress-label-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--parchment);
+  margin-bottom: 6px;
+}
+  .progress-track {
+    width: 100%;
+    height: 6px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold-dim), var(--gold));
+    border-radius: 4px;
+    transition: width 0.6s ease;
+  }
+
+  /* ===== КНОПКА YOUTUBE (в стиле доната) ===== */
+.youtube-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  background: none;
+  border: none;
+  color: var(--parchment-dim);
+  font-family: 'Manrope', sans-serif;
+  font-size: 12.5px;
+  padding: 18px 0 4px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+.youtube-btn:active {
+  opacity: 1;
+  transform: scale(0.98);
+}
+
   /* ---------- Charge indicator (signature element) ---------- */
   .charges{
     display:flex;
@@ -321,18 +368,23 @@
   }
 
   .back-btn{
-    display:inline-flex;
-    align-items:center;
-    gap:6px;
-    background:none;
-    border:none;
-    color: var(--parchment-dim);
-    font-family:'Manrope';
-    font-size: 13px;
-    padding: 6px 0;
-    margin-bottom: 10px;
-    cursor:pointer;
-  }
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:none;
+  border:none;
+  color: var(--gold);
+  font-family:'Manrope';
+  font-size: 15px;
+  font-weight: 700;
+  padding: 8px 0;
+  margin-bottom: 10px;
+  cursor:pointer;
+  transition: opacity 0.2s ease;
+}
+.back-btn:active {
+  opacity: 0.6;
+}
   .lesson-eyebrow{
     font-size: 11px;
     text-transform: uppercase;
@@ -478,8 +530,26 @@
       </div>
       <button class="lang-toggle" onclick="toggleLanguage()" id="topics-lang-toggle-btn"></button>
     </div>
+
+    <!-- ПРОГРЕСС-БАР -->
+    <div class="progress-wrap" id="progress-wrap">
+      <div class="progress-label-row">
+        <span> 📚 Прогресс обучения </span>
+        <span id="progress-percent">0%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-bar" style="width: 0%;"></div>
+      </div>
+    </div>
+
     <div class="lesson-list" id="topics-list"></div>
+    
     <button class="support-link" onclick="openDonate()" id="support-link-label"></button>
+    
+    <!-- КНОПКА YOUTUBE -->
+    <button class="youtube-btn" onclick="openYouTube()">
+      ▶️ Подписаться на YouTube
+    </button>
   </div>
 
   <!-- HOME VIEW (lessons within a topic) -->
@@ -651,6 +721,37 @@ function openDonate() {
   } catch (e) {
     window.open(DONATE_URL, '_blank');
   }
+}
+
+// ===== ОТКРЫТИЕ YOUTUBE =====
+function openYouTube() {
+  const url = 'https://youtube.com/@charmroad?si=AuUMjHoS3ZdNi852';
+  try {
+    if (tg && typeof tg.openLink === 'function') {
+      tg.openLink(url);
+    } else {
+      window.open(url, '_blank');
+    }
+  } catch (e) {
+    window.open(url, '_blank');
+  }
+}
+
+// ===== ОБНОВЛЕНИЕ ПРОГРЕССА =====
+function updateProgress() {
+  let totalLessons = 0;
+  let completedLessons = 0;
+  TOPICS.forEach(topic => {
+    topic.lessons.forEach(lesson => {
+      totalLessons++;
+      if (completed.has(lesson.id)) completedLessons++;
+    });
+  });
+  const percent = totalLessons === 0 ? 0 : Math.round((completedLessons / totalLessons) * 100);
+  const percentEl = document.getElementById('progress-percent');
+  const barEl = document.getElementById('progress-bar');
+  if (percentEl) percentEl.textContent = percent + '%';
+  if (barEl) barEl.style.width = percent + '%';
 }
 
 // ---------- Topics & lesson content (bilingual) ----------
@@ -1873,20 +1974,228 @@ const TOPICS = [
     ]
   }
 ,
+  {
+    id: 'pvp-secrets',
+    icon: '🧠',
+    ru: { title: 'PvP с нуля' },
+    en: { title: 'PvP from Scratch' },
+    lessons: [
+      {
+        id: 'pvp-basics',
+        image: 'images/pvp-basics.jpg',
+        ru: {
+          title: 'PvP с нуля: выбор режима',
+          eyebrow: 'Введение в мультиплеер',
+          body: [
+            'В Olden Era есть два основных PvP-режима: "Один герой" и "Классический". Для новичков идеальным стартом станет режим "Один герой". В нём всё внимание сосредоточено на единственном герое, что значительно снижает порог входа и избавляет от необходимости управлять курьерами.',
+            'Ключевое понятие в PvP — "шаблон". Это не готовая карта, а набор правил, по которым генератор случайным образом создаёт мир перед матчем. На схеме шаблона: ноды (точки) — это игровые зоны (пустые, серебряные или золотые по богатству), а линии — это границы между ними. Проход в новую зону, как правило, блокирует сильный отряд (Охрана границы), и его уничтожение называется "прорывом".',
+            'Таймеры: В PvP действуют одновременные ходы — вы и противник двигаетесь по карте в реальном времени. Это ускоряет игру. Таймеры отключаются на поздних стадиях или если оба игрока прорвались в одну зону. На PvP-бой даётся 30 секунд на ход отряда и 2 минуты запасного времени на всю битву. Если время выйдет, AI перехватит управление вашей армией. В рейтинговых матчах игра проходит на сложности 125%.',
+            'Важное обновление: В патче 8 добавили защиту от нечестного выхода из игры. Если ты закроешь игру через Alt+F4 во время PvP-матча, тебе автоматически засчитают поражение. Теперь придётся сражаться до конца!'
+          ],
+          tip: 'Если PvP вас пугает, создайте пользовательское лобби с ИИ-противником, выберите турнирный шаблон и тренируйтесь в комфортном темпе. Это лучший способ освоиться без стресса.',
+          quizzes: [
+            { q: 'Какой режим рекомендуется для новичков в PvP?', options: ['Классический', 'Один герой', 'Кампания'], correct: 1 },
+            { q: 'Сколько секунд даётся на ход одного отряда в PvP-бою?', options: ['15 секунд', '30 секунд', '60 секунд'], correct: 1 }
+          ]
+        },
+        en: {
+          title: 'PvP from Scratch: Choosing a Mode',
+          eyebrow: 'Introduction to Multiplayer',
+          body: [
+            'In Olden Era, there are two main PvP modes: "One Hero" and "Classic". For beginners, the ideal start is the "One Hero" mode. It focuses all attention on a single hero, significantly lowering the entry barrier and eliminating the need to manage scouts.',
+            'A key concept in PvP is a "template." This is not a pre-made map, but a set of rules by which the generator randomly creates the world before the match. On the template diagram: nodes (points) are game zones, and lines are the borders between them. Moving into a new zone is usually blocked by a strong squad, and defeating it is called a "breakthrough."',
+            'Timers: In PvP, simultaneous turns are active, meaning you and your opponent move on the map in real-time. Timers are disabled in late-game stages or when both players have broken through into the same zone. In PvP battles, you have 30 seconds per unit turn and 2 minutes of reserve time for the entire battle. If time runs out, the AI will take control of your army. Ranked matches are played at 125% difficulty.',
+            'Important update: In patch 8, protection against unfair game exit was added. If you close the game via Alt+F4 during a PvP match, you will automatically be given a defeat. Now you have to fight to the end!'
+          ],
+          tip: 'If PvP scares you, create a custom lobby against an AI opponent, pick a tournament template, and practice at your own pace. This is the best way to get comfortable without the stress.',
+          quizzes: [
+            { q: 'Which mode is recommended for beginners in PvP?', options: ['Classic', 'One Hero', 'Campaign'], correct: 1 },
+            { q: 'How many seconds are given per unit turn in a PvP battle?', options: ['15 seconds', '30 seconds', '60 seconds'], correct: 1 }
+          ]
+        }
+      },
+      {
+        id: 'pvp-ban-pick',
+        image: 'images/pvp-ban-pick.jpg',
+        ru: {
+          title: 'Бан/Пик: как не проиграть до старта',
+          eyebrow: 'Стратегия выбора и запретов',
+          body: [
+            'Перед каждым рейтинговым матчем проходит этап Бан/Пик. Сначала вы запрещаете (баните) и выбираете (пикаете) фракции, а затем — героев.',
+            'Бан фракций: Вы и соперник можете запретить по одной фракции. Поэтому важно уметь играть как минимум за три разные фракции. Если вашу любимую забанят, а вторую заберёт противник, у вас должен быть надёжный запасной вариант.',
+            'Бан героев: Вам даётся 3 бана на вражеских героев. Изучите сильных героев и составьте свой "чёрный список". Например, у Храма это Пип (лучники), Пустельга (урон) и Старый лорд Мандал (герой-удар). У Подземелья в приоритете банить Тифону (гидры) или Ос (Heroic Strike).',
+            'Мета-герои: На данный момент сильны герои с прокачкой, специалисты по дальнему бою и по удару героя. Банить или пикать их — ключевая стратегия. Если вы видите свободного топ-героя — берите его без раздумий.',
+            'В патче 8 были усилены специалисты по магии — теперь они получают +1 к силе магии за каждые 2 уровня героя (вместо 3). Это сделало некоторых магов ещё более опасными, поэтому обращай на них внимание при бане.'
+          ],
+          tip: 'Заранее изучите всех героев в пользовательском лобби. Знание сильных сторон и слабостей каждой фракции — это половина победы в PvP.',
+          quizzes: [
+            { q: 'Сколько героев можно запретить (забанить) на этапе выбора?', options: ['1', '2', '3'], correct: 2 },
+            { q: 'Почему важно уметь играть за 3 фракции?', options: ['За каждую фракцию дают больше опыта', 'Чтобы была запасная фракция, если любимую забанят или заберут', 'Это требуется для входа в рейтинговый режим'], correct: 1 }
+          ]
+        },
+        en: {
+          title: 'Ban/Pick: How Not to Lose Before the Start',
+          eyebrow: 'Selection and Ban Strategy',
+          body: [
+            'Before each ranked match, there is a Ban/Pick phase. First, you ban and pick factions, then heroes.',
+            'Faction Ban: You and your opponent can each ban one faction. Therefore, it\'s important to be able to play at least three different factions. If your favorite is banned and your second is taken by the opponent, you need a reliable backup.',
+            'Hero Ban: You have 3 bans for enemy heroes. Study strong heroes and create your own "blacklist." For example, for Temple, these are Pip, Kestrel, and Old Lord Mandal. For Dungeon, the priority is to ban Tifona or Os.',
+            'Meta Heroes: Currently, level-up heroes, ranged specialists, and Hero Strike specialists are strong. Banning or picking them is a key strategy. If you see a free top-tier hero, pick them without hesitation.',
+            'In patch 8, magic specialists were buffed — now they get +1 to spell power for every 2 hero levels (instead of 3). This has made some mages even more dangerous, so pay attention to them when banning.'
+          ],
+          tip: 'Study all heroes in a custom lobby in advance. Knowing the strengths and weaknesses of each faction is half the battle in PvP.',
+          quizzes: [
+            { q: 'How many heroes can you ban during the selection phase?', options: ['1', '2', '3'], correct: 2 },
+            { q: 'Why is it important to be able to play 3 factions?', options: ['Each faction gives more experience', 'To have a backup faction if your favorite is banned or taken', 'It\'s required to enter ranked mode'], correct: 1 }
+          ]
+        }
+      },
+      {
+        id: 'pvp-templates',
+        image: 'images/pvp-templates.jpg',
+        ru: {
+          title: 'Шаблоны: Exodus, Jebus, Vendetta',
+          eyebrow: 'Стратегия на разных картах',
+          body: [
+            'Выбор правильного шаблона — залог успеха. Вот три самых популярных в PvP-мете.',
+            'Exodus: Идеален для новичков. Это турнирный режим, где игроки развиваются в изолированных зонах и встречаются только в назначенные дни для PvP-боёв до двух побед. После битвы потери восстанавливаются. Главный плюс: герой со старта знает бесплатный (1 раз в день) Городской портал, что позволяет легко возвращаться за подкреплением.',
+            'Jebus Cross (Изгой Джебуса): Классика серии. Главная цель — быстрый прорыв в центральную пустыню, где разбросаны мощные Ящики Пандоры с существами. Не отстраивайте все города — делайте ставку на армию из ящиков. Хорошим результатом считается прорыв в пустыню к концу 2-й недели.',
+            'Vendetta: Ускоренная версия Jebus. Герой со старта знает Дверь измерений и Городской портал. Рядом со стартовым замком есть объекты, повышающие Силу магии или Знания на +2, чтобы компенсировать затраты маны.'
+          ],
+          tip: 'На шаблоне Exodus вы играете в "сити-билдер", который позволяет сосредоточиться на экономике и прокачке города, не отвлекаясь на постоянный PvP-стресс. Это идеальный выбор для изучения основ PvP.',
+          quizzes: [
+            { q: 'На каком шаблоне герой с самого начала знает заклинание "Городской портал"?', options: ['Jebus Cross', 'Vendetta', 'Exodus'], correct: 2 },
+            { q: 'Что является главной целью на шаблоне Jebus Cross?', options: ['Построить все здания в стартовом городе', 'Прорваться в центральную пустыню за Ящиками Пандоры', 'Найти и победить вражеского героя на 1-й неделе'], correct: 1 }
+          ]
+        },
+        en: {
+          title: 'Templates: Exodus, Jebus, Vendetta',
+          eyebrow: 'Strategy on Different Maps',
+          body: [
+            'Choosing the right template is the key to success. Here are the three most popular in the PvP meta.',
+            'Exodus: Ideal for beginners. It\'s a tournament mode where players develop in isolated zones and only meet on designated days for PvP battles up to two wins. Losses are restored after a battle. The main advantage: the hero starts with a free (once per day) Town Portal spell, allowing easy return for reinforcements.',
+            'Jebus Cross: A classic of the series. The main goal is a quick breakthrough into the central desert, where powerful Pandora\'s Boxes with creatures are scattered. Don\'t build up all your towns — focus on the army from the boxes. A good result is a breakthrough into the desert by the end of week 2.',
+            'Vendetta: An accelerated version of Jebus. The hero starts with Dimension Door and Town Portal. Near the starting castle, there are objects that increase Spell Power or Knowledge by +2 to compensate for mana costs.'
+          ],
+          tip: 'On the Exodus template, you play a "city-builder," allowing you to focus on the economy and town development without the constant PvP stress. This is the ideal choice for learning the basics of PvP.',
+          quizzes: [
+            { q: 'On which template does the hero start with the "Town Portal" spell?', options: ['Jebus Cross', 'Vendetta', 'Exodus'], correct: 2 },
+            { q: 'What is the main goal on the Jebus Cross template?', options: ['Build all buildings in the starting town', 'Break through to the central desert for Pandora\'s Boxes', 'Find and defeat the enemy hero in week 1'], correct: 1 }
+          ]
+        }
+      },
+      {
+        id: 'pvp-tempo',
+        image: 'images/pvp-tempo.jpg',
+        ru: {
+          title: 'Тайминг и темп: играй быстро',
+          eyebrow: 'Почему скорость — ключ к победе',
+          body: [
+            'Самый главный секрет PvP в Olden Era — играть быстро. Главное не собрать самую большую армию, а сделать это быстрее противника. Лучшие игроки прорываются в центральную зону на Jebus Cross уже на первой неделе.',
+            'Как ускориться: 1. Один главный герой: Не распыляйте войска и опыт. Весь фокус на одном герое, остальные — только "курьеры" для сбора ресурсов и разведки. 2. Золото > Опыт: На старте всегда берите золото из сундуков. Опыт вы получите в боях, а без денег вы не наймёте армию. 3. Планируйте маршруты: Не тратьте очки движения на сбор всех ресурсов подряд. Фокусируйтесь на критически важных для вашей фракции.',
+            'Не затягивайте: Если долго развивать экономику, враг сделает то же самое. Собрав крепкую армию, не бойтесь атаковать первым, пока армии противника не достигли критических размеров.'
+          ],
+          tip: 'Отслеживайте темп по мини-карте. Если переход хода занимает подозрительно много времени, значит, противник активен. Смотрите, откуда выходит его герой, чтобы перехватить инициативу или избежать невыгодного боя.',
+          quizzes: [
+            { q: 'Что лучше брать из сундуков на старте игры?', options: ['Опыт для героя', 'Золото', 'Артефакты'], correct: 1 },
+            { q: 'Какова главная цель в начале PvP-матча?', options: ['Построить все жилища существ', 'Собрать как можно больше ресурсов', 'Нанять одного сильного героя и быстро развиваться'], correct: 2 }
+          ]
+        },
+        en: {
+          title: 'Timing and Tempo: Play Fast',
+          eyebrow: 'Why Speed is the Key to Victory',
+          body: [
+            'The most important secret of PvP in Olden Era is to play fast. The main goal is not to gather the largest army, but to do it faster than your opponent. The best players break through to the central zone on Jebus Cross as early as week 1.',
+            'How to speed up: 1. One main hero: Don\'t spread your troops and experience. Focus everything on one hero; the rest are just "couriers" for gathering resources and scouting. 2. Gold > Experience: Always take gold from chests at the start. You\'ll get experience in battles, but without money you won\'t hire an army. 3. Plan your routes: Don\'t waste movement points collecting all resources in a row. Focus on what\'s critical for your faction.',
+            'Don\'t drag it out: If you spend too long developing your economy, the enemy will do the same. Once you have a strong army, don\'t be afraid to strike first, before your opponent\'s army reaches critical mass.'
+          ],
+          tip: 'Track the tempo using the minimap. If the turn transition takes a suspiciously long time, the opponent is active. Watch where their hero comes from to seize the initiative or avoid an unfavorable battle.',
+          quizzes: [
+            { q: 'What should you take from chests at the start of the game?', options: ['Hero experience', 'Gold', 'Artifacts'], correct: 1 },
+            { q: 'What is the main goal at the start of a PvP match?', options: ['Build all creature dwellings', 'Gather as many resources as possible', 'Hire one strong hero and develop quickly'], correct: 2 }
+          ]
+        }
+      },
+      {
+        id: 'pvp-heroes',
+        image: 'images/pvp-heroes.jpg',
+        ru: {
+          title: 'Сила героев и мета-билды',
+          eyebrow: 'Кого пикать и как качать',
+          body: [
+            'В PvP-мете сейчас доминируют два типа героев: воины и маги. Выбор зависит от фракции и стиля игры.',
+            'Воины: Их сила в постоянных пассивных бонусах к армии. Ключевые навыки — Атака (Offense), Защита (Defense), Тактика (Tactics) и Логистика (Logistics). Они могут взять навыки, ослабляющие магию противника (например, "Страж реальности"), чтобы нивелировать преимущество магов.',
+            'Маги: Полагаются на заклинания. В патче 8 навык "Призыв Аватара" был полностью переработан. Теперь это исключительно магическая способность. Аватар не получает бонусов к защите, а его сила напрямую зависит от силы магии героя. Вместо здоровья у него фиксированное количество "жизней" (ударов, которые он может выдержать). Это делает его мощным инструментом в руках правильно прокачанного мага.',
+            'Лучшие герои фракций: Подземелье — Тифона (гидры), Ос (Heroic Strike), Мотлей (танцовщицы). Храм — Пип (стрелки), Пустельга (урон), Старый лорд Мандал. Некрополь в PvP считается сложной фракцией из-за медленных юнитов, но сильна в затяжных играх.'
+          ],
+          tip: 'Если вы не знаете, кого банить — баньте сильных магов и героев с сильным "Ударом героя". Если не знаете, кого пикать — берите воина с прокачкой армии, это самый надёжный вариант для новичка.',
+          quizzes: [
+            { q: 'Как изменился навык "Призыв Аватара" в патче 8?', options: ['Стал зависеть от атаки героя', 'Стал зависеть от силы магии героя и имеет фиксированное количество ударов', 'Был полностью удалён из игры'], correct: 1 },
+            { q: 'Какой герой Подземелья считается абсолютным приоритетом для пика?', options: ['Ос', 'Тифона', 'Мотлей'], correct: 1 }
+          ]
+        },
+        en: {
+          title: 'Hero Power and Meta Builds',
+          eyebrow: 'Who to Pick and How to Level',
+          body: [
+            'In the current PvP meta, two types of heroes dominate: warriors and mages. Your choice depends on the faction and your playstyle.',
+            'Warriors: Their strength lies in constant passive bonuses to their army. Key skills are Offense, Defense, Tactics, and Logistics. They can take skills that weaken enemy magic to neutralize mages\' advantage.',
+            'Mages: They rely on spells. In patch 8, the "Summon Avatar" skill was completely reworked. Now it\'s exclusively a magic ability. The Avatar doesn\'t get defense bonuses, and its power directly depends on the hero\'s spell power. Instead of health, it has a fixed number of "lives" (hits it can withstand). This makes it a powerful tool in the hands of a well-leveled mage.',
+            'Best faction heroes: Dungeon — Tifona (hydras), Os (Heroic Strike), Motley (dancers). Temple — Pip (archers), Kestrel (damage), Old Lord Mandal. Necropolis is considered a difficult faction in PvP due to slow units, but strong in long games.'
+          ],
+          tip: 'If you don\'t know who to ban — ban strong mages and heroes with a strong Hero Strike. If you don\'t know who to pick — choose a warrior with army buffs; this is the most reliable option for a beginner.',
+          quizzes: [
+            { q: 'How did the "Summon Avatar" skill change in patch 8?', options: ['Started depending on hero attack', 'Started depending on spell power and has a fixed number of hits', 'Was completely removed from the game'], correct: 1 },
+            { q: 'Which Dungeon hero is considered a top priority pick?', options: ['Os', 'Tifona', 'Motley'], correct: 1 }
+          ]
+        }
+      },
+      {
+        id: 'pvp-damage-formula',
+        image: 'images/pvp-damage-formula.jpg',
+        ru: {
+          title: 'Формула урона: почему цифры важны',
+          eyebrow: 'Как работает атака, защита и урон',
+          body: [
+            'В Olden Era формула урона была изменена по сравнению с Heroes 3, чтобы сделать разницу между тирами менее колоссальной. Теперь даже отряды 1-го тира могут быть полезны.',
+            'Новая формула: Множитель урона = (20 + Атака) / (20 + Защита). Например, у вашего отряда Атака = 25, а у врага Защита = 6. В Heroes 3 урон был бы увеличен на 95%. В Olden Era расчёт: (20+25)/(20+6) = 45/26 = 1.73, то есть урон увеличится на 73%.',
+            'Как это работает: Если Атака выше Защиты: вы получаете бонус к урону. Если Атака ниже Защиты: вы получаете штраф к урону. Любая единица Атаки важна! Она напрямую увеличивает ваш итоговый урон по формуле.',
+            'Мораль и Удача: Мораль даёт шанс на дополнительный ход, а удача — шанс на удвоенный урон. Ищите артефакты и законы, повышающие эти параметры.'
+          ],
+          tip: 'Навыки Атака и Защита не просто абстрактные цифры. Каждое очко Атаки вашего героя напрямую увеличивает урон всей вашей армии. Качайте их в первую очередь, если вы — воин.',
+          quizzes: [
+            { q: 'Что делает Мораль в бою?', options: ['Даёт шанс на двойной урон', 'Даёт шанс на дополнительный ход', 'Увеличивает защиту отряда'], correct: 1 },
+            { q: 'Если Атака вашего отряда выше Защиты врага, то...', options: ['Урон будет снижен', 'Урон будет увеличен', 'Урон останется без изменений'], correct: 1 }
+          ]
+        },
+        en: {
+          title: 'Damage Formula: Why Numbers Matter',
+          eyebrow: 'How Attack, Defense, and Damage Work',
+          body: [
+            'In Olden Era, the damage formula was changed compared to Heroes 3 to make the difference between tiers less colossal. Even tier 1 units can now be useful.',
+            'New formula: Damage multiplier = (20 + Attack) / (20 + Defense). For example, if your unit has Attack = 25, and the enemy has Defense = 6. In Heroes 3, the damage would be increased by 95%. In Olden Era, the calculation is: (20+25)/(20+6) = 45/26 = 1.73, so the damage increases by 73%.',
+            'How it works: If Attack is higher than Defense: you get a damage bonus. If Attack is lower than Defense: you get a damage penalty. Every point of Attack matters! It directly increases your final damage according to the formula.',
+            'Morale and Luck: Morale gives a chance for an extra turn, and luck gives a chance for double damage. Look for artifacts and laws that boost these stats.'
+          ],
+          tip: 'Attack and Defense skills are not just abstract numbers. Each point of your hero\'s Attack directly increases the damage of your entire army. Prioritize them if you are a warrior.',
+          quizzes: [
+            { q: 'What does Morale do in battle?', options: ['Gives a chance for double damage', 'Gives a chance for an extra turn', 'Increases unit defense'], correct: 1 },
+            { q: 'If your unit\'s Attack is higher than the enemy\'s Defense, then...', options: ['Damage will be reduced', 'Damage will be increased', 'Damage will remain unchanged'], correct: 1 }
+          ]
+        }
+      }
+    ]
+  }
+  ,
+
 {
     id: 'coming-soon-grove',
     icon: '🌿',
-    ru: { title: 'Фракция Роща — гайд для новичков' },
-    en: { title: 'Grove Faction — Beginner Guide' },
+    ru: { title: 'Фракция Роща' },
+    en: { title: 'Grove Faction' },
     lessons: []
   },
-  {
-    id: 'coming-soon-pvp-secrets',
-    icon: '🧠',
-    ru: { title: 'Секреты PvP' },
-    en: { title: 'PvP Secrets' },
-    lessons: []
-  }
+  
 
 ]
 
@@ -1947,6 +2256,7 @@ async function init() {
   }
 
   countFirstVisit();
+  updateProgress(); // <-- обновляем прогресс при загрузке
 
   if (savedLang === 'ru' || savedLang === 'en') {
     currentLang = savedLang;
@@ -1992,6 +2302,8 @@ function renderTopics() {
     `;
     list.appendChild(card);
   });
+  
+  updateProgress(); // <-- обновляем прогресс при отрисовке списка тем
 }
 
 function openTopic(index) {
@@ -2061,6 +2373,8 @@ function renderHome(forceList) {
     document.getElementById('home-view').classList.remove('hidden');
     document.getElementById('completion-view').classList.remove('show');
   }
+  
+  updateProgress(); // <-- обновляем прогресс
 }
 
 function firstIncompleteIndex() {
@@ -2182,6 +2496,7 @@ async function completeLesson() {
   const l = TOPICS[currentTopicIndex].lessons[currentLessonIndex];
   completed.add(l.id);
   await Storage.set('completed_lessons', JSON.stringify([...completed]));
+  updateProgress(); // <-- обновляем прогресс после завершения урока
   renderHome();
 }
 
