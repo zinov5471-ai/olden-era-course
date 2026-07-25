@@ -16,8 +16,10 @@ jobs:
           sed -i "s|%%BOT_TOKEN%%|${{ secrets.BOT_TOKEN }}|g" index.html
           sed -i "s|%%ADMIN_CHAT_ID%%|${{ secrets.ADMIN_CHAT_ID }}|g" index.html
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add index.html
+          git diff --quiet && git diff --staged --quiet || git commit -m "Add secrets to index.html"
+          git push
