@@ -599,16 +599,40 @@
   .scroll-top:active {
     transform: scale(0.9);
   }
+#feedback-view {
+  position: relative;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  background: transparent;
+  padding: 0;
+  min-height: 80vh;
+}
+#feedback-view.hidden {
+  display: block !important;
+  opacity: 0;
+  transform: translateX(30px);
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 80vh;
+}
+#feedback-view:not(.hidden) {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+  position: relative;
+  animation: slideIn 0.35s ease forwards;
+}
+   
+   @keyframes slideIn {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
 
-    
+
+
 </style>
-
-
-
-
-
-
-
 </style>
 </head>
 <body>
@@ -654,11 +678,12 @@
     <!-- КНОПКА YOUTUBE -->
     <button class="youtube-btn" onclick="openYouTube()">
       ▶️ Подписаться на YouTube
+    <!-- КНОПКА ОБРАТНОЙ СВЯЗИ -->
+     <button class="support-link" onclick="openFeedbackPage()">✉️ Обратная связь</button>
     </button>
   </div>
-<!-- КНОПКА ОБРАТНОЙ СВЯЗИ -->
-<button class="support-link" onclick="openFeedbackForm()">
-  ✉️ Обратная связь
+
+ 
 </button>
 
 <!-- ФОРМА ОБРАТНОЙ СВЯЗИ -->
@@ -701,6 +726,28 @@
     <button class="primary-btn" id="complete-btn" onclick="completeLesson()"></button>
   </div>
 
+<!-- FEEDBACK VIEW (отдельная страница с формой) -->
+<div id="feedback-view" class="hidden" style="padding: 20px 0;">
+  <button class="back-btn" onclick="goTopics()" id="feedback-back-label">← На главную</button>
+  <div class="page-divider"></div>
+  <div class="app-header">
+    <div>
+      <div class="eyebrow">📩 Обратная связь</div>
+      <h1>Напишите нам</h1>
+    </div>
+  </div>
+  <div style="margin-top: 20px;">
+    <textarea id="feedback-text-new" rows="6" placeholder="Ваше сообщение, предложение или вопрос..." style="width: 100%; padding: 14px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); color: var(--parchment); font-family: 'Manrope', sans-serif; font-size: 15px; resize: vertical; box-sizing: border-box;"></textarea>
+    <div style="display: flex; gap: 12px; margin-top: 16px;">
+      <button onclick="sendFeedbackNew()" style="flex: 1; padding: 14px; background: linear-gradient(135deg, var(--gold), var(--gold-dim)); color: #1A1508; font-weight: 700; border: none; border-radius: 12px; cursor: pointer; font-family: 'Manrope', sans-serif; font-size: 15px;">📤 Отправить</button>
+      <button onclick="goTopics()" style="flex: 1; padding: 14px; background: rgba(255,255,255,0.05); color: var(--parchment-dim); font-weight: 700; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; cursor: pointer; font-family: 'Manrope', sans-serif; font-size: 15px;">❌ Отмена</button>
+    </div>
+    <div id="feedback-status" style="margin-top: 12px; font-size: 14px; color: var(--parchment-dim); text-align: center; display: none;"></div>
+  </div>
+   </div>
+
+
+
   <!-- COMPLETION VIEW -->
   <div class="completion" id="completion-view">
     <div class="badge">🏆</div>
@@ -708,6 +755,7 @@
     <p style="color:var(--parchment-dim); font-size:14px;" id="completion-text"></p>
     <button class="primary-btn show" onclick="goHome()" id="completion-btn"></button>
     <button class="support-link" onclick="openDonate()" id="completion-support-label"></button>
+    <button class="support-link" onclick="openFeedbackPage()">✉️ Обратная связь</button>
   </div>
     <!-- COMPLETION VIEW -->
     <div class="completion" id="completion-view">
@@ -2935,7 +2983,63 @@ function sendFeedback() {
       behavior: 'smooth'
     });
   }
+// ===== ОБРАТНАЯ СВЯЗЬ (НОВАЯ СТРАНИЦА) =====
+function openFeedbackPage() {
+  document.getElementById('topics-view').classList.add('hidden');
+  document.getElementById('feedback-view').classList.remove('hidden');
+}
 
+function sendFeedbackNew() {
+  const text = document.getElementById('feedback-text-new').value.trim();
+  const status = document.getElementById('feedback-status');
+  
+  if (!text) {
+    status.style.display = 'block';
+    status.textContent = '✏️ Напишите сообщение!';
+    status.style.color = 'var(--danger)';
+    return;
+  }
+
+  status.style.display = 'block';
+  status.textContent = '⏳ Отправка...';
+  status.style.color = 'var(--parchment-dim)';
+
+  const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+
+  fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      chat_id: ADMIN_CHAT_ID,
+      text: `📩 Новое сообщение от пользователя:\n\n${text}`
+    })
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.ok) {
+      status.textContent = '✅ Спасибо! Сообщение отправлено.';
+      status.style.color = 'var(--success)';
+      document.getElementById('feedback-text-new').value = '';
+      setTimeout(() => {
+        goTopics();
+      }, 1500);
+    } else {
+      status.textContent = '❌ Ошибка: попробуйте позже.';
+      status.style.color = 'var(--danger)';
+    }
+  })
+  .catch(() => {
+    status.textContent = '❌ Ошибка соединения. Проверьте интернет.';
+    status.style.color = 'var(--danger)';
+  });
+}
+
+// Переопределяем goTopics, чтобы скрывать feedback-view
+const originalGoTopics = goTopics;
+goTopics = function() {
+  document.getElementById('feedback-view').classList.add('hidden');
+  originalGoTopics();
+};
 init();
 </script>
 </body>
