@@ -504,6 +504,111 @@
     opacity: 0.3;
     border-radius: 2px;
   }
+  /* ===== ФОРМА ОБРАТНОЙ СВЯЗИ ===== */
+.feedback-form {
+  display: none;
+  margin-top: 16px;
+  padding: 16px;
+  background: var(--bg-elevated);
+  border-radius: var(--radius);
+  border: 1px solid rgba(201,161,92,0.15);
+}
+.feedback-form-title {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--parchment);
+}
+.feedback-textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.05);
+  color: var(--parchment);
+  font-family: 'Manrope', sans-serif;
+  font-size: 14px;
+  resize: vertical;
+  box-sizing: border-box;
+}
+.feedback-textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+.feedback-btns {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+.feedback-send {
+  flex: 1;
+  padding: 10px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-dim));
+  color: #1A1508;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: 'Manrope', sans-serif;
+  font-size: 14px;
+}
+.feedback-send:active {
+  transform: scale(0.98);
+}
+.feedback-cancel {
+  flex: 1;
+  padding: 10px;
+  background: rgba(255,255,255,0.05);
+  color: var(--parchment-dim);
+  font-weight: 700;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: 'Manrope', sans-serif;
+  font-size: 14px;
+}
+.feedback-cancel:active {
+  transform: scale(0.98);
+}
+    /* другие стили ... */
+  .support-link:active{ opacity: 1; }
+
+    /* ===== КНОПКА "НАВЕРХ" ===== */
+  .scroll-top {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold-dim), var(--gold));
+    color: #1A1508;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 999;
+    box-shadow: 0 4px 20px rgba(201,161,92,0.3);
+  }
+  .scroll-top.visible {
+    opacity: 1;
+    transform: scale(1);
+  }
+  .scroll-top:active {
+    transform: scale(0.9);
+  }
+
+    
+</style>
+
+
+
+
+
+
+
 </style>
 </head>
 <body>
@@ -551,7 +656,20 @@
       ▶️ Подписаться на YouTube
     </button>
   </div>
+<!-- КНОПКА ОБРАТНОЙ СВЯЗИ -->
+<button class="support-link" onclick="openFeedbackForm()">
+  ✉️ Обратная связь
+</button>
 
+<!-- ФОРМА ОБРАТНОЙ СВЯЗИ -->
+<div class="feedback-form" id="feedback-form">
+  <div class="feedback-form-title">✉️ Напишите нам</div>
+  <textarea class="feedback-textarea" id="feedback-text" rows="3" placeholder="Ваше сообщение, предложение или вопрос..."></textarea>
+  <div class="feedback-btns">
+    <button class="feedback-send" onclick="sendFeedback()">📤 Отправить</button>
+    <button class="feedback-cancel" onclick="closeFeedbackForm()">❌ Отмена</button>
+  </div>
+</div>
   <!-- HOME VIEW (lessons within a topic) -->
   <div id="home-view" class="hidden">
     <button class="back-btn" onclick="goTopics()" id="topics-back-label">← Темы</button>
@@ -591,7 +709,17 @@
     <button class="primary-btn show" onclick="goHome()" id="completion-btn"></button>
     <button class="support-link" onclick="openDonate()" id="completion-support-label"></button>
   </div>
+    <!-- COMPLETION VIEW -->
+    <div class="completion" id="completion-view">
+      ...
+    </div>
 
+    <!-- КНОПКА "НАВЕРХ" -->
+    <button class="scroll-top" id="scrollTopBtn" onclick="scrollToTop()" aria-label="Наверх">↑</button>
+
+  </div>  <!-- ← это закрывающий #app -->
+
+  
 </div>
 
 <script>
@@ -2188,13 +2316,252 @@ const TOPICS = [
   }
   ,
 
-{
-    id: 'coming-soon-grove',
+  {
+    id: 'grove',
     icon: '🌿',
     ru: { title: 'Фракция Роща' },
     en: { title: 'Grove Faction' },
-    lessons: []
-  },
+    lessons: [
+      {
+        id: 'grove-intro',
+        image: 'images/grove-intro.jpg',
+        ru: {
+          title: 'Роща — идеальный выбор для новичков',
+          eyebrow: 'Почему стоит начать с Рощи',
+          body: [
+            'Роща (Grove) — одна из лучших фракций для новичков в Olden Era. Её считают самой стабильной и понятной фракцией в игре.',
+            'Главные преимущества: У Рощи есть сильные стрелки с самого начала игры. Фавны (1-й уровень) уже имеют дальний бой, а Наяды (4-й уровень) и Заклинатели трав (5-й уровень) добавляют огневой мощи на средних этапах.',
+            'Тактика проста: стрелки наносят урон с расстояния, ближние юниты их защищают, герой поддерживает армию. Это понятная и надёжная стратегия, которая позволяет проходить игру с минимальными потерями.',
+            'Роща также хороша на больших картах — у неё есть грибные телепорты, позволяющие мгновременно перемещаться между городами. Это даёт огромное преимущество в мобильности.',
+            'Ещё один плюс — родной рельеф (Осень) встречается на картах довольно часто, поэтому Роща часто получает бонусы к передвижению.'
+          ],
+          tip: 'Если вы новичок — смело выбирайте Рощу. У неё нет сложных механик, а простая тактика «стрелки в тылу, ближники впереди» работает отлично. Вы быстро освоитесь и начнёте побеждать!',
+          quizzes: [
+            { q: 'Почему Роща считается одной из лучших фракций для новичков?', options: ['У неё самые сильные маги', 'У неё понятная тактика и сильные стрелки с первого тира', 'У неё самые дешёвые юниты'], correct: 1 },
+            { q: 'Какая уникальная особенность Рощи даёт преимущество на больших картах?', options: ['Порталы в городах', 'Грибные телепорты между городами', 'Бесплатные юниты каждый ход'], correct: 1 }
+          ]
+        },
+        en: {
+          title: 'Grove — Perfect Choice for Beginners',
+          eyebrow: 'Why Start with Grove',
+          body: [
+            'Grove is one of the best factions for beginners in Olden Era. It\'s considered the most stable and straightforward faction in the game.',
+            'Main advantages: Grove has strong shooters from the very start. Fauns (tier 1) already have ranged combat, and Naiads (tier 4) and Herbomancers (tier 5) add firepower in the mid-game.',
+            'The tactic is simple: shooters deal damage from a distance, melee units protect them, and the hero supports the army. This is a clear and reliable strategy that allows you to get through the game with minimal losses.',
+            'Grove is also great on large maps — it has mushroom teleports that allow instant movement between towns. This gives a huge advantage in mobility.',
+            'Another plus is that the native terrain (Autumn) is quite common on maps, so Grove often gets movement bonuses.'
+          ],
+          tip: 'If you\'re a beginner — feel free to choose Grove. It has no complex mechanics, and the simple "shooters in the back, melee in front" tactic works great. You\'ll quickly get the hang of it and start winning!',
+          quizzes: [
+            { q: 'Why is Grove considered one of the best factions for beginners?', options: ['It has the strongest mages', 'It has a clear tactic and strong shooters from tier 1', 'It has the cheapest units'], correct: 1 },
+            { q: 'What unique feature of Grove gives an advantage on large maps?', options: ['Town portals', 'Mushroom teleports between towns', 'Free units every turn'], correct: 1 }
+          ]
+        }
+      },
+      {
+        id: 'grove-murmuring',
+        image: 'images/grove-murmuring.jpg',
+        ru: {
+          title: 'Шёпот — бесплатные заряды концентрации',
+          eyebrow: 'Фракционный навык',
+          body: [
+            'Уникальный навык фракции Роща называется Шёпот (Murmuring). Он позволяет начинать каждый бой с бесплатными зарядами концентрации.',
+            'Концентрация — это ресурс, который нужен для активации способностей юнитов и героя. Обычно вы копите его в бою, а Роща получает его сразу. Это даёт огромное преимущество в начале сражения.',
+            'Почти все юниты Рощи имеют активные способности, которые требуют зарядов концентрации. Благодаря Шёпоту вы можете использовать их с первого хода, не тратя время на накопление.',
+            'Например, вы можете сразу активировать усиление для Хмельков или Ириадов, чтобы переломить ход боя в свою пользу.',
+            'Этот навык отлично сочетается с законами Рощи, которые снижают стоимость способностей или дают дополнительные заряды.',
+            'По дефолту у всех фракций лимит концентрации 3 заряда. Но для фракции Роща (Grove) сделано исключение — их уникальный расовый навык Шёпот стихий (Murmuring) позволяет прокачивать и увеличивать этот лимит, разгоняя полоску концентрации до 4 зарядов!'
+          ],
+          tip: 'Используйте Шёпот на полную! Начинайте бой с активации способностей ваших сильных юнитов — это даст вам преимущество с первого хода. Не копите заряды, тратьте их сразу! «Качаем Шёпот стихий до эксперта -> лимит шкалы расширяется до 4 -> берем Горрела для стартового разгона -> копим 4 заряда на ульту!».',
+          quizzes: [
+            { q: 'Что даёт фракционный навык Шёпот (Murmuring)?', options: ['Увеличивает урон всех юнитов', 'Даёт бесплатные заряды концентрации в начале боя', 'Лечит всех союзников каждый ход'], correct: 1 },
+            { q: 'Почему Шёпот особенно полезен для Рощи?', options: ['Все юниты Рощи имеют способности, требующие зарядов концентрации', 'Роща не может получать заряды другим способом', 'Способности Рощи не требуют зарядов'], correct: 0 }
+          ]
+        },
+        en: {
+          title: 'Murmuring — Free Focus Charges',
+          eyebrow: 'Faction Skill',
+          body: [
+            'The unique faction skill of Grove is called Murmuring. It allows you to start each battle with free focus charges.',
+            'Focus is a resource needed to activate unit and hero abilities. Normally you accumulate it during battle, but Grove gets it right away. This gives a huge advantage at the start of a fight.',
+            'Almost all Grove units have active abilities that require focus charges. Thanks to Murmuring, you can use them from the first turn without spending time on accumulation.',
+            'For example, you can immediately activate a buff for Hoplets or Iriyads to turn the tide of battle in your favor.',
+            'This skill works great with Grove laws that reduce ability costs or give extra charges.'
+          ],
+          tip: 'Make full use of Murmuring! Start the battle by activating your strong units\' abilities — this will give you an advantage from the first turn. Don\'t hoard charges, spend them right away!',
+          quizzes: [
+            { q: 'What does the faction skill Murmuring give?', options: ['Increases all unit damage', 'Gives free focus charges at the start of battle', 'Heals all allies every turn'], correct: 1 },
+            { q: 'Why is Murmuring especially useful for Grove?', options: ['All Grove units have abilities that require focus charges', 'Grove cannot get charges any other way', 'Grove abilities don\'t require charges'], correct: 0 }
+          ]
+        }
+      },
+      {
+        id: 'grove-low-tier',
+        image: 'images/grove-low-tier.jpg',
+        ru: {
+          title: 'Юниты 1–3 уровня: основа армии',
+          eyebrow: 'Начальные юниты',
+          body: [
+            'Фавн (Faun) — это твой основной стрелок 1-го уровня. У него 11 здоровья, атака 4, урон 3-5. Важно: у Фавна нет штрафа за стрельбу в ближнем бою, что делает его очень гибким.',
+            'Апгрейды: Фавн-лучник (инициатива 5, скорость 3) — улучшенный стрелок; Фавн-воин (атака 6, защита 6) — боец ближнего боя с активной способностью Ярость природы (+2 к урону и скорости).',
+            'Хмелёк (Hoplet) — юнит 2-го уровня. Это летающий магический юнит с 18 здоровья и способностью Вампирский прыжок — он крадёт ману у вражеского героя.',
+            'Апгрейды: Рассветный хмелёк (атака 7, нет контратаки) и Закатный хмелёк (инициатива 9, защита 5, при смерти даёт +1 к силе магии герою).',
+            'Корневой ириад (Vine Iriyad) — юнит 3-го уровня. Это воплощение земли с высоким здоровьем (45) и защитой (11). У него есть способность Пробуждение, которая даёт бонусы к скорости, инициативе и здоровью.',
+            'Апгрейды: Грибной ириад (создаёт каменное препятствие после смерти), Кристальный ириад (при атаке убивает 1 юнита из стека врага).'
+          ],
+          tip: 'Фавны-лучники — твоя основа в начале игры. Строй их жилище в первую очередь. Хмельки хороши против магов — они крадут ману. Ириады дорогие, но их стоит брать для защиты стрелков.',
+          quizzes: [
+            { q: 'Какая особенность у Фавна позволяет ему быть гибким в бою?', options: ['Он летает', 'У него нет штрафа за стрельбу в ближнем бою', 'Он имеет двойную атаку'], correct: 1 },
+            { q: 'Что делает Кристальный ириад при атаке?', options: ['Крадёт ману у врага', 'Убивает 1 юнита из стека врага', 'Лечит союзников'], correct: 1 }
+          ]
+        },
+        en: {
+          title: 'Units 1–3: Army Backbone',
+          eyebrow: 'Starting Units',
+          body: [
+            'Faun is your main tier 1 shooter. Has 11 health, attack 4, damage 3-5. Important: Faun has no penalty for shooting in melee, making it very flexible.',
+            'Upgrades: Faun Archer (initiative 5, speed 3) — improved shooter; Faun Warrior (attack 6, defense 6) — melee fighter with active ability Nature\'s Fury (+2 damage and speed).',
+            'Hoplet is a tier 2 unit. It\'s a flying magic unit with 18 health and Vampiric Leap — it steals mana from the enemy hero.',
+            'Upgrades: Dawn Hoplet (attack 7, no counterattack) and Dusk Hoplet (initiative 9, defense 5, gives +1 spell power to hero on death).',
+            'Vine Iriyad is a tier 3 unit. It\'s an earth embodiment with high health (45) and defense (11). Has Awakening ability that gives bonuses to speed, initiative, and health.',
+            'Upgrades: Mushroom Iriyad (creates stone obstacle after death), Crystal Iriyad (kills 1 unit from enemy stack on attack).'
+          ],
+          tip: 'Faun Archers are your early-game backbone. Build their dwelling first. Hoplets are good against mages — they steal mana. Iriyads are expensive but worth getting to protect your shooters.',
+          quizzes: [
+            { q: 'What feature makes Faun flexible in battle?', options: ['It flies', 'It has no melee shooting penalty', 'It has double attack'], correct: 1 },
+            { q: 'What does Crystal Iriyad do on attack?', options: ['Steals mana from enemy', 'Kills 1 unit from enemy stack', 'Heals allies'], correct: 1 }
+          ]
+        }
+      },
+      {
+        id: 'grove-mid-tier',
+        image: 'images/grove-mid-tier.jpg',
+        ru: {
+          title: 'Юниты 4–5 уровня: стрелки и поддержка',
+          eyebrow: 'Основная ударная сила',
+          body: [
+            'Наяда (Naiad) — это юнит 4-го уровня, дальний стрелок. У неё 40 здоровья, атака 11, урон 10-14. Это одна из главных ударных сил Рощи на среднем этапе игры.',
+            'Апгрейды: Родниковая наяда (защита 14, урон 14-18, инициатива 7) — отличный стрелок; Ледниковая наяда (атака 15, урон 14-18) — накладывает эффект Ледяные вены, который блокирует лечение врага.',
+            'Заклинатель трав (Herbomancer) — юнит 5-го уровня с атакой на длинной дистанции. У него 60 здоровья, атака 12, защита 14, урон 15-18.',
+            'Апгрейды: Заклинатель грибов (атака 16, защита 18, инициатива 8) — усиленная версия для боя; Заклинатель шёпотов (урон 18-18, инициатива 8) — фокусируется на уроне.',
+            'Заклинатели трав — отличные юниты для поддержки и дальнего боя. Их способности стоят меньше зарядов, если взять соответствующие законы.'
+          ],
+          tip: 'Наяды — твоя основная ударная сила в середине игры. Старайся защищать их ближними юнитами. Ледниковая наяда особенно полезна против фракций с сильным лечением (например, Храм).',
+          quizzes: [
+            { q: 'Какой апгрейд Наяды блокирует лечение врага?', options: ['Родниковая наяда', 'Ледниковая наяда', 'Заклинатель шёпотов'], correct: 1 },
+            { q: 'Какого уровня Заклинатель трав в Роще?', options: ['4-го уровня', '5-го уровня', '6-го уровня'], correct: 1 }
+          ]
+        },
+        en: {
+          title: 'Units 4–5: Shooters and Support',
+          eyebrow: 'Main Striking Force',
+          body: [
+            'Naiad is a tier 4 ranged shooter. Has 40 health, attack 11, damage 10-14. This is one of Grove\'s main striking forces in the mid-game.',
+            'Upgrades: Spring Naiad (defense 14, damage 14-18, initiative 7) — excellent shooter; Winter Naiad (attack 15, damage 14-18) — applies Frozen Veins, which blocks enemy healing.',
+            'Herbomancer is a tier 5 unit with long-range attack. Has 60 health, attack 12, defense 14, damage 15-18.',
+            'Upgrades: Sporebomancer (attack 16, defense 18, initiative 8) — enhanced combat version; Murmurmancer (damage 18-18, initiative 8) — focuses on damage.',
+            'Herbomancers are excellent support and ranged units. Their abilities cost fewer charges if you take the right laws.'
+          ],
+          tip: 'Naiads are your main mid-game striking force. Try to protect them with melee units. Winter Naiad is especially useful against factions with strong healing (e.g., Temple).',
+          quizzes: [
+            { q: 'Which Naiad upgrade blocks enemy healing?', options: ['Spring Naiad', 'Winter Naiad', 'Murmurmancer'], correct: 1 },
+            { q: 'What tier is Herbomancer in Grove?', options: ['Tier 4', 'Tier 5', 'Tier 6'], correct: 1 }
+          ]
+        }
+      },
+      {
+        id: 'grove-high-tier',
+        image: 'images/grove-high-tier.jpg',
+        ru: {
+          title: 'Юниты 6–7 уровня: элита Рощи',
+          eyebrow: 'Сильные юниты поздней игры',
+          body: [
+            'Кирин (Qilin) — это юнит 6-го уровня с высокими характеристиками. У него 135 здоровья, атака 22, защита 22, урон 24-30. У Кирина +3 к удаче, что даёт хороший шанс на двойной урон.',
+            'Апгрейды: Громовой кирин (инициатива 11, скорость 8, урон 30-36) — агрессивная версия; Туманный кирин (инициатива 13, урон 27-36) — быстрая и смертоносная версия.',
+            'Феникс (Phoenix) — это вершина фракции Роща, юнит 7-го уровня. У него 200 здоровья, атака 28, защита 26, урон 45-65, инициатива 14, скорость 7. Это один из самых быстрых юнитов в игре!',
+            'Апгрейды: Пылающий феникс (здоровье 300, инициатива 16, скорость 9) — мощная атакующая версия; Энергетический феникс (защита 36, инициатива 15, скорость 9) — защитная версия.',
+            'Феникс идеально дополняет стиль Рощи: пока стрелки делают свою работу, Феникс давит на врага, выживает в опасных ситуациях и нарушает планы противника.'
+          ],
+          tip: 'Феникс — твой главный козырь в поздней игре. Старайся построить его как можно быстрее. Громовой кирин и Пылающий феникс — отличная пара для агрессивной игры, а Туманный кирин и Энергетический феникс — для оборонительной.',
+          quizzes: [
+            { q: 'Какой юнит является вершиной фракции Роща?', options: ['Кирин', 'Феникс', 'Заклинатель трав'], correct: 1 },
+            { q: 'Какая уникальная особенность у Феникса?', options: ['Он может лечить союзников', 'Один из самых быстрых юнитов в игре', 'Может призывать других Фениксов'], correct: 1 }
+          ]
+        },
+        en: {
+          title: 'Units 6–7: Grove Elite',
+          eyebrow: 'Strong Late-Game Units',
+          body: [
+            'Qilin is a tier 6 unit with high stats. Has 135 health, attack 22, defense 22, damage 24-30. Qilin has +3 luck, giving a good chance for double damage.',
+            'Upgrades: Thunder Qilin (initiative 11, speed 8, damage 30-36) — aggressive version; Mist Qilin (initiative 13, damage 27-36) — fast and deadly version.',
+            'Phoenix is the pinnacle of the Grove faction, a tier 7 unit. Has 200 health, attack 28, defense 26, damage 45-65, initiative 14, speed 7. This is one of the fastest units in the game!',
+            'Upgrades: Blazing Phoenix (health 300, initiative 16, speed 9) — powerful offensive version; Energy Phoenix (defense 36, initiative 15, speed 9) — defensive version.',
+            'Phoenix perfectly complements Grove\'s style: while shooters do their work, Phoenix pressures the enemy, survives dangerous situations, and disrupts the opponent\'s plans.'
+          ],
+          tip: 'Phoenix is your main trump card in the late game. Try to build it as quickly as possible. Thunder Qilin and Blazing Phoenix are a great pair for aggressive play, while Mist Qilin and Energy Phoenix are for defense.',
+          quizzes: [
+            { q: 'Which unit is the pinnacle of the Grove faction?', options: ['Qilin', 'Phoenix', 'Herbomancer'], correct: 1 },
+            { q: 'What unique feature does Phoenix have?', options: ['It can heal allies', 'One of the fastest units in the game', 'Can summon other Phoenixes'], correct: 1 }
+          ]
+        }
+      },
+      {
+        id: 'grove-laws-heroes',
+        image: 'images/grove-laws-heroes.jpg',
+        ru: {
+          title: 'Законы, постройки и лучшие герои',
+          eyebrow: 'Стратегия и развитие',
+          body: [
+            'Ключевые законы Рощи: «Лесное родство» (Forest Kinship) — даёт +1 к удаче всем героям, +2 к удаче на родной земле. «Мать-Земля» (Mother Earth) — все жилища существ дают +50% прироста.',
+            '«Песнь земли» (Earthsong) — дальние атаки юнитов Рощи наносят +2 урона. «Симбиоз» (Symbiosis) — способности юнитов стоят на 1 заряд концентрации меньше.',
+            'Уникальные постройки: «Грибной телепорт» (Mushroom Teleport) — позволяет мгновенно перемещаться между городами Рощи. «Обсерватория» (Observatory) — даёт +100% к астрологическим очкам.',
+            'Лучшие герои Рощи:Горрел Копьеносец — усиливает дальний бой всех юнитов. Рыжехвостка — специалист по Фавнам, даёт им +1 к скорости, инициативе и +20% здоровья.',
+            'Октавия — специалист по удаче, увеличивает шанс на счастливый удар для всех юнитов. Ватавна — специалист по магии, даёт +20% к мане и больше использований глобальных заклинаний.',
+            'Эйф — отличный разведчик, не получает штрафов за рельеф и имеет +1 к обзору.'
+          ],
+          tip: 'Строй «Грибной телепорт» как можно раньше — он даёт огромное преимущество в мобильности. Закон «Симбиоз» бери первым, чтобы способности юнитов стоили меньше зарядов. Рыжехвостка— лучший стартовый герой для стратегии с Фавнами, а Октавия отлично работает на удачу.',
+          quizzes: [
+            { q: 'Какой закон Рощи снижает стоимость способностей юнитов?', options: ['Лесное родство', 'Симбиоз (Symbiosis)', 'Песнь земли'], correct: 1 },
+            { q: 'Какой герой Рощи специализируется на Фавнах?', options: ['Октавия', 'Рыжехвостка', 'Ватавна'], correct: 1 }
+          ]
+        },
+        en: {
+          title: 'Laws, Buildings and Best Heroes',
+          eyebrow: 'Strategy and Development',
+          body: [
+            'Key Grove laws: "Forest Kinship" — gives +1 luck to all heroes, +2 luck on native terrain. "Mother Earth" — all creature dwellings give +50% growth.',
+            '"Earthsong" — Grove ranged attacks deal +2 damage. "Symbiosis" — unit abilities cost 1 less focus charge.',
+            'Unique buildings: "Mushroom Teleport" — allows instant movement between Grove towns. "Observatory" — gives +100% to astrology points.',
+            'Best Grove heroes: Gorel Spearhead — enhances ranged combat for all units.    Gingertail — Faun specialist, gives them +1 speed, initiative and +20% health.',
+            'Octavia — luck specialist, increases lucky strike chance for all units. Vatawna — magic specialist, gives +20% mana and more uses of global spells.',
+            'Eith— excellent scout, no terrain penalties and +1 vision.'
+          ],
+          tip: 'Build "Mushroom Teleport" as early as possible — it gives a huge mobility advantage. Take "Symbiosis" law first to make unit abilities cost fewer charges. Gingertail is the best starting hero for a Faun-based strategy, and **Octavia** works great for luck builds.',
+          quizzes: [
+            { q: 'Which Grove law reduces unit ability costs?', options: ['Forest Kinship', 'Symbiosis', 'Earthsong'], correct: 1 },
+            { q: 'Which Grove hero specializes in Fauns?', options: ['Octavia', 'Gingertail', 'Vatawna'], correct: 1 }
+          ]
+        },
+        en: 
+        {
+          title: 'Laws, Buildings and Best Heroes',
+          eyebrow: 'Strategy and Development',
+          body: [
+            'Key Grove laws: Forest Kinship — gives +1 luck to all heroes, +2 luck on native terrain. Mother Earth — all creature dwellings give +50% growth.',
+            'Earthsong — Grove ranged attacks deal +2 damage. Symbiosis — unit abilities cost 1 less focus charge.',
+            'Unique buildings: Mushroom Teleport — allows instant movement between Grove towns. Observatory — gives +100% to astrology points.',
+            'Best Grove heroes: Jinwei — Faun specialist, gives them +2 attack and defense. Octavia — luck specialist, increases luck chance for all units.',
+            'Watana — magic specialist, gives +20% spell power. Jiang Wei — diplomacy specialist, reduces unit recruitment cost by 15%.'
+          ],
+          tip: 'Build Mushroom Teleport as early as possible — it gives a huge mobility advantage. Take Symbiosis law first to make unit abilities cost fewer charges. Jinwei is the best starting hero for a Faun-based strategy.',
+          quizzes: [
+            { q: 'Which Grove law reduces unit ability costs?', options: ['Forest Kinship', 'Symbiosis', 'Earthsong'], correct: 1 },
+            { q: 'Which Grove hero specializes in Fauns?', options: ['Octavia', 'Jinwei', 'Watana'], correct: 1 }
+          ]
+        }
+      }
+    ]
+  }
   
 
 ]
@@ -2499,10 +2866,76 @@ async function completeLesson() {
   updateProgress(); // <-- обновляем прогресс после завершения урока
   renderHome();
 }
-
 function goHome() {
   renderHome(true);
 }
+  // ===== ОБРАТНАЯ СВЯЗЬ =====
+const BOT_TOKEN = '%%BOT_TOKEN%%';   // ← вставь сюда токен от @BotFather
+const ADMIN_CHAT_ID = '%%ADMIN_CHAT_ID%%';  // ← вставь сюда chat_id от @userinfobot
+
+function openFeedbackForm() {
+  const form = document.getElementById('feedback-form');
+  if (form.style.display === 'none' || form.style.display === '') {
+    form.style.display = 'block';
+    document.getElementById('feedback-text').focus();
+  } else {
+    form.style.display = 'none';
+  }
+}
+
+function closeFeedbackForm() {
+  document.getElementById('feedback-form').style.display = 'none';
+  document.getElementById('feedback-text').value = '';
+}
+
+function sendFeedback() {
+  const text = document.getElementById('feedback-text').value.trim();
+  if (!text) {
+    alert('✏️ Напишите сообщение!');
+    return;
+  }
+
+  const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+
+  fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      chat_id: ADMIN_CHAT_ID,
+      text: `📩 Новое сообщение от пользователя:\n\n${text}`
+    })
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.ok) {
+      alert('✅ Спасибо! Сообщение отправлено.');
+      closeFeedbackForm();
+    } else {
+      alert('❌ Ошибка: попробуйте позже.');
+    }
+  })
+  .catch(() => {
+    alert('❌ Ошибка соединения. Проверьте интернет.');
+  });
+}
+
+// ===== КНОПКА "НАВЕРХ" =====
+  const scrollBtn = document.getElementById('scrollTopBtn');
+
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 300) {
+      scrollBtn.classList.add('visible');
+    } else {
+      scrollBtn.classList.remove('visible');
+    }
+  });
+
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
 
 init();
 </script>
