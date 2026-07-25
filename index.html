@@ -2889,36 +2889,35 @@ function closeFeedbackForm() {
 }
 
 function sendFeedback() {
-  const text = document.getElementById('feedback-text').value.trim();
-  if (!text) {
-    alert('✏️ Напишите сообщение!');
-    return;
-  }
-
-  const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
-
-  fetch(url, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      chat_id: ADMIN_CHAT_ID,
-      text: `📩 Новое сообщение от пользователя:\n\n${text}`
-    })
-  })
-  .then(response => response.json())
-  .then(data => {
-    if (data.ok) {
-      alert('✅ Спасибо! Сообщение отправлено.');
-      closeFeedbackForm();
-    } else {
-      alert('❌ Ошибка: попробуйте позже.');
+    const text = document.getElementById('feedback-text').value.trim();
+    if (!text) {
+        alert('✏️ Напишите сообщение!');
+        return;
     }
-  })
-  .catch(() => {
-    alert('❌ Ошибка соединения. Проверьте интернет.');
-  });
-}
 
+    const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+
+    fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            chat_id: ADMIN_CHAT_ID,
+            text: `📩 Новое сообщение от пользователя:\n\n${text}`
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.ok) {
+            alert('✅ Спасибо! Сообщение отправлено.');
+            closeFeedbackForm();
+        } else {
+            alert('❌ Ошибка: попробуйте позже.');
+        }
+    })
+    .catch(() => {
+        alert('❌ Ошибка соединения. Проверьте интернет.');
+    });
+}
 // ===== КНОПКА "НАВЕРХ" =====
   const scrollBtn = document.getElementById('scrollTopBtn');
 
