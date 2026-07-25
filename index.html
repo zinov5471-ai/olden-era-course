@@ -2723,6 +2723,9 @@ function renderTopics() {
 
 function openTopic(index) {
   const topic = TOPICS[index];
+  if (tg && tg.HapticFeedback) {
+  tg.HapticFeedback.impactOccurred('light');
+}
   if (topic.lessons.length === 0) return; // coming soon, not clickable
   currentTopicIndex = index;
   document.getElementById('topics-view').classList.add('hidden');
@@ -2731,6 +2734,8 @@ function openTopic(index) {
 }
 
 function goTopics() {
+  if (tg && tg.HapticFeedback) {
+    tg.HapticFeedback.impactOccurred('light');
   renderTopics();
 }
 
@@ -2825,6 +2830,12 @@ function shuffleQuizOptions(quiz) {
 }
 
 function openLesson(index) {
+
+  if (tg && tg.HapticFeedback) {
+    tg.HapticFeedback.impactOccurred('medium');
+  }
+  // ... остальной код
+}
   currentLessonIndex = index;
   const l = TOPICS[currentTopicIndex].lessons[index];
   const content = l[currentLang];
@@ -2915,6 +2926,9 @@ async function completeLesson() {
   renderHome();
 }
 function goHome() {
+  if (tg && tg.HapticFeedback) {
+    tg.HapticFeedback.impactOccurred('light');
+   }
   renderHome(true);
 }
   // ===== ОБРАТНАЯ СВЯЗЬ =====
