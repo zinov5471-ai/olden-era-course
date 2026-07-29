@@ -2199,7 +2199,7 @@ const TOPICS = [
           body: [
             'Перед каждым рейтинговым матчем проходит этап Бан/Пик. Сначала вы запрещаете (баните) и выбираете (пикаете) фракции, а затем — героев.',
             'Бан фракций: Вы и соперник можете запретить по одной фракции. Поэтому важно уметь играть как минимум за три разные фракции. Если вашу любимую забанят, а вторую заберёт противник, у вас должен быть надёжный запасной вариант.',
-            'Бан героев: Вам даётся 3 бана на вражеских героев. Изучите сильных героев и составьте свой "чёрный список". Например, у Храма это Пип (урон), Пустельга (лучники) и Старый лорд Мандал (герой-удар). У Подземелья в приоритете банить Тифону (специалист по гидрам) или Кирана (специалист по троглодитам).',
+            'Бан героев: Вам даётся 3 бана на вражеских героев. Изучите сильных героев и составьте свой "чёрный список". Например, у Храма это Пип (лучники), Пустельга (урон) и Старый лорд Мандал (герой-удар). У Подземелья в приоритете банить Тифону (гидры) или Ос (Heroic Strike).',
             'Мета-герои: На данный момент сильны герои с прокачкой, специалисты по дальнему бою и по удару героя. Банить или пикать их — ключевая стратегия. Если вы видите свободного топ-героя — берите его без раздумий.',
             'В патче 8 были усилены специалисты по магии — теперь они получают +1 к силе магии за каждые 2 уровня героя (вместо 3). Это сделало некоторых магов ещё более опасными, поэтому обращай на них внимание при бане.'
           ],
@@ -2357,6 +2357,55 @@ const TOPICS = [
           quizzes: [
             { q: 'What does Morale do in battle?', options: ['Gives a chance for double damage', 'Gives a chance for an extra turn', 'Increases unit defense'], correct: 1 },
             { q: 'If your unit\'s Attack is higher than the enemy\'s Defense, then...', options: ['Damage will be reduced', 'Damage will be increased', 'Damage will remain unchanged'], correct: 1 }
+          ]
+        }
+      }
+            ,
+      {
+        id: 'pvp-retreat-teleport',
+        image: 'images/pvp-retreat-teleport.jpg',
+        ru: {
+          title: 'Разбивка — легальный телепорт домой',
+          eyebrow: 'Продвинутая тактика PvP',
+          body: [
+            'Новички, впервые зайдя на стримы профи в мультиплеере, часто ловят шок. Зачем топ-игрок берёт своего главного прокачанного героя, нападает на слабую кучку нейтралов и... специально сливается в первом же раунде?',
+            '«Нуб, катку слил!» — подумает новичок. «Гений темпа!» — поймёт профи.',
+            'Встречайте базу киберспортивных Героев — механику «Разбивки» (или телепорта через таверну).',
+            'Почему это важно: В Olden Era нет кнопки мгновенного возвращения домой. Бежать пешком через всю карту — это потеря 3–4 дней и автоматический проигрыш по темпу, особенно на популярных шаблонах вроде Jebus Cross.',
+            'Как это работает за 5 шагов:',
+            '1️⃣ Слив армии: Главный герой передаёт ВСЕ свои основные войска другому герою-курьеру. У «бати» в кармане остаётся ровно 1 самый дешёвый юнит (например, скелет или кентавр).',
+            '2️⃣ Нападение: Герой с этим «пустым» отрядом нападает на любого ближайшего слабого моба на карте.',
+            '3️⃣ Побег (Retreat): В первом же раунде боя вы жмёте кнопку «Сбежать». Единственный юнит гибнет, но сам герой... исчезает с карты.',
+            '4️⃣ Выкуп в замке: В ТУ ЖЕ СЕКУНДУ ваш прокачанный герой со всеми уровнями, артефактами и книгой заклинаний появляется в таверне родного города! Выкупаете его за копейки золота.',
+            '5️⃣ Профит: Герой мгновенно переместился с другого конца карты домой. Он заходит в Колодец душ или Гильдию магов, восстанавливает ману, обновляет очки движения на новый ход, забирает свежий прирост войск — и снова готов разносить кабинеты!',
+            'Золотое правило: Выкупайте героя из таверны в тот же день, не откладывайте на завтра! Иначе он может появиться у противника.'
+          ],
+          tip: 'Разбивка — это не баг, а фича! Используйте её, когда нужно срочно вернуться домой за подкреплением или защитить замок. Особенно полезна на шаблонах Jebus Cross и Vendetta, где каждая минута на счету.',
+          quizzes: [
+            { q: 'Сколько юнитов должно остаться у героя перед «разбивкой»?', options: ['Ни одного', '1 самый дешёвый юнит', 'Половина армии'], correct: 1 },
+            { q: 'Что происходит с героем после побега (Retreat) в бою?', options: ['Он погибает навсегда', 'Он появляется в таверне родного города', 'Он теряет все артефакты'], correct: 1 }
+          ]
+        },
+        en: {
+          title: 'Retreat Teleport — Legit Way Home',
+          eyebrow: 'Advanced PvP Tactic',
+          body: [
+            'Beginners watching pro multiplayer streams often get shocked. Why does a top player take their main leveled hero, attack a weak neutral stack, and... intentionally lose in the first round?',
+            '"Noob, he threw the game!" — a beginner might think. "Genius tempo play!" — a pro would understand.',
+            'Meet the base of competitive Heroes — the "Retreat Teleport" mechanic.',
+            'Why it matters: In Olden Era, there\'s no instant recall button. Walking across the map takes 3–4 days and is an automatic tempo loss, especially on popular templates like Jebus Cross.',
+            'How it works in 5 steps:',
+            '1️⃣ Dump your army: The main hero transfers ALL troops to a secondary scout hero. The main hero keeps exactly 1 cheap unit (e.g., Skeleton or Centaur).',
+            '2️⃣ Attack: The hero with this "empty" stack attacks any nearby weak neutral mob.',
+            '3️⃣ Retreat: In the first round of battle, you press the "Retreat" button. The lone unit dies, but the hero... disappears from the map.',
+            '4️⃣ Buyback in town: INSTANTLY, your leveled hero with all stats, artifacts, and spells appears in the tavern of your home town! Recruit him for a small amount of gold.',
+            '5️⃣ Profit: The hero instantly teleported across the map. He can visit the Well of Souls or Mage Guild to restore mana, refresh movement points for a new turn, pick up fresh troops — and is ready to dominate again!',
+            'Golden rule: Recruit the hero from the tavern on the same day, don\'t delay! Otherwise, they might appear for the enemy.'
+          ],
+          tip: 'Retreat teleport is not a bug, it\'s a feature! Use it when you need to quickly return home for reinforcements or to defend your town. Especially useful on Jebus Cross and Vendetta templates where every minute counts.',
+          quizzes: [
+            { q: 'How many units should the hero have before a "retreat teleport"?', options: ['None', '1 cheap unit', 'Half the army'], correct: 1 },
+            { q: 'What happens to the hero after Retreat in battle?', options: ['He dies permanently', 'He appears in the home town tavern', 'He loses all artifacts'], correct: 1 }
           ]
         }
       }
@@ -2605,6 +2654,13 @@ const TOPICS = [
           quizzes: [
             { q: 'Which Grove law reduces unit ability costs?', options: ['Forest Kinship', 'Symbiosis', 'Earthsong'], correct: 1 },
             { q: 'Which Grove hero specializes in Fauns?', options: ['Octavia', 'Jinwei', 'Watana'], correct: 1 }
+          
+          
+          
+          
+          
+          
+          
           ]
           
         }
