@@ -2667,13 +2667,235 @@ const TOPICS = [
       }
     ]
   }
+  
   ,
-  {
-    id: 'coming-soon-hive',
+    {
+    id: 'hive',
     icon: '🪲',
-    ru: { title: 'Фракция Рой ' },
-    en: { title: 'Hive Faction ' },
-    lessons: []
+    ru: { title: 'Фракция Рой' },
+    en: { title: 'Hive Faction' },
+    lessons: [
+      {
+        id: 'hive-intro',
+        image: 'images/hive-intro.jpg',
+        ru: {
+          title: 'Рой — новая фракция Olden Era',
+          eyebrow: 'Демонические инсектоиды',
+          body: [
+            'Рой (Hive) — это совершенно новая фракция в Olden Era, которая пришла на замену Инферно из классических Heroes. Это демонические инсектоиды с континента Джадам, которые служат таинственному «Королю-Стрекозе».',
+            'Главная фишка Роя — агрессивный ближний бой и тотальное давление на врага с первого хода. В армии Роя почти нет стрелков (кроме одного улучшения червей), но это компенсируется скоростью, числом и уникальными способностями.',
+            'Рой — идеальный выбор для игроков, которые любят атаковать, не давая противнику опомниться. Их тактика — завалить поле боя «пушечным мясом» и добить врага мощными ударами элитных юнитов.',
+            'Пассивный навык «Улей» (Hivemind) даёт бонусы к атаке или защите за каждый уникальный тип юнитов Роя в армии. Чем больше разных отрядов Роя ты берёшь в бой — тем сильнее каждый из них.'
+          ],
+          tip: 'Если любишь агрессивный стиль и не хочешь сидеть в обороне — Рой твой выбор. Главное — постоянно давить и не давать врагу перехватить инициативу. Рой сложен в управлении, но очень силён в умелых руках.',
+          quizzes: [
+            { q: 'Какая фракция пришла на замену Инферно в Olden Era?', options: ['Бездна', 'Рой (Hive)', 'Некрополь'], correct: 1 },
+            { q: 'В чём главная фишка армии Роя?', options: ['Мощные стрелки', 'Агрессивный ближний бой и давление', 'Сильная магия'], correct: 1 }
+          ]
+        },
+        en: {
+          title: 'Hive — New Faction in Olden Era',
+          eyebrow: 'Demonic Insectoids',
+          body: [
+            'Hive is a completely new faction in Olden Era that replaced Inferno from classic Heroes. These are demonic insectoids from the continent of Jadame who serve a mysterious "Dragonfly King".',
+            'The main feature of Hive is aggressive melee combat and total pressure on the enemy from the first turn. The Hive army has almost no shooters (except for one wurm upgrade), but this is compensated by speed, numbers, and unique abilities.',
+            'Hive is the ideal choice for players who love to attack and not let the opponent recover. Their tactic is to flood the battlefield with "cannon fodder" and finish off the enemy with powerful elite units.',
+            'The "Hivemind" passive gives bonuses to attack or defense for each unique type of Hive unit in the army. The more different Hive squads you bring into battle — the stronger each of them becomes.'
+          ],
+          tip: 'If you love aggressive play and don\'t want to sit on defense — Hive is your choice. The main thing is to constantly push and not let the enemy seize the initiative. Hive is difficult to master but very strong in skilled hands.',
+          quizzes: [
+            { q: 'Which faction replaced Inferno in Olden Era?', options: ['Schism', 'Hive', 'Necropolis'], correct: 1 },
+            { q: 'What is the main feature of the Hive army?', options: ['Powerful ranged units', 'Aggressive melee combat and pressure', 'Strong magic'], correct: 1 }
+          ]
+        }
+      },
+      {
+        id: 'hive-summon-swarm',
+        image: 'images/hive-summon-swarm.jpg',
+        ru: {
+          title: 'Призыв роя — яйца и личинки',
+          eyebrow: 'Фракционный навык',
+          body: [
+            'Уникальный навык фракции Рой называется «Призыв роя» (Summon Swarm). Он доступен всем героям Роя и позволяет им буквально создавать армию прямо на поле боя.',
+            'Каждый раунд герой может потратить 1 заряд концентрации, чтобы отложить яйцо на поле боя. Если враг не успеет его уничтожить за один удар — в следующем раунде из яйца вылупляются Огненные личинки.',
+            'Количество личинок зависит от уровня навыка: Базовый — 8%, Продвинутый — 12%, Экспертный — 16% от общего здоровья всех юнитов Роя в армии.',
+            'Личинки живут всего 2 хода, но при смерти взрываются, нанося урон врагам рядом. Это превращает их в идеальное «пушечное мясо» — враг либо тратит на них ходы, либо получает урон от взрывов.',
+            'Улучшения навыка: «Твои дети» — +1 личинка за уровень героя; «Жар роя» — +1 урон личинкам; «Твёрдые панцири» — яйца выдерживают на 1 удар больше.'
+          ],
+          tip: 'Используй «Призыв роя» каждый раунд! Личинки — это бесплатное давление на врага. Даже если их убьют — они взорвутся и нанесут урон. А если нет — у тебя появляется дополнительная армия.',
+          quizzes: [
+            { q: 'Сколько процентов здоровья армии даёт Экспертный уровень «Призыва роя»?', options: ['8%', '12%', '16%'], correct: 2 },
+            { q: 'Что происходит с Огненными личинками при смерти?', options: ['Они исчезают без следа', 'Они взрываются и наносят урон врагам', 'Они превращаются в других юнитов'], correct: 1 }
+          ]
+        },
+        en: {
+          title: 'Summon Swarm — Eggs and Larvae',
+          eyebrow: 'Faction Skill',
+          body: [
+            'The unique faction skill of Hive is called "Summon Swarm". It is available to all Hive heroes and allows them to literally create an army right on the battlefield.',
+            'Each round, the hero can spend 1 focus charge to lay an egg on the battlefield. If the enemy doesn\'t destroy it in one hit — Fire Larvae hatch from the egg in the next round.',
+            'The number of larvae depends on the skill level: Basic — 8%, Advanced — 12%, Expert — 16% of the total health of all Hive units in the army.',
+            'Larvae live for only 2 turns, but explode upon death, damaging nearby enemies. This turns them into ideal "cannon fodder" — the enemy either spends turns on them or takes damage from explosions.',
+            'Skill upgrades: "Thy Children" — +1 larva per hero level; "Hive Flame" — +1 damage to larvae; "Hardened Shells" — eggs withstand 1 more hit.'
+          ],
+          tip: 'Use "Summon Swarm" every round! Larvae are free pressure on the enemy. Even if they are killed — they will explode and deal damage. And if not — you get an additional army.',
+          quizzes: [
+            { q: 'What percentage of army health does Expert "Summon Swarm" give?', options: ['8%', '12%', '16%'], correct: 2 },
+            { q: 'What happens to Fire Larvae upon death?', options: ['They disappear without a trace', 'They explode and damage enemies', 'They transform into other units'], correct: 1 }
+          ]
+        }
+      },
+      {
+        id: 'hive-low-tier',
+        image: 'images/hive-low-tier.jpg',
+        ru: {
+          title: 'Юниты 1–3 уровня: основа агрессии',
+          eyebrow: 'Начальные юниты',
+          body: [
+            'Паразит (Parasite) — юнит 1-го уровня. У него 7 здоровья, атака 3, защита 3, урон 2-4. Особенность: «Сокрушить сильного» — +3% урона за каждый уровень цели.',
+            'Апгрейды:  Паразит-смотритель (защита 6, инициатива 5) — защитная версия;  Паразит-опустошитель (атака 6, инициатива 6) — атакующая версия.',
+            'Саранча (Locust) — юнит 2-го уровня. У неё 12 здоровья, атака 5, защита 4, урон 3-5. Особенность: «Двойной удар» — атакует дважды за ход.',
+            'Апгрейды: Толстая саранча (атака 7, скорость 7) — даёт очки концентрации за убийство; Прожорливая саранча (защита 4, инициатива 7) — контратакует до врага.',
+            'Шершень (Hornet) — юнит 3-го уровня. Летает, у него 20 здоровья, атака 7, защита 10, урон 4-7, инициатива 10. Один из самых быстрых юнитов в игре!',
+            'Апгрейды: Пронзающий шершень (инициатива 11, скорость 8) — убивает +1 юнита при атаке; Певец (скорость 10) — накладывает дебафф, заставляющий врага наносить минимальный урон.'
+          ],
+          tip: 'Шершни-Пронзающий шершень — твоё оружие для быстрого убийства вражеских стрелков. Их высокая инициатива позволяет ходить первыми. Саранча с двойным ударом отлично чистит нейтралов.',
+          quizzes: [
+            { q: 'Какая особенность у Саранчи?', options: ['Летает', 'Двойной удар', 'Стреляет'], correct: 1 },
+            { q: 'Какой апгрейд Шершня накладывает дебафф на врага?', options: ['Жало', 'Певец', 'Опустошитель'], correct: 1 }
+          ]
+        },
+        en: {
+          title: 'Units 1–3: Core of Aggression',
+          eyebrow: 'Starting Units',
+          body: [
+            'Parasite is a tier 1 unit. Has 7 health, attack 3, defense 3, damage 2-4. Special: "Topple the Strong!" — +3% damage per target tier.',
+            'Upgrades: Warden Parasite (defense 6, initiative 5) — defensive version; Ravager Parasite (attack 6, initiative 6) — offensive version.',
+            'Locust is a tier 2 unit. Has 12 health, attack 5, defense 4, damage 3-5. Special: "Double Strike" — attacks twice per turn.',
+            'Upgrades: Harvester Locust (attack 7, speed 7) — generates focus on kill; Overgrown Locust (defense 4, initiative 7) — counterattacks before enemy.',
+            'Hornet is a tier 3 unit. Flies, has 20 health, attack 7, defense 10, damage 4-7, initiative 10. One of the fastest units in the game!',
+            'Upgrades: Stinger (initiative 11, speed 8) — kills +1 unit per attack; Chanter (speed 10) — applies debuff causing minimum damage.'
+          ],
+          tip: 'Stinger Hornets are your weapon for quickly killing enemy shooters. Their high initiative allows them to act first. Locusts with double strike are great for clearing neutrals.',
+          quizzes: [
+            { q: 'What is the special feature of Locusts?', options: ['Flies', 'Double Strike', 'Ranged attack'], correct: 1 },
+            { q: 'Which Hornet upgrade applies a debuff to the enemy?', options: ['Stinger', 'Chanter', 'Ravager'], correct: 1 }
+          ]
+        }
+      },
+      {
+        id: 'hive-mid-tier',
+        image: 'images/hive-mid-tier.jpg',
+        ru: {
+          title: 'Юниты 4–5 уровня: ударная сила',
+          eyebrow: 'Основная армия',
+          body: [
+            'Скорпион (Scorpion) — юнит 4-го уровня. У него 45 здоровья, атака 11, защита 11, урон 10-12. Особенность: «Адаптация» — можно выбрать бонус к атаке (+20%), защите (-20% урона) или скорости (+2).',
+            'Апгрейды: Вулканический скорпион (защита 14, здоровье 60) — защитная версия;  Глубинный скорпион (атака 13, урон 11-13) — атакующая версия.',
+            ' Разоритель (Reaver) — юнит 5-го уровня. У него 45 здоровья, атака 18, защита 12, урон 10-40 (огромный разброс!). Инициатива 11 — очень высоко.',
+            'Апгрейды: Жуткий разоритель (защита 18, мораль 3) — защитная версия; Кровожадный разоритель (атака 18, урон 10-40) — атакующая версия.',
+            'Разоритель  — это главные убийцы в армии Роя. Их огромный разброс урона (10-40) делает их непредсказуемыми, но при удаче они выносят любую цель.'
+          ],
+          tip: 'Скорпионы — твой щит. Используй их адаптацию на защиту, чтобы они держали фронт, пока рыскатели добивают врага. Вулканический скорпион — лучший выбор для защиты.',
+          quizzes: [
+            { q: 'Какая способность у Скорпиона?', options: ['Полет', 'Адаптация (выбор бонуса)', 'Вампиризм'], correct: 1 },
+            { q: 'Какой разброс урона у Рыскателя?', options: ['10-20', '10-30', '10-40'], correct: 2 }
+          ]
+        },
+        en: {
+          title: 'Units 4–5: Striking Force',
+          eyebrow: 'Main Army',
+          body: [
+            'Scorpion is a tier 4 unit. Has 45 health, attack 11, defense 11, damage 10-12. Special: "Adaptation" — can choose bonus to attack (+20%), defense (-20% damage taken), or speed (+2).',
+            'Upgrades: Volcanic Scorpion (defense 14, health 60) — defensive version; Spelaean Scorpion (attack 13, damage 11-13) — offensive version.',
+            'Reaver is a tier 5 unit. Has 45 health, attack 18, defense 12, damage 10-40 (huge range!). Initiative 11 — very high.',
+            'Upgrades: Menacing Reaver (defense 18, morale 3) — defensive version; Maniacal Reaver (attack 18, damage 10-40) — offensive version.',
+            'Reavers are the main killers in the Hive army. Their huge damage range (10-40) makes them unpredictable, but with luck they destroy any target.'
+          ],
+          tip: 'Scorpions are your shield. Use their adaptation for defense so they hold the front while Reavers finish off the enemy. Volcanic Scorpion is the best choice for defense.',
+          quizzes: [
+            { q: 'What ability do Scorpions have?', options: ['Flight', 'Adaptation (choose bonus)', 'Vampirism'], correct: 1 },
+            { q: 'What is the damage range of Reavers?', options: ['10-20', '10-30', '10-40'], correct: 2 }
+          ]
+        }
+      },
+      {
+        id: 'hive-high-tier',
+        image: 'images/hive-high-tier.jpg',
+        ru: {
+          title: 'Юниты 6–7 уровня: элита Роя',
+          eyebrow: 'Сильные юниты поздней игры',
+          body: [
+            'Черви (Waurms) — юнит 6-го уровня. У них 120 здоровья, атака 20, защита 20, урон 21-23. Инициатива 8, скорость 8.',
+            'Ключевой апгрейд: Пироборос — единственный юнит Роя с дальним боем! У него нет штрафа за стрельбу в ближнем бою, урон 21-23, инициатива 9. Он стреляет огненными шарами по площади.',
+            'Альтернативный апгрейд: Пожиратель — остаётся в ближнем бою, но получает бонусы от поедания трупов.',
+            'Королева роя (Hive Queen) — юнит 7-го уровня. У неё 200 здоровья, атака 25, защита 25, урон 60-60.',
+            'Апгрейды: Мать роя (здоровье 275, инициатива 13) — усиливает всю армию, делится вампиризмом с союзниками; Охотница роя (здоровье 250, урон 70-70, скорость 9) — убивает без контратаки, получает бонусы от вражеских фракций.',
+            'Охотница роя получает бонусы за каждую фракцию в армии противника: Храм → +25% атаки; Некрополь → +25% защиты; Роща → +3 удачи и морали; Подземелье → +20% урона; Бездна → +10% здоровья; Нейтралы → +2 скорости.'
+          ],
+          tip: 'Пироборос — must-have для Роя! Он закрывает главную слабость фракции (отсутствие стрелков). Мать роя — лучший выбор для поддержки всей армии. Охотница роя — для точечных убийств.',
+          quizzes: [
+            { q: 'Какой юнит Роя получает дальний бой?', options: ['Королева роя', 'Пироборос (апгрейд червей)', 'Саранча'], correct: 1 },
+            { q: 'Какой апгрейд Королевы роя усиливает всю армию?', options: ['Охотница роя', 'Мать роя', 'Пожиратель'], correct: 1 }
+          ]
+        },
+        en: {
+          title: 'Units 6–7: Hive Elite',
+          eyebrow: 'Strong Late-Game Units',
+          body: [
+            'Waurms are tier 6 units. Have 120 health, attack 20, defense 20, damage 21-23. Initiative 8, speed 8.',
+            'Key upgrade: Pyroboros — the only Hive unit with ranged combat! Has no melee penalty, damage 21-23, initiative 9. Shoots fireballs in an area.',
+            'Alternative upgrade: Devourer — stays in melee but gains bonuses from consuming corpses.',
+            'Hive Queen is a tier 7 unit. Has 200 health, attack 25, defense 25, damage 60-60.',
+            'Upgrades: Hive Mother (health 275, initiative 13) — strengthens the whole army, shares vampirism with allies; Hive Huntress (health 250, damage 70-70, speed 9) — kills without counterattack, gains bonuses from enemy factions.',
+            'Hive Huntress gains bonuses for each faction in the enemy army: Temple → +25% attack; Necropolis → +25% defense; Grove → +3 luck and morale; Dungeon → +20% damage; Schism → +10% HP; Neutrals → +2 speed.'
+          ],
+          tip: 'Pyroboros is a must-have for Hive! It covers the faction\'s main weakness (lack of shooters). Hive Mother is the best choice for supporting the entire army. Hive Huntress is for focused kills.',
+          quizzes: [
+            { q: 'Which Hive unit gains ranged combat?', options: ['Hive Queen', 'Pyroboros (Waurm upgrade)', 'Locust'], correct: 1 },
+            { q: 'Which Hive Queen upgrade strengthens the entire army?', options: ['Hive Huntress', 'Hive Mother', 'Devourer'], correct: 1 }
+          ]
+        }
+      },
+      {
+        id: 'hive-laws-heroes',
+        image: 'images/hive-laws-heroes.jpg',
+        ru: {
+          title: 'Законы, постройки и лучшие герои',
+          eyebrow: 'Стратегия и развитие',
+          body: [
+            'Ключевые законы Роя: «Законы Роя» — требования к законам снижены на 2/4. «Пожиратели маны» — заклинания героев стоят на 1/2/3 маны меньше.',
+            '«Резервы концентрации» — начинайте бой с +1 зарядом концентрации. «Потомство Роя I» — Огненные личинки наносят +100% урона при смерти.',
+            '«Процветание» — внешние жилища дают +50/100% прироста в городах. «Эволюция, адаптация, преодоление» — апгрейд юнитов стоит на 10/20% дешевле.',
+            '«Взгляд Вельзевула» — герои Роя видят точную информацию о врагах в радиусе.',
+            'Уникальные постройки: «Башня любви» — жилище Королевы роя. Улучшение даёт доступ к Матери роя или Охотнице роя.',
+            'Лучшие герои: Гру (Herald) — специалист по Королеве роя, даёт им +1 скорость, инициативу и +20% здоровья. Тави (Herald) — усиливает Огненных личинок. Лейра (Herald) — специалист по Шершням.'
+          ],
+          tip: 'Бери «Пожиратели маны» и «Резервы концентрации» первыми — они дают огромное преимущество в начале боя. Гру — лучший герой для стратегии с Королевой роя.',
+          quizzes: [
+            { q: 'Какой закон Роя снижает стоимость заклинаний?', options: ['Пожиратели маны', 'Законы Роя', 'Резервы концентрации'], correct: 0 },
+            { q: 'Какой герой Роя специализируется на Королеве роя?', options: ['Гру', 'Тави', 'Лейра'], correct: 0 }
+          ]
+        },
+        en: {
+          title: 'Laws, Buildings and Best Heroes',
+          eyebrow: 'Strategy and Development',
+          body: [
+            'Key Hive laws: "Laws of the Hive" — law requirements reduced by 2/4. "Mana Devour" — spells cost 1/2/3 less mana.',
+            '"Focus Reserves" — start battle with +1 focus charge. "Hive Offsprings I" — Fire Larvae deal +100% damage on death.',
+            '"Prosper and Flourish" — external dwellings give +50/100% growth in cities. "Evolve, Adapt, Overcome" — unit upgrades cost 10/20% less.',
+            '"Beelzebub\'s Gaze" — Hive heroes see exact enemy info within range.',
+            'Unique buildings: "Tower of Love" — Hive Queen dwelling. Upgrade gives access to Hive Mother or Hive Huntress.',
+            'Best heroes: Groo (Herald) — Hive Queen specialist, gives +1 speed, initiative, and +20% health. Tavi (Herald) — strengthens Fire Larvae. Leira (Herald) — Hornet specialist.'
+          ],
+          tip: 'Take "Mana Devour" and "Focus Reserves" first — they give a huge advantage at the start of battle. Groo is the best hero for a Hive Queen strategy.',
+          quizzes: [
+            { q: 'Which Hive law reduces spell costs?', options: ['Mana Devour', 'Laws of the Hive', 'Focus Reserves'], correct: 0 },
+            { q: 'Which Hive hero specializes in Hive Queens?', options: ['Groo', 'Tavi', 'Leira'], correct: 0 }
+          ]
+        }
+      }
+    ]
   }
 
 ]
