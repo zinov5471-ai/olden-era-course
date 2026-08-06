@@ -2211,7 +2211,7 @@ const TOPICS = [
       }
     ]
   }
-,
+  ,
   {
     id: 'pvp-secrets',
     icon: '🧠',
@@ -2227,13 +2227,17 @@ const TOPICS = [
           body: [
             'В Olden Era есть два основных PvP-режима: "Один герой" и "Классический". Для новичков идеальным стартом станет режим "Один герой". В нём всё внимание сосредоточено на единственном герое, что значительно снижает порог входа и избавляет от необходимости управлять курьерами.',
             'Ключевое понятие в PvP — "шаблон". Это не готовая карта, а набор правил, по которым генератор случайным образом создаёт мир перед матчем. На схеме шаблона: ноды (точки) — это игровые зоны (пустые, серебряные или золотые по богатству), а линии — это границы между ними. Проход в новую зону, как правило, блокирует сильный отряд (Охрана границы), и его уничтожение называется "прорывом".',
-            'Таймеры: В PvP действуют одновременные ходы — вы и противник двигаетесь по карте в реальном времени. Это ускоряет игру. Таймеры отключаются на поздних стадиях или если оба игрока прорвались в одну зону. На PvP-бой даётся 30 секунд на ход отряда и 2 минуты запасного времени на всю битву. Если время выйдет, AI перехватит управление вашей армией. В рейтинговых матчах игра проходит на сложности 125%.',
+            // ИСПРАВЛЕНО: старая формулировка "30 сек на ход + 2 мин запаса" не подтвердилась.
+            // Патч #11 официально срезал общий лимит времени на бой:
+            'Таймеры: В PvP действуют одновременные ходы — вы и противник двигаетесь по карте в реальном времени. Это ускоряет игру. Таймеры отключаются на поздних стадиях или если оба игрока прорвались в одну зону. С патча #11 весь бой в Классическом режиме ограничен 90 секундами (раньше было 120), а в режиме "Один герой" — от 60 до 80 секунд в зависимости от лиги. Если время выйдет, AI перехватит управление вашей армией.',
+            // ПРОВЕРИТЬ ЛИЧНО: точная сложность рейтинговых матчей (было "125%") нигде не подтвердилась во внешних источниках — убрал конкретную цифру, уточни в лобби перед публикацией.
             'Важное обновление: В патче 8 добавили защиту от нечестного выхода из игры. Если ты закроешь игру через Alt+F4 во время PvP-матча, тебе автоматически засчитают поражение. Теперь придётся сражаться до конца!'
           ],
           tip: 'Если PvP вас пугает, создайте пользовательское лобби с ИИ-противником, выберите турнирный шаблон и тренируйтесь в комфортном темпе. Это лучший способ освоиться без стресса.',
           quizzes: [
             { q: 'Какой режим рекомендуется для новичков в PvP?', options: ['Классический', 'Один герой', 'Кампания'], correct: 1 },
-            { q: 'Сколько секунд даётся на ход одного отряда в PvP-бою?', options: ['15 секунд', '30 секунд', '60 секунд'], correct: 1 }
+            // ИЗМЕНЕНО: старый вопрос про "30 секунд на ход" убран, заменён на подтверждённый факт
+            { q: 'Сколько секунд теперь длится весь бой в Классическом режиме после патча #11?', options: ['60 секунд', '90 секунд', '120 секунд'], correct: 1 }
           ]
         },
         en: {
@@ -2242,13 +2246,13 @@ const TOPICS = [
           body: [
             'In Olden Era, there are two main PvP modes: "One Hero" and "Classic". For beginners, the ideal start is the "One Hero" mode. It focuses all attention on a single hero, significantly lowering the entry barrier and eliminating the need to manage scouts.',
             'A key concept in PvP is a "template." This is not a pre-made map, but a set of rules by which the generator randomly creates the world before the match. On the template diagram: nodes (points) are game zones, and lines are the borders between them. Moving into a new zone is usually blocked by a strong squad, and defeating it is called a "breakthrough."',
-            'Timers: In PvP, simultaneous turns are active, meaning you and your opponent move on the map in real-time. Timers are disabled in late-game stages or when both players have broken through into the same zone. In PvP battles, you have 30 seconds per unit turn and 2 minutes of reserve time for the entire battle. If time runs out, the AI will take control of your army. Ranked matches are played at 125% difficulty.',
+            'Timers: In PvP, simultaneous turns are active, meaning you and your opponent move on the map in real-time. Timers are disabled in late-game stages or when both players have broken through into the same zone. As of patch #11, the total combat time in Classic Mode is capped at 90 seconds (previously 120), and 60–80 seconds in One Hero mode depending on league. If time runs out, the AI will take control of your army.',
             'Important update: In patch 8, protection against unfair game exit was added. If you close the game via Alt+F4 during a PvP match, you will automatically be given a defeat. Now you have to fight to the end!'
           ],
           tip: 'If PvP scares you, create a custom lobby against an AI opponent, pick a tournament template, and practice at your own pace. This is the best way to get comfortable without the stress.',
           quizzes: [
             { q: 'Which mode is recommended for beginners in PvP?', options: ['Classic', 'One Hero', 'Campaign'], correct: 1 },
-            { q: 'How many seconds are given per unit turn in a PvP battle?', options: ['15 seconds', '30 seconds', '60 seconds'], correct: 1 }
+            { q: 'How long does a full battle now last in Classic Mode after patch #11?', options: ['60 seconds', '90 seconds', '120 seconds'], correct: 1 }
           ]
         }
       },
@@ -2259,14 +2263,22 @@ const TOPICS = [
           title: 'Бан/Пик: как не проиграть до старта',
           eyebrow: 'Стратегия выбора и запретов',
           body: [
-            'Перед каждым рейтинговым матчем проходит этап Бан/Пик. Сначала вы запрещаете (баните) и выбираете (пикаете) фракции, а затем — героев.',
+            'Перед каждым рейтинговым матчем проходит этап Бан/Пик — в комьюнити весь этот процесс называют одним словом "драфт". Сначала вы запрещаете (баните) и выбираете (пикаете) фракции, а затем — героев.',
             'Бан фракций: Вы и соперник можете запретить по одной фракции. Поэтому важно уметь играть как минимум за три разные фракции. Если вашу любимую забанят, а вторую заберёт противник, у вас должен быть надёжный запасной вариант.',
+            // ПРОВЕРИТЬ ЛИЧНО: в другом уроке бота (pvp-heroes) роли этих же героев указаны наоборот
+            // ("Пип — стрелки, Пустельга — урон"). Явное внутреннее противоречие, свести к одному варианту после проверки в игре.
             'Бан героев: Вам даётся 3 бана на вражеских героев. Изучите сильных героев и составьте свой "чёрный список". Например, у Храма это Пип (урон), Пустельга (лучники) и Старый лорд Мандал (герой-удар). У Подземелья в приоритете банить Тифону (гидры).',
+            // ПРОВЕРИТЬ ЛИЧНО: по гайду другого топового игрока приоритетные баны Подземелья — Кирен и язва,
+            // а Тифона там названа "продвинутым пиком", а не топовым баном. Стоит свериться перед публикацией.
             'Мета-герои: На данный момент сильны герои с прокачкой, специалисты по дальнему бою и по удару героя. Банить или пикать их — ключевая стратегия. Если вы видите свободного топ-героя — берите его без раздумий.',
-            'В патче 8 были усилены специалисты по магии — теперь они получают +1 к силе магии за каждые 2 уровня героя (вместо 3). Это сделало некоторых магов ещё более опасными, поэтому обращай на них внимание при бане.'
+            'В патче 8 были усилены специалисты по магии — теперь они получают +1 к силе магии за каждые 2 уровня героя (вместо 3). Это сделало некоторых магов ещё более опасными, поэтому обращай на них внимание при бане.',
+            // НОВОЕ: подтверждённое изменение патча #11, в старой версии урока отсутствовало
+            'Обновление патча #11: порядок пиков внутри драфта изменили — было Бан-Бан-Пик2-Пик1, стало Бан-Бан-Пик1-Пик2. А кто из игроков считается "Первым", теперь решает случайность, а не то, кто дольше ждал матч в очереди.'
           ],
           tip: 'Заранее изучите всех героев в пользовательском лобби. Знание сильных сторон и слабостей каждой фракции — это половина победы в PvP.',
           quizzes: [
+            // ПРОВЕРИТЬ ЛИЧНО: точное число банов (1 фракция + 3 героя) нигде во внешних источниках не подтвердилось,
+            // хотя внутри бота цифра используется последовательно. Рекомендую свериться в игре перед тем, как оставлять "правильный" ответ в квизе.
             { q: 'Сколько героев можно запретить (забанить) на этапе выбора?', options: ['1', '2', '3'], correct: 2 },
             { q: 'Почему важно уметь играть за 3 фракции?', options: ['За каждую фракцию дают больше опыта', 'Чтобы была запасная фракция, если любимую забанят или заберут', 'Это требуется для входа в рейтинговый режим'], correct: 1 }
           ]
@@ -2275,11 +2287,12 @@ const TOPICS = [
           title: 'Ban/Pick: How Not to Lose Before the Start',
           eyebrow: 'Selection and Ban Strategy',
           body: [
-            'Before each ranked match, there is a Ban/Pick phase. First, you ban and pick factions, then heroes.',
+            'Before each ranked match, there is a Ban/Pick phase — the community calls this whole process a "draft." First, you ban and pick factions, then heroes.',
             'Faction Ban: You and your opponent can each ban one faction. Therefore, it\'s important to be able to play at least three different factions. If your favorite is banned and your second is taken by the opponent, you need a reliable backup.',
-            'Hero Ban: You have 3 bans for enemy heroes. Study strong heroes and create your own "blacklist." For example, for Temple, these are Pip, Kestrel, and Old Lord Mandal. For Dungeon, the priority is to ban Tifona or Os.',
+            'Hero Ban: You have 3 bans for enemy heroes. Study strong heroes and create your own "blacklist." For example, for Temple, these are Pip, Kestrel, and Old Lord Mandal. For Dungeon, the priority is to ban Tifona.',
             'Meta Heroes: Currently, level-up heroes, ranged specialists, and Hero Strike specialists are strong. Banning or picking them is a key strategy. If you see a free top-tier hero, pick them without hesitation.',
-            'In patch 8, magic specialists were buffed — now they get +1 to spell power for every 2 hero levels (instead of 3). This has made some mages even more dangerous, so pay attention to them when banning.'
+            'In patch 8, magic specialists were buffed — now they get +1 to spell power for every 2 hero levels (instead of 3). This has made some mages even more dangerous, so pay attention to them when banning.',
+            'Patch #11 update: the pick order within the draft changed — it was Ban-Ban-Pick2-Pick1, now it\'s Ban-Ban-Pick1-Pick2. Which player counts as "Player 1" is now decided randomly, not by queue wait time.'
           ],
           tip: 'Study all heroes in a custom lobby in advance. Knowing the strengths and weaknesses of each faction is half the battle in PvP.',
           quizzes: [
@@ -2296,8 +2309,14 @@ const TOPICS = [
           eyebrow: 'Стратегия на разных картах',
           body: [
             'Выбор правильного шаблона — залог успеха. Вот три самых популярных в PvP-мете.',
-            'Exodus: Идеален для новичков. Это турнирный режим, где игроки развиваются в изолированных зонах и встречаются только в назначенные дни для PvP-боёв до двух побед. После битвы потери восстанавливаются. Главный плюс: герой со старта знает бесплатный (1 раз в день) Городской портал, что позволяет легко возвращаться за подкреплением.',
-            'Jebus Cross (Изгой Джебуса): Классика серии. Главная цель — быстрый прорыв в центральную пустыню, где разбросаны мощные Ящики Пандоры с существами. Не отстраивайте все города — делайте ставку на армию из ящиков. Хорошим результатом считается прорыв в пустыню к концу 2-й недели.',
+            // ПРОВЕРИТЬ ЛИЧНО: шаблон Exodus реален (подтверждено сторонними источниками), но детали финального боя расходятся —
+            // где-то описана ОДНА решающая битва на 14-й день, а не "несколько встреч по расписанию до двух побед".
+            // Также похожий, но отдельный шаблон Jebus Tournament (патч #11) устроен иначе: бои на 6-й день недели 1
+            // и 1/3/5/7-й день недели 2, формат до 2 побед из 5. Не перепутай их местами в видео.
+            'Exodus: Идеален для новичков. Это турнирный режим, где игроки развиваются в изолированных зонах и встречаются для решающих PvP-боёв. Главный плюс: герой со старта знает бесплатный (1 раз в день) Городской портал, что позволяет легко возвращаться за подкреплением.',
+            // ИСПРАВЛЕНО: "к концу 2-й недели" — это ориентир для уверенного, но не топового результата.
+            // По гайду топового игрока лучшие игроки выходят на 5-7 день.
+            'Jebus Cross (Изгой Джебуса): Классика серии. Главная цель — быстрый прорыв в центральную пустыню, где разбросаны мощные Ящики Пандоры с существами. Не отстраивайте все города — делайте ставку на армию из ящиков. Для уверенного старта ориентируйся на прорыв к концу 2-й недели, а топовые игроки выходят уже на 5-7 день.',
             'Vendetta: Ускоренная версия Jebus. Герой со старта знает Дверь измерений и Городской портал. Рядом со стартовым замком есть объекты, повышающие Силу магии или Знания на +2, чтобы компенсировать затраты маны.'
           ],
           tip: 'На шаблоне Exodus вы играете в "сити-билдер", который позволяет сосредоточиться на экономике и прокачке города, не отвлекаясь на постоянный PvP-стресс. Это идеальный выбор для изучения основ PvP.',
@@ -2311,8 +2330,8 @@ const TOPICS = [
           eyebrow: 'Strategy on Different Maps',
           body: [
             'Choosing the right template is the key to success. Here are the three most popular in the PvP meta.',
-            'Exodus: Ideal for beginners. It\'s a tournament mode where players develop in isolated zones and only meet on designated days for PvP battles up to two wins. Losses are restored after a battle. The main advantage: the hero starts with a free (once per day) Town Portal spell, allowing easy return for reinforcements.',
-            'Jebus Cross: A classic of the series. The main goal is a quick breakthrough into the central desert, where powerful Pandora\'s Boxes with creatures are scattered. Don\'t build up all your towns — focus on the army from the boxes. A good result is a breakthrough into the desert by the end of week 2.',
+            'Exodus: Ideal for beginners. It\'s a tournament mode where players develop in isolated zones and meet for decisive PvP battles. The main advantage: the hero starts with a free (once per day) Town Portal spell, allowing easy return for reinforcements.',
+            'Jebus Cross: A classic of the series. The main goal is a quick breakthrough into the central desert, where powerful Pandora\'s Boxes with creatures are scattered. Don\'t build up all your towns — focus on the army from the boxes. For a solid result, aim for a breakthrough by the end of week 2; top players break through as early as day 5-7.',
             'Vendetta: An accelerated version of Jebus. The hero starts with Dimension Door and Town Portal. Near the starting castle, there are objects that increase Spell Power or Knowledge by +2 to compensate for mana costs.'
           ],
           tip: 'On the Exodus template, you play a "city-builder," allowing you to focus on the economy and town development without the constant PvP stress. This is the ideal choice for learning the basics of PvP.',
@@ -2325,6 +2344,7 @@ const TOPICS = [
       {
         id: 'pvp-tempo',
         image: 'images/pvp-tempo.jpg',
+        // Изменений нет — противоречий или неточностей во внешних источниках не нашёл, содержимое оставлено как в оригинале.
         ru: {
           title: 'Тайминг и темп: играй быстро',
           eyebrow: 'Почему скорость — ключ к победе',
@@ -2363,12 +2383,17 @@ const TOPICS = [
           body: [
             'В PvP-мете сейчас доминируют два типа героев: воины и маги. Выбор зависит от фракции и стиля игры.',
             'Воины: Их сила в постоянных пассивных бонусах к армии. Ключевые навыки — Атака (Offense), Защита (Defense), Тактика (Tactics) и Логистика (Logistics). Они могут взять навыки, ослабляющие магию противника (например, "Страж реальности"), чтобы нивелировать преимущество магов.',
-            'Маги: Полагаются на заклинания. В патче 8 навык "Призыв Аватара" был полностью переработан. Теперь это исключительно магическая способность. Аватар не получает бонусов к защите, а его сила напрямую зависит от силы магии героя. Вместо здоровья у него фиксированное количество "жизней" (ударов, которые он может выдержать). Это делает его мощным инструментом в руках правильно прокачанного мага.',
+            // ОБНОВЛЕНО: добавлены изменения патча #11 (в оригинале урока была только версия патча #8)
+            'Маги: Полагаются на заклинания. В патче 8 навык "Призыв Аватара" был полностью переработан — стал исключительно магической способностью без бонуса к защите, сила которой зависит от Силы магии героя, а вместо здоровья — фиксированное число "жизней". В патче 11 его дополнительно понерфили: базовая версия теперь жёстко держит 3 удара живучести независимо от уровня навыка, а базовый урон срезали с 12-12 до 10-10 — зато появились ситуативные подскилы для доп. усиления.',
+            // ПРОВЕРИТЬ ЛИЧНО: "Ос (Heroic Strike)" здесь указан как герой Подземелья, но по гайду другого топового игрока
+            // герой с похожим именем ("Оос") — это герой Храма, а не Подземелья. Явная путаница в имени, нужна проверка в ростере.
             'Лучшие герои фракций: Подземелье — Тифона (гидры), Ос (Heroic Strike), Мотлей (танцовщицы). Храм — Пип (стрелки), Пустельга (урон), Старый лорд Мандал. Некрополь в PvP считается сложной фракцией из-за медленных юнитов, но сильна в затяжных играх.'
           ],
           tip: 'Если вы не знаете, кого банить — баньте сильных магов и героев с сильным "Ударом героя". Если не знаете, кого пикать — берите воина с прокачкой армии, это самый надёжный вариант для новичка.',
           quizzes: [
-            { q: 'Как изменился навык "Призыв Аватара" в патче 8?', options: ['Стал зависеть от атаки героя', 'Стал зависеть от силы магии героя и имеет фиксированное количество ударов', 'Был полностью удалён из игры'], correct: 1 },
+            // ОБНОВЛЕНО: старый ответ отражал только патч #8, добавлена актуальная деталь патча #11 в варианты
+            { q: 'Как изменился навык "Призыв Аватара" в патчах 8 и 11?', options: ['Стал зависеть от атаки героя', 'Стал зависеть от силы магии героя, фиксированное число ударов (сейчас — строго 3)', 'Был полностью удалён из игры'], correct: 1 },
+            // ПРОВЕРИТЬ ЛИЧНО: корректность этого ответа зависит от неподтверждённой путаницы с Ос/Тифона выше
             { q: 'Какой герой Подземелья считается абсолютным приоритетом для пика?', options: ['Ос', 'Тифона', 'Мотлей'], correct: 1 }
           ]
         },
@@ -2378,12 +2403,12 @@ const TOPICS = [
           body: [
             'In the current PvP meta, two types of heroes dominate: warriors and mages. Your choice depends on the faction and your playstyle.',
             'Warriors: Their strength lies in constant passive bonuses to their army. Key skills are Offense, Defense, Tactics, and Logistics. They can take skills that weaken enemy magic to neutralize mages\' advantage.',
-            'Mages: They rely on spells. In patch 8, the "Summon Avatar" skill was completely reworked. Now it\'s exclusively a magic ability. The Avatar doesn\'t get defense bonuses, and its power directly depends on the hero\'s spell power. Instead of health, it has a fixed number of "lives" (hits it can withstand). This makes it a powerful tool in the hands of a well-leveled mage.',
+            'Mages: They rely on spells. In patch 8, "Summon Avatar" was completely reworked into a purely magical ability without a defense bonus, scaling from Spell Power, with a fixed number of "lives" instead of health. In patch 11 it was nerfed further: the base version now strictly withstands 3 hits regardless of skill level, and base damage was cut from 12-12 to 10-10 — though situational sub-skills were added for extra customization.',
             'Best faction heroes: Dungeon — Tifona (hydras), Os (Heroic Strike), Motley (dancers). Temple — Pip (archers), Kestrel (damage), Old Lord Mandal. Necropolis is considered a difficult faction in PvP due to slow units, but strong in long games.'
           ],
           tip: 'If you don\'t know who to ban — ban strong mages and heroes with a strong Hero Strike. If you don\'t know who to pick — choose a warrior with army buffs; this is the most reliable option for a beginner.',
           quizzes: [
-            { q: 'How did the "Summon Avatar" skill change in patch 8?', options: ['Started depending on hero attack', 'Started depending on spell power and has a fixed number of hits', 'Was completely removed from the game'], correct: 1 },
+            { q: 'How did the "Summon Avatar" skill change across patches 8 and 11?', options: ['Started depending on hero attack', 'Started depending on spell power, fixed number of hits (now strictly 3)', 'Was completely removed from the game'], correct: 1 },
             { q: 'Which Dungeon hero is considered a top priority pick?', options: ['Os', 'Tifona', 'Motley'], correct: 1 }
           ]
         }
@@ -2391,6 +2416,7 @@ const TOPICS = [
       {
         id: 'pvp-damage-formula',
         image: 'images/pvp-damage-formula.jpg',
+        // Изменений нет — формула и пример подтверждены официальной вики боевой системы.
         ru: {
           title: 'Формула урона: почему цифры важны',
           eyebrow: 'Как работает атака, защита и урон',
@@ -2421,11 +2447,13 @@ const TOPICS = [
             { q: 'If your unit\'s Attack is higher than the enemy\'s Defense, then...', options: ['Damage will be reduced', 'Damage will be increased', 'Damage will remain unchanged'], correct: 1 }
           ]
         }
-      }
-            ,
+      },
       {
         id: 'pvp-retreat-teleport',
         image: 'images/pvp-retreat-teleport.jpg',
+        // Базовый принцип подтверждён независимым источником (сторонний гайд по игровым испытаниям):
+        // отступление из боя действительно бесплатно возвращает героя в таверну, но безвозвратно теряет всю армию.
+        // Это согласуется с тем, что дипломаты/белый флаг — исключение из правила (сохраняют армию при отступлении).
         ru: {
           title: 'Разбивка — легальный телепорт домой',
           eyebrow: 'Продвинутая тактика PvP',
@@ -2437,9 +2465,12 @@ const TOPICS = [
             'Как это работает за 5 шагов:',
             '1️⃣ Слив армии: Главный герой передаёт ВСЕ свои основные войска другому герою-курьеру. У «бати» в кармане остаётся ровно 1 самый дешёвый юнит (например, скелет или кентавр).',
             '2️⃣ Нападение: Герой с этим «пустым» отрядом нападает на любого ближайшего слабого моба на карте.',
-            '3️⃣ Побег (Retreat): В первом же раунде боя вы жмёте кнопку «Сбежать». Единственный юнит гибнет, но сам герой... исчезает с карты.',
+            // УТОЧНЕНО: по базовому правилу отступления армия теряется автоматически при самом отступлении,
+            // а не обязательно потому, что юнит гибнет в бою — формулировка ниже сохранена, но это скорее упрощение.
+            '3️⃣ Побег (Retreat): В первом же раунде боя вы жмёте кнопку «Сбежать». Единственный юнит теряется, но сам герой... исчезает с карты.',
             '4️⃣ Выкуп в замке: В ТУ ЖЕ СЕКУНДУ ваш прокачанный герой со всеми уровнями, артефактами и книгой заклинаний появляется в таверне родного города! Выкупаете его за копейки золота.',
             '5️⃣ Профит: Герой мгновенно переместился с другого конца карты домой. Он заходит в Колодец душ или Гильдию магов, восстанавливает ману, обновляет очки движения на новый ход, забирает свежий прирост войск — и снова готов разносить кабинеты!',
+            // ПРОВЕРИТЬ ЛИЧНО: не нашёл независимого подтверждения этого конкретного пункта — оставил как есть, но перепроверь.
             'Золотое правило: Выкупайте героя из таверны в тот же день, не откладывайте на завтра! Иначе он может появиться у противника.'
           ],
           tip: 'Разбивка — это не баг, а фича! Используйте её, когда нужно срочно вернуться домой за подкреплением или защитить замок. Особенно полезна на шаблонах Jebus Cross и Vendetta, где каждая минута на счету.',
@@ -2459,7 +2490,7 @@ const TOPICS = [
             'How it works in 5 steps:',
             '1️⃣ Dump your army: The main hero transfers ALL troops to a secondary scout hero. The main hero keeps exactly 1 cheap unit (e.g., Skeleton or Centaur).',
             '2️⃣ Attack: The hero with this "empty" stack attacks any nearby weak neutral mob.',
-            '3️⃣ Retreat: In the first round of battle, you press the "Retreat" button. The lone unit dies, but the hero... disappears from the map.',
+            '3️⃣ Retreat: In the first round of battle, you press the "Retreat" button. The lone unit is lost, but the hero... disappears from the map.',
             '4️⃣ Buyback in town: INSTANTLY, your leveled hero with all stats, artifacts, and spells appears in the tavern of your home town! Recruit him for a small amount of gold.',
             '5️⃣ Profit: The hero instantly teleported across the map. He can visit the Well of Souls or Mage Guild to restore mana, refresh movement points for a new turn, pick up fresh troops — and is ready to dominate again!',
             'Golden rule: Recruit the hero from the tavern on the same day, don\'t delay! Otherwise, they might appear for the enemy.'
