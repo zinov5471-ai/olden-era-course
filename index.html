@@ -3310,8 +3310,9 @@ function goHome() {
   renderHome(true);
 }
   // ===== ОБРАТНАЯ СВЯЗЬ =====
-const BOT_TOKEN = '8633098014:AAGdcOyqXshgNL3qHvxuxmbhJvcLnQrI9QA';   // ← вставь сюда токен от @BotFather
-const ADMIN_CHAT_ID = '7590948942';  // ← вставь сюда chat_id от @userinfobot
+// Токен бота здесь больше не хранится — все запросы идут через Worker.
+// Впиши сюда адрес своего Worker после деплоя на Cloudflare (шаг 4 в инструкции).
+const WORKER_URL = 'https://oldenera-bot-backend.zinov5471.workers.dev';
 
 function openFeedbackForm() {
   const form = document.getElementById('feedback-form');
@@ -3335,15 +3336,10 @@ function sendFeedback() {
         return;
     }
 
-    const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
-
-    fetch(url, {
+    fetch(`${WORKER_URL}/feedback`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            chat_id: ADMIN_CHAT_ID,
-            text: `📩 Новое сообщение от пользователя:\n\n${text}`
-        })
+        body: JSON.stringify({ text })
     })
     .then(response => response.json())
     .then(data => {
@@ -3396,15 +3392,10 @@ function sendFeedbackNew() {
   status.textContent = '⏳ Отправка...';
   status.style.color = 'var(--parchment-dim)';
 
-  const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
-
-  fetch(url, {
+  fetch(`${WORKER_URL}/feedback`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      chat_id: ADMIN_CHAT_ID,
-      text: `📩 Новое сообщение от пользователя:\n\n${text}`
-    })
+    body: JSON.stringify({ text })
   })
   .then(response => response.json())
   .then(data => {
