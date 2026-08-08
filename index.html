@@ -2387,7 +2387,7 @@ const TOPICS = [
             'Маги: Полагаются на заклинания. В патче 8 навык "Призыв Аватара" был полностью переработан — стал исключительно магической способностью без бонуса к защите, сила которой зависит от Силы магии героя, а вместо здоровья — фиксированное число "жизней". В патче 11 его дополнительно понерфили: базовая версия теперь жёстко держит 3 удара живучести независимо от уровня навыка, а базовый урон срезали с 12-12 до 10-10 — зато появились ситуативные подскилы для доп. усиления.',
             // ПРОВЕРИТЬ ЛИЧНО: "Ос (Heroic Strike)" здесь указан как герой Подземелья, но по гайду другого топового игрока
             // герой с похожим именем ("Оос") — это герой Храма, а не Подземелья. Явная путаница в имени, нужна проверка в ростере.
-            'Лучшие герои фракций: Подземелье — Тифона (гидры),Храм — Пип (урон), Пустельга (стрелки), Старый лорд Мандал (удар героя). Некрополь в PvP считается сложной фракцией из-за медленных юнитов, но сильна в затяжных играх.'
+            'Лучшие герои фракций: Подземелье — Тифона (гидры), . Храм — Пип (урон), Пустельга (стрелки), Старый лорд Мандал (удар героя). Некрополь в PvP считается сложной фракцией из-за медленных юнитов, но сильна в затяжных играх.'
           ],
           tip: 'Если вы не знаете, кого банить — баньте сильных магов и героев с сильным "Ударом героя". Если не знаете, кого пикать — берите воина с прокачкой армии, это самый надёжный вариант для новичка.',
           quizzes: [
@@ -2404,7 +2404,7 @@ const TOPICS = [
             'In the current PvP meta, two types of heroes dominate: warriors and mages. Your choice depends on the faction and your playstyle.',
             'Warriors: Their strength lies in constant passive bonuses to their army. Key skills are Offense, Defense, Tactics, and Logistics. They can take skills that weaken enemy magic to neutralize mages\' advantage.',
             'Mages: They rely on spells. In patch 8, "Summon Avatar" was completely reworked into a purely magical ability without a defense bonus, scaling from Spell Power, with a fixed number of "lives" instead of health. In patch 11 it was nerfed further: the base version now strictly withstands 3 hits regardless of skill level, and base damage was cut from 12-12 to 10-10 — though situational sub-skills were added for extra customization.',
-            'Best faction heroes: Dungeon — Tifona (hydras), Temple — Pip damage), Kestrel (archers), Old Lord Mandal (Heroic Strike). Necropolis is considered a difficult faction in PvP due to slow units, but strong in long games.'
+            'Best faction heroes: Dungeon — Tifona (hydras), . Temple — Pip (damage), Kestrel (archers), Old Lord Mandal. Necropolis is considered a difficult faction in PvP due to slow units, but strong in long games.'
           ],
           tip: 'If you don\'t know who to ban — ban strong mages and heroes with a strong Hero Strike. If you don\'t know who to pick — choose a warrior with army buffs; this is the most reliable option for a beginner.',
           quizzes: [
@@ -2502,10 +2502,76 @@ const TOPICS = [
           ]
         }
       }
+      ,
+      {
+        id: 'pvp-hero-chaining',
+        image: 'images/pvp-hero-chaining.jpg',
+        ru: {
+          title: 'Цепочки героев — как ускорить темп в 2 раза',
+          eyebrow: 'Продвинутая тактика PvP',
+          body: [
+            'В PvP на высоком уровне одним героем не обойтись. Пока твой главный герой бегает за ресурсами и подкреплением, соперник захватывает карту. Решение — цепочки героев.',
+            'Что такое цепочка героев: Это система, где несколько героев работают как конвейер. Один воюет, остальные собирают ресурсы и подносят войска. В классическом режиме игры, главный герой никогда не возвращается в город — всё доставляют ему «курьеры». В режиме «Один герой» эта тактика не работает, так как там доступен только один герой.',
+            'Как это работает:',
+            '1️⃣ Главный герой (боец) — постоянно воюет, захватывает шахты и открывает карту. ВСЯ армия и опыт — ему.',
+            '2️⃣ Второй герой (курьер) — собирает ресурсы с карты и подносит войска из города к главному герою.',
+            '3️⃣ Третий герой (разведчик) — открывает туман войны, ищет врага и ценные объекты.',
+            '4️⃣ Передача войск: герои обмениваются армией, стоя рядом на карте. Один подходит к другому и передаёт отряды.',
+            'Цепочка №1: Передача армии на ходу: Поставь второго героя на пути главного. Когда главный герой закончит движение, второй герой забирает у него часть войск и продолжает путь. Так армия двигается дальше, не теряя ни одного дня.',
+            'Цепочка №2: Захват города без потери темпа: Когда главный герой готовится к бою, передай его армию герою, который уже ждёт у дополнительного города. Тот захватывает город, а третий герой возвращает войска обратно к главному. Главный герой не теряет ни дня на возвращение.',
+            'Цепочка №3: Быстрый сбор объектов: Поставь героя рядом с объектом на карте (например, банком существ). На следующий день он получает армию от главного героя, забирает объект и возвращает войска обратно. Всё за один день, без потери темпа.',
+            'Как рельеф влияет на цепочки: Движение по чужой местности замедляет героев. Штрафы: 40% на родной для фракции земле, 80% в пустыне, 200% на реке. Чтобы цепочки не ломались, используй героев-разведчиков или артефакт «Болотники» — они полностью убирают штрафы местности. Всегда проверяй рельеф, когда планируешь маршруты курьеров.',
+            'Совет для тренировки: На первых этапах сидите и думайте над цепями столько, сколько потребуется. Через несколько игр скорость сильно вырастет.',
+             'Опорные пункты — мгновенная передача без курьеров',
+            'Для тех, кто не хочет строить сложные цепочки из 5–8 героев, разработчики добавили Опорные пункты.',
+            'Что это: Строение на карте, которое позволяет мгновенно передавать войска и артефакты между любыми Опорными пунктами, которые ты контролируешь.',
+            'Как работает:',
+             '1️⃣ Найди Опорный пункт на карте и захвати его.',                                            
+            ' 2️⃣ Оставь в нём войска или артефакты.',
+            ' 3️⃣ В другом Опорном пункте они появятся мгновенно.',
+            'Где искать: Опорные пункты разбросаны по карте как объекты. Иногда они спрятаны за охраной.',
+            'Для продвинутых: Заклинание «Карманное измерение» (Pocket Dimension) создаёт временный Опорный пункт на один день. Изучи его в Обсерватории — это спасёт, если рядом нет постоянного Опорного пункта.',
+          ],
+          tip: 'Если ты играешь в Классическом режиме — сразу нанимай 2–3 дополнительных героев из таверны. Один для ресурсов, один для разведки. Главный герой должен только воевать и захватывать шахты. Не заставляй его бежать домой за подкреплением! Нужно время что бы научится этому навыку. Дальше с опым будет проще!',
+          quizzes: [
+            { q: 'Сколько героев рекомендуется использовать в цепочке для Классического режима?', options: ['1 герой', '2–3 героя', '5 героев'], correct: 1 },
+            { q: 'Что делают герои-курьеры в цепочке?', options: ['Воюют с врагами', 'Собирают ресурсы и подносят войска главному герою', 'Строят города'], correct: 1 }
+          ]
+        },
+        en: {
+          title: 'Hero Chaining — How to Double Your Tempo',
+          eyebrow: 'Advanced PvP Tactic',
+          body: [
+            'In high-level PvP, one hero is not enough. While your main hero runs for resources and reinforcements, the opponent captures the map. The solution is hero chaining.',
+            'What is hero chaining: It\'s a system where multiple heroes work as a conveyor belt. One fights, the rest collect resources and deliver troops. The main hero never returns to town — everything is delivered by "couriers".',
+            'How it works:',
+            '1️⃣ Main hero (fighter) — constantly fights, captures mines, and reveals the map. ALL troops and experience go to him.',
+            '2️⃣ Second hero (courier) — collects resources and delivers troops from town to the main hero.',
+            '3️⃣ Third hero (scout) — reveals fog of war, finds the enemy and valuable objects.',
+            '4️⃣ Transfer troops: heroes exchange armies by standing next to each other on the map.',
+            'Basic chain #1: Place a hero where the main hero will end his turn. The next day, he can take the troops from the main hero and pass them further.',
+            'Basic chain #2 (capturing a town): When the main hero has reached the battle point, take his army and give it to the hero standing next to the secondary town. This hero captures the town, and another hero returns the troops back.',
+            'Basic chain #3 (map objects): Place a hero next to an object. The next day, he receives the army, defeats the guard, takes the reward, and returns the troops to the town.',
+            'Important about terrain: Movement penalty on foreign terrain — 40% (native faction), 80% (desert), 200% (river). Scout heroes and Swamp Boots remove the penalty completely. Consider this when building chains!',
+            'Training tip: In the first stages, sit and think about chains for as long as it takes, even if one turn takes tens of minutes. This is normal. After a few games, your speed will increase significantly.'
+          ],
+          tip: 'If you\'re playing in Classic mode — immediately hire 2–3 additional heroes from the tavern. One for resources, one for scouting. The main hero should only fight and capture mines. Don\'t make him run home for reinforcements! And remember: 20–30 minutes per turn in a training game is normal, that\'s how you learn to build chains.',
+          quizzes: [
+            { q: 'How many heroes are recommended for chaining in Classic mode?', options: ['1 hero', '2–3 heroes', '5 heroes'], correct: 1 },
+            { q: 'What do courier heroes do in a chain?', options: ['Fight enemies', 'Collect resources and deliver troops to the main hero', 'Build towns'], correct: 1 }
+          ]
+        }
+      }
+
+
+
+
+
+
     ]
   }
   ,
-
+          
   {
     id: 'grove',
     icon: '🌿',
