@@ -103,9 +103,22 @@
     color: var(--gold);
     font-weight: 700;
   }
+  .eyebrow{
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
   .app-header h1{
     font-size: 22px;
     margin: 2px 0 0;
+    color: var(--parchment);
+  }
+  h1{
+    font-size: 22px;
+    margin: 2px 0 18px;
     color: var(--parchment);
   }
   .lang-toggle{
@@ -496,6 +509,339 @@
     margin-bottom: 12px;
   }
 
+  /* ===== ПРЕМИУМ ===== */
+  .premium-btn{
+    display: block;
+    width: 100%;
+    text-align: center;
+    background: none;
+    border: none;
+    color: var(--gold);
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 12px 0 4px;
+    cursor: pointer;
+    opacity: 0.95;
+  }
+  .premium-btn:active{ opacity: 1; transform: scale(0.98); }
+  .premium-intro{
+    background: linear-gradient(135deg, rgba(201,161,92,0.14), rgba(201,161,92,0.04));
+    border: 1px solid rgba(201,161,92,0.3);
+    border-radius: var(--radius);
+    padding: 18px;
+    margin-bottom: 18px;
+  }
+  .premium-intro h2{
+    font-family:'Cinzel', serif;
+    color: var(--gold);
+    font-size: 18px;
+    margin: 0 0 8px;
+  }
+  .premium-intro p{
+    font-size: 13.5px;
+    color: var(--parchment-dim);
+    line-height: 1.5;
+    margin: 0 0 10px;
+  }
+  .premium-intro ul{ list-style:none; padding:0; margin: 10px 0; }
+  .premium-intro li{ font-size: 13.5px; color: var(--parchment); padding: 4px 0; }
+  .premium-intro li::before{ content: '✓ '; color: var(--success); font-weight: 700; }
+  .premium-tile{
+    display:flex;
+    align-items:center;
+    gap: 14px;
+    background: var(--bg-elevated);
+    border: 1px solid rgba(201,161,92,0.25);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    cursor:pointer;
+  }
+  .premium-tile:active{ transform: scale(0.98); }
+  .premium-tile-lock{ margin-left:auto; font-size: 16px; opacity: 0.7; }
+  .tier-card{
+    background: var(--bg-elevated);
+    border: 1px solid rgba(201,161,92,0.25);
+    border-radius: var(--radius);
+    padding: 18px;
+    margin-bottom: 14px;
+  }
+  .tier-name{
+    font-family:'Cinzel', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--gold);
+  }
+  .tier-price{
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--parchment);
+    margin: 6px 0 10px;
+  }
+  .tier-perks{ list-style: none; padding: 0; margin: 0 0 14px; }
+  .tier-perks li{ font-size: 13.5px; color: var(--parchment-dim); padding: 4px 0; }
+  .tier-perks li::before{ content: '✓ '; color: var(--success); font-weight: 700; }
+  .tier-buy-btn{
+    width: 100%;
+    padding: 13px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-dim));
+    color: #1A1508;
+    font-weight: 700;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-family: 'Manrope', sans-serif;
+    font-size: 14.5px;
+  }
+  .tier-buy-btn:disabled{ opacity: 0.6; cursor: default; }
+  .premium-badge{
+    display:inline-block;
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    color: #1A1508;
+    background: var(--gold);
+    padding: 3px 9px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+  }
+  .lock-screen{
+    text-align:center;
+    padding: 40px 20px;
+  }
+  .lock-screen .lock-icon{ font-size: 40px; margin-bottom: 14px; }
+  .calc-skills{
+    display:flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 14px 0;
+  }
+  .calc-skill-chip{
+    display:flex;
+    align-items:center;
+    gap: 6px;
+    background: rgba(201,161,92,0.08);
+    border: 1px solid rgba(201,161,92,0.2);
+    border-radius: 20px;
+    padding: 8px 14px;
+    font-size: 13px;
+    color: var(--parchment);
+    cursor: pointer;
+    font-family: 'Manrope', sans-serif;
+  }
+  .calc-skill-chip.selected{
+    background: rgba(201,161,92,0.28);
+    border-color: var(--gold);
+    color: var(--gold);
+    font-weight: 700;
+  }
+  .calc-result-box{
+    background: var(--bg-elevated);
+    border: 1px solid rgba(111,169,122,0.35);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    margin-top: 10px;
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: var(--parchment-dim);
+  }
+  .calc-result-box.empty{
+    border-color: rgba(255,255,255,0.08);
+    color: var(--parchment-dim);
+    opacity: 0.7;
+  }
+  .calc-cat-group{ margin-bottom: 4px; }
+  .calc-cat-label{
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    color: var(--gold);
+    margin: 12px 0 6px;
+  }
+  .calc-stats-box{ margin: 6px 0 4px; }
+  .calc-stats-title{
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    color: var(--parchment-dim);
+    margin-bottom: 10px;
+  }
+  .calc-stat-row{
+    display:flex;
+    align-items:center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .calc-stat-label{
+    font-size: 12.5px;
+    color: var(--parchment);
+    width: 110px;
+    flex-shrink: 0;
+  }
+  .calc-stat-track{
+    flex: 1;
+    height: 8px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .calc-stat-fill{
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold-dim), var(--gold));
+    border-radius: 6px;
+    transition: width 0.4s ease;
+  }
+  .calc-counter-box{
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .calc-counter-label{
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 700;
+    color: #C96262;
+  }
+  .calc-result-heading{
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 700;
+    color: var(--success);
+    margin-bottom: 6px;
+  }
+  .calc-subtip{
+    background: rgba(201,161,92,0.08);
+    border: 1px solid rgba(201,161,92,0.2);
+    border-radius: 10px;
+    padding: 10px 12px;
+    margin-top: 8px;
+    font-size: 12.5px;
+    color: var(--parchment);
+  }
+
+  /* ===== ПЕСОЧНИЦА ===== */
+  .sandbox-btn-tile{
+    display:flex;
+    align-items:center;
+    gap: 14px;
+    background: linear-gradient(135deg, rgba(111,169,122,0.14), rgba(111,169,122,0.04));
+    border: 1px solid rgba(111,169,122,0.35);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    cursor:pointer;
+    margin-bottom: 14px;
+  }
+  .sandbox-btn-tile:active{ transform: scale(0.98); }
+  .sandbox-progress-pill{
+    margin-left:auto;
+    font-size: 11px;
+    color: var(--success);
+    background: rgba(111,169,122,0.15);
+    padding: 3px 9px;
+    border-radius: 20px;
+  }
+  .sb-scenario-card{
+    background: var(--bg-elevated);
+    border: 1px solid rgba(201,161,92,0.15);
+    border-radius: var(--radius);
+    padding: 16px;
+    margin-bottom: 12px;
+    display:flex;
+    align-items:center;
+    gap: 12px;
+    cursor:pointer;
+  }
+  .sb-scenario-card.done{ border-color: rgba(111,169,122,0.4); }
+  .sb-scenario-card.locked{ opacity: 0.6; }
+  .sb-scenario-num{
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: rgba(201,161,92,0.15);
+    color: var(--gold);
+    display:flex; align-items:center; justify-content:center;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .sb-scenario-card.done .sb-scenario-num{ background: rgba(111,169,122,0.25); color: var(--success); }
+  .sb-situation-box{
+    background: var(--bg-elevated);
+    border: 1px solid rgba(201,161,92,0.15);
+    border-radius: var(--radius);
+    padding: 16px;
+    font-size: 14px;
+    line-height: 1.55;
+    margin: 14px 0 18px;
+  }
+  .sb-choose-label{
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .sb-option-btn{
+    display:flex;
+    align-items:flex-start;
+    gap: 10px;
+    width: 100%;
+    text-align:left;
+    background: var(--bg-elevated);
+    border: 1px solid rgba(201,161,92,0.2);
+    border-radius: 12px;
+    padding: 13px 14px;
+    margin-bottom: 10px;
+    color: var(--parchment);
+    font-family: 'Manrope', sans-serif;
+    font-size: 13.5px;
+    cursor: pointer;
+  }
+  .sb-option-letter{
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: rgba(201,161,92,0.15);
+    color: var(--gold);
+    font-weight: 700;
+    font-size: 12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .sb-option-btn.sb-correct .sb-option-letter{ background: rgba(111,169,122,0.3); color: var(--success); }
+  .sb-option-btn.sb-wrong .sb-option-letter{ background: rgba(201,98,98,0.3); color: #C96262; }
+  .sb-option-btn:disabled{ cursor: default; }
+  .sb-option-btn.sb-correct{ border-color: var(--success); background: rgba(111,169,122,0.15); }
+  .sb-option-btn.sb-wrong{ border-color: #C96262; background: rgba(201,98,98,0.12); }
+  .sb-feedback{
+    font-size: 13.5px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    margin: 6px 0 16px;
+    display:none;
+  }
+  .sb-feedback.show{ display:block; }
+  .sb-feedback.retry{ background: rgba(201,98,98,0.12); color: #E8A5A5; }
+  .sb-feedback.explain{ background: rgba(111,169,122,0.12); color: var(--parchment); }
+  .sb-next-btn{
+    width: 100%;
+    padding: 13px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-dim));
+    color: #1A1508;
+    font-weight: 700;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-family: 'Manrope', sans-serif;
+    font-size: 14.5px;
+  }
+
   /* Визуальный разделитель страниц */
   .page-divider {
     background: linear-gradient(90deg, var(--gold-dim), var(--gold), var(--gold-dim));
@@ -606,7 +952,14 @@
   padding: 0;
   min-height: 80vh;
 }
-#feedback-view.hidden {
+#feedback-view.hidden,
+#premium-view.hidden,
+#subscribe-view.hidden,
+#premium-guide-view.hidden,
+#premium-guides-hub-view.hidden,
+#premium-calc-view.hidden,
+#sandbox-hub-view.hidden,
+#sandbox-play-view.hidden {
   display: block !important;
   opacity: 0;
   transform: translateX(30px);
@@ -617,7 +970,14 @@
   width: 100%;
   min-height: 80vh;
 }
-#feedback-view:not(.hidden) {
+#feedback-view:not(.hidden),
+#premium-view:not(.hidden),
+#subscribe-view:not(.hidden),
+#premium-guide-view:not(.hidden),
+#premium-guides-hub-view:not(.hidden),
+#premium-calc-view:not(.hidden),
+#sandbox-hub-view:not(.hidden),
+#sandbox-play-view:not(.hidden) {
   opacity: 1;
   transform: translateX(0);
   pointer-events: auto;
@@ -630,7 +990,170 @@
   to { opacity: 1; transform: translateX(0); }
 }
 
+  /* ===== НОВЫЕ СТИЛИ ДЛЯ ПРЕМИУМА ===== */
+  .premium-tile.locked {
+    cursor: default;
+  }
+  .premium-tile .premium-open-btn {
+    transition: background 0.2s ease;
+  }
+  .premium-tile .premium-open-btn:hover {
+    background: rgba(201,161,92,0.25);
+  }
+  .premium-tile .premium-lock-btn {
+    transition: transform 0.1s ease;
+  }
+  .premium-tile .premium-lock-btn:active {
+    transform: scale(0.98);
+  }
 
+  /* Стили для секций гайда */
+  .guide-section {
+    transition: border-color 0.2s ease;
+  }
+  .guide-section:hover {
+    border-color: var(--gold) !important;
+  }
+
+  /* Стили для шкалы синергии */
+  .synergy-meter {
+    background: var(--bg-elevated);
+    border-radius: 8px;
+    padding: 12px 14px;
+    border: 1px solid rgba(201,161,92,0.15);
+  }
+
+  /* Стили для кнопок быстрых билдов */
+  .quick-build-btn {
+    background: var(--bg-elevated);
+    border: 1px solid rgba(201,161,92,0.2);
+    color: var(--parchment);
+    font-family: 'Manrope', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 8px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .quick-build-btn:active {
+    transform: scale(0.95);
+  }
+  .quick-build-btn:hover {
+    background: rgba(201,161,92,0.15);
+    border-color: var(--gold);
+  }
+
+  /* Стили для ленты приветов */
+  .shoutout-feed-item {
+    transition: background 0.15s ease;
+  }
+  .shoutout-feed-item:hover {
+    background: rgba(255,255,255,0.03);
+  }
+
+  /* Стили для карточек премиума */
+  .premium-card {
+    background: var(--bg-elevated);
+    border-radius: var(--radius);
+    padding: 16px;
+    margin-bottom: 12px;
+    transition: all 0.2s ease;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .premium-card.unlocked {
+    border-color: rgba(201,161,92,0.25);
+    cursor: pointer;
+  }
+  .premium-card.unlocked:hover {
+    border-color: var(--gold);
+    background: rgba(201,161,92,0.05);
+  }
+  .premium-card.locked {
+    opacity: 0.7;
+  }
+  .premium-card .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .premium-card .card-content {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+  .premium-card .card-icon {
+    font-size: 24px;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(201,161,92,0.1);
+    border-radius: 12px;
+    flex-shrink: 0;
+  }
+  .premium-card .card-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--parchment);
+  }
+  .premium-card .card-desc {
+    font-size: 12px;
+    color: var(--parchment-dim);
+    margin-top: 2px;
+  }
+  .premium-card .card-lock {
+    font-size: 20px;
+  }
+  .premium-card .card-status {
+    font-size: 20px;
+    color: var(--success);
+  }
+  .premium-card .card-btn {
+    margin-top: 12px;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-family: 'Manrope', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .premium-card .card-btn.unlock {
+    background: var(--gold);
+    color: #1A1508;
+  }
+  .premium-card .card-btn.unlock:active {
+    transform: scale(0.98);
+  }
+  .premium-card .card-btn.open {
+    background: rgba(201,161,92,0.15);
+    color: var(--gold);
+    border: 1px solid var(--gold-dim);
+  }
+  .premium-card .card-btn.open:hover {
+    background: rgba(201,161,92,0.25);
+  }
+/* ===== ПЕСОЧНИЦА: ПОДСВЕТКА ОТВЕТОВ (FORCE) ===== */
+#sb-options .sb-option-btn.sb-correct {
+  border-color: var(--success) !important;
+  background: rgba(111,169,122,0.15) !important;
+}
+#sb-options .sb-option-btn.sb-correct .sb-option-letter {
+  background: rgba(111,169,122,0.3) !important;
+  color: var(--success) !important;
+}
+#sb-options .sb-option-btn.sb-wrong {
+  border-color: #C96262 !important;
+  background: rgba(201,98,98,0.12) !important;
+}
+#sb-options .sb-option-btn.sb-wrong .sb-option-letter {
+  background: rgba(201,98,98,0.3) !important;
+  color: #C96262 !important;
+}
 
 </style>
 </style>
@@ -671,16 +1194,104 @@
       </div>
     </div>
 
+    <!-- ПЕСОЧНИЦА (плитка над списком тем) -->
+    <div class="sandbox-btn-tile" onclick="openSandboxHub()">
+      <div class="topic-icon">🏋️</div>
+      <div>
+        <div class="lesson-title" id="sandbox-tile-title"></div>
+        <div class="topic-progress" id="sandbox-tile-desc"></div>
+      </div>
+      <div class="sandbox-progress-pill" id="sandbox-tile-progress"></div>
+    </div>
+
     <div class="lesson-list" id="topics-list"></div>
     
+    <button class="premium-btn" onclick="openPremium()" id="premium-link-label">⭐ Премиум</button>
     <button class="support-link" onclick="openDonate()" id="support-link-label"></button>
     
     <!-- КНОПКА YOUTUBE -->
     <button class="youtube-btn" onclick="openYouTube()">
-      ▶️ Подписаться на YouTube
+      <span id="youtube-btn-label">▶️ Подписаться на YouTube</span>
     <!-- КНОПКА ОБРАТНОЙ СВЯЗИ -->
-     <button class="support-link" onclick="openFeedbackPage()">✉️ Обратная связь</button>
+     <button class="support-link" onclick="openFeedbackPage()" id="feedback-btn-label-main">✉️ Обратная связь</button>
     </button>
+  </div>
+
+  <!-- ПЕСОЧНИЦА: ХАБ СО СПИСКОМ ЗАДАНИЙ -->
+  <div id="sandbox-hub-view" class="hidden">
+    <button class="back-btn" onclick="goTopics()" id="sandbox-hub-back-label">← Темы</button>
+    <div class="page-divider"></div>
+    <div class="app-header">
+      <div>
+        <div class="eyebrow" id="sandbox-hub-eyebrow"></div>
+        <h1 id="sandbox-hub-title"></h1>
+      </div>
+    </div>
+    <p id="sandbox-hub-intro" style="font-size:13.5px; color:var(--parchment-dim); margin-bottom:16px;"></p>
+    <div id="sandbox-scenarios-list"></div>
+  </div>
+
+  <!-- ПЕСОЧНИЦА: ПРОХОЖДЕНИЕ ЗАДАНИЯ -->
+  <div id="sandbox-play-view" class="hidden">
+    <button class="back-btn" onclick="goSandboxHub()" id="sandbox-play-back-label">← Песочница</button>
+    <div class="page-divider"></div>
+    <div id="sandbox-play-body"></div>
+  </div>
+
+  <!-- ПРЕМИУМ: ХАБ -->
+  <div id="premium-view" class="hidden">
+    <button class="back-btn" onclick="goTopics()" id="premium-back-label">← Темы</button>
+    <div class="page-divider"></div>
+    <div class="app-header">
+      <div>
+        <div class="eyebrow" id="premium-eyebrow"></div>
+        <h1 id="premium-title"></h1>
+      </div>
+    </div>
+    <div class="premium-intro" id="premium-intro-box"></div>
+    <div class="lesson-list" id="premium-tiles-list"></div>
+  </div>
+
+  <!-- ПРЕМИУМ: ТАРИФ И ОПЛАТА -->
+  <div id="subscribe-view" class="hidden">
+    <button class="back-btn" onclick="goPremium()" id="subscribe-back-label">← Премиум</button>
+    <div class="page-divider"></div>
+    <div class="app-header">
+      <div>
+        <div class="eyebrow" id="subscribe-eyebrow"></div>
+        <h1 id="subscribe-title"></h1>
+      </div>
+    </div>
+    <div id="subscribe-tiers-list"></div>
+    <p id="subscribe-status" style="font-size:13px; color:var(--parchment-dim); text-align:center; display:none;"></p>
+  </div>
+
+  <!-- ПРЕМИУМ: ЗАКРЫТЫЙ ГАЙД -->
+  <div id="premium-guide-view" class="hidden">
+    <button class="back-btn" onclick="goGuidesHub()" id="premium-guide-back-label">← Гайды</button>
+    <div class="page-divider"></div>
+    <div id="premium-guide-body"></div>
+  </div>
+
+  <!-- ПРЕМИУМ: ХАБ ГАЙДОВ -->
+  <div id="premium-guides-hub-view" class="hidden">
+    <button class="back-btn" onclick="goPremium()" id="premium-guides-hub-back-label">← Премиум</button>
+    <div class="page-divider"></div>
+    <div class="app-header">
+      <div>
+        <div class="eyebrow" id="premium-guides-hub-eyebrow"></div>
+        <h1 id="premium-guides-hub-title"></h1>
+      </div>
+    </div>
+    <p style="color:var(--parchment-dim); margin: -8px 0 4px;" id="premium-guides-hub-intro"></p>
+    <div class="lesson-list" id="premium-guides-hub-list"></div>
+  </div>
+
+  <!-- ПРЕМИУМ: КАЛЬКУЛЯТОР СИНЕРГИЙ -->
+  <div id="premium-calc-view" class="hidden">
+    <button class="back-btn" onclick="goPremium()" id="premium-calc-back-label">← Премиум</button>
+    <div class="page-divider"></div>
+    <div id="premium-calc-body"></div>
   </div>
 
  
@@ -785,7 +1396,7 @@ try {
   tg = null;
 }
 
-// ---------- Storage: Telegram CloudStorage with localStorage fallback ----------
+// ---------- Storage ----------
 function cloudStorageAvailable() {
   try {
     if (!tg || !tg.CloudStorage) return false;
@@ -856,7 +1467,72 @@ const STRINGS = {
     tipLabel: 'Совет:',
     correctFeedback: 'Точно!',
     wrongFeedback: 'Не совсем — правильный ответ подсвечен зелёным.',
-    supportLink: '❤️ Поддержать канал'
+    supportLink: '❤️ Поддержать канал',
+    youtubeBtn: '▶️ Подписаться на YouTube',
+    feedbackBtnMain: '✉️ Обратная связь',
+
+    premiumLink: '⭐ Премиум',
+    premiumEyebrow: 'CharmRoad · Премиум',
+    premiumTitle: 'Закрытые материалы',
+    premiumBackToTopics: '← Темы',
+    premiumBackToHub: '← Премиум',
+    premiumIntroTitle: '⭐ Премиум CharmRoad',
+    premiumIntroText: 'Всё, что помогает не просто смотреть про Olden Era, а сразу играть лучше.',
+    premiumIntroPerks: [
+      '📜 Закрытые гайды и разборы шаблонов',
+      '🧮 Калькулятор синергий навыков',
+      '🏋️ Полная Песочница — 8 заданий + новые каждую неделю',
+      '📣 Твой привет в шортсе'
+    ],
+    tileSubscription: 'Оформить подписку',
+    tileSubscriptionDesc: 'Открой доступ ко всем материалам',
+    tileGuide: 'Гайды',
+    tileGuideDesc: 'Разборы шаблонов и другие темы. Библиотека пополняется.',
+    guidesHubEyebrow: 'CharmRoad · Гайды',
+    guidesHubTitle: 'Гайды',
+    guidesHubIntro: 'Библиотека гайдов по игре. Список будет пополняться новыми темами.',
+    tileCalc: 'Калькулятор синергий навыков',
+    tileShoutout: 'Твой привет в шортсе',
+    subscribeEyebrow: 'CharmRoad · Тариф',
+    subscribeTitle: 'Подписка Инсайдер',
+    checkingAccess: 'Проверяем доступ…',
+    lockedTitle: 'Материал закрыт',
+    lockedText: 'Этот раздел доступен по подписке. Оформи её, чтобы открыть доступ.',
+    lockedBtn: 'Оформить подписку →',
+    payBtn: 'Оплатить в Stars',
+    payingBtn: 'Открываем оплату…',
+    paySuccess: '✅ Подписка активна! Возвращайся в Премиум.',
+    payError: '❌ Не удалось начать оплату. Попробуй ещё раз.',
+    payCancelled: 'Оплата отменена.',
+    notInTelegram: 'Открой это через Telegram-бота, чтобы оформить подписку.',
+    calcPick: 'Выбери 2-3 навыка, чтобы увидеть их синергию',
+    calcEmpty: 'Выбери навыки выше — здесь появится разбор их сочетания.',
+    calcTemplateHint: 'Подходящий шаблон',
+    calcStatsTitle: 'Профиль билда',
+    calcSynergyScore: 'Синергия',
+    calcCounterLabel: 'Как играть против такого билда',
+    calcPairsTitle: 'Разбор связок',
+    shoutoutIntro: 'Привет, друг! Оставляй тут сообщение — один раз в 1-2 недели. Лучшие приветы попадают в новый шортс CharmRoad. Каждое сообщение читаю лично! ',
+    shoutoutPlaceholder: 'Привет, кому и что хочешь сказать...',
+    shoutoutSend: 'Отправить привет',
+    shoutoutSent: '✅ Привет отправлен!',
+
+    sandboxTileTitle: '🏋️ Песочница',
+    sandboxTileDesc: 'Тренируй решения на реальных ситуациях',
+    sandboxHubEyebrow: 'CharmRoad · Песочница',
+    sandboxHubTitle: 'Тренировочные задания',
+    sandboxHubIntro: 'Здесь не теория, а практика: реальные игровые ситуации от топовых игроков. Выбери действие — бот проверит и объяснит, почему так.',
+    sandboxBackToHub: '← Темы',
+    sandboxBackToList: '← Песочница',
+    sandboxChooseLabel: 'Что делаешь?',
+    sandboxStepLabel: (n, total) => `Задание ${n} из ${total}`,
+    sandboxNext: 'Дальше →',
+    sandboxDone: 'Готово!',
+    sandboxDoneText: 'Задание пройдено. Разбор верного решения — ниже.',
+    sandboxLockedText: 'Это задание доступно по подписке "Инсайдер".',
+    sandboxUpsellTitle: 'Бесплатные задания закончились',
+    sandboxUpsellText: 'Ещё 5 практических ситуаций (драфт, банки, финалка) ждут в Премиум.',
+    sandboxProgress: (done, total) => `${done}/${total}`
   },
   en: {
     homeEyebrow: 'CharmRoad · Beginner Course',
@@ -875,7 +1551,72 @@ const STRINGS = {
     tipLabel: 'Tip:',
     correctFeedback: 'Correct!',
     wrongFeedback: 'Not quite — the correct answer is highlighted in green.',
-    supportLink: '❤️ Support the channel'
+    supportLink: '❤️ Support the channel',
+    youtubeBtn: '▶️ Subscribe on YouTube',
+    feedbackBtnMain: '✉️ Feedback',
+
+    premiumLink: '⭐ Premium',
+    premiumEyebrow: 'CharmRoad · Premium',
+    premiumTitle: 'Locked content',
+    premiumBackToTopics: '← Themes',
+    premiumBackToHub: '← Premium',
+    premiumIntroTitle: '⭐ CharmRoad Premium',
+    premiumIntroText: 'Everything that helps you not just watch Olden Era content, but play better right away.',
+    premiumIntroPerks: [
+      '📜 Locked guides and template breakdowns',
+      '🧮 Skill synergy calculator',
+      '🏋️ Full Sandbox — 8 tasks + new ones every week',
+      '📣 Your shoutout in a short'
+    ],
+    tileSubscription: 'Get a subscription',
+    tileSubscriptionDesc: 'Unlock every piece of content',
+    tileGuide: 'Guides',
+    tileGuideDesc: 'Template breakdowns and other topics. A growing library.',
+    guidesHubEyebrow: 'CharmRoad · Guides',
+    guidesHubTitle: 'Guides',
+    guidesHubIntro: 'A library of guides for the game. The list keeps growing with new topics.',
+    tileCalc: 'Skill synergy calculator',
+    tileShoutout: 'Your shoutout in a short',
+    subscribeEyebrow: 'CharmRoad · Plan',
+    subscribeTitle: 'Insider subscription',
+    checkingAccess: 'Checking access…',
+    lockedTitle: 'This content is locked',
+    lockedText: 'This section is subscriber-only. Subscribe to unlock it.',
+    lockedBtn: 'Get subscription →',
+    payBtn: 'Pay with Stars',
+    payingBtn: 'Opening payment…',
+    paySuccess: '✅ Subscription active! Head back to Premium.',
+    payError: '❌ Could not start payment. Try again.',
+    payCancelled: 'Payment cancelled.',
+    notInTelegram: 'Open this via the Telegram bot to subscribe.',
+    calcPick: 'Pick 2-3 skills to see their synergy',
+    calcEmpty: 'Pick skills above — the breakdown of their combo will appear here.',
+    calcTemplateHint: 'Fitting template',
+    calcStatsTitle: 'Build profile',
+    calcSynergyScore: 'Synergy',
+    calcCounterLabel: 'How to play against this build',
+    calcPairsTitle: 'Combo breakdown',
+    shoutoutIntro: 'Leave a message — every 1-2 weeks the best shoutouts make it into a new CharmRoad short. I personally read every message. Your username is attached automatically via Telegram — if I want to reply, I\'ll message you directly.',
+    shoutoutPlaceholder: 'Say hi, to whom and what...',
+    shoutoutSend: 'Send shoutout',
+    shoutoutSent: '✅ Shoutout sent! You\'ll get a reply here.',
+
+    sandboxTileTitle: '🏋️ Sandbox',
+    sandboxTileDesc: 'Train your decisions on real situations',
+    sandboxHubEyebrow: 'CharmRoad · Sandbox',
+    sandboxHubTitle: 'Training scenarios',
+    sandboxHubIntro: 'No theory here, just practice: real in-game situations from top players. Pick an action — the bot checks it and explains why.',
+    sandboxBackToHub: '← Themes',
+    sandboxBackToList: '← Sandbox',
+    sandboxChooseLabel: 'What do you do?',
+    sandboxStepLabel: (n, total) => `Task ${n} of ${total}`,
+    sandboxNext: 'Next →',
+    sandboxDone: 'Done!',
+    sandboxDoneText: 'Task complete. The breakdown of the right call is below.',
+    sandboxLockedText: 'This task is available with the "Insider" subscription.',
+    sandboxUpsellTitle: 'Free tasks are over',
+    sandboxUpsellText: '5 more practical situations (draft, banks, endgame) are waiting in Premium.',
+    sandboxProgress: (done, total) => `${done}/${total}`
   }
 };
 
@@ -899,7 +1640,6 @@ function openDonate() {
   }
 }
 
-// ===== ОТКРЫТИЕ YOUTUBE =====
 function openYouTube() {
   const url = 'https://youtube.com/@charmroad?si=AuUMjHoS3ZdNi852';
   try {
@@ -913,7 +1653,6 @@ function openYouTube() {
   }
 }
 
-// ===== ОБНОВЛЕНИЕ ПРОГРЕССА =====
 function updateProgress() {
   let totalLessons = 0;
   let completedLessons = 0;
@@ -930,7 +1669,9 @@ function updateProgress() {
   if (barEl) barEl.style.width = percent + '%';
 }
 
-// ---------- Topics & lesson content (bilingual) ----------
+// ===== ВСТАВЬТЕ СЮДА ВАШ МАССИВ TOPICS =====
+// const TOPICS = [ ... ];
+// ==========================================
 const TOPICS = [
    {
     id: 'patch-12',
@@ -2387,7 +3128,7 @@ const TOPICS = [
             'Маги: Полагаются на заклинания. В патче 8 навык "Призыв Аватара" был полностью переработан — стал исключительно магической способностью без бонуса к защите, сила которой зависит от Силы магии героя, а вместо здоровья — фиксированное число "жизней". В патче 11 его дополнительно понерфили: базовая версия теперь жёстко держит 3 удара живучести независимо от уровня навыка, а базовый урон срезали с 12-12 до 10-10 — зато появились ситуативные подскилы для доп. усиления.',
             // ПРОВЕРИТЬ ЛИЧНО: "Ос (Heroic Strike)" здесь указан как герой Подземелья, но по гайду другого топового игрока
             // герой с похожим именем ("Оос") — это герой Храма, а не Подземелья. Явная путаница в имени, нужна проверка в ростере.
-            'Лучшие герои фракций: Подземелье — Тифона (гидры), . Храм — Пип (урон), Пустельга (стрелки), Старый лорд Мандал (удар героя). Некрополь в PvP считается сложной фракцией из-за медленных юнитов, но сильна в затяжных играх.'
+            'Лучшие герои фракций: Подземелье — Тифона (гидры),Храм — Пип (урон), Пустельга (стрелки), Старый лорд Мандал (удар героя). Некрополь в PvP считается сложной фракцией из-за медленных юнитов, но сильна в затяжных играх.'
           ],
           tip: 'Если вы не знаете, кого банить — баньте сильных магов и героев с сильным "Ударом героя". Если не знаете, кого пикать — берите воина с прокачкой армии, это самый надёжный вариант для новичка.',
           quizzes: [
@@ -2404,7 +3145,7 @@ const TOPICS = [
             'In the current PvP meta, two types of heroes dominate: warriors and mages. Your choice depends on the faction and your playstyle.',
             'Warriors: Their strength lies in constant passive bonuses to their army. Key skills are Offense, Defense, Tactics, and Logistics. They can take skills that weaken enemy magic to neutralize mages\' advantage.',
             'Mages: They rely on spells. In patch 8, "Summon Avatar" was completely reworked into a purely magical ability without a defense bonus, scaling from Spell Power, with a fixed number of "lives" instead of health. In patch 11 it was nerfed further: the base version now strictly withstands 3 hits regardless of skill level, and base damage was cut from 12-12 to 10-10 — though situational sub-skills were added for extra customization.',
-            'Best faction heroes: Dungeon — Tifona (hydras), . Temple — Pip (damage), Kestrel (archers), Old Lord Mandal. Necropolis is considered a difficult faction in PvP due to slow units, but strong in long games.'
+            'Best faction heroes: Dungeon — Tifona (hydras), Temple — Pip damage), Kestrel (archers), Old Lord Mandal (Heroic Strike). Necropolis is considered a difficult faction in PvP due to slow units, but strong in long games.'
           ],
           tip: 'If you don\'t know who to ban — ban strong mages and heroes with a strong Hero Strike. If you don\'t know who to pick — choose a warrior with army buffs; this is the most reliable option for a beginner.',
           quizzes: [
@@ -2502,8 +3243,8 @@ const TOPICS = [
           ]
         }
       }
-      ,
-      {
+         ,
+           {
         id: 'pvp-hero-chaining',
         image: 'images/pvp-hero-chaining.jpg',
         ru: {
@@ -2571,7 +3312,7 @@ const TOPICS = [
     ]
   }
   ,
-          
+
   {
     id: 'grove',
     icon: '🌿',
@@ -3072,12 +3813,870 @@ const TOPICS = [
   
 ]
 
+// ---------- ПРЕМИУМ ----------
+const SUB_PRICES = { insider: { stars: 150 } };
+let isSubscribed = null;
+const PREVIEW_MODE_UNLOCK_ALL = false; // true — режим предпросмотра (всё разблокировано без оплаты); false — боевой режим, проверка подписки через Worker
+const WORKER_URL = 'https://oldenera-bot-backend.zinov5471.workers.dev';
+
+// ---------- БИБЛИОТЕКА ГАЙДОВ ----------
+// Список карточек гайдов в хабе "Гайды". Чтобы добавить новый гайд:
+// 1) добавить сюда одну запись с id/icon/title/desc,
+// 2) добавить контент под тем же id в GUIDES_CONTENT ниже.
+const GUIDES = [
+  {
+    id: 'templates',
+    icon: '⚔️',
+    title: { ru: 'Jebus Outcast против других шаблонов', en: 'Jebus Outcast vs Other Templates' },
+    desc: { ru: 'Разбор Jebus Outcast, Jebus Cross и Exodus. Узнай свой идеальный шаблон!', en: 'Jebus Outcast, Jebus Cross and Exodus compared. Find your ideal template!' }
+  },
+  {
+    id: 'jebus-cross-banks',
+    icon: '🏦',
+    title: { ru: 'Jebus Cross: банки вместо ящиков Пандоры', en: 'Jebus Cross: Banks Instead of Pandora\'s Boxes' },
+    desc: { ru: 'Как растить армию через банки и охрану, если Jebus Outcast — привычнее, а Jebus Cross пока пугает.', en: 'How to grow an army through banks and guards when Jebus Outcast is your comfort zone and Jebus Cross feels intimidating.' }
+  },
+  {
+    id: 'tournament-templates',
+    icon: '🏆',
+    title: { ru: 'Новые турнирные шаблоны: Jebus/Outcast Tournament, Mix, Galaxy', en: 'New Tournament Templates: Jebus/Outcast Tournament, Mix, Galaxy' },
+    desc: { ru: 'Патч 11 добавил шаблоны с непрерывными одновременными ходами. Разбираем, чем они отличаются от привычных.', en: 'Patch 11 added templates with uninterrupted simultaneous turns. Here\'s how they differ from the classics.' }
+  }
+
+];
+
+// ---------- ПРЕМИУМ ГАЙДЫ (КОНТЕНТ) ----------
+const GUIDES_CONTENT = {
+templates:
+{
+  ru: {
+    title: 'Jebus Outcast против других шаблонов',
+    eyebrow: 'Премиум · Гайд по шаблонам',
+    sections: [
+      {
+        title: '⚔️ Jebus Outcast',
+        desc: 'Режим «Один герой». Одна решающая битва собранной армией.',
+        rules: [
+          'Цель: собрать монофракционную армию из Ящиков Пандоры.',
+          'Ключ к победе: сила армии, а не экономика.',
+          'Золотое правило: не отстраивайте город, ищите ящики по карте.'
+        ]
+      },
+      {
+        title: '🏃 Jebus Cross',
+        desc: 'Классический мультиплеерный шаблон. Гонка к центру.',
+        rules: [
+          'Цель: первым добраться до центральной зоны с сокровищами.',
+          'Ключ к победе: скорость и логистика.',
+          'Золотое правило: каждый ход на счету. Не тратьте время на слабых мобов.'
+        ]
+      },
+      {
+        title: '🌳 Exodus',
+        desc: 'Идеальный шаблон для новичков. Турнирный режим.',
+        rules: [
+          'Цель: развивать города и побеждать в еженедельных битвах.',
+          'Ключ к победе: экономика и правильный выбор зданий.',
+          'Золотое правило: герой знает Городской портал. Используйте его для защиты.'
+        ]
+      }
+    ],
+    tip: 'Прежде чем садиться в решающий бой, всегда проверяй, что взял с собой хотя бы один юнит родной фракции героя — это избавляет от штрафов морали.',
+    quizzes: [
+      { q: 'Какое условие победы в Jebus Outcast?', options: ['Удержание города (City Hold)', 'Решающая битва (Final Battle)', 'Захват столицы (Capital Hold)'], correct: 1 },
+      { q: 'Чем Outcast Tournament отличается от Jebus Outcast?', options: ['Другим размером карты', 'Форматом: серия турнирных боёв вместо одной решающей битвы', 'Числом игроков'], correct: 1 },
+      { q: 'Какой шаблон лучше всего подходит новичку в PvP?', options: ['Jebus Cross', 'Exodus', 'Jebus Outcast'], correct: 1 }
+    ]
+  },
+  en: {
+    title: 'Jebus Outcast vs Other Templates',
+    eyebrow: 'Premium · Template Guide',
+    sections: [
+      {
+        title: '⚔️ Jebus Outcast',
+        desc: '"One Hero" mode. One decisive battle with a built army.',
+        rules: [
+          'Goal: build a single-faction army from Pandora\'s Boxes.',
+          'Key to victory: army strength, not economy.',
+          'Golden rule: don\'t build your town, search for boxes.'
+        ]
+      },
+      {
+        title: '🏃 Jebus Cross',
+        desc: 'Classic multiplayer template. A race to the center.',
+        rules: [
+          'Goal: be the first to the central treasure zone.',
+          'Key to victory: speed and logistics.',
+          'Golden rule: every turn counts. Don\'t waste time on weak mobs.'
+        ]
+      },
+      {
+        title: '🌳 Exodus',
+        desc: 'Ideal for beginners. Tournament mode.',
+        rules: [
+          'Goal: develop towns and win weekly battles.',
+          'Key to victory: economy and correct building choices.',
+          'Golden rule: hero knows Town Portal. Use it for defense.'
+        ]
+      }
+    ],
+    tip: 'Before the decisive fight, always make sure you\'re carrying at least one unit of your hero\'s native faction — it avoids morale penalties and often decides close battles.',
+    quizzes: [
+      { q: 'What is the win condition in Jebus Outcast?', options: ['City Hold', 'Final Battle', 'Capital Hold'], correct: 1 },
+      { q: 'How does Outcast Tournament differ from Jebus Outcast?', options: ['A different map size', 'Format: a series of tournament matches instead of one decisive battle', 'Player count'], correct: 1 },
+      { q: 'Which template suits a PvP beginner best?', options: ['Jebus Cross', 'Exodus', 'Jebus Outcast'], correct: 1 }
+    ]
+  }
+},
+
+'jebus-cross-banks':
+{
+  ru: {
+    title: 'Jebus Cross: банки вместо ящиков Пандоры',
+    eyebrow: 'Премиум · Гайд по шаблонам',
+    sections: [
+      {
+        title: '🎁 Привычка из Jebus Outcast, которая мешает',
+        desc: 'На Jebus Outcast армия растёт из Ящиков Пандоры, разбросанных по карте, — открыл и получил готовый отряд. На Jebus Cross таких ящиков почти нет: карта заточена под гонку к центру, а не под сбор коробок.',
+        rules: [
+          'Если играть Jebus Cross «по привычке Outcast», в поисках ящиков, — армия просто не наберётся к решающим боям.',
+          'Основной источник армии здесь — банки (охраняемые локации с нейтралами) и обычные жилища существ на карте.',
+          'Мышление нужно сменить: не «где сундук», а «какую охрану я могу выиграть без потерь прямо сейчас».'
+        ]
+      },
+      {
+        title: '🏦 Что такое банки и как их фармить',
+        desc: 'Банк — это охраняемая локация: побеждаешь нейтральный гарнизон и получаешь награду (золото, ресурсы, иногда — юнитов или артефакт). Гарнизон не меняется, пока банк не «зачистят» или не пройдёт достаточно времени.',
+        rules: [
+          'Начинай с банков послабее — их сила примерно понятна по визуальному виду охраны и подсказке при наведении.',
+          'Разведка (навык) особенно ценна на Jebus Cross: видно заранее, какая охрана ждёт, и можно оценить бой без потерь.',
+          'Тактика (навык) даёт больше места для расстановки войск перед боем с охраной банка — это часто решает, будут ли потери.',
+          'Не лезь в банк «на удачу»: если после боя останется мало войск, следующий банк или встреча с игроком тебя добьёт.'
+        ]
+      },
+      {
+        title: '⚖️ Приоритеты первых ходов',
+        desc: 'На Jebus Cross время решает всё — каждый лишний ход на слабого нейтрала это потерянный темп в гонке к центру.',
+        rules: [
+          'Сначала — жилища существ и банки рядом со стартом, они дешевле по риску и не требуют объезда.',
+          'Логистика ускоряет объезд карты, но в первую неделю почти всегда важнее вложиться в армию, а не в мобильность.',
+          'Держи при себе хотя бы один юнит родной фракции героя — иначе штраф морали будет мешать именно в решающих банковских боях.',
+          'Не расходуй армию на банки, которые не приближают тебя к центру или к следующему полезному ресурсу — на Jebus Cross лишний бой стоит хода.'
+        ]
+      }
+    ],
+    tip: 'Перед тем как атаковать банк, наведи курсор на охрану — игра показывает примерную силу гарнизона. Если оценка «сложно» или выше, а армия ещё маленькая — пропусти банк и вернись к нему позже.',
+    quizzes: [
+      { q: 'Почему на Jebus Cross не стоит играть «в поисках ящиков Пандоры», как на Jebus Outcast?', options: ['Ящиков там больше, но они слабее', 'Ящиков почти нет — карта заточена под банки и гонку к центру', 'Ящики там дают только опыт, а не юнитов'], correct: 1 },
+      { q: 'Какой навык помогает заранее оценить силу охраны банка?', options: ['Экономика', 'Разведка', 'Дипломатия'], correct: 1 },
+      { q: 'Что произойдёт, если влезть в банк «на удачу» с почти пустой армией?', options: ['Ничего, банки всегда безопасны', 'Можно потерять армию и стать лёгкой целью для следующего банка или игрока', 'Банк автоматически станет слабее'], correct: 1 }
+    ]
+  },
+  en: {
+    title: 'Jebus Cross: Banks Instead of Pandora\'s Boxes',
+    eyebrow: 'Premium · Template Guide',
+    sections: [
+      {
+        title: '🎁 The Outcast habit that gets in the way',
+        desc: 'On Jebus Outcast, the army grows from Pandora\'s Boxes scattered across the map — open one and get an instant stack. Jebus Cross barely has any: the map is built around the race to the center, not box collecting.',
+        rules: [
+          'Playing Jebus Cross "the Outcast way", hunting for boxes, leaves your army too small for the decisive fights.',
+          'The main army source here is banks (guarded neutral locations) and regular creature dwellings on the map.',
+          'The mindset needs to shift: not "where\'s the chest" but "which guard can I beat right now with zero losses".'
+        ]
+      },
+      {
+        title: '🏦 What banks are and how to farm them',
+        desc: 'A bank is a guarded location: beat the neutral garrison and get a reward (gold, resources, sometimes units or an artifact). The garrison stays the same until the bank is cleared or enough time passes.',
+        rules: [
+          'Start with the weaker banks — their strength is roughly visible from the guard\'s look and the hover tooltip.',
+          'Scouting is especially valuable on Jebus Cross: you see the guard in advance and can judge the fight before committing.',
+          'Tactics gives more room to position troops before a bank fight — it often decides whether you take losses.',
+          'Don\'t gamble on a bank: if your army comes out thin, the next bank or an enemy player will finish you off.'
+        ]
+      },
+      {
+        title: '⚖️ Early-turn priorities',
+        desc: 'On Jebus Cross, time decides everything — every extra turn spent on a weak neutral is lost tempo in the race to the center.',
+        rules: [
+          'Start with dwellings and banks near your start — cheaper in risk and require no detour.',
+          'Logistics speeds up map coverage, but week one is almost always better spent on the army than on mobility.',
+          'Keep at least one unit of the hero\'s native faction — otherwise the morale penalty hits exactly during the decisive bank fights.',
+          'Don\'t spend the army on banks that don\'t move you toward the center or the next useful resource — on Jebus Cross, an extra fight costs a turn.'
+        ]
+      }
+    ],
+    tip: 'Before attacking a bank, hover over the guard — the game shows an approximate garrison strength. If the estimate is "hard" or above and the army is still small, skip it and come back later.',
+    quizzes: [
+      { q: 'Why shouldn\'t you play Jebus Cross "hunting for Pandora\'s Boxes" like on Jebus Outcast?', options: ['There are more boxes there, but weaker', 'There are barely any boxes — the map is built around banks and the race to the center', 'Boxes there only give experience, not units'], correct: 1 },
+      { q: 'Which skill helps judge a bank\'s guard strength in advance?', options: ['Economy', 'Scouting', 'Diplomacy'], correct: 1 },
+      { q: 'What happens if you gamble on a bank with a near-empty army?', options: ['Nothing, banks are always safe', 'You can lose the army and become an easy target for the next bank or a player', 'The bank automatically gets weaker'], correct: 1 }
+    ]
+  }
+}
+,
+'tournament-templates':
+{
+  ru: {
+    title: 'Новые турнирные шаблоны: Jebus/Outcast Tournament, Mix, Galaxy',
+    eyebrow: 'Премиум · Гайд по шаблонам',
+    sections: [
+      {
+        title: '🏆 Jebus Tournament vs Jebus Cross',
+        desc: 'По карте и целям — тот же Jebus Cross: банки, охрана, гонка к центру за ресурсами. Главное отличие введено патчем 11 — непрерывные одновременные ходы: не нужно ждать, пока соперник доиграет свой ход, оба действуют параллельно, без простоя.',
+        rules: [
+          'Играется быстрее классического Jebus Cross за счёт отсутствия ожидания хода соперника.',
+          'С патча 11 Jebus Cross и Jebus Tournament — единственные два шаблона, которые гарантированно есть в ротации рангового Single Hero Mode, остальные слоты меняются.',
+          'Таймер боя в рейтинговых лигах снижен со 120 до 90 секунд — на раздумья в бою стало меньше времени, стоит заранее прикидывать порядок действий.'
+        ]
+      },
+      {
+        title: '⚔️ Outcast Tournament vs Jebus Outcast',
+        desc: 'Та же идея, что в Jebus Outcast — собрать монофракционную армию из Ящиков Пандоры без города. Отличие в формате: вместо одной решающей битвы — серия турнирных боёв, и те же непрерывные одновременные ходы, что и в Jebus Tournament.',
+        rules: [
+          'Серия боёв означает, что армию нужно беречь на дистанцию, а не выкладывать всё в один размен, как в классическом Outcast.',
+          'Одновременные ходы ускоряют сбор армии на старте — не приходится ждать, пока соперник закончит собирать свои ящики.',
+          'Формат больше рассчитан на соревновательную игру, поэтому логично ожидать более агрессивную мету, чем в обычном Jebus Outcast.'
+        ]
+      },
+      {
+        title: '🌀 Гибриды: Mix и Galaxy',
+        desc: 'Названы в патче 11 «гибридными шаблонами» — сочетают механики нескольких классических шаблонов в одной карте. Официальных подробностей по устройству карты пока немного, сообщество продолжает их изучать.',
+        rules: [
+          'Если раньше не пробовал(а) — стоит зайти в лобби и посмотреть тип карты перед стартом, чтобы понимать, экономический это шаблон или боевой.',
+          'Пока нет устоявшейся меты — хорошее время застолбить место среди первых гайдов по этим шаблонам на канале.',
+          'Если через пару патчей информации станет больше — этот раздел гайда стоит будет расширить отдельными разборами Mix и Galaxy.'
+        ]
+      }
+    ],
+    tip: 'Если играешь в ранкеде и раньше не сталкивался(-лась) с одновременными ходами — потренируйся сначала в обычном (не турнирном) режиме: сама механика симультанных ходов меняет то, как быстро нужно принимать решения в первые дни партии.',
+    quizzes: [
+      { q: 'Чем Jebus Tournament принципиально отличается от обычного Jebus Cross?', options: ['Другой картой и целями', 'Непрерывными одновременными ходами вместо ожидания соперника', 'Отсутствием банков на карте'], correct: 1 },
+      { q: 'Что стало с таймером боя в рейтинговых лигах после патча 11?', options: ['Увеличен со 120 до 150 секунд', 'Не изменился', 'Снижен со 120 до 90 секунд'], correct: 2 },
+      { q: 'Какие шаблоны гарантированно есть в ротации рангового Single Hero Mode с патча 11?', options: ['Jebus Cross и Jebus Tournament', 'Exodus и Sprint', 'Mix и Galaxy'], correct: 0 }
+    ]
+  },
+  en: {
+    title: 'New Tournament Templates: Jebus/Outcast Tournament, Mix, Galaxy',
+    eyebrow: 'Premium · Template Guide',
+    sections: [
+      {
+        title: '🏆 Jebus Tournament vs Jebus Cross',
+        desc: 'Same map and goals as Jebus Cross — banks, guards, a race to the center for resources. The key difference, added in Patch 11, is uninterrupted simultaneous turns: no waiting for the opponent to finish their turn, both players act in parallel with no downtime.',
+        rules: [
+          'Plays faster than classic Jebus Cross since there\'s no waiting on the opponent\'s turn.',
+          'Since Patch 11, Jebus Cross and Jebus Tournament are the only two templates guaranteed to appear in the ranked Single Hero Mode rotation — the other slots rotate.',
+          'The combat timer in ranked leagues was lowered from 120 to 90 seconds — less time to think mid-battle, so plan your move order ahead of time.'
+        ]
+      },
+      {
+        title: '⚔️ Outcast Tournament vs Jebus Outcast',
+        desc: 'Same idea as Jebus Outcast — build a single-faction army from Pandora\'s Boxes with no town. The difference is format: instead of one decisive battle, it\'s a series of tournament matches, with the same uninterrupted simultaneous turns as Jebus Tournament.',
+        rules: [
+          'A series of matches means the army needs to last, not get spent all at once like in classic Outcast.',
+          'Simultaneous turns speed up early army building — no waiting for the opponent to finish opening boxes.',
+          'The format leans competitive, so expect a more aggressive meta than regular Jebus Outcast.'
+        ]
+      },
+      {
+        title: '🌀 Hybrids: Mix and Galaxy',
+        desc: 'Called "hybrid templates" in the Patch 11 notes — they combine mechanics from several classic templates on one map. Official details are still thin, and the community is still figuring them out.',
+        rules: [
+          'If you haven\'t tried them yet, check the map type in the lobby before starting so you know whether it leans economic or combat-focused.',
+          'No settled meta yet — a good time to be among the first guides on these templates for the channel.',
+          'If more info surfaces in a future patch, this section is worth expanding with separate Mix and Galaxy breakdowns.'
+        ]
+      }
+    ],
+    tip: 'If you\'re playing ranked and haven\'t dealt with simultaneous turns before, practice in a non-tournament mode first — the mechanic itself changes how fast you need to make decisions in the opening days.',
+    quizzes: [
+      { q: 'What\'s the core difference between Jebus Tournament and regular Jebus Cross?', options: ['A different map and goals', 'Uninterrupted simultaneous turns instead of waiting for the opponent', 'No banks on the map'], correct: 1 },
+      { q: 'What happened to the ranked-league combat timer after Patch 11?', options: ['Increased from 120 to 150 seconds', 'Unchanged', 'Lowered from 120 to 90 seconds'], correct: 2 },
+      { q: 'Which templates are guaranteed in the ranked Single Hero Mode rotation since Patch 11?', options: ['Jebus Cross and Jebus Tournament', 'Exodus and Sprint', 'Mix and Galaxy'], correct: 0 }
+    ]
+  }
+}
+
+
+
+
+
+
+
+
+
+};
+
+
+// ---------- КАЛЬКУЛЯТОР СИНЕРГИЙ ----------
+const SKILLS = [
+  { id: 'offense', icon: '⚔️', cat: 'combat', arch: 'combat', ru: 'Наступление', en: 'Offense', desc: { ru: 'Дружественные существа наносят +10% урона обычными атаками.', en: 'Friendly creatures deal +10% damage with basic attacks.' } },
+  { id: 'defense', icon: '🛡️', cat: 'combat', arch: 'combat', ru: 'Оборона', en: 'Defense', desc: { ru: 'Дружественные существа получают −10% урона от обычных атак.', en: 'Friendly creatures take −10% damage from basic attacks.' } },
+  { id: 'battlecraft', icon: '🥋', cat: 'combat', arch: 'combat', ru: 'Боевой порядок', en: 'Battlecraft', desc: { ru: 'Ожидая в бою, существа получают +20% к атаке до конца раунда, а пропуская ход — +20% к защите.', en: 'Waiting in battle grants +20% Attack until the end of the round; defending grants +20% Defense.' } },
+  { id: 'siegecraft', icon: '🏰', cat: 'combat', arch: 'combat', ru: 'Осадное дело', en: 'Siegecraft', desc: { ru: 'Усиливает армию при штурмах и обороне городов — облегчает взятие и защиту крепостей.', en: 'Strengthens the army during sieges — makes storming and defending towns easier.' } },
+  { id: 'combat', icon: '🗡️', cat: 'combat', arch: 'combat', ru: 'Ратное дело', en: 'Combat', desc: { ru: 'Классовый навык ближнего боя: усиливает удары героя и открывает бонусные боевые приёмы.', en: 'A class skill for melee-focused heroes: strengthens hero strikes and unlocks bonus combat tricks.' } },
+  { id: 'resistance', icon: '🌀', cat: 'combat', arch: 'combat', ru: 'Сопротивление', en: 'Resistance', desc: { ru: 'Дружественные существа получают −15% магического урона.', en: 'Friendly creatures take −15% magic damage.' } },
+  { id: 'tactics', icon: '📐', cat: 'combat', arch: 'combat', ru: 'Тактика', en: 'Tactics', desc: { ru: 'Увеличивает область расстановки войск в тактической фазе до 3 рядов; сжимает область противника, если и у него есть Тактика.', en: 'Extends the pre-battle deployment zone to 3 rows; shrinks the enemy\'s if they also have Tactics.' } },
+  { id: 'battle-magic', icon: '🔥', cat: 'magic', arch: 'magic', ru: 'Боевая магия', en: 'Battle Magic', desc: { ru: 'Атака и защита дружественных существ повышаются на 15% от силы магии и знаний героя соответственно.', en: 'Friendly creatures\' Attack and Defense rise by 15% of the hero\'s Spell Power and Knowledge.' } },
+  { id: 'nightshade-magic', icon: '🌑', cat: 'magic', arch: 'magic', ru: 'Магия ночи', en: 'Nightshade Magic', desc: { ru: 'Герой может изучать заклинания ночи 5-го ранга и ниже.', en: 'The hero can learn rank-5-and-below Nightshade spells.' } },
+  { id: 'arcane-magic', icon: '🔷', cat: 'magic', arch: 'magic', ru: 'Арканная магия', en: 'Arcane Magic', desc: { ru: 'Герой может изучать арканные заклинания 5-го ранга и ниже.', en: 'The hero can learn rank-5-and-below Arcane spells.' } },
+  { id: 'sorcery', icon: '✨', cat: 'magic', arch: 'magic', ru: 'Волшебство', en: 'Sorcery', desc: { ru: '+10% магического урона.', en: '+10% spell damage.' } },
+  { id: 'daylight-magic', icon: '☀️', cat: 'magic', arch: 'magic', ru: 'Магия дня', en: 'Daylight Magic', desc: { ru: 'Герой может изучать заклинания дня 5-го ранга и ниже.', en: 'The hero can learn rank-5-and-below Daylight spells.' } },
+  { id: 'wisdom', icon: '📖', cat: 'magic', arch: 'magic', ru: 'Мудрость', en: 'Wisdom', desc: { ru: 'Герой может изучать заклинания до 3-го ранга даже без навыка соответствующей школы магии.', en: 'The hero can learn spells up to rank 3 even without the matching school skill.' } },
+  { id: 'primal-magic', icon: '🌋', cat: 'magic', arch: 'magic', ru: 'Первородная магия', en: 'Primal Magic', desc: { ru: 'Герой может изучать первородные заклинания 5-го ранга и ниже.', en: 'The hero can learn rank-5-and-below Primal spells.' } },
+  { id: 'summon-avatar', icon: '👤', cat: 'magic', arch: 'magic', ru: 'Призыв аватара', en: 'Summon Avatar', desc: { ru: 'Позволяет призывать боевого аватара героя прямо на поле боя.', en: 'Lets the hero summon a combat avatar directly onto the battlefield.' } },
+  { id: 'insight', icon: '👁️', cat: 'magic', arch: 'magic', ru: 'Проницательность', en: 'Insight', desc: { ru: 'Герой получает +20% опыта.', en: 'The hero gains +20% experience.' } },
+  { id: 'thaumaturgy', icon: '🌟', cat: 'magic', arch: 'magic', ru: 'Чародейство', en: 'Thaumaturgy', desc: { ru: 'Классовый навык: герой может использовать книгу магии в бою ещё раз, применяя заклинание ещё неиспользованной школы (стоимость +100% за каждое повторное применение).', en: 'Class skill: the hero can cast once more per battle from a still-unused school (cost +100% per extra cast).' } },
+  { id: 'logistics', icon: '🥾', cat: 'economy', arch: 'mobility', ru: 'Логистика', en: 'Logistics', desc: { ru: '+10% очков движения по карте приключений.', en: '+10% movement points on the adventure map.' } },
+  { id: 'scouting', icon: '🔭', cat: 'economy', arch: 'mobility', ru: 'Разведка', en: 'Scouting', desc: { ru: 'Герой получает +1 к радиусу обзора.', en: 'The hero gains +1 to viewing radius.' } },
+  { id: 'economy', icon: '💰', cat: 'economy', arch: 'economy', ru: 'Экономика', en: 'Economy', desc: { ru: 'Ежедневно приносит +500 золота.', en: 'Yields +500 gold daily.' } },
+  { id: 'recruitment', icon: '🎖️', cat: 'leadership', arch: 'combat', ru: 'Вербовка', en: 'Recruitment', desc: { ru: 'Классовый навык: усиливает элитные отряды героя и расширяет возможности их пополнения.', en: 'Class skill: strengthens the hero\'s elite stacks and improves how they\'re reinforced.' } },
+  { id: 'diplomacy', icon: '🤝', cat: 'economy', arch: 'economy', ru: 'Дипломатия', en: 'Diplomacy', desc: { ru: 'Повышает шанс присоединения нейтральных отрядов без боя.', en: 'Increases the chance neutral stacks join without a fight.' } },
+  { id: 'leadership', icon: '🚩', cat: 'leadership', arch: 'combat', ru: 'Лидерство', en: 'Leadership', desc: { ru: 'Герой получает +1 к боевому духу.', en: 'The hero gains +1 Morale.' } },
+  { id: 'luck', icon: '🍀', cat: 'leadership', arch: 'combat', ru: 'Удача', en: 'Luck', desc: { ru: 'Герой получает +1 к удаче.', en: 'The hero gains +1 Luck.' } },
+  { id: 'necromancy', icon: '☠️', cat: 'faction', arch: 'combat', ru: 'Некромантия', en: 'Necromancy', desc: { ru: 'После победы преобразует 10% сильнейшего отряда врага в дружественную нежить того же ранга, расходуя некротическую энергию.', en: 'After victory, converts 10% of the enemy\'s strongest stack into friendly undead of the same tier, spending necrotic energy.' } },
+  { id: 'righteousness', icon: '😇', cat: 'faction', arch: 'combat', ru: 'Праведность', en: 'Righteousness', desc: { ru: 'Когда дружественный отряд убивает противника или погибает, атака, защита, сила магии и знания героя растут на 1 на раунд (эффект суммируется).', en: 'When a friendly stack kills an enemy or dies, the hero\'s Attack, Defense, Spell Power and Knowledge rise by 1 for the round (stacks).' } },
+  { id: 'summon-swarm', icon: '🐝', cat: 'faction', arch: 'combat', ru: 'Призыв роя', en: 'Summon Swarm', desc: { ru: 'Раз за раунд создаёт кладку яиц, из которой в начале следующего раунда вылупляется отряд огненных личинок.', en: 'Once per round spawns a clutch of eggs that hatches into a stack of fire larvae at the start of the next round.' } },
+  { id: 'abyssal-communion', icon: '🌀', cat: 'faction', arch: 'combat', ru: 'Причастие к Бездне', en: 'Abyssal Communion', desc: { ru: 'Герой получает +1 к Причастию за победу (максимум 4); существа Раскола получают +3% силы за уровень Причастия до конца боя.', en: 'The hero gains +1 Communion per victory (max 4); Schism creatures get +3% strength per Communion level for the rest of the battle.' } },
+  { id: 'triumvirates-strength', icon: '🔺', cat: 'faction', arch: 'combat', ru: 'Сила Триумвирата', en: 'Triumvirate\'s Strength', desc: { ru: 'Раз за раунд герой выбирает одну из трёх боевых стоек, каждая даёт +2 к одной из характеристик героя.', en: 'Once per round the hero picks one of three combat stances, each granting +2 to one hero attribute.' } },
+  { id: 'murmuring', icon: '🍃', cat: 'faction', arch: 'combat', ru: 'Шёпот стихий', en: 'Murmuring', desc: { ru: 'Генерирует заряды концентрации в начале боя (1 заряд на базовом уровне).', en: 'Generates Focus charges at the start of battle (1 charge at basic level).' } },
+];
+
+const SYNERGY_PAIRS = {
+  'offense|defense': { ru: 'Классическое «бей и держи удар»: Наступление повышает урон, Оборона снижает входящий урон. Хорошо для затяжных сражений.', en: 'A classic "hit and hold": Offense raises damage, Defense lowers incoming damage. Works well for drawn-out fights.' },
+  'offense|battle-magic': { ru: 'Наступление усиливает урон юнитов, Боевая магия — урон заклинаний. Вместе герой угрожает и атакой, и заклинаниями — универсальный силовой билд.', en: 'Offense boosts unit damage, Battle Magic boosts spell damage. Together the hero threatens with both attacks and spells — a versatile might build.' },
+  'offense|nightshade-magic': { ru: 'Наступление увеличивает урон атак, Магия теней ослабляет цель перед ударом — усиленная атака по уже ослабленному противнику.', en: 'Offense boosts attack damage, Nightshade Magic weakens the target beforehand — a heavier hit on an already-weakened enemy.' },
+  'offense|logistics': { ru: 'Наступление даёт урон, Логистика — мобильность. Подходит агрессивному герою, который хочет навязать бой первым.', en: 'Offense gives damage, Logistics gives mobility. Fits an aggressive hero who wants to force an early fight.' },
+  'offense|scouting': { ru: 'Наступление даёт силу в бою, Разведка — обзор карты для поиска целей. Подходит герою, который ищет добычу первым.', en: 'Offense gives combat power, Scouting extends visibility to spot targets first. Fits a hero hunting for easy kills early.' },
+  'offense|diplomacy': { ru: 'Наступление — для сложных боёв, Дипломатия — чтобы не тратить силы на лёгкие цели, забирая их без боя. Экономит армию для важных сражений.', en: 'Offense for hard fights, Diplomacy avoids wasting strength on easy targets by recruiting them without a fight. Saves the army for battles that matter.' },
+  'offense|economy': { ru: 'Наступление растит силу армии, Экономика ускоряет найм новых войск. Билд на постоянное давление за счёт пополнения.', en: 'Offense grows army strength, Economy speeds up hiring new troops. A build for constant pressure through steady reinforcement.' },
+  'defense|battle-magic': { ru: 'Оборона снижает физический урон, Боевая магия добавляет урон заклинаниями. Хорошо для героя, который любит магию, но должен пережить ответку.', en: 'Defense reduces physical damage, Battle Magic adds spell damage. Good for a hero who leans on magic but still needs to survive retaliation.' },
+  'defense|nightshade-magic': { ru: 'Оборона снижает получаемый урон, Магия теней ослабляет угрозу заранее. Оборонительный маг, которого сложно пробить.', en: 'Defense reduces incoming damage, Nightshade Magic weakens the threat beforehand. A defensive mage who\'s hard to break through.' },
+  'defense|logistics': { ru: 'Оборона бережёт армию в бою, Логистика бережёт время на карте. Подходит осторожному герою, который методично зачищает респ.', en: 'Defense protects the army in battle, Logistics saves time on the map. Fits a careful hero clearing the map methodically.' },
+  'defense|scouting': { ru: 'Оборона снижает риск в бою, Разведка — риск неожиданных встреч. Билд для игрока, который не любит рисковать.', en: 'Defense lowers combat risk, Scouting lowers the risk of surprise encounters. A build for a risk-averse player.' },
+  'defense|diplomacy': { ru: 'Оборона помогает в боях, которых нельзя избежать, Дипломатия — избежать тех, которых можно. Вместе — минимум потерь на респе.', en: 'Defense helps in fights you can\'t avoid, Diplomacy helps you avoid the ones you can. Together — minimal losses while clearing the map.' },
+  'defense|economy': { ru: 'Оборона снижает потери, Экономика быстрее их восполняет. Устойчивый билд для затяжной игры.', en: 'Defense reduces losses, Economy replaces them faster. A resilient build for a long game.' },
+  'battle-magic|nightshade-magic': { ru: 'Мощная связка для мага: Магия теней ослабляет противника, Боевая магия увеличивает урон по уже ослабленной цели.', en: 'Strong pairing for a magic hero: Nightshade Magic weakens the enemy, Battle Magic boosts damage against the weakened target.' },
+  'battle-magic|logistics': { ru: 'Боевая магия даёт урон без риска для войск, Логистика быстро доставляет героя к целям. Мобильный маг, бьющий издалека по расписанию.', en: 'Battle Magic deals damage without risking troops, Logistics gets the hero to targets fast. A mobile mage striking from range, on schedule.' },
+  'battle-magic|scouting': { ru: 'Боевая магия сильна против крупных целей, Разведка помогает находить их заранее. Билд на охоту за конкретными жирными банками.', en: 'Battle Magic is strong against big targets, Scouting helps find them in advance. A build for hunting specific high-value banks.' },
+  'battle-magic|diplomacy': { ru: 'Боевая магия — для сложных боёв, Дипломатия разгружает от лёгких. Маг тратит ману только там, где она действительно нужна.', en: 'Battle Magic handles hard fights, Diplomacy clears the easy ones without a fight. The mage spends mana only where it truly matters.' },
+  'battle-magic|economy': { ru: 'Боевая магия требует маны и золота на гильдию магов, Экономика ускоряет и то, и другое. Билд для героя, вкладывающегося в магическую инфраструктуру.', en: 'Battle Magic needs mana and gold for the mage guild, Economy speeds up both. A build investing heavily in magical infrastructure.' },
+  'nightshade-magic|logistics': { ru: 'Магия теней ослабляет цель, Логистика быстро подводит армию, пока эффект действует. Тайминг решает всё.', en: 'Nightshade Magic weakens the target, Logistics gets the army there fast while the effect holds. Timing is everything.' },
+  'nightshade-magic|scouting': { ru: 'Магия теней требует точного применения, Разведка даёт понимание, где и когда её использовать. Расчётливый, а не спонтанный маг.', en: 'Nightshade Magic needs precise use, Scouting tells you where and when to use it. A calculated mage, not a spontaneous one.' },
+  'nightshade-magic|diplomacy': { ru: 'Магия теней ослабляет тех, с кем придётся драться, Дипломатия убирает тех, с кем драться не обязательно. Экономия ресурсов на респе.', en: 'Nightshade Magic weakens what you must fight, Diplomacy removes what you don\'t have to. Resource-efficient map clearing.' },
+  'nightshade-magic|economy': { ru: 'Магия теней даёт преимущество в бою, Экономика ускоряет рост гильдии магов для новых заклинаний. Развивающийся контрольный маг.', en: 'Nightshade Magic gives a combat edge, Economy speeds up mage guild growth for new spells. A scaling control mage.' },
+  'logistics|scouting': { ru: 'Логистика увеличивает дальность хода, Разведка расширяет обзор. Билд для быстрого фарма и разведки, особенно на Jebus Cross.', en: 'Logistics increases movement range, Scouting extends visibility. A build for fast farming and scouting, especially on Jebus Cross.' },
+  'logistics|diplomacy': { ru: 'Логистика доставляет героя быстрее, Дипломатия ускоряет пополнение армии по пути без боя. Билд на скоростной сбор респа.', en: 'Logistics gets the hero there faster, Diplomacy speeds up recruiting along the way without fighting. A build for rapid map clearing.' },
+  'logistics|economy': { ru: 'Логистика экономит время, Экономика — золото. Вместе герой быстрее и богаче соперника с самого старта.', en: 'Logistics saves time, Economy saves gold. Together the hero is faster and richer than the opponent from the start.' },
+  'scouting|diplomacy': { ru: 'Разведка находит нейтральные отряды, Дипломатия присоединяет их без боя. Идеальная пара для мирного набора армии.', en: 'Scouting finds neutral stacks, Diplomacy recruits them without a fight. A perfect pair for peacefully building an army.' },
+  'scouting|economy': { ru: 'Разведка находит ценные объекты, Экономика даёт золото на их освоение. Билд на полное использование респа.', en: 'Scouting finds valuable objects, Economy provides the gold to make use of them. A build for squeezing every drop out of the map.' },
+  'diplomacy|economy': { ru: 'Дипломатия чаще присоединяет нейтралов без боя, Экономика ускоряет накопление золота на их найм. Быстрый рост армии почти без потерь.', en: 'Diplomacy recruits neutrals without a fight more often, Economy speeds up gold for hiring them. Fast, low-loss army growth.' },
+  'necromancy|battle-magic': { ru: 'Некромантия наращивает армию нежити без золота, Боевая магия усиливает её атаку и защиту силой магии героя. Классика Некрополя — армия и герой растут вместе.', en: 'Necromancy grows the undead army for free, Battle Magic boosts its Attack and Defense from the hero\'s Spell Power. The classic Necropolis pairing — army and hero scale together.' },
+  'necromancy|tactics': { ru: 'Некромантия даёт постоянный приток нежити, Тактика расширяет зону расстановки — свежих скелетов удобнее расставить в три ряда перед боем.', en: 'Necromancy keeps feeding in fresh undead, Tactics widens the deployment zone — easier to line up new skeletons before the fight starts.' },
+  'necromancy|insight': { ru: 'Некромантия наращивает армию бесплатно, Проницательность ускоряет рост уровня героя — быстрее открываются продвинутые и экспертные уровни некромантии.', en: 'Necromancy grows the army for free, Insight speeds up hero leveling — faster access to Advanced and Expert Necromancy.' },
+  'righteousness|offense': { ru: 'Праведность даёт герою характеристики за каждую смерть в бою, Наступление превращает выросшую силу магии в дополнительный урон существ. Билд снежным комом набирает мощь по ходу боя.', en: 'Righteousness grants stats for every death in battle, Offense converts the growing Spell Power into extra creature damage. A build that snowballs mid-fight.' },
+  'righteousness|leadership': { ru: 'Праведность растёт от боевых потерь с обеих сторон, Лидерство держит боевой дух высоким, чтобы армия не дрогнула, пока эффект копится.', en: 'Righteousness grows from casualties on both sides, Leadership keeps Morale high so the army doesn\'t falter while the effect stacks.' },
+  'righteousness|battle-magic': { ru: 'Праведность быстро поднимает силу магии героя в бою, Боевая магия сразу переводит этот рост в дополнительную атаку и защиту существ.', en: 'Righteousness quickly raises the hero\'s Spell Power mid-battle, Battle Magic immediately turns that growth into extra creature Attack and Defense.' },
+  'summon-swarm|leadership': { ru: 'Призыв роя каждый раунд добавляет новый отряд личинок, Лидерство поднимает боевой дух — свежее пополнение реже промахивается и действует увереннее.', en: 'Summon Swarm adds a fresh larvae stack every round, Leadership raises Morale — the new arrivals act more reliably.' },
+  'summon-swarm|tactics': { ru: 'Призыв роя добавляет новые отряды прямо в бою, Тактика даёт больше места, чтобы расставить их до столкновения с врагом.', en: 'Summon Swarm adds new stacks mid-battle, Tactics gives more room to position them before the enemy closes in.' },
+  'summon-swarm|battlecraft': { ru: 'Призыв роя каждый раунд пополняет армию личинками, Боевой порядок поощряет держать строй в ожидании — время работает на растущий рой.', en: 'Summon Swarm reinforces the army with larvae every round, Battlecraft rewards holding position — time favors the growing swarm.' },
+  'abyssal-communion|offense': { ru: 'Причастие к Бездне усиливает существ Раскола за каждую победу, Наступление добавляет урона поверх этого бонуса — снежный ком силы от игры на серии побед.', en: 'Abyssal Communion strengthens Schism creatures with every win, Offense adds damage on top of that bonus — a snowball built on a winning streak.' },
+  'abyssal-communion|resistance': { ru: 'Причастие к Бездне усиливает армию Раскола на серии побед, Сопротивление снижает магический урон — легче не потерять серию из-за одного неудачного боя.', en: 'Abyssal Communion strengthens the Schism army on a win streak, Resistance lowers magic damage taken — easier not to break the streak on one bad fight.' },
+  'abyssal-communion|scouting': { ru: 'Причастие к Бездне требует побеждать снова и снова, Разведка помогает быстрее находить следующую цель, пока бонус ещё не сгорел до утра.', en: 'Abyssal Communion demands repeated wins, Scouting helps find the next target faster before the bonus fades by morning.' },
+  'triumvirates-strength|offense': { ru: 'Сила Триумвирата раз за раунд поднимает одну характеристику героя, Наступление стабильно усиливает урон существ вне зависимости от выбранной стойки.', en: 'Triumvirate\'s Strength boosts one hero attribute per round, Offense reliably adds creature damage regardless of the chosen stance.' },
+  'triumvirates-strength|wisdom': { ru: 'Сила Триумвирата может усиливать силу магии героя через стойку Дракона, Мудрость расширяет выбор заклинаний, которые эта сила магии будет усиливать.', en: 'Triumvirate\'s Strength can boost the hero\'s Spell Power via Dragon Stance, Wisdom widens the spell pool that Spell Power then strengthens.' },
+  'triumvirates-strength|tactics': { ru: 'Сила Триумвирата даёт гибкость в бою через смену стоек, Тактика добавляет гибкости в расстановке войск перед боем — билд, который подстраивается на каждом этапе.', en: 'Triumvirate\'s Strength gives in-battle flexibility via stance swaps, Tactics adds pre-battle deployment flexibility — a build that adapts at every stage.' },
+  'murmuring|battle-magic': { ru: 'Шёпот стихий даёт заряды концентрации в начале боя, Боевая магия делает применение этих зарядов ощутимее за счёт силы магии героя.', en: 'Murmuring grants Focus charges at the start of battle, Battle Magic makes spending them hit harder thanks to the hero\'s Spell Power.' },
+  'murmuring|primal-magic': { ru: 'Шёпот стихий даёт заряды концентрации, Первородная магия открывает мощные стихийные заклинания, которые этими зарядами удобно усиливать.', en: 'Murmuring grants Focus charges, Primal Magic unlocks powerful elemental spells that those charges are well suited to power up.' },
+  'murmuring|logistics': { ru: 'Шёпот стихий силён с самого начала боя без разгона, Логистика быстрее доставляет героя туда, где эту мгновенную силу можно применить первым.', en: 'Murmuring is strong from the very start of a fight with no ramp-up, Logistics gets the hero there faster to use that instant power first.' },
+  'tactics|offense': { ru: 'Тактика даёт больше места для манёвра перед боем, Наступление превращает удачную расстановку в дополнительный урон обычных атак.', en: 'Tactics gives more room to maneuver before the fight, Offense turns a good deployment into extra basic-attack damage.' },
+  'wisdom|battle-magic': { ru: 'Мудрость открывает больше заклинаний без привязки к школе магии, Боевая магия делает армию сильнее от каждого пункта накопленной силы магии.', en: 'Wisdom unlocks more spells without needing the matching school, Battle Magic makes the army stronger for every point of accumulated Spell Power.' },
+  'luck|offense': { ru: 'Удача повышает шанс критических исходов в бою, Наступление добавляет базовый урон — вместе редкие удачные моменты бьют ещё сильнее.', en: 'Luck raises the chance of favorable combat rolls, Offense adds base damage — together, the rare lucky moments hit even harder.' },
+  'leadership|recruitment': { ru: 'Лидерство поднимает боевой дух армии, Вербовка усиливает элитные отряды героя — вместе более боеспособная и решительная армия.', en: 'Leadership raises the army\'s Morale, Recruitment strengthens the hero\'s elite stacks — together, a more combat-ready and decisive army.' },
+  'siegecraft|offense': { ru: 'Осадное дело облегчает штурмы и оборону городов, Наступление добавляет урона войскам штурмовой группы — сильный выбор для агрессивной осадной стратегии.', en: 'Siegecraft eases sieges and town defense, Offense adds damage to the storming force — a strong pick for an aggressive siege strategy.' },
+  'combat|battlecraft': { ru: 'Ратное дело усиливает удары героя в ближнем бою, Боевой порядок поощряет выжидание — вместе герой безопаснее подводит войска к решающему удару.', en: 'Combat strengthens the hero\'s melee strikes, Battlecraft rewards waiting — together the hero brings troops to the decisive strike more safely.' },
+  'thaumaturgy|sorcery': { ru: 'Чародейство позволяет применить книгу магии дважды за бой, Волшебство добавляет урона каждому из этих применений.', en: 'Thaumaturgy lets the hero cast twice per battle, Sorcery adds damage to each of those casts.' },
+  'resistance|sorcery': { ru: 'Сопротивление снижает входящий магический урон, Волшебство увеличивает исходящий — герой становится сложнее пробить магией, но сам бьёт заклинаниями сильнее.', en: 'Resistance lowers incoming magic damage, Sorcery raises outgoing damage — the hero gets harder to burn down with magic while hitting harder with it.' },
+  'insight|economy': { ru: 'Проницательность ускоряет рост уровня героя, Экономика даёт золото на постройки и войска, которые этому герою по силам содержать.', en: 'Insight speeds up hero leveling, Economy provides the gold to fund the buildings and troops that hero can now support.' },
+};
+
+// Тематические категории для отображения в списке навыков (по официальной вики heroes-alchemy.com)
+const SKILL_CATEGORIES = {
+  combat:     { icon: '⚔️', ru: 'Бой',        en: 'Combat' },
+  magic:      { icon: '🔮', ru: 'Магия',      en: 'Magic' },
+  economy:    { icon: '💰', ru: 'Экономика',  en: 'Economy' },
+  leadership: { icon: '🚩', ru: 'Лидерство',  en: 'Leadership' },
+  faction:    { icon: '🏯', ru: 'Фракция',    en: 'Faction' }
+};
+
+// Группировка навыков для расчёта архетипа билда (Могущество/Магия/Мобильность/Экономика)
+const ARCH_CATEGORIES = {
+  combat:   { icon: '⚔️', ru: 'Бой',         en: 'Combat' },
+  magic:    { icon: '🔮', ru: 'Магия',       en: 'Magic' },
+  mobility: { icon: '🥾', ru: 'Мобильность', en: 'Mobility' },
+  economy:  { icon: '💰', ru: 'Экономика',   en: 'Economy' }
+};
+
+const SUBSKILL_TIPS = {
+  necromancy: {
+    ru: 'Продвинутая Некромантия поднимает конверсию до 15% сильнейшего вражеского отряда и запас энергии до 1250; поднавык «Вестник смерти» добавляет ещё +500 к максимуму энергии — полезно, если армия нежити уже большая и упирается в потолок энергии.',
+    en: 'Advanced Necromancy raises conversion to 15% of the enemy\'s strongest stack and the energy cap to 1250; the "Vestige of Death" subskill adds another +500 to the cap — useful once the undead army is large and starts hitting the energy ceiling.'
+  },
+  tactics: {
+    ru: 'Тактика не только даёт 3 ряда для расстановки вместо стандартных, но и сжимает зону противника на 1 ряд, если у него того же навыка нет — двойное преимущество перед боем.',
+    en: 'Tactics doesn\'t just grant 3 deployment rows instead of the default — if the enemy lacks the skill, it also shrinks their zone by 1 row, a double edge before the fight even starts.'
+  },
+  luck: {
+    ru: 'Удача работает на уровне отдельных ударов — прокидывается case-by-case на каждую атаку, поэтому чем больше отрядов и атак у героя, тем чаще она реально сработает за бой.',
+    en: 'Luck rolls per individual attack — the more stacks and attacks the hero has, the more often it actually triggers over the course of a fight.'
+  },
+  wisdom: {
+    ru: 'Мудрость особенно ценна для гибридного героя без базового навыка школы магии — она открывает заклинания до 3-го ранга «в обход» требования, экономя выбор навыков на что-то другое.',
+    en: 'Wisdom is especially valuable for a hybrid hero with no base school skill — it unlocks spells up to rank 3 without that prerequisite, freeing up a skill slot for something else.'
+  },
+  offense: {
+    ru: 'Поднавык: фракционное ополчение даёт +10% урона и −10% получаемого урона на родной для героя земле — на раннем этапе это как урезанные Наступление и Оборона в одном поднавыке.',
+    en: 'Subskill tip: the factional-militia bonus gives +10% damage dealt and −10% damage taken on the hero\'s native terrain — early on that\'s a mini Offense-and-Defense in one.'
+  },
+  defense: {
+    ru: 'Поднавык: фракционное ополчение даёт +10% урона и −10% получаемого урона на родной для героя земле — на раннем этапе это как урезанные Наступление и Оборона в одном поднавыке.',
+    en: 'Subskill tip: the factional-militia bonus gives +10% damage dealt and −10% damage taken on the hero\'s native terrain — early on that\'s a mini Offense-and-Defense in one.'
+  },
+  logistics: {
+    ru: 'Поднавык продвинутой Логистики вдвое снижает штраф передвижения по чужой территории — при полном штрафе в 40-80% это ощутимо ускоряет цепочки вне дорог.',
+    en: 'The advanced Logistics subskill halves the movement penalty on foreign terrain — with a base penalty of 40-80%, that\'s a real speedup for off-road chains.'
+  },
+  scouting: {
+    ru: 'Поднавык продвинутой Разведки тоже вдвое снижает штраф передвижения по чужой территории — эффект складывается с логистикой, если оба навыка на герое.',
+    en: 'The advanced Scouting subskill also halves the movement penalty on foreign terrain — this stacks with Logistics if the hero has both.'
+  },
+  diplomacy: {
+    ru: 'Специалисты по дипломатии умеют сбежать с армией с поля боя и выкупиться в таверне — по сути телепорт всей армии за 2500 золота, если бой пошёл не так.',
+    en: 'Diplomacy specialists can flee a losing fight with the whole army and buy back in a tavern — effectively a 2500-gold teleport for the entire army when a battle goes wrong.'
+  }
+};
+
+const ARCHETYPES = {
+  'combat': { icon: '⚔️', template: 'Jebus Outcast', ru: { title: 'Чистый силовик', desc: 'Ставка на прямой бой без магии и логистики. Сильный, но предсказуемый и не самый быстрый на карте.', counter: 'Медленный и небогатый — затягивай игру и изматывай мелкими стычками, не давай навязать один решающий бой.' }, en: { title: 'Pure Might Fighter', desc: 'All-in on direct combat, no magic or mobility. Strong but predictable and not the fastest on the map.', counter: 'Slow and not wealthy — drag the game out and wear him down with small skirmishes, don\'t let him force one decisive fight.' } },
+  'magic': { icon: '🔮', template: 'Outcast Tournament', ru: { title: 'Чистый маг', desc: 'Ставка на заклинания без физической защиты и логистики. Мощно, но уязвимо в затяжной игре.', counter: 'Физически слаб и ограничен маной — заставь драться дольше, чем хватит маны, и контроль потеряет силу.' }, en: { title: 'Pure Mage', desc: 'All-in on spells, no physical defense or mobility. Powerful, but fragile in a long game.', counter: 'Physically weak and mana-limited — force a fight longer than his mana lasts and his control fades.' } },
+  'mobility': { icon: '🥾', template: 'Jebus Cross', ru: { title: 'Разведчик-логист', desc: 'Ставка на скорость и обзор карты без боевой силы. Приходит первым, но слаб в прямом столкновении.', counter: 'Слаб в бою — поймай его армию в открытом поле, и преимущество твоё.' }, en: { title: 'Scout-Logist', desc: 'All-in on speed and visibility, no combat power. Arrives first but weak in a direct clash.', counter: 'Weak in combat — catch this army in the open and the advantage is yours.' } },
+  'economy': { icon: '💰', template: 'Exodus', ru: { title: 'Хозяйственник', desc: 'Ставка на экономику и дипломатию без боя и мобильности. Богатый, но медленный старт.', counter: 'Медленный разгон — дави в начале игры, пока экономика не набрала обороты.' }, en: { title: 'Economist', desc: 'All-in on economy and diplomacy, no combat or mobility. Rich, but a slow start.', counter: 'Slow ramp-up — apply pressure early, before the economy gets going.' } },
+  'combat+magic': { icon: '🗡️', template: 'Jebus Outcast', ru: { title: 'Универсальный воин', desc: 'Угрожает и атакой, и заклинаниями — самый гибкий боевой билд без явных слабостей в бою.', counter: 'Требует золота сразу на бой и магию — бей по экономике, чтобы замедлить разгон обоих направлений.' }, en: { title: 'Versatile Warrior', desc: 'Threatens with both attacks and spells — the most flexible combat build with no obvious weak point.', counter: 'Needs gold for both combat and magic — hit the economy to slow the buildup of either.' } },
+  'combat+mobility': { icon: '🏇', template: 'Jebus Cross', ru: { title: 'Мобильный боец', desc: 'Быстро находит бои и уверенно их выигрывает. Отличный темп, особенно в гонке за центром.', counter: 'Обычно беднее «экономических» билдов — затяни игру, и рост его армии начнёт отставать.' }, en: { title: 'Mobile Fighter', desc: 'Finds fights fast and wins them confidently. Great tempo, especially in a race to the center.', counter: 'Usually poorer than economy builds — stall the game and his army growth falls behind.' } },
+  'combat+economy': { icon: '🛡️', template: 'Exodus', ru: { title: 'Экономический силовик', desc: 'Медленный, но неудержимый разгон — армия постоянно пополняется, пока герой давит боем.', counter: 'Медленный старт — лови его в первые дни, пока армия ещё небольшая.' }, en: { title: 'Economic Might', desc: 'A slow but unstoppable snowball — the army keeps refilling while the hero applies pressure in battle.', counter: 'Slow start — catch him early while the army is still small.' } },
+  'magic+mobility': { icon: '🌀', template: 'Jebus Cross', ru: { title: 'Странствующий маг', desc: 'Быстро перемещается и бьёт заклинаниями издалека. Слаб, если враг навяжет ближний бой.', counter: 'Опасен на расстоянии, слаб в ближнем бою — навяжи ближний бой раньше, чем он успеет ударить заклинаниями.' }, en: { title: 'Wandering Mage', desc: 'Moves fast and strikes with spells from range. Weak if the enemy forces melee.', counter: 'Dangerous at range, weak in melee — force melee before he gets to cast.' } },
+  'magic+economy': { icon: '📖', template: 'Exodus', ru: { title: 'Кабинетный маг', desc: 'Медленно наращивает магическую мощь через экономику. Слабый старт, сильная поздняя игра.', counter: 'Очень слабый старт — дави в первые дни, не давай экономике разогнаться до серьёзной магии.' }, en: { title: 'Scholar Mage', desc: 'Slowly builds magical power through economy. Weak start, strong late game.', counter: 'Very weak start — pressure the first few days, before the economy funds serious magic.' } },
+  'mobility+economy': { icon: '🗺️', template: 'Jebus Cross', ru: { title: 'Респ-машина', desc: 'Специалист по сбору ресурсов и территории. Без боевых навыков — уязвим, если враг найдёт эту армию первым.', counter: 'Совсем нет боевых навыков — если найдёшь его армию, бой будет лёгким.' }, en: { title: 'Map Machine', desc: 'A resource and territory specialist. No combat skills — vulnerable if the enemy finds this army first.', counter: 'No combat skills at all — if you find this army, the fight will be easy.' } },
+  'combat+magic+mobility': { icon: '⚡', template: 'Jebus Cross', ru: { title: 'Быстрый универсал', desc: 'Угрожает всем и везде успевает первым. Сильнейший из гибридных билдов, но требует золота сразу на три направления.', counter: 'Золото размазано на три направления сразу — затяжная игра или удар по экономике замедлит его сильнее, чем прямой бой.' }, en: { title: 'Fast All-Rounder', desc: 'Threatens everything and gets everywhere first. The strongest hybrid build, but demands gold across all three directions at once.', counter: 'Gold is spread across three directions — a long game or hitting the economy slows him more than a direct fight.' } },
+  'combat+magic+economy': { icon: '👑', template: 'Exodus', ru: { title: 'Тяжёлый универсал', desc: 'Медленный разгон, но к поздней игре — угроза в бою и магии без нехватки золота.', counter: 'Медленный, но к поздней игре почти неуязвим — побеждай его до того, как он разгонится.' }, en: { title: 'Heavy All-Rounder', desc: 'A slow build-up, but by the late game — a threat in combat and magic with no gold shortage.', counter: 'Slow, but nearly unstoppable late — beat him before he ramps up.' } },
+  'combat+mobility+economy': { icon: '🐎', template: 'Exodus', ru: { title: 'Разъездной силовик', desc: 'Быстро находит бои, уверенно их выигрывает и не испытывает нехватки золота на пополнение.', counter: 'Слабых мест почти нет, кроме магии — контр-маг может застать его врасплох.' }, en: { title: 'Roaming Might', desc: 'Finds fights fast, wins them confidently, and never runs short on gold for reinforcements.', counter: 'Almost no weak points except magic — a counter-mage can catch him off guard.' } },
+  'magic+mobility+economy': { icon: '🔭', template: 'Exodus', ru: { title: 'Богатый странник', desc: 'Быстрый, богатый и опасный заклинаниями — но совсем не готов к затяжному ближнему бою.', counter: 'Совсем не готов к затяжному ближнему бою — навяжи прямое силовое столкновение.' }, en: { title: 'Wealthy Wanderer', desc: 'Fast, rich and dangerous with spells — but completely unprepared for a drawn-out melee fight.', counter: 'Completely unready for a drawn-out melee — force a direct might clash.' } }
+};
+
+// Общий (не кураторский) разбор пары навыков — строится из их реальных описаний с вики,
+// используется только когда для пары нет вручную написанной синергии в SYNERGY_PAIRS.
+function genericSynergyText(idA, idB) {
+  const a = SKILLS.find(s => s.id === idA);
+  const b = SKILLS.find(s => s.id === idB);
+  if (!a || !b) return null;
+  if (currentLang === 'ru') {
+    return `${a.ru} (${a.desc.ru}) и ${b.ru} (${b.desc.ru}) не образуют широко известную «именную» связку, но ничто не мешает взять оба — герой получит сразу оба эффекта.`;
+  }
+  return `${a.en} (${a.desc.en}) and ${b.en} (${b.desc.en}) don't form a well-known "named" combo, but nothing stops you from taking both — the hero simply gets both effects.`;
+}
+
+function getSynergyText(skillIds) {
+  if (skillIds.length < 2) return null;
+  const results = [];
+  for (let i = 0; i < skillIds.length; i++) {
+    for (let j = i + 1; j < skillIds.length; j++) {
+      const key1 = `${skillIds[i]}|${skillIds[j]}`;
+      const key2 = `${skillIds[j]}|${skillIds[i]}`;
+      const entry = SYNERGY_PAIRS[key1] || SYNERGY_PAIRS[key2];
+      if (entry) {
+        results.push(entry[currentLang]);
+      } else {
+        const fallback = genericSynergyText(skillIds[i], skillIds[j]);
+        if (fallback) results.push(fallback);
+      }
+    }
+  }
+  return results;
+}
+
+function computeArchetype(skillIds) {
+  if (skillIds.length === 0) return null;
+  const cats = [...new Set(skillIds.map(id => SKILLS.find(s => s.id === id).arch))].sort();
+  const key = cats.join('+');
+  return ARCHETYPES[key] || null;
+}
+
+function computeCategoryFill(skillIds) {
+  const fill = { combat: 0, magic: 0, mobility: 0, economy: 0 };
+  skillIds.forEach(id => {
+    const s = SKILLS.find(x => x.id === id);
+    if (s) fill[s.arch] = Math.min(2, fill[s.arch] + 1);
+  });
+  return fill;
+}
+
+function computeSynergyScore(skillIds) {
+  if (skillIds.length < 2) return null;
+  let possible = 0, found = 0;
+  for (let i = 0; i < skillIds.length; i++) {
+    for (let j = i + 1; j < skillIds.length; j++) {
+      possible++;
+      const key1 = `${skillIds[i]}|${skillIds[j]}`;
+      const key2 = `${skillIds[j]}|${skillIds[i]}`;
+      if (SYNERGY_PAIRS[key1] || SYNERGY_PAIRS[key2]) found++;
+    }
+  }
+  return { score: Math.round((found / possible) * 10), found, possible };
+}
+
+let selectedSkills = [];
+
+// ===== ВСТАВЬТЕ СЮДА ВАШ МАССИВ SANDBOX_SCENARIOS =====
+// const SANDBOX_SCENARIOS = [ ... ];
+// ======================================================
+const SANDBOX_SCENARIOS = [
+  {
+    id: 'army-transfer', free: true,
+    ru: {
+      title: 'Передача армии', icon: '🐴',
+      situation: 'Ты играешь за Храм на шаблоне Jebus Cross. У тебя есть главный герой с армией у шахты. В городе ждут 2 дополнительных героя. Твоя задача — за 1 день передать армию герою, который стоит рядом с объектом.',
+      options: [
+        'Взять второго героя и поставить его на дорогу к главному герою',
+        'Взять третьего героя и поставить его рядом с объектом',
+        'Ничего не делать, подождать'
+      ],
+      correct: 0,
+      explain: 'Второй герой заберёт армию у главного и передаст дальше — так армия движется без потери темпа. Третий герой сейчас слишком далеко, чтобы принять войска напрямую.'
+    },
+    en: {
+      title: 'Army Handoff', icon: '🐴',
+      situation: 'You play Temple on Jebus Cross. Your main hero with an army is near a mine. Two extra heroes wait in town. In 1 day, get the army to a hero standing next to the target object.',
+      options: [
+        'Take a second hero and place him on the road to the main hero',
+        'Take a third hero and place him next to the object',
+        'Do nothing, wait'
+      ],
+      correct: 0,
+      explain: 'The second hero will pick up the army from the main hero and pass it further — no tempo lost. The third hero is too far to receive troops directly right now.'
+    }
+  },
+  {
+    id: 'which-bank-first', free: true,
+    ru: {
+      title: 'Какой банк брать первым', icon: '🏦',
+      situation: 'Первый день, стартовая армия. Рядом два банка одинакового (самого маленького) размера — обычный банк с охраной и «Точка равновесия».',
+      options: ['Точку равновесия — там самая ценная награда', 'Обычный банк, точку равновесия отложить на потом', 'Идти в оба сразу одной армией'],
+      correct: 1,
+      explain: 'Точка равновесия даже в самом маленьком размере — один из сложнейших объектов игры, туда нужны специально подобранные инициативные войска. На голой стартовой армии в неё лезть рано.'
+    },
+    en: {
+      title: 'Which Bank First', icon: '🏦',
+      situation: 'Day one, starting army. Two banks of the smallest size nearby — a regular guarded bank and the "Point of Balance".',
+      options: ['Point of Balance — the reward is best', 'The regular bank, save Point of Balance for later', 'Go for both at once with one army'],
+      correct: 1,
+      explain: 'Even at its smallest size, the Point of Balance is one of the hardest objects in the game — it needs specifically chosen high-initiative troops. Too early for a bare starting army.'
+    }
+  },
+  {
+    id: 'block-archers-pob', free: true,
+    ru: {
+      title: 'Блокировка стрелков в точке равновесия', icon: '🎯',
+      situation: 'Заходишь в точку равновесия (4 отряда по углам, среди них стрелки). У тебя два боевых стека и пара единичек с высокой инициативой.',
+      options: ['Единичками вплотную заблокировать стрелков в ближнем бою, боевыми стеками добивать ближайшие цели', 'Всё поставить в центр и пробиваться постепенно', 'Сразу атаковать самый дальний отряд'],
+      correct: 0,
+      explain: 'Инициативные единички в ближнем бою не дают стрелкам выстрелить вообще — это стандартный приём для этого банка.'
+    },
+    en: {
+      title: 'Blocking Archers in Point of Balance', icon: '🎯',
+      situation: 'You enter the Point of Balance (4 stacks in the corners, including archers). You have two combat stacks and a couple of high-initiative single-unit stacks.',
+      options: ['Use the single-unit stacks to lock the archers in melee, main stacks finish off the nearest targets', 'Put everything in the center and push through gradually', 'Attack the farthest stack first'],
+      correct: 0,
+      explain: 'High-initiative single-unit stacks locking archers in melee prevents them from shooting at all — a standard trick for this bank.'
+    }
+  },
+  {
+    id: 'units-vs-archers', free: false,
+    ru: {
+      title: 'Единички против стрелков', icon: '🏹',
+      situation: 'Твой герой подошёл к охране из двух отрядов стрелков. У тебя есть основной боевой стек и несколько дешёвых «единичек».',
+      options: ['Выставить единички так, чтобы забрать ответный удар стрелков на себя, а основным стеком бить в упор', 'Сразу атаковать стрелков основным стеком, не тратясь на единички', 'Держаться подальше и подождать, пока стрелки сами подойдут'],
+      correct: 0,
+      explain: 'Единички берут на себя ответку стрелков — цена их жизни несравнимо ниже, чем урон, который получил бы основной стек. Один из базовых приёмов тренировки боёв.'
+    },
+    en: {
+      title: 'Chaff vs Archers', icon: '🏹',
+      situation: 'Your hero reaches a guard of two archer stacks. You have a main combat stack and a few cheap single-unit "chaff" stacks.',
+      options: ['Use chaff to absorb the archers\' retaliation, hit with the main stack point-blank', 'Attack with the main stack right away, skip the chaff', 'Stay back and wait for the archers to approach'],
+      correct: 0,
+      explain: 'Chaff stacks soak the archers\' retaliation — their cost is far lower than the damage your main stack would otherwise take. A core combat-training trick.'
+    }
+  },
+  {
+    id: 'medusa-bank', free: false,
+    ru: {
+      title: 'Медузятня — кого бить первым', icon: '🐍',
+      situation: 'Заходишь в банк с минотаврами (есть риск потери морали). Один из отрядов улучшенный и особенно быстрый.',
+      options: ['Сначала фокусить улучшенный отряд', 'Начать с самого слабого — быстрее снизить их число', 'Разделить удар поровну между всеми'],
+      correct: 0,
+      explain: 'Улучшенный отряд самый быстрый и опасный — его нейтрализация в первую очередь снижает риск потерь от морали на весь оставшийся бой.'
+    },
+    en: {
+      title: 'Medusa Bank — Who to Hit First', icon: '🐍',
+      situation: 'You enter a minotaur-guarded bank (morale-loss risk). One stack is upgraded and especially fast.',
+      options: ['Focus the upgraded stack first', 'Start with the weakest to reduce their numbers fastest', 'Split damage evenly across all stacks'],
+      correct: 0,
+      explain: 'The upgraded stack is the fastest and most dangerous — neutralizing it first lowers morale-related risk for the rest of the fight.'
+    }
+  },
+  {
+    id: 'coliseum-trick', free: false,
+    ru: {
+      title: 'Колизей — трюк с плотным стеком', icon: '🏛️',
+      situation: 'Заходишь в Колизей (охрана — грифоны с контратакой). У тебя один очень живучий стек и несколько дешёвых единичек.',
+      options: ['Плотный стек — в центр, дешёвые единички — по бокам от него', 'Плотный стек спрятать сзади, единички вперёд принимать удар', 'Все войска в один угол'],
+      correct: 0,
+      explain: 'Грифоны почти гарантированно бьют самый крепкий стек в центре — а ты за счёт контратаки сразу же наносишь им дополнительный урон. Классический «магнит» на банке.'
+    },
+    en: {
+      title: 'Coliseum — the Tanky-Stack Trick', icon: '🏛️',
+      situation: 'You enter the Coliseum (guards are gryphons with retaliation). You have one very tanky stack and several cheap chaff stacks.',
+      options: ['Put the tanky stack in the center, chaff on the sides', 'Hide the tanky stack in the back, chaff up front to tank hits', 'Put all troops in one corner'],
+      correct: 0,
+      explain: 'Gryphons almost always target the toughest central stack — and your retaliation deals bonus damage back. A classic "magnet" trick for this bank.'
+    }
+  },
+  {
+    id: 'draft-bans', free: false,
+    ru: {
+      title: 'Драфт на Jebus Cross — кого банить', icon: '🚫',
+      situation: 'Идёт стадия банов. Соперник играет за Храм, у тебя один бан.',
+      options: ['Банить самого сильного стартового героя фракции (специалиста по стрелкам)', 'Банить случайного героя, не разбирая фракцию', 'Пропустить бан, сохранить на будущее'],
+      correct: 0,
+      explain: 'Против Храма топовые игроки в первую очередь банят именно стрелковых/защитных специалистов — это те герои, что чаще всего решают исход стартовой стадии.'
+    },
+    en: {
+      title: 'Jebus Cross Draft — Who to Ban', icon: '🚫',
+      situation: 'Ban phase. Your opponent plays Temple, you have one ban.',
+      options: ['Ban the faction\'s strongest starter hero (an archer specialist)', 'Ban a random hero regardless of faction', 'Skip the ban, save it for later'],
+      correct: 0,
+      explain: 'Against Temple, top players ban archer/defense specialists first — these heroes most often decide the outcome of the early game.'
+    }
+  },
+  {
+    id: 'main-vs-alt-go', free: false,
+    ru: {
+      title: 'Основное ГО или Альтернативное', icon: '⚔️',
+      situation: 'Финальная стадия. Разведал оба пути к охране центра. Основное ГО сложнее, но замок на выходе через него ближе. Альтернативное проще, но не уверен, что успеешь добежать до замка вовремя.',
+      options: ['Бить основное ГО — даёт надёжный путь к захвату замка', 'Бить альтернативное — оно технически проще', 'Подождать ещё день и разведать подробнее'],
+      correct: 0,
+      explain: 'Идти через альтернативное имеет смысл, только если ты точно уверен, что успеваешь занять замок на выходе именно через него. При любой неуверенности — надёжнее основное.'
+    },
+    en: {
+      title: 'Main Guard or Alternative', icon: '⚔️',
+      situation: 'Endgame. You\'ve scouted both routes to the central guard. The main guard is harder but the exit castle is closer through it. The alternative is easier, but you\'re not sure you\'ll reach the castle in time.',
+      options: ['Fight the main guard — a reliable path to taking the castle', 'Fight the alternative — it\'s technically easier', 'Wait another day and scout more'],
+      correct: 0,
+      explain: 'Going through the alternative only makes sense if you\'re certain you\'ll reach the exit castle through it. Whenever unsure, the main guard is the safer bet.'
+    }
+  }
+];
+
+
+
+// ===== ВСТАВЬТЕ СЮДА ВАШИ ФУНКЦИИ ПЕСОЧНИЦЫ =====
+// openSandboxHub, renderSandboxHub, openSandboxScenario, 
+// renderSandboxScenario, answerSandbox, sandboxGoNext, saveSandboxProgress
+// =================================================
+// ===== ПЕСОЧНИЦА: ОТКРЫТИЕ ХАБА =====
+// ===== ПЕСОЧНИЦА: ОТКРЫТИЕ ХАБА =====
+// ===== ПЕСОЧНИЦА =====
+
+function openSandboxHub() {
+  document.getElementById('topics-view').classList.add('hidden');
+  document.getElementById('premium-view').classList.add('hidden');
+  document.getElementById('subscribe-view').classList.add('hidden');
+  document.getElementById('premium-guide-view').classList.add('hidden');
+  document.getElementById('premium-guides-hub-view').classList.add('hidden');
+  document.getElementById('premium-calc-view').classList.add('hidden');
+  document.getElementById('sandbox-play-view').classList.add('hidden');
+  document.getElementById('sandbox-hub-view').classList.remove('hidden');
+  renderSandboxHub();
+  checkSubscription().then(renderSandboxHub);
+  window.scrollTo(0, 0);
+}
+
+function goSandboxHub() {
+  document.getElementById('sandbox-play-view').classList.add('hidden');
+  document.getElementById('sandbox-hub-view').classList.remove('hidden');
+  renderSandboxHub();
+  window.scrollTo(0, 0);
+}
+
+function renderSandboxHub() {
+  setText('sandbox-hub-eyebrow', t('sandboxHubEyebrow'));
+  setText('sandbox-hub-title', t('sandboxHubTitle'));
+  setText('sandbox-hub-intro', t('sandboxHubIntro'));
+  setText('sandbox-hub-back-label', t('sandboxBackToHub'));
+
+  const list = document.getElementById('sandbox-scenarios-list');
+  list.innerHTML = '';
+  SANDBOX_SCENARIOS.forEach((sc, i) => {
+    const content = sc[currentLang];
+    const done = sandboxCompleted.has(sc.id);
+    const locked = !sc.free && !isSubscribed;
+    const card = document.createElement('div');
+    card.className = 'sb-scenario-card' + (done ? ' done' : '') + (locked ? ' locked' : '');
+    card.onclick = () => (locked ? openSubscribe() : openSandboxScenario(i));
+    card.innerHTML = `
+      <div class="sb-scenario-num">${done ? '✓' : (i + 1)}</div>
+      <div style="flex:1;">
+        <div class="lesson-title">${content.icon} ${content.title}</div>
+      </div>
+      ${locked ? '<div class="premium-tile-lock">🔒</div>' : ''}
+    `;
+    list.appendChild(card);
+  });
+}
+
+function openSandboxScenario(index) {
+  const sc = SANDBOX_SCENARIOS[index];
+  if (!sc.free && !isSubscribed) { 
+    openSubscribe(); 
+    return; 
+  }
+
+  currentSandboxIndex = index;
+  document.getElementById('sandbox-hub-view').classList.add('hidden');
+  document.getElementById('sandbox-play-view').classList.remove('hidden');
+  setText('sandbox-play-back-label', t('sandboxBackToList'));
+  renderSandboxScenario();
+}
+
+function renderSandboxScenario() {
+  const sc = SANDBOX_SCENARIOS[currentSandboxIndex];
+  const content = sc[currentLang];
+  const body = document.getElementById('sandbox-play-body');
+  const letters = currentLang === 'ru' ? ['А', 'Б', 'В', 'Г'] : ['A', 'B', 'C', 'D'];
+  
+  body.innerHTML = `
+    <div class="eyebrow">${t('sandboxStepLabel', currentSandboxIndex + 1, SANDBOX_SCENARIOS.length)}</div>
+    <h1>${content.icon} ${content.title}</h1>
+    <div class="sb-situation-box">${content.situation}</div>
+    <div class="sb-choose-label">${t('sandboxChooseLabel')}</div>
+    <div id="sb-options"></div>
+    <div class="sb-feedback" id="sb-feedback"></div>
+    <div id="sb-next-wrap"></div>
+  `;
+  
+  const optsWrap = document.getElementById('sb-options');
+  content.options.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'sb-option-btn';
+    btn.innerHTML = `<span class="sb-option-letter">${letters[i]}</span> ${opt}`;
+    btn.onclick = () => answerSandbox(i);
+    optsWrap.appendChild(btn);
+  });
+
+  if (tg && tg.HapticFeedback) tg.HapticFeedback.impactOccurred('light');
+  
+  // Прокрутка наверх (как в основном боте)
+  window.scrollTo(0, 0);
+}
+
+function answerSandbox(chosen) {
+  const sc = SANDBOX_SCENARIOS[currentSandboxIndex];
+  const content = sc[currentLang];
+  const opts = document.querySelectorAll('#sb-options .sb-option-btn');
+  const feedback = document.getElementById('sb-feedback');
+  const nextWrap = document.getElementById('sb-next-wrap');
+  
+  const correctAnswer = content.correct;
+  const isCorrect = (chosen === correctAnswer);
+
+  opts.forEach((btn, i) => {
+    btn.disabled = true;
+    btn.onclick = null;
+    
+    if (i === correctAnswer) {
+      btn.classList.add('sb-correct');
+    }
+    
+    if (i === chosen && i !== correctAnswer) {
+      btn.classList.add('sb-wrong');
+    }
+  });
+
+  feedback.className = 'sb-feedback explain show';
+  
+  if (isCorrect) {
+    feedback.textContent = '✅ ' + t('correctFeedback') + ' ' + content.explain;
+  } else {
+    feedback.textContent = '❌ ' + t('wrongFeedback') + ' ' + content.explain;
+  }
+
+  sandboxCompleted.add(sc.id);
+  saveSandboxProgress();
+
+  nextWrap.innerHTML = `<button class="sb-next-btn" onclick="sandboxGoNext()">${t('sandboxNext')}</button>`;
+  setTimeout(() => {
+    nextWrap.scrollIntoView({ behavior: 'smooth', block: 'end' });
+  }, 100);
+}
+
+function sandboxGoNext() {
+  const nextIndex = currentSandboxIndex + 1;
+  
+  if (nextIndex >= SANDBOX_SCENARIOS.length) {
+    const body = document.getElementById('sandbox-play-body');
+    body.innerHTML = `
+      <div class="completion show" style="display:block;">
+        <div class="badge">🏆</div>
+        <h2>${t('sandboxDone')}</h2>
+        <p style="color:var(--parchment-dim); font-size:14px;">${t('sandboxDoneText')}</p>
+        <button class="primary-btn show" onclick="goSandboxHub()" style="display:block;">Вернуться в песочницу</button>
+      </div>
+    `;
+    window.scrollTo(0, 0);
+    return;
+  }
+
+  const nextSc = SANDBOX_SCENARIOS[nextIndex];
+  if (!nextSc.free && !isSubscribed) {
+    const body = document.getElementById('sandbox-play-body');
+    body.innerHTML = `
+      <div class="lock-screen">
+        <div class="lock-icon">🔒</div>
+        <h2>${t('sandboxUpsellTitle')}</h2>
+        <p style="color:var(--parchment-dim);">${t('sandboxUpsellText')}</p>
+        <button class="primary-btn show" onclick="openSubscribe()">${t('lockedBtn')}</button>
+      </div>
+    `;
+    window.scrollTo(0, 0);
+    return;
+  }
+  
+  openSandboxScenario(nextIndex);
+}
+
+async function saveSandboxProgress() {
+  await Storage.set('sandbox_completed', JSON.stringify([...sandboxCompleted]));
+}
+// ======================================================
+// ============== ОСНОВНЫЕ ФУНКЦИИ ======================
+// ======================================================
+
 let currentTopicIndex = null;
 let completed = new Set();
 let currentLessonIndex = null;
 let quizAnswered = [];
+let currentGuideId = null;
 
-// ---------- Language handling ----------
+// ---------- Language ----------
 async function selectLanguage(lang) {
   try {
     currentLang = lang;
@@ -3095,6 +4694,18 @@ async function toggleLanguage() {
   await Storage.set('lang', currentLang);
   if (!document.getElementById('home-view').classList.contains('hidden')) {
     renderHome(true);
+  } else if (!document.getElementById('sandbox-hub-view').classList.contains('hidden')) {
+    renderSandboxHub();
+  } else if (!document.getElementById('sandbox-play-view').classList.contains('hidden')) {
+    renderSandboxScenario();
+  } else if (!document.getElementById('premium-view').classList.contains('hidden')) {
+    renderPremiumHub();
+  } else if (!document.getElementById('premium-guides-hub-view').classList.contains('hidden')) {
+    renderGuidesHub();
+  } else if (!document.getElementById('premium-guide-view').classList.contains('hidden') && currentGuideId) {
+    openPremiumGuide(currentGuideId);
+  } else if (!document.getElementById('subscribe-view').classList.contains('hidden')) {
+    renderSubscribeTiers();
   } else {
     renderTopics();
   }
@@ -3105,41 +4716,7 @@ function t(key, ...args) {
   return typeof val === 'function' ? val(...args) : val;
 }
 
-// ---------- Init ----------
-// ---------- Visitor counter (private, checked only via the key's URL) ----------
-const VISIT_COUNTER_KEY = 'charmroad_olden_era_bot_unique_visitors_2026';
-
-async function countFirstVisit() {
-  try {
-    const alreadyCounted = await Storage.get('visit_counted');
-    if (alreadyCounted) return;
-    await fetch(`https://countapi.mileshilliard.com/api/v1/hit/${VISIT_COUNTER_KEY}`);
-    await Storage.set('visit_counted', '1');
-  } catch (e) {
-    // Silently ignore — never block the app if the counter service is unavailable
-    console.error('Visit counter failed:', e);
-  }
-}
-
-async function init() {
-  const savedLang = await Storage.get('lang');
-  const saved = await Storage.get('completed_lessons');
-  if (saved) {
-    try { completed = new Set(JSON.parse(saved)); } catch(e) {}
-  }
-
-  countFirstVisit();
-  updateProgress(); // <-- обновляем прогресс при загрузке
-
-  if (savedLang === 'ru' || savedLang === 'en') {
-    currentLang = savedLang;
-    document.getElementById('lang-view').classList.add('hidden');
-    document.getElementById('topics-view').classList.remove('hidden');
-    renderTopics();
-  }
-}
-
-// ---------- Topics screen ----------
+// ---------- Topics ----------
 function topicProgress(topic) {
   const done = topic.lessons.filter(l => completed.has(l.id)).length;
   return { done, total: topic.lessons.length };
@@ -3149,12 +4726,25 @@ function renderTopics() {
   document.getElementById('lesson-view').classList.remove('active');
   document.getElementById('completion-view').classList.remove('show');
   document.getElementById('home-view').classList.add('hidden');
+  document.getElementById('sandbox-hub-view').classList.add('hidden');
+  document.getElementById('sandbox-play-view').classList.add('hidden');
+  document.getElementById('premium-view').classList.add('hidden');
+  document.getElementById('subscribe-view').classList.add('hidden');
+  document.getElementById('premium-guide-view').classList.add('hidden');
+  document.getElementById('premium-guides-hub-view').classList.add('hidden');
+  document.getElementById('premium-calc-view').classList.add('hidden');
   document.getElementById('topics-view').classList.remove('hidden');
 
   setText('topics-eyebrow', t('topicsEyebrow'));
   setText('topics-title', t('topicsTitle'));
   setText('topics-lang-toggle-btn', t('langToggle'));
   setText('support-link-label', t('supportLink'));
+  setText('premium-link-label', t('premiumLink'));
+  setText('youtube-btn-label', t('youtubeBtn'));
+  setText('feedback-btn-label-main', t('feedbackBtnMain'));
+  setText('sandbox-tile-title', t('sandboxTileTitle'));
+  setText('sandbox-tile-desc', t('sandboxTileDesc'));
+  setText('sandbox-tile-progress', t('sandboxProgress', sandboxCompleted.size, SANDBOX_SCENARIOS.length));
 
   const list = document.getElementById('topics-list');
   list.innerHTML = '';
@@ -3176,12 +4766,12 @@ function renderTopics() {
     list.appendChild(card);
   });
   
-  updateProgress(); // <-- обновляем прогресс при отрисовке списка тем
+  updateProgress();
 }
 
 function openTopic(index) {
   const topic = TOPICS[index];
-  if (topic.lessons.length === 0) return; // coming soon, not clickable
+  if (topic.lessons.length === 0) return;
   currentTopicIndex = index;
   document.getElementById('topics-view').classList.add('hidden');
   document.getElementById('home-view').classList.remove('hidden');
@@ -3191,6 +4781,11 @@ function openTopic(index) {
 function goTopics() {
   renderTopics();
 }
+
+// ===== ВСТАВЬТЕ СЮДА ФУНКЦИИ УРОКОВ =====
+// renderHome, openLesson, answerQuiz, completeLesson, goHome
+// ==========================================
+
 
 function renderHome(forceList) {
   const topic = TOPICS[currentTopicIndex];
@@ -3248,38 +4843,6 @@ function renderHome(forceList) {
   }
   
   updateProgress(); // <-- обновляем прогресс
-}
-
-function firstIncompleteIndex() {
-  const lessons = TOPICS[currentTopicIndex].lessons;
-  for (let i = 0; i < lessons.length; i++) {
-    if (!completed.has(lessons[i].id)) return i;
-  }
-  return lessons.length - 1;
-}
-
-function shuffleQuizOptions(quiz) {
-  // Создаём массив с индексами [0, 1, 2]
-  const indices = [0, 1, 2];
-  // Перемешиваем индексы случайно
-  for (let i = indices.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [indices[i], indices[j]] = [indices[j], indices[i]];
-  }
-  
-  // Находим правильный ответ
-  const correctAnswer = quiz.options[quiz.correct];
-  
-  // Создаём новый массив options в перемешанном порядке
-  const shuffledOptions = indices.map(i => quiz.options[i]);
-  
-  // Находим новый индекс правильного ответа
-  const newCorrectIndex = shuffledOptions.indexOf(correctAnswer);
-  
-  return {
-    options: shuffledOptions,
-    correct: newCorrectIndex
-  };
 }
 
 function openLesson(index) {
@@ -3364,22 +4927,564 @@ function answerQuiz(quizIndex, chosen, correct) {
     tg.HapticFeedback.notificationOccurred(chosen === correct ? 'success' : 'error');
   }
 }
-
+// ===== ФУНКЦИЯ ЗАВЕРШЕНИЯ УРОКА =====
 async function completeLesson() {
   const l = TOPICS[currentTopicIndex].lessons[currentLessonIndex];
   completed.add(l.id);
   await Storage.set('completed_lessons', JSON.stringify([...completed]));
-  updateProgress(); // <-- обновляем прогресс после завершения урока
+  updateProgress();
   renderHome();
 }
+
 function goHome() {
   renderHome(true);
 }
-  // ===== ОБРАТНАЯ СВЯЗЬ =====
-// Токен бота здесь больше не хранится — все запросы идут через Worker.
-// Впиши сюда адрес своего Worker после деплоя на Cloudflare (шаг 4 в инструкции).
-const WORKER_URL = 'https://oldenera-bot-backend.zinov5471.workers.dev';
 
+function firstIncompleteIndex() {
+  const lessons = TOPICS[currentTopicIndex].lessons;
+  for (let i = 0; i < lessons.length; i++) {
+    if (!completed.has(lessons[i].id)) return i;
+  }
+  return lessons.length - 1;
+}
+
+// Функция для перемешивания вариантов ответов
+function shuffleQuizOptions(quiz) {
+  const indices = [0, 1, 2];
+  for (let i = indices.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [indices[i], indices[j]] = [indices[j], indices[i]];
+  }
+  
+  const correctAnswer = quiz.options[quiz.correct];
+  const shuffledOptions = indices.map(i => quiz.options[i]);
+  const newCorrectIndex = shuffledOptions.indexOf(correctAnswer);
+  
+  return {
+    options: shuffledOptions,
+    correct: newCorrectIndex
+  };
+}
+
+
+
+
+// ---------- ПРЕМИУМ ----------
+async function checkSubscription() {
+  if (PREVIEW_MODE_UNLOCK_ALL) { isSubscribed = true; return true; }
+  if (!tg || !tg.initData) { isSubscribed = false; return false; }
+  try {
+    const res = await fetch(`${WORKER_URL}/check-subscription?initData=${encodeURIComponent(tg.initData)}`);
+    const data = await res.json();
+    isSubscribed = !!(data.ok && data.subscribed);
+  } catch (e) {
+    isSubscribed = false;
+  }
+  return isSubscribed;
+}
+
+function openPremium() {
+  document.getElementById('topics-view').classList.add('hidden');
+  document.getElementById('subscribe-view').classList.add('hidden');
+  document.getElementById('premium-guide-view').classList.add('hidden');
+  document.getElementById('premium-guides-hub-view').classList.add('hidden');
+  document.getElementById('premium-calc-view').classList.add('hidden');
+  document.getElementById('premium-view').classList.remove('hidden');
+  renderPremiumHub();
+  checkSubscription().then(renderPremiumHub);
+  window.scrollTo(0, 0);
+}
+
+function goPremium() {
+  document.getElementById('subscribe-view').classList.add('hidden');
+  document.getElementById('premium-guide-view').classList.add('hidden');
+  document.getElementById('premium-guides-hub-view').classList.add('hidden');
+  document.getElementById('premium-calc-view').classList.add('hidden');
+  document.getElementById('premium-view').classList.remove('hidden');
+  renderPremiumHub();
+  window.scrollTo(0, 0);
+}
+
+function renderPremiumHub() {
+  setText('premium-eyebrow', t('premiumEyebrow'));
+  setText('premium-title', t('premiumTitle'));
+  setText('premium-back-label', t('premiumBackToTopics'));
+
+  const introBox = document.getElementById('premium-intro-box');
+  introBox.innerHTML = `
+    <h2>${t('premiumIntroTitle')}</h2>
+    <p>${t('premiumIntroText')}</p>
+    <ul>${t('premiumIntroPerks').map(p => `<li>${p}</li>`).join('')}</ul>
+  `;
+
+  const list = document.getElementById('premium-tiles-list');
+  list.innerHTML = '';
+
+  const tiles = [
+    { 
+      icon: '📜', 
+      title: t('tileGuide'), 
+      desc: t('tileGuideDesc'), 
+      onClick: openGuidesHub, 
+      locked: !isSubscribed 
+    },
+    { 
+      icon: '🧮', 
+      title: t('tileCalc'), 
+      desc: 'Подбери идеальную комбинацию из 8 навыков. Визуальная шкала синергии!', 
+      onClick: openPremiumCalc, 
+      locked: !isSubscribed 
+    },
+    { 
+      icon: '📣', 
+      title: t('tileShoutout'), 
+      desc: 'Попади в следующий шортс CharmRoad. Твое имя увидит вся аудитория!', 
+      onClick: openPremiumShoutout, 
+      locked: !isSubscribed 
+    }
+  ];
+
+  tiles.forEach(tile => {
+    const el = document.createElement('div');
+    el.className = `premium-card ${tile.locked ? 'locked' : 'unlocked'}`;
+    el.onclick = tile.locked ? null : tile.onClick;
+
+    el.innerHTML = `
+      <div class="card-header">
+        <div class="card-content">
+          <div class="card-icon">${tile.icon}</div>
+          <div>
+            <div class="card-title">${tile.title}</div>
+            <div class="card-desc">${tile.desc}</div>
+          </div>
+        </div>
+        ${tile.locked ? `<div class="card-lock">🔒</div>` : `<div class="card-status">✅</div>`}
+      </div>
+      ${tile.locked ? 
+        `<button class="card-btn unlock" onclick="event.stopPropagation(); openSubscribe();">${t('lockedBtn')}</button>` : 
+        `<button class="card-btn open" onclick="event.stopPropagation(); ${tile.onClick.name}();">Открыть →</button>`
+      }
+    `;
+    list.appendChild(el);
+  });
+}
+
+function renderLockScreen(container) {
+  container.innerHTML = `
+    <div class="lock-screen">
+      <div class="lock-icon">🔒</div>
+      <h2>${t('lockedTitle')}</h2>
+      <p style="color:var(--parchment-dim);">${t('lockedText')}</p>
+      <button class="primary-btn show" onclick="openSubscribe()">${t('lockedBtn')}</button>
+    </div>
+  `;
+}
+
+// ---------- Хаб гайдов ----------
+function goGuidesHub() {
+  document.getElementById('premium-guide-view').classList.add('hidden');
+  document.getElementById('premium-guides-hub-view').classList.remove('hidden');
+  renderGuidesHub();
+  window.scrollTo(0, 0);
+}
+
+async function openGuidesHub() {
+  document.getElementById('premium-view').classList.add('hidden');
+  document.getElementById('premium-guides-hub-view').classList.remove('hidden');
+  window.scrollTo(0, 0);
+  if (isSubscribed === null) await checkSubscription();
+  renderGuidesHub();
+}
+
+function renderGuidesHub() {
+  setText('premium-guides-hub-eyebrow', t('guidesHubEyebrow'));
+  setText('premium-guides-hub-title', t('guidesHubTitle'));
+  setText('premium-guides-hub-intro', t('guidesHubIntro'));
+
+  const list = document.getElementById('premium-guides-hub-list');
+  list.innerHTML = '';
+
+  GUIDES.forEach(guide => {
+    const el = document.createElement('div');
+    el.className = `premium-card ${!isSubscribed ? 'locked' : 'unlocked'}`;
+    el.onclick = !isSubscribed ? null : () => openPremiumGuide(guide.id);
+
+    el.innerHTML = `
+      <div class="card-header">
+        <div class="card-content">
+          <div class="card-icon">${guide.icon}</div>
+          <div>
+            <div class="card-title">${guide.title[currentLang]}</div>
+            <div class="card-desc">${guide.desc[currentLang]}</div>
+          </div>
+        </div>
+        ${!isSubscribed ? `<div class="card-lock">🔒</div>` : `<div class="card-status">✅</div>`}
+      </div>
+      ${!isSubscribed ?
+        `<button class="card-btn unlock" onclick="event.stopPropagation(); openSubscribe();">${t('lockedBtn')}</button>` :
+        `<button class="card-btn open" onclick="event.stopPropagation(); openPremiumGuide('${guide.id}');">${currentLang === 'ru' ? 'Открыть →' : 'Open →'}</button>`
+      }
+    `;
+    list.appendChild(el);
+  });
+}
+
+// ---------- Гайд ----------
+async function openPremiumGuide(guideId) {
+  currentGuideId = guideId;
+  document.getElementById('premium-view').classList.add('hidden');
+  document.getElementById('premium-guides-hub-view').classList.add('hidden');
+  document.getElementById('premium-guide-view').classList.remove('hidden');
+  window.scrollTo(0, 0);
+  const body = document.getElementById('premium-guide-body');
+  body.innerHTML = `<p style="color:var(--parchment-dim); text-align:center; padding:30px 0;">${t('checkingAccess')}</p>`;
+
+  if (isSubscribed === null) await checkSubscription();
+  if (!isSubscribed) { renderLockScreen(body); return; }
+
+  const content = GUIDES_CONTENT[guideId][currentLang];
+  body.innerHTML = `
+    <div class="premium-badge">Premium</div>
+    <div class="eyebrow">${content.eyebrow}</div>
+    <h1>${content.title}</h1>
+    <div class="lesson-body">
+      ${content.sections.map(s => `
+        <div class="guide-section" style="background: var(--bg-elevated); border-radius: var(--radius); padding: 16px; margin-bottom: 16px; border-left: 3px solid var(--gold);">
+          <h3 style="margin: 0 0 8px 0; color: var(--gold);">${s.title}</h3>
+          <p style="color: var(--parchment-dim); margin: 0 0 10px 0;">${s.desc}</p>
+          <ul style="list-style: none; padding: 0; margin: 0;">
+            ${s.rules.map(rule => `<li style="padding: 4px 0; font-size: 14px; color: var(--parchment);">✨ ${rule}</li>`).join('')}
+          </ul>
+        </div>
+      `).join('')}
+      <div class="tip-box"><b>${t('tipLabel')}</b> ${content.tip}</div>
+    </div>
+    <div id="premium-guide-quiz"></div>
+  `;
+
+      // ========== ВИКТОРИНА ==========
+  const quizContainer = document.getElementById('premium-guide-quiz');
+  
+  // Проверяем, есть ли вопросы в контенте
+  const quizzes = content.quizzes || [];
+  
+  if (quizzes && quizzes.length > 0) {
+    quizzes.forEach((quiz, qIndex) => {
+      const block = document.createElement('div');
+      block.className = 'quiz';
+      block.style.marginTop = qIndex === 0 ? '22px' : '14px';
+      block.innerHTML = `
+        <div class="quiz-q">${qIndex + 1}. ${quiz.q}</div>
+        <div class="quiz-opts-p${qIndex}"></div>
+        <div class="quiz-feedback" id="pquiz-feedback-${qIndex}"></div>
+      `;
+      quizContainer.appendChild(block);
+      
+      const optsWrap = block.querySelector(`.quiz-opts-p${qIndex}`);
+      quiz.options.forEach((opt, i) => {
+        const optBtn = document.createElement('button');
+        optBtn.className = 'quiz-opt';
+        optBtn.textContent = opt;
+        optBtn.onclick = (function(idx, qIdx) {
+          return function() {
+            answerPremiumQuiz(qIdx, idx, quiz.correct);
+          };
+        })(i, qIndex);
+        optsWrap.appendChild(optBtn);
+      });
+    });
+  } else {
+    quizContainer.innerHTML = `<p style="color:var(--parchment-dim); text-align:center; margin-top:20px;">📝 Вопросов для этого гайда пока нет.</p>`;
+  }
+}
+
+// ---------- Калькулятор ----------
+async function openPremiumCalc() {
+  document.getElementById('premium-view').classList.add('hidden');
+  document.getElementById('premium-calc-view').classList.remove('hidden');
+  window.scrollTo(0, 0);
+  const body = document.getElementById('premium-calc-body');
+  body.innerHTML = `<p style="color:var(--parchment-dim); text-align:center; padding:30px 0;">${t('checkingAccess')}</p>`;
+
+  if (isSubscribed === null) await checkSubscription();
+  if (!isSubscribed) { renderLockScreen(body); return; }
+
+  selectedSkills = [];
+  body.innerHTML = `
+    <div class="premium-badge">Premium</div>
+    <h1>${t('tileCalc')}</h1>
+    <p style="color:var(--parchment-dim);">${t('calcPick')}</p>
+    
+    <div style="margin: 16px 0;">
+      <div style="font-size:13px; color:var(--parchment-dim); margin-bottom:8px;">Популярные билды:</div>
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <button class="quick-build-btn" onclick="loadBuild(['offense', 'defense'])">⚔️ Воин</button>
+        <button class="quick-build-btn" onclick="loadBuild(['battle-magic', 'nightshade-magic'])">🔮 Чистый маг</button>
+        <button class="quick-build-btn" onclick="loadBuild(['logistics', 'scouting'])">🏃 Разведчик</button>
+        <button class="quick-build-btn" onclick="loadBuild(['diplomacy', 'economy'])">💰 Экономист</button>
+        <button class="quick-build-btn" onclick="loadBuild(['necromancy', 'battle-magic'])">☠️ Некромант</button>
+        <button class="quick-build-btn" onclick="loadBuild(['righteousness', 'offense'])">😇 Паладин</button>
+      </div>
+    </div>
+
+    <div id="calc-skills-groups"></div>
+    <div class="calc-stats-box" id="calc-stats-box"></div>
+    <div id="calc-archetype-box"></div>
+    <div class="calc-result-box empty" id="calc-result-box">${t('calcEmpty')}</div>
+  `;
+  renderCalcSkills();
+  renderCalcOutput();
+}
+
+function loadBuild(skillIds) {
+  selectedSkills = skillIds.slice(0, 3);
+  renderCalcSkills();
+  renderCalcOutput();
+  setTimeout(() => {
+    const resultBox = document.getElementById('calc-result-box');
+    if (resultBox) resultBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, 100);
+}
+
+function renderCalcSkills() {
+  const wrap = document.getElementById('calc-skills-groups');
+  wrap.innerHTML = '';
+  ['combat', 'magic', 'economy', 'leadership', 'faction'].forEach(catId => {
+    const cat = SKILL_CATEGORIES[catId];
+    const group = document.createElement('div');
+    group.className = 'calc-cat-group';
+    group.innerHTML = `<div class="calc-cat-label">${cat.icon} ${cat[currentLang]}</div>`;
+    const chipsRow = document.createElement('div');
+    chipsRow.className = 'calc-skills';
+    SKILLS.filter(s => s.cat === catId).forEach(skill => {
+      const chip = document.createElement('div');
+      chip.className = 'calc-skill-chip' + (selectedSkills.includes(skill.id) ? ' selected' : '');
+      chip.title = skill.desc ? skill.desc[currentLang] : '';
+      chip.innerHTML = `${skill.icon} ${skill[currentLang]}`;
+      chip.onclick = () => toggleSkillChip(skill.id);
+      chipsRow.appendChild(chip);
+    });
+    group.appendChild(chipsRow);
+    wrap.appendChild(group);
+  });
+}
+
+function toggleSkillChip(skillId) {
+  const i = selectedSkills.indexOf(skillId);
+  if (i >= 0) {
+    selectedSkills.splice(i, 1);
+  } else {
+    if (selectedSkills.length >= 3) selectedSkills.shift();
+    selectedSkills.push(skillId);
+  }
+  renderCalcSkills();
+  renderCalcOutput();
+}
+
+function renderCalcOutput() {
+  const statsBox = document.getElementById('calc-stats-box');
+  if (selectedSkills.length === 0) {
+    statsBox.innerHTML = '';
+  } else {
+    const fill = computeCategoryFill(selectedSkills);
+    statsBox.innerHTML = `
+      <div class="calc-stats-title">${t('calcStatsTitle')}</div>
+      ${['combat', 'magic', 'mobility', 'economy'].map(catId => {
+        const cat = ARCH_CATEGORIES[catId];
+        const pct = (fill[catId] / 2) * 100;
+        return `
+          <div class="calc-stat-row">
+            <div class="calc-stat-label">${cat.icon} ${cat[currentLang]}</div>
+            <div class="calc-stat-track"><div class="calc-stat-fill" style="width:${pct}%"></div></div>
+          </div>
+        `;
+      }).join('')}
+    `;
+  }
+
+  const archetypeBox = document.getElementById('calc-archetype-box');
+  const archetype = computeArchetype(selectedSkills);
+  const synergy = computeSynergyScore(selectedSkills);
+  
+  if (archetype) {
+    const content = archetype[currentLang];
+    archetypeBox.innerHTML = `
+      <div class="tier-card" style="margin: 14px 0;">
+        <div style="font-size:26px; margin-bottom:6px;">${archetype.icon}</div>
+        <div class="tier-name">${content.title}</div>
+        <p style="font-size:13.5px; color:var(--parchment-dim); margin:8px 0 0;">${content.desc}</p>
+        <p style="font-size:12.5px; color:var(--gold); margin:10px 0 0;">${t('calcTemplateHint')}: ${archetype.template}</p>
+        <div class="calc-counter-box">
+          <div class="calc-counter-label">${t('calcCounterLabel')}</div>
+          <p style="font-size:13px; color:var(--parchment-dim); margin:4px 0 0;">${content.counter}</p>
+        </div>
+      </div>
+    `;
+  } else {
+    archetypeBox.innerHTML = '';
+  }
+
+  let synergyHTML = '';
+  if (synergy) {
+    const scorePercent = synergy.score * 10;
+    const color = synergy.score > 7 ? 'var(--success)' : 'var(--gold)';
+    synergyHTML = `
+      <div class="synergy-meter" style="margin: 14px 0;">
+        <div style="display: flex; justify-content: space-between; font-size: 13px; color: var(--parchment-dim);">
+          <span>${t('calcSynergyScore')}</span>
+          <span>${synergy.score}/10</span>
+        </div>
+        <div style="width: 100%; height: 8px; background: rgba(255,255,255,0.08); border-radius: 6px; overflow: hidden; margin-top: 4px;">
+          <div style="width: ${scorePercent}%; height: 100%; background: ${color}; border-radius: 6px; transition: width 0.5s ease;"></div>
+        </div>
+      </div>
+    `;
+  }
+
+  const tipKeys = [...new Set(selectedSkills.filter(id => SUBSKILL_TIPS[id]))];
+  const tipsHtml = tipKeys.map(id => `<div class="calc-subtip">💡 ${SUBSKILL_TIPS[id][currentLang]}</div>`).join('');
+
+  const box = document.getElementById('calc-result-box');
+  const results = getSynergyText(selectedSkills);
+  const bodyHtml = (results && results.length > 0) ? results.map(r => `<p>${r}</p>`).join('') : '';
+
+  if (!bodyHtml && !tipsHtml && !synergyHTML) {
+    box.className = 'calc-result-box empty';
+    box.textContent = t('calcEmpty');
+  } else {
+    box.className = 'calc-result-box';
+    box.innerHTML = (bodyHtml ? `<div class="calc-result-heading">${t('calcPairsTitle')}</div>${bodyHtml}` : '') + tipsHtml + synergyHTML;
+  }
+}
+
+// ---------- Подписка ----------
+function openSubscribe() {
+  document.getElementById('premium-view').classList.add('hidden');
+  document.getElementById('sandbox-hub-view').classList.add('hidden');
+  document.getElementById('sandbox-play-view').classList.add('hidden');
+  document.getElementById('premium-guide-view').classList.add('hidden');
+  document.getElementById('premium-guides-hub-view').classList.add('hidden');
+  document.getElementById('premium-calc-view').classList.add('hidden');
+  document.getElementById('subscribe-view').classList.remove('hidden');
+  renderSubscribeTiers();
+  window.scrollTo(0, 0);
+}
+
+function renderSubscribeTiers() {
+  setText('subscribe-eyebrow', t('subscribeEyebrow'));
+  setText('subscribe-title', t('subscribeTitle'));
+  setText('subscribe-back-label', t('premiumBackToHub'));
+
+  const perks = t('premiumIntroPerks');
+  const list = document.getElementById('subscribe-tiers-list');
+  list.innerHTML = `
+    <div class="tier-card">
+      <div class="tier-name">Инсайдер</div>
+      <div class="tier-price">⭐ ${SUB_PRICES.insider.stars} / ${currentLang === 'ru' ? 'мес' : 'mo'}</div>
+      <ul class="tier-perks">${perks.map(p => `<li>${p}</li>`).join('')}</ul>
+      <button class="tier-buy-btn" onclick="buyTier('insider')" id="buy-btn-insider">${t('payBtn')}</button>
+    </div>
+  `;
+
+  const status = document.getElementById('subscribe-status');
+  status.style.display = 'none';
+}
+
+async function buyTier(tier) {
+  const status = document.getElementById('subscribe-status');
+  const btn = document.getElementById(`buy-btn-${tier}`);
+
+  if (!tg || !tg.initData) {
+    status.style.display = 'block';
+    status.textContent = t('notInTelegram');
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = t('payingBtn');
+
+  try {
+    const res = await fetch(`${WORKER_URL}/create-invoice`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ initData: tg.initData, tier })
+    });
+    const data = await res.json();
+    if (!data.ok) throw new Error(data.error || 'invoice_failed');
+
+    tg.openInvoice(data.link, async (result) => {
+      btn.disabled = false;
+      btn.textContent = t('payBtn');
+      if (result === 'paid') {
+        status.style.display = 'block';
+        status.textContent = t('paySuccess');
+        await checkSubscription();
+      } else if (result === 'cancelled') {
+        status.style.display = 'block';
+        status.textContent = t('payCancelled');
+      }
+    });
+  } catch (e) {
+    btn.disabled = false;
+    btn.textContent = t('payBtn');
+    status.style.display = 'block';
+    status.textContent = t('payError');
+  }
+}
+
+// ---------- Привет в шортсе ----------
+async function openPremiumShoutout() {
+  document.getElementById('premium-view').classList.add('hidden');
+  document.getElementById('premium-guide-view').classList.remove('hidden');
+  const body = document.getElementById('premium-guide-body');
+  body.innerHTML = `<p style="color:var(--parchment-dim); text-align:center; padding:30px 0;">${t('checkingAccess')}</p>`;
+
+  if (isSubscribed === null) await checkSubscription();
+  if (!isSubscribed) { renderLockScreen(body); return; }
+
+  body.innerHTML = `
+    <div class="premium-badge">Premium</div>
+    <h1>${t('tileShoutout')}</h1>
+    <p style="color:var(--parchment-dim); margin-bottom:14px;">${t('shoutoutIntro')}</p>
+
+    <div style="margin: 16px 0; background: var(--bg-elevated); border-radius: var(--radius); padding: 12px;">
+      <div style="font-size:12px; color:var(--parchment-dim); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:8px;">Недавние приветы</div>
+      <div class="shoutout-feed-item" style="font-size:13px; color:var(--parchment); padding:6px 0; border-bottom:1px solid rgba(255,255,255,0.05);">Алексей: «Чармроуд, ты лучший! Спасибо за гайды!»</div>
+      <div class="shoutout-feed-item" style="font-size:13px; color:var(--parchment); padding:6px 0; border-bottom:1px solid rgba(255,255,255,0.05);">Мария: «Очень жду новых стримов по Некрополю!»</div>
+      <div class="shoutout-feed-item" style="font-size:13px; color:var(--parchment); padding:6px 0;">Дмитрий: «Благодаря твоим советам выиграл первый PvP-матч!»</div>
+    </div>
+
+    <textarea id="shoutout-text" placeholder="${t('shoutoutPlaceholder')}" style="width:100%; min-height:100px; padding:12px; border-radius:12px; border:1px solid rgba(201,161,92,0.25); background:var(--bg-elevated); color:var(--parchment); font-family:'Manrope',sans-serif; font-size:14px; box-sizing:border-box;"></textarea>
+    <button class="tier-buy-btn" style="margin-top:12px;" onclick="sendShoutout()" id="shoutout-send-btn">${t('shoutoutSend')}</button>
+    <p id="shoutout-status" style="font-size:13px; color:var(--parchment-dim); text-align:center; display:none; margin-top:10px;"></p>
+  `;
+}
+
+async function sendShoutout() {
+  const textEl = document.getElementById('shoutout-text');
+  const status = document.getElementById('shoutout-status');
+  const btn = document.getElementById('shoutout-send-btn');
+  const text = textEl.value.trim();
+  if (!text) return;
+
+  btn.disabled = true;
+  try {
+    await fetch(`${WORKER_URL}/feedback`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text: `📣 ПРИВЕТ В ШОРТС:\n\n${text}`, initData: (tg && tg.initData) ? tg.initData : null })
+    });
+    status.style.display = 'block';
+    status.textContent = t('shoutoutSent');
+    textEl.value = '';
+  } catch (e) {
+    status.style.display = 'block';
+    status.textContent = t('payError');
+  }
+  btn.disabled = false;
+}
+
+// ---------- ОБРАТНАЯ СВЯЗЬ ----------
 function openFeedbackForm() {
   const form = document.getElementById('feedback-form');
   if (form.style.display === 'none' || form.style.display === '') {
@@ -3396,48 +5501,31 @@ function closeFeedbackForm() {
 }
 
 function sendFeedback() {
-    const text = document.getElementById('feedback-text').value.trim();
-    if (!text) {
-        alert('✏️ Напишите сообщение!');
-        return;
-    }
-
-    fetch(`${WORKER_URL}/feedback`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.ok) {
-            alert('✅ Спасибо! Сообщение отправлено.');
-            closeFeedbackForm();
-        } else {
-            alert('❌ Ошибка: попробуйте позже.');
-        }
-    })
-    .catch(() => {
-        alert('❌ Ошибка соединения. Проверьте интернет.');
-    });
-}
-// ===== КНОПКА "НАВЕРХ" =====
-  const scrollBtn = document.getElementById('scrollTopBtn');
-
-  window.addEventListener('scroll', function() {
-    if (window.scrollY > 300) {
-      scrollBtn.classList.add('visible');
-    } else {
-      scrollBtn.classList.remove('visible');
-    }
-  });
-
-  function scrollToTop() {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+  const text = document.getElementById('feedback-text').value.trim();
+  if (!text) {
+    alert('✏️ Напишите сообщение!');
+    return;
   }
-// ===== ОБРАТНАЯ СВЯЗЬ (НОВАЯ СТРАНИЦА) =====
+
+  fetch(`${WORKER_URL}/feedback`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ text })
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.ok) {
+      alert('✅ Спасибо! Сообщение отправлено.');
+      closeFeedbackForm();
+    } else {
+      alert('❌ Ошибка: попробуйте позже.');
+    }
+  })
+  .catch(() => {
+    alert('❌ Ошибка соединения. Проверьте интернет.');
+  });
+}
+
 function openFeedbackPage() {
   document.getElementById('topics-view').classList.add('hidden');
   document.getElementById('feedback-view').classList.remove('hidden');
@@ -3483,13 +5571,95 @@ function sendFeedbackNew() {
   });
 }
 
-// Переопределяем goTopics, чтобы скрывать feedback-view
+// ===== КНОПКА "НАВЕРХ" =====
+const scrollBtn = document.getElementById('scrollTopBtn');
+window.addEventListener('scroll', function() {
+  if (window.scrollY > 300) {
+    scrollBtn.classList.add('visible');
+  } else {
+    scrollBtn.classList.remove('visible');
+  }
+});
+
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+}
+
+// ===== ИНИЦИАЛИЗАЦИЯ =====
 const originalGoTopics = goTopics;
 goTopics = function() {
   document.getElementById('feedback-view').classList.add('hidden');
   originalGoTopics();
 };
+
+// Функция init
+async function init() {
+  const savedLang = await Storage.get('lang');
+  const saved = await Storage.get('completed_lessons');
+  if (saved) {
+    try { completed = new Set(JSON.parse(saved)); } catch(e) {}
+  }
+  const savedSandbox = await Storage.get('sandbox_completed');
+  if (savedSandbox) {
+    try { sandboxCompleted = new Set(JSON.parse(savedSandbox)); } catch(e) {}
+  }
+
+  updateProgress();
+
+  if (savedLang === 'ru' || savedLang === 'en') {
+    currentLang = savedLang;
+    document.getElementById('lang-view').classList.add('hidden');
+    document.getElementById('topics-view').classList.remove('hidden');
+    renderTopics();
+  }
+};
+// ===================================================================
+// ========== ФУНКЦИЯ ДЛЯ ВИКТОРИНЫ В ПРЕМИУМ-ГАЙДЕ ==========
+// ===================================================================
+
+function answerPremiumQuiz(quizIndex, chosen, correct) {
+  // Находим блок викторины по индексу
+  const allQuizzes = document.querySelectorAll('#premium-guide-quiz .quiz');
+  const block = allQuizzes[quizIndex];
+  
+  if (!block) {
+    console.error('Блок викторины не найден для индекса:', quizIndex);
+    return;
+  }
+  
+  // Находим все варианты ответов в этом блоке
+  const opts = block.querySelectorAll('.quiz-opt');
+  
+  // Подсвечиваем правильный и выбранный ответы
+  opts.forEach((btn, i) => {
+    btn.onclick = null; // Отключаем повторные клики
+    if (i === correct) {
+      btn.classList.add('correct'); // Правильный ответ - зеленый
+    } else if (i === chosen && i !== correct) {
+      btn.classList.add('wrong'); // Неправильный выбранный - красный
+    }
+  });
+  
+  // Показываем feedback
+  const feedback = document.getElementById(`pquiz-feedback-${quizIndex}`);
+  if (feedback) {
+    if (chosen === correct) {
+      feedback.textContent = '✅ ' + t('correctFeedback');
+    } else {
+      feedback.textContent = '❌ ' + t('wrongFeedback');
+    }
+    feedback.classList.add('show');
+  }
+}
+
+
+// Запуск
 init();
+
+
 </script>
 </body>
 </html>
