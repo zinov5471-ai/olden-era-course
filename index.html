@@ -1207,7 +1207,7 @@
     border-radius: var(--radius);
     padding: 16px;
     margin-bottom: 12px;
-    transition: all 0.2s ease;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
     border: 1px solid rgba(255,255,255,0.08);
   }
   .premium-card.unlocked {
@@ -1566,6 +1566,20 @@ try {
     tg.expand();
     tg.setHeaderColor('#14121F');
     tg.setBackgroundColor('#14121F');
+    // Запрещаем закрытие мини-аппа свайпом вниз при скролле —
+    // выйти можно только через стандартную кнопку "Закрыть".
+    try {
+      if (typeof tg.disableVerticalSwipes === 'function') {
+        tg.disableVerticalSwipes();
+      }
+    } catch (e) {}
+    // На случай если Telegram-клиент всё же попытается закрыть окно
+    // (например, старый клиент без disableVerticalSwipes) — спросить подтверждение.
+    try {
+      if (typeof tg.enableClosingConfirmation === 'function') {
+        tg.enableClosingConfirmation();
+      }
+    } catch (e) {}
   }
 } catch (e) {
   console.error('Telegram WebApp init failed, continuing without it:', e);
@@ -1962,9 +1976,12 @@ function updateProgress() {
     if (alreadyCounted) return;
 
     // Отправляем запрос на увеличение счётчика
-    await fetch(`https://countapi.mileshilliard.com/api/v1/hit/${VISIT_COUNTER_KEY}`);
-    
+    const res = await fetch(`https://countapi.mileshilliard.com/api/v1/hit/${VISIT_COUNTER_KEY}`);
+    if (!res.ok) throw new Error('CountAPI hit failed: ' + res.status);
+
     // Помечаем, что для этого устройства счёт уже учтён
+    // (только после успешного ответа — иначе при сбое сервера
+    // визит "терялся" бы навсегда, потому что флаг уже стоит)
     await Storage.set('visit_counted', '1');
   } catch (e) {
     // Если счётчик недоступен, просто игнорируем ошибку — бот продолжит работать
@@ -5513,7 +5530,13 @@ function openPremium() {
   document.getElementById('premium-battle-calc-view').classList.add('hidden');
   document.getElementById('premium-view').classList.remove('hidden');
   renderPremiumHub();
-  checkSubscription().then(renderPremiumHub);
+  // Проверяем подписку только если ещё не проверяли в этой сессии —
+  // раньше fetch уходил при каждом открытии раздела, из-за чего хаб
+  // рендерился дважды подряд (сначала оптимистично, потом после ответа
+  // сервера) и на медленной сети это ощущалось как подтормаживание.
+  if (isSubscribed === null) {
+    checkSubscription().then(renderPremiumHub);
+  }
   window.scrollTo(0, 0);
 }
 
