@@ -21,8 +21,9 @@
     --radius: 14px;
   }
   *{box-sizing:border-box; -webkit-tap-highlight-color: transparent;}
-  html,body{margin:0; padding:0; overflow-anchor: none;}
+  html,body{margin:0; padding:0; overflow-anchor: none; overscroll-behavior: none; /* ← добавьте эту строку */}
   body{
+
     background: radial-gradient(ellipse at top, #201C33 0%, var(--bg) 55%);
     overscroll-behavior: none; /* ← добавьте эту строку */
     color: var(--parchment);
@@ -974,7 +975,7 @@
   width: 100%;
   min-height: 80vh;
 }
-#premium-cheatsheets-view:not(.hidden)
+#premium-cheatsheets-view:not(.hidden),
 #feedback-view:not(.hidden),
 #premium-view:not(.hidden),
 #subscribe-view:not(.hidden),
@@ -6441,7 +6442,42 @@ goTopics = function() {
   originalGoTopics();
 };
 
+// ===== БЛОКИРОВКА ЗАКРЫТИЯ МИНИ-ПРИЛОЖЕНИЯ ЧЕРЕЗ OVERSRCROLL =====
+(function preventOverscrollClose() {
+  // Проверяем, что мы в Telegram WebApp
+  if (typeof tg !== 'undefined' && tg) {
+    let startY = 0;
+    let startX = 0; // не используется, но для полноты
 
+    document.addEventListener('touchstart', function(e) {
+      // Запоминаем начальную позицию касания
+      const touch = e.touches[0];
+      if (touch) {
+        startY = touch.clientY;
+        startX = touch.clientX;
+      }
+    }, { passive: true });
+
+    document.addEventListener('touchmove', function(e) {
+      // Находим контейнер, который может прокручиваться (вся страница)
+      const container = document.getElementById('app');
+      if (!container) return;
+
+      // Проверяем, достигли ли края прокрутки
+      const atTop = container.scrollTop <= 0;
+      const atBottom = container.scrollTop + container.clientHeight >= container.scrollHeight - 1;
+
+      const touch = e.touches[0];
+      if (!touch) return;
+      const deltaY = touch.clientY - startY;
+
+      // Если вверху и тянем вниз (deltaY > 0) или внизу и тянем вверх (deltaY < 0)
+      if ((atTop && deltaY > 0) || (atBottom && deltaY < 0)) {
+        e.preventDefault(); // блокируем жест
+      }
+    }, { passive: false });
+  }
+})();
 // Функция init
 async function init() {
   await ensureGuestId();
