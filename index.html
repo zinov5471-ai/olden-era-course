@@ -1955,6 +1955,22 @@ function updateProgress() {
   if (barEl) barEl.style.width = percent + '%';
 }
 
+ async function countFirstVisit() {
+  try {
+    // Проверяем, не считали ли уже этого пользователя
+    const alreadyCounted = await Storage.get('visit_counted');
+    if (alreadyCounted) return;
+
+    // Отправляем запрос на увеличение счётчика
+    await fetch(`https://countapi.mileshilliard.com/api/v1/hit/${VISIT_COUNTER_KEY}`);
+    
+    // Помечаем, что для этого устройства счёт уже учтён
+    await Storage.set('visit_counted', '1');
+  } catch (e) {
+    // Если счётчик недоступен, просто игнорируем ошибку — бот продолжит работать
+    console.error('Visit counter failed:', e);
+  }
+}
 // ===== ВСТАВЬТЕ СЮДА ВАШ МАССИВ TOPICS =====
 // const TOPICS = [ ... ];
 // ==========================================
@@ -6423,6 +6439,7 @@ goTopics = function() {
   originalGoTopics();
 };
 
+
 // Функция init
 async function init() {
   await ensureGuestId();
@@ -6435,6 +6452,9 @@ async function init() {
   if (savedSandbox) {
     try { sandboxCompleted = new Set(JSON.parse(savedSandbox)); } catch(e) {}
   }
+
+  await countFirstVisit();
+
 
   updateProgress();
 
@@ -6544,6 +6564,9 @@ function renderCheatsheets() {
     list.appendChild(card);
   }
 }
+
+// ===== СЧЁТЧИК УНИКАЛЬНЫХ ПОСЕТИТЕЛЕЙ =====
+const VISIT_COUNTER_KEY = 'charmroad_olden_era_bot_unique_visitors_2026';
 
 // Запуск
 init();
