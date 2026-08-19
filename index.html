@@ -4102,26 +4102,664 @@ const TOPICS = [
   }
   ,
   {
-    id: 'coming-soon-dungeon',
-    icon: '🐉',
-    ru: { title: 'Фракция Подземелье ' },
-    en: { title: 'Dungeon Faction ' },
-    lessons: []
-  },
+  id: 'dungeon',
+  icon: '🐉',
+  ru: { title: 'Фракция Подземелье' },
+  en: { title: 'Dungeon Faction' },
+  lessons: [
+    {
+      id: 'dungeon-overview',
+      image: 'images/dungeon-overview.jpg',
+      ru: {
+        title: 'Обзор фракции и «Сила Триумвирата»',
+        eyebrow: 'Подземелье — гибкость и хитрость',
+        body: [
+          'Подземелье — одна из ключевых фракций Olden Era, делающая ставку на гибкость, хитрость и универсальность. В её рядах — тёмные эльфы, звери и драконы, а каждый юнит обладает двумя типами атак, что даёт широкий простор для тактических решений.',
+          'Фракцией управляет Триумвират Альвара — политическая сила, объединяющая коренные расы континента ради спасения от надвигающейся угрозы. Когда-то они действовали из подполья, но теперь стали тайными правителями Джадама.',
+          'Герои Подземелья делятся на два класса: Повелители (герои силы) и Чернокнижники (герои магии) — знакомое по Heroes 3 разделение.',
+          'Фракционный навык: «Сила Триумвирата». Если её активировать, она даёт на раунд бонус своим подопечным (атака, защита) или герою (сила магии). Раз за раунд позволяет герою выбрать одну из трёх боевых стоек. Каждая стойка даёт +2 к одной из характеристик героя.',
+          'Боевые стили — уникальная особенность юнитов Подземелья. Это альтернативная атака: вы жертвуете уроном, чтобы выполнить особую атаку, которую юнит обычно не может сделать. Они не стоят энергии и всегда доступны.'
+        ],
+        tip: 'Подземелье — главный кандидат на звание сильнейшей фракции. Используйте «Силу Триумвирата» в ключевые моменты боя, а боевые стили юнитов позволяют адаптироваться под любую ситуацию. Не забывайте, что каждый юнит имеет два типа атак!',
+        quizzes: [
+          { q: 'Как называется фракционный навык Подземелья?', options: ['Триумвират', 'Сила Триумвирата', 'Власть Альвара'], correct: 1 },
+          { q: 'На какие два класса делятся герои Подземелья?', options: ['Рыцари и Маги', 'Повелители и Чернокнижники', 'Воины и Жрецы'], correct: 1 }
+        ]
+      },
+      en: {
+        title: 'Faction Overview and Strength of the Triumvirate',
+        eyebrow: 'Dungeon — Flexibility and Cunning',
+        body: [
+          'Dungeon is one of the key factions of Olden Era, focusing on flexibility, cunning, and versatility. Its ranks include dark elves, beasts, and dragons, and each unit has two types of attacks, providing wide tactical possibilities.',
+          'The faction is ruled by the Triumvirate of Alvar — a political force uniting the native races of the continent to save it from an impending threat.',
+          'Dungeon heroes are divided into two classes: Overlords (might heroes) and Warlocks (magic heroes) — a division familiar from Heroes 3.',
+          'Faction skill: Strength of the Triumvirate. When activated, it gives a bonus for one round to your subjects (attack, defense) or to the hero (spell power). Once per round, the hero can choose one of three combat stances, each giving +2 to one of the hero\'s stats.',
+          'Combat Styles are a unique feature of Dungeon units. This is an alternative attack: you sacrifice damage to perform a special attack that the unit normally cannot do. They cost no energy and are always available.'
+        ],
+        tip: 'Dungeon is the top candidate for the strongest faction. Use Strength of the Triumvirate at key moments in battle, and the combat styles of units allow you to adapt to any situation. Remember, each unit has two types of attacks!',
+        quizzes: [
+          { q: 'What is the faction skill of Dungeon called?', options: ['Triumvirate', 'Strength of the Triumvirate', 'Power of Alvar'], correct: 1 },
+          { q: 'What two classes are Dungeon heroes divided into?', options: ['Knights and Mages', 'Overlords and Warlocks', 'Warriors and Priests'], correct: 1 }
+        ]
+      }
+    },
+    {
+      id: 'dungeon-troglodytes-infiltrators',
+      image: 'images/dungeon-troglodytes.jpg',
+      ru: {
+        title: 'Троглодиты и Лазутчики',
+        eyebrow: 'Юниты 1–2 уровня',
+        body: [
+          'Троглодит (I ранг) — базовый юнит ближнего боя. Здоровье: 8, атака: 2, защита: 3, урон: 1–3, инициатива: 4, скорость: 4. Стоимость: 50 золота, прирост: +27.',
+          'Адский троглодит (улучшение): здоровье: 8, атака: 3, защита: 6, урон: 1–3, инициатива: 6, скорость: 5. Стоимость: 60.',
+          'Ядовитый троглодит (улучшение): здоровье: 8, атака: 5, защита: 3, урон: 1–4, инициатива: 5, скорость: 4. Стоимость: 60.',
+          'Лазутчик (II ранг) — юнит ближнего боя. Здоровье: 13, атака: 6, защита: 4, урон: 3–6, удача: +1, инициатива: 6, скорость: 5. Стоимость: 120, прирост: +13.',
+          'Коварный лазутчик (улучшение): здоровье: 13, атака: 6, защита: 4, урон: 3–6, удача: +2, инициатива: 6, скорость: 7. Стоимость: 160.',
+          'Мрачный лазутчик (улучшение): здоровье: 13, атака: 6, защита: 4, урон: 3–6, инициатива: 6, скорость: 5. Стоимость: 160.'
+        ],
+        tip: 'Троглодиты — дешёвый массовый юнит для первых боёв. Ядовитые троглодиты наносят больше урона, а адские — лучше защищены. Лазутчики — отличные разведчики и убийцы вражеских стрелков благодаря высокой скорости.',
+        quizzes: [
+          { q: 'Сколько здоровья у базового Троглодита?', options: ['6', '8', '10'], correct: 1 },
+          { q: 'Какой юнит II ранга имеет удачу +2 в улучшенной версии?', options: ['Адский троглодит', 'Коварный лазутчик', 'Мрачный лазутчик'], correct: 1 }
+        ]
+      },
+      en: {
+        title: 'Troglodytes and Infiltrators',
+        eyebrow: 'Units of Tiers 1–2',
+        body: [
+          'Troglodyte (Tier I) — basic melee unit. Health: 8, attack: 2, defense: 3, damage: 1–3, initiative: 4, speed: 4. Cost: 50 gold, growth: +27.',
+          'Infernal Troglodyte (upgrade): health: 8, attack: 3, defense: 6, damage: 1–3, initiative: 6, speed: 5. Cost: 60.',
+          'Toxic Troglodyte (upgrade): health: 8, attack: 5, defense: 3, damage: 1–4, initiative: 5, speed: 4. Cost: 60.',
+          'Infiltrator (Tier II) — melee unit. Health: 13, attack: 6, defense: 4, damage: 3–6, luck: +1, initiative: 6, speed: 5. Cost: 120, growth: +13.',
+          'Guile Infiltrator (upgrade): health: 13, attack: 6, defense: 4, damage: 3–6, luck: +2, initiative: 6, speed: 7. Cost: 160.',
+          'Bleak Infiltrator (upgrade): health: 13, attack: 6, defense: 4, damage: 3–6, initiative: 6, speed: 5. Cost: 160.'
+        ],
+        tip: 'Troglodytes are a cheap mass unit for early battles. Toxic Troglodytes deal more damage, while Infernal Troglodytes are better defended. Infiltrators are excellent scouts and killers of enemy shooters thanks to their high speed.',
+        quizzes: [
+          { q: 'How much health does the basic Troglodyte have?', options: ['6', '8', '10'], correct: 1 },
+          { q: 'Which Tier II unit has +2 luck in its upgraded version?', options: ['Infernal Troglodyte', 'Guile Infiltrator', 'Bleak Infiltrator'], correct: 1 }
+        ]
+      }
+    },
+    {
+      id: 'dungeon-dancers-minotaurs',
+      image: 'images/dungeon-dancers.jpg',
+      ru: {
+        title: 'Ониксовые танцовщицы и Минотавры',
+        eyebrow: 'Юниты 3–4 уровня',
+        body: [
+          'Ониксовая танцовщица (III ранг) — дальнобойный юнит, способный поражать сразу 2 цели. Здоровье: 20, атака: 8, защита: 8, урон: 5–7, инициатива: 4, скорость: 2. Стоимость: 165, прирост: +8.',
+          'Яшмовая танцовщица (улучшение): улучшенная версия с повышенными характеристиками.',
+          'Золочёная танцовщица (улучшение): альтернативное улучшение.',
+          'Минотавр (IV ранг) — основной юнит передовой. Здоровье: 40, атака: 10, защита: 8, урон: 7–10, инициатива: 7, скорость: 5. Стоимость: 350, прирост: +8.',
+          'Минотавр-лорд (улучшение) — один из лучших защитных юнитов Подземелья, идеально подходит для прикрытия Золочёных танцовщиц и других стрелков.',
+          'Минотавр-авангард (улучшение) — альтернативная версия с фокусом на атаку.'
+        ],
+        tip: 'Ониксовые танцовщицы — лучшие дальнобойные юниты на раннем этапе. Минотавры — надёжный щит для них. Минотавр-лорд — идеальный выбор для защиты стрелков, Минотавр-авангард — для агрессивного прорыва.',
+        quizzes: [
+          { q: 'Сколько целей может поражать Ониксовая танцовщица?', options: ['1 цель', '2 цели', '3 цели'], correct: 1 },
+          { q: 'Какой юнит лучше всего подходит для прикрытия стрелков Подземелья?', options: ['Минотавр-лорд', 'Лазутчик', 'Троглодит'], correct: 0 }
+        ]
+      },
+      en: {
+        title: 'Onyx Dancers and Minotaurs',
+        eyebrow: 'Units of Tiers 3–4',
+        body: [
+          'Onyx Dancer (Tier III) — ranged unit capable of hitting 2 targets at once. Health: 20, attack: 8, defense: 8, damage: 5–7, initiative: 4, speed: 2. Cost: 165, growth: +8.',
+          'Jasper Dancer (upgrade): improved version with enhanced stats.',
+          'Aureate Dancer (upgrade): alternative upgrade.',
+          'Minotaur (Tier IV) — the main front-line unit. Health: 40, attack: 10, defense: 8, damage: 7–10, initiative: 7, speed: 5. Cost: 350, growth: +8.',
+          'Minotaur Lord (upgrade) — one of the best defensive units of Dungeon, ideal for protecting Aureate Dancers and other shooters.',
+          'Minotaur Vanguard (upgrade) — alternative version focused on attack.'
+        ],
+        tip: 'Onyx Dancers are the best early-game ranged units. Minotaurs are a reliable shield for them. Minotaur Lord is the ideal choice for protecting shooters, Minotaur Vanguard — for aggressive breakthroughs.',
+        quizzes: [
+          { q: 'How many targets can an Onyx Dancer hit?', options: ['1 target', '2 targets', '3 targets'], correct: 1 },
+          { q: 'Which unit is best for protecting Dungeon shooters?', options: ['Minotaur Lord', 'Infiltrator', 'Troglodyte'], correct: 0 }
+        ]
+      }
+    },
+    {
+      id: 'dungeon-medusas-hydras',
+      image: 'images/dungeon-medusas.jpg',
+      ru: {
+        title: 'Медузы и Гидры',
+        eyebrow: 'Юниты 5–6 уровня',
+        body: [
+          'Медуза (V ранг) — дальнобойный юнит с возможностью окаменения. Здоровье: 30, атака: 10, защита: 8, урон: 8–12, инициатива: 6, скорость: 4. Стоимость: 450, прирост: +5.',
+          'Медуза-царица (улучшение): усиленная версия с мощными способностями.',
+          'Медуза-ваятельница (улучшение): альтернативное улучшение.',
+          'Гидра (VI ранг) — мощное существо из подземных рек и болот Сумеречной трясины. Здоровье: 120, атака: 14, защита: 12, урон: 15–25, инициатива: 6, скорость: 5. Стоимость: 1200, прирост: +3.',
+          'Хтоническая гидра (улучшение): усиленная версия.',
+          'Адская гидра (улучшение): обладает пассивной способностью, снижающей урон врага на несколько ходов.'
+        ],
+        tip: 'Медузы отлично контролируют врага окаменением. Адская гидра — настоящий танк, снижающий урон врага. Хтоническая гидра — более агрессивная версия. Оба улучшения сильны по-своему.',
+        quizzes: [
+          { q: 'Какой эффект накладывает Медуза?', options: ['Отравление', 'Окаменение', 'Ослепление'], correct: 1 },
+          { q: 'Какая способность есть у Адской гидры?', options: ['Снижает урон врага на несколько ходов', 'Воскрешает павших союзников', 'Удваивает урон'], correct: 0 }
+        ]
+      },
+      en: {
+        title: 'Medusas and Hydras',
+        eyebrow: 'Units of Tiers 5–6',
+        body: [
+          'Medusa (Tier V) — ranged unit with petrification ability. Health: 30, attack: 10, defense: 8, damage: 8–12, initiative: 6, speed: 4. Cost: 450, growth: +5.',
+          'Medusa Queen (upgrade): enhanced version with powerful abilities.',
+          'Medusa Sculptor (upgrade): alternative upgrade.',
+          'Hydra (Tier VI) — a powerful creature from underground rivers and Duskmire Swamps. Health: 120, attack: 14, defense: 12, damage: 15–25, initiative: 6, speed: 5. Cost: 1200, growth: +3.',
+          'Chthonic Hydra (upgrade): enhanced version.',
+          'Infernal Hydra (upgrade): has a passive ability that reduces enemy damage for several turns.'
+        ],
+        tip: 'Medusas are great at controlling enemies with petrification. Infernal Hydra is a true tank that reduces enemy damage. Chthonic Hydra is a more aggressive version. Both upgrades are strong in their own way.',
+        quizzes: [
+          { q: 'What effect does the Medusa apply?', options: ['Poison', 'Petrification', 'Blindness'], correct: 1 },
+          { q: 'What ability does the Infernal Hydra have?', options: ['Reduces enemy damage for several turns', 'Resurrects fallen allies', 'Doubles damage'], correct: 0 }
+        ]
+      }
+    },
+    {
+      id: 'dungeon-dragons',
+      image: 'images/dungeon-dragons.jpg',
+      ru: {
+        title: 'Пещерные драконы',
+        eyebrow: 'Юнит 7 уровня — вершина Подземелья',
+        body: [
+          'Пещерный дракон (VII ранг) — вершина фракции Подземелье. Здоровье: 275, атака: 29, защита: 25, урон: 50–60, инициатива: 11, скорость: 8. Стоимость: 3000, прирост: +1.',
+          'Пещерные драконы — одни из самых сильных юнитов в игре. Они обладают высокой атакой, защитой и огромным уроном.',
+          'Как и все юниты Подземелья, драконы имеют два типа атак и боевые стили, что делает их ещё более гибкими в бою.',
+          'Доступны улучшения, повышающие их характеристики и дающие новые способности.'
+        ],
+        tip: 'Пещерный дракон — это ваша главная ударная сила в поздней игре. Защищайте его от магии и используйте боевые стили для максимальной эффективности. Постройка жилища драконов требует больших вложений, но окупается многократно.',
+        quizzes: [
+          { q: 'Сколько здоровья у Пещерного дракона?', options: ['200', '250', '275'], correct: 2 },
+          { q: 'Какой ранг у Пещерного дракона?', options: ['VI ранг', 'VII ранг', 'VIII ранг'], correct: 1 }
+        ]
+      },
+      en: {
+        title: 'Cave Dragons',
+        eyebrow: 'Tier 7 Unit — The Pinnacle of Dungeon',
+        body: [
+          'Cave Dragon (Tier VII) — the pinnacle of the Dungeon faction. Health: 275, attack: 29, defense: 25, damage: 50–60, initiative: 11, speed: 8. Cost: 3000, growth: +1.',
+          'Cave Dragons are among the strongest units in the game. They have high attack, defense, and massive damage.',
+          'Like all Dungeon units, dragons have two types of attacks and combat styles, making them even more flexible in battle.',
+          'Upgrades are available that improve their stats and grant new abilities.'
+        ],
+        tip: 'The Cave Dragon is your main striking force in the late game. Protect it from magic and use combat styles for maximum effectiveness. Building the dragon dwelling requires significant investment, but it pays off many times over.',
+        quizzes: [
+          { q: 'How much health does the Cave Dragon have?', options: ['200', '250', '275'], correct: 2 },
+          { q: 'What tier is the Cave Dragon?', options: ['Tier VI', 'Tier VII', 'Tier VIII'], correct: 1 }
+        ]
+      }
+    },
+    {
+      id: 'dungeon-heroes',
+      image: 'images/dungeon-heroes.jpg',
+      ru: {
+        title: 'Герои Подземелья',
+        eyebrow: 'Повелители и Чернокнижники',
+        body: [
+          'Герои Подземелья делятся на два класса: Повелители (сила) и Чернокнижники (магия). Всего 18 героев — по 9 каждого класса.',
+          'Повелители (Overlords):',
+          '- Энати — специализация: Скользящая угроза. Повышает прирост медуз в городах на 1. В её армии они получают +1 к скорости и инициативе, +20% к здоровью. Отличный выбор для стратегии с медузами.',
+          '- Телларис Преданный — специализация: Всегда начеку. Владеет заклинанием «Искусный ранний старт». Полезен для быстрого старта.',
+          '- Язва — специализация: Ядовитый удар. Удар героя наносит +10 базового урона и отравляет цель до конца боя. Очень сильный герой для агрессивной игры, рекомендую для новичков.',
+          '- Киран — специализация: Слепой народец. Усиливает троглодитов. Хорош для массовой стратегии.',
+          '- Муарен — специализация: Шпион. Повышает прирост лазутчиков на 1. В армии лазутчики получают +1 к скорости и инициативе, +20% к здоровью. Отличный герой для разведки и быстрых атак.',
+          '- Девир, сын Девира — специализация: Логово Бальтазара. Усиливает минотавров.',
+          '- Крета, дочь Наварра — специализация: Ювелир. Ежедневно приносит +1 драгоценных камней. Полезен для экономики.',
+          '- Глиард Серый — специализация: Арканное превосходство. Усиливает магию аркана.',
+          '- Риа — специализация: Удача. Сила Триумвирата. Увеличивает удачу армии.',
+          'Чернокнижники (Warlocks):',
+          '- Закрон Великий — специализация: Заклинатель. Наносит +15% урона заклинаниями и ещё +5% за каждые 3 уровня героя. Урон от заклинаний врага снижается. Лучший выбор для магической стратегии в поздней игре.',
+          '- Мотли — специализация: Ониксовые танцовщицы. Повышает их прирост в городах на 1. В армии они получают +1 к скорости и инициативе, +20% к здоровью. Рекомендую для начала игры — танцовщицы очень сильны.',
+          '- Келарр, сын Наварра — специализация: Желание учиться. Ускоряет изучение навыков.',
+          '- Сестра Дейра — специализация: Маска Солнца. Усиливает магию дня.',
+          '- Ильвари — специализация: Харизматичный. Улучшает дипломатию.',
+          '- Гластор — специализация: Богатый. Даёт бонус к золоту.',
+          '- Лодос — специализация: Хитросплетение теней. Усиливает магию ночи.',
+          '- Солнечный Рауктоль — специализация: Внутренний свет. Стартовая армия: Лазутчик, Ониксовая танцовщица, Троглодит. Хорош для быстрого старта.',
+          '- Тифона — специализация: Гидры. Повышает их прирост в городах на 1. В армии они получают +1 к скорости и инициативе, +20% к здоровью. Один из сильнейших героев для поздней игры, если вы планируете строить гидр.'
+        ],
+        tip: 'Для начала игры отлично подходят Мотли (усиление танцовщиц) и Муарен (усиление лазутчиков). Если любите агрессивную игру — берите Язву. Для магической стратегии в поздней игре — Закрона Великого. Если планируете строить гидр — Тифона ваш выбор.',
+        quizzes: [
+          { q: 'Какой герой Подземелья усиливает Ониксовых танцовщиц?', options: ['Мотли', 'Закрон Великий', 'Тифона'], correct: 0 },
+          { q: 'Кто из героев Подземелья специализируется на Гидрах?', options: ['Энати', 'Тифона', 'Келарр'], correct: 1 },
+          { q: 'Какой герой даёт бонус к урону заклинаний и снижает урон вражеских заклинаний?', options: ['Мотли', 'Закрон Великий', 'Язва'], correct: 1 }
+        ]
+      },
+      en: {
+        title: 'Dungeon Heroes',
+        eyebrow: 'Overlords and Warlocks',
+        body: [
+          'Dungeon heroes are divided into two classes: Overlords (might) and Warlocks (magic). There are 18 heroes in total — 9 of each class.',
+          'Overlords:',
+          '- Enatee — Specialty: Slithering Menace. Increases Medusa growth in towns by 1. In her army, they get +1 speed and initiative, +20% health. Good choice for Medusa strategy.',
+          '- Tellaris the Betrayed — Specialty: With One Eye Open. Knows the spell Masterful Early Start. Useful for a fast start.',
+          '- Stinger — Specialty: Venomous Strike. Hero Strike deals +10 base damage and poisons the target until the end of battle. Very strong hero for aggressive play, recommended for beginners.',
+          '- Kieran — Specialty: The Blind Folk. Buffs troglodytes. Good for mass strategy.',
+          '- Mouaren — Specialty: Spy. Increases Infiltrator growth by 1. In his army, they get +1 speed and initiative, +20% health. Great hero for scouting and fast attacks.',
+          '- Devir, son of Devir — Specialty: Balthazar\'s Lair. Buffs minotaurs.',
+          '- Creta, daughter of Navarr — Specialty: Gem Seeker. Daily +1 gems. Useful for economy.',
+          '- Gleard the Grey — Specialty: Arcane Supremacy. Buffs arcane magic.',
+          '- Rhea — Specialty: Luck. Strength of the Triumvirate. Increases army luck.',
+          'Warlocks:',
+          '- Zakron the Great — Specialty: Spellweaver. Deals +15% spell damage and +5% per 3 hero levels. Reduces enemy spell damage. The best choice for a magic strategy in the late game.',
+          '- Motley — Specialty: Onyx Dancers. Increases their growth in towns by 1. In his army, they get +1 speed and initiative, +20% health. Recommended for beginners — dancers are very strong.',
+          '- Kelarr, son of Navarr — Specialty: Wish to Learn. Speeds up skill learning.',
+          '- Sister Deira — Specialty: Mask of the Sun. Buffs day magic.',
+          '- Ylwari — Specialty: Charismatic. Improves diplomacy.',
+          '- Glastor — Specialty: Wealthy. Gives a gold bonus.',
+          '- Lodos — Specialty: Shadow Weaving. Buffs night magic.',
+          '- Sunny Rauktol — Specialty: Inner Light. Starting army: Infiltrator, Onyx Dancer, Troglodyte. Good for a fast start.',
+          '- Typhona — Specialty: Hydras. Increases their growth in towns by 1. In her army, they get +1 speed and initiative, +20% health. One of the strongest heroes for the late game if you plan to build hydras.'
+        ],
+        tip: 'For beginners, Motley (Dancer buff) and Mouaren (Infiltrator buff) are great choices. If you like aggressive play — take Stinger. For a magic strategy in the late game — Zakron the Great. If you plan to build hydras — Typhona is your choice.',
+        quizzes: [
+          { q: 'Which Dungeon hero buffs Onyx Dancers?', options: ['Motley', 'Zakron the Great', 'Typhona'], correct: 0 },
+          { q: 'Which Dungeon hero specializes in Hydras?', options: ['Enatee', 'Typhona', 'Kelarr'], correct: 1 },
+          { q: 'Which hero gives bonus spell damage and reduces enemy spell damage?', options: ['Motley', 'Zakron the Great', 'Stinger'], correct: 1 }
+        ]
+      }
+    },
+    {
+      id: 'dungeon-concentration',
+      image: 'images/dungeon-concentration.jpg',
+      ru: {
+        title: 'Как разогнать концентрацию до 4 зарядов',
+        eyebrow: 'Уникальный закон фракции',
+        body: [
+          'Одна из ключевых фишек Подземелья, которую часто упускают из виду — способность увеличить лимит зарядов концентрации до 4. Это даёт огромное преимущество в бою, позволяя накапливать больше ресурсов для мощных способностей.',
+          'Как и у фракции Роща, это достигается не через навык героя, а через уникальный фракционный закон. Закон называется «Насыщение» (Saturation).',
+          'Эффект закона: ваш лимит зарядов концентрации увеличивается на 1. То есть вместо стандартных 3 зарядов вы можете хранить 4. Это критически важно для фракции с таким количеством активных способностей и боевых стилей.',
+          'Для активации закона вам потребуется накопить Очки Законов (Law Points) и потратить Печати Законов. Закон «Насыщение» относится к V уровню законов фракции.',
+          'Как получить Очки Законов: они начисляются за главное здание городов, повышение уровня героев и некоторые навыки (например, Проницательность). Чем больше городов под вашим контролем, тем быстрее вы будете получать Очки Законов.',
+          'Почему это важно: с 4 зарядами вы можете использовать больше способностей в критический момент боя. Например, активировать боевую стойку «Силы Триумвирата», которая генерирует заряд концентрации, и сразу же применить мощную способность юнита.',
+          'Совет по стратегии: старайтесь разблокировать этот закон как можно раньше, если ваша стратегия строится на активных способностях юнитов и частом использовании боевых стилей. Это даст вам значительное преимущество в затяжных боях.'
+        ],
+        tip: 'Закон «Насыщение» (Saturation) — ваш ключ к 4 зарядам концентрации. Он находится на V уровне законов фракции. Совмещайте его с экспертным навыком «Сила Триумвирата», где выбор стойки генерирует 1 заряд — и вы сможете использовать по 2 мощные способности за раунд!',
+        quizzes: [
+          { q: 'Как называется закон, увеличивающий лимит зарядов концентрации до 4?', options: ['Насыщение', 'Переполнение', 'Усиление'], correct: 0 },
+          { q: 'На каком уровне законов фракции находится «Насыщение»?', options: ['III уровень', 'V уровень', 'VII уровень'], correct: 1 },
+          { q: 'Что даёт закон «Насыщение»?', options: ['Увеличивает урон заклинаний', 'Увеличивает лимит зарядов концентрации на 1', 'Увеличивает скорость героя'], correct: 1 }
+        ]
+      },
+      en: {
+        title: 'How to Boost Concentration to 4 Charges',
+        eyebrow: 'Unique Faction Law',
+        body: [
+          'One of Dungeon\'s key features, often overlooked, is the ability to increase the Focus charge limit to 4. This gives a huge advantage in battle, allowing you to accumulate more resources for powerful abilities.',
+          'Like the Grove faction, this is achieved not through a hero skill, but through a unique faction law. The law is called Saturation.',
+          'Law effect: your Focus Charge limit increases by 1. Instead of the standard 3 charges, you can hold 4. This is critical for a faction with so many active abilities and combat styles.',
+          'To activate the law, you need to accumulate Law Points and spend Law Seals. The Saturation law is a Tier V faction law.',
+          'How to get Law Points: they are earned from the main building of towns, leveling up heroes, and some skills (e.g., Wisdom). The more towns you control, the faster you gain Law Points.',
+          'Why it matters: with 4 charges, you can use more abilities at a critical moment. For example, activate the Strength of the Triumvirate stance, which generates a Focus charge, and immediately use a powerful unit ability.',
+          'Strategy tip: try to unlock this law as early as possible if your strategy relies on active unit abilities and frequent use of combat styles. This will give you a significant advantage in prolonged battles.'
+        ],
+        tip: 'The Saturation law is your key to 4 Focus charges. It is a Tier V faction law. Combine it with the Expert Strength of the Triumvirate skill, where choosing a stance generates 1 charge — and you can use 2 powerful abilities per round!',
+        quizzes: [
+          { q: 'What is the name of the law that increases the Focus charge limit to 4?', options: ['Saturation', 'Overflow', 'Empower'], correct: 0 },
+          { q: 'What tier is the Saturation law?', options: ['Tier III', 'Tier V', 'Tier VII'], correct: 1 },
+          { q: 'What does the Saturation law give?', options: ['Increases spell damage', 'Increases Focus charge limit by 1', 'Increases hero speed'], correct: 1 }
+        ]
+      }
+    }
+  ]
+  }
+  ,
   {
-    id: 'coming-soon-schism',
-    icon: '❄️',
-    ru: { title: 'Фракция Раскол ' },
-    en: { title: 'Schism Faction ' },
-    lessons: []
-  },
+  id: 'schism',
+  icon: '❄️',
+  ru: { title: 'Фракция Раскол' },
+  en: { title: 'Schism Faction' },
+  lessons: [
+    {
+      id: 'schism-overview',
+      image: 'images/schism-overview.jpg',
+      ru: {
+        title: 'Обзор фракции и «Причастие к Бездне»',
+        eyebrow: 'Раскол — механика победной серии',
+        body: [
+          'Раскол — это шестая фракция в раннем доступе Olden Era. Это отколовшаяся группа альварийских эльфов — учёных и воинов, которые в поисках ответов исследовали руины своих предков-вори. То, что они там нашли, навсегда изменило их.',
+          'В стремлении к силе они открыли Разлом в Бездну — нижний слой Плана Воды, связанный с Межмирьем. Это позволило им призывать планарных существ — загадочных, могущественных и уникальных для франшизы.',
+          'Уникальный фракционный навык называется «Причастие к Бездне» (Abyssal Communion). В начале каждого боя размер вашей армии увеличивается в зависимости от текущего уровня Причастия. Этот уровень снижается каждый день, но может быть повышен за каждую выигранную битву.',
+          'Ключевая особенность: дополнительные юниты существуют только во время боя и исчезают после его окончания — их нельзя передать другим героям. У каждого героя свой уровень Причастия.',
+          'Раскол — самая сложная фракция для освоения. Она полагается на победную серию (win-streak): чем больше побед подряд, тем сильнее армия. Но любое поражение сбрасывает серию и снижает уровень Причастия.'
+        ],
+        tip: 'Раскол — фракция для опытных игроков. Главное правило: не проигрывайте! Каждое поражение отбрасывает вас назад. Старайтесь начинать с лёгких боёв, чтобы нарастить Причастие, и только потом атаковать сильных противников.',
+        quizzes: [
+          { q: 'Как называется фракционный навык Раскола?', options: ['Причастие к Бездне', 'Сила Триумвирата', 'Шёпот стихий'], correct: 0 },
+          { q: 'Что происходит с бонусными юнитами после боя у Раскола?', options: ['Они остаются в армии', 'Они исчезают', 'Их можно передать другому герою'], correct: 1 },
+          { q: 'Какой лор у фракции Раскол?', options: ['Отколовшиеся эльфы Альвара', 'Демоны из Бездны', 'Лесные духи'], correct: 0 }
+        ]
+      },
+      en: {
+        title: 'Faction Overview and «Abyssal Communion»',
+        eyebrow: 'Schism — Win-Streak Mechanic',
+        body: [
+          'Schism is the sixth faction in Olden Era Early Access. It is a splinter group of Alvarian elves — scholars and warriors who sought answers in the ruins of their Vori ancestors. What they found there changed them forever.',
+          'In their pursuit of power, they opened a Rift into the Abyss — the lower layer of the Plane of Water, connected to the Realm Between Realms. This allowed them to summon planar beings — mysterious, powerful, and unique to the franchise.',
+          'The unique faction skill is called «Abyssal Communion». At the start of each battle, your army size increases based on the current Communion level. This level decreases each day but can be raised by winning battles.',
+          'Key feature: bonus units only exist during the battle and disappear afterward — they cannot be transferred to other heroes. Each hero has their own Communion level.',
+          'Schism is the most difficult faction to master. It relies on a win-streak: the more consecutive wins, the stronger the army. But any defeat resets the streak and lowers the Communion level.'
+        ],
+        tip: 'Schism is a faction for experienced players. Main rule: do not lose! Every defeat sets you back. Start with easy battles to build up Communion, and only then attack strong opponents.',
+        quizzes: [
+          { q: 'What is the faction skill of Schism called?', options: ['Abyssal Communion', 'Strength of the Triumvirate', 'Murmuring'], correct: 0 },
+          { q: 'What happens to bonus units after a battle for Schism?', options: ['They stay in the army', 'They disappear', 'They can be transferred to another hero'], correct: 1 },
+          { q: 'What is the lore of Schism?', options: ['Splintered Alvarian elves', 'Demons from the Abyss', 'Forest spirits'], correct: 0 }
+        ]
+      }
+    },
+    {
+      id: 'schism-units-1-2',
+      image: 'images/schism-units-1-2.jpg',
+      ru: {
+        title: 'Юниты I–II ранга: основа армии',
+        eyebrow: 'Ра\'Шот и Культист',
+        body: [
+          'Ра\'Шот (Ra\'Shoth) — I ранг, ближний бой. Один из важнейших юнитов, которого вы получаете с самого начала. Здоровье: 10, атака: 3, защита: 3, урон: 3–3, инициатива: 4, скорость: 4. Стоимость: 80 золота, прирост: +20.',
+          'Улучшения Ра\'Шота: Жалящий Ра\'Шот (дальний бой) и Свирепый Ра\'Шот (усиленный ближний бой).',
+          'Культист (Cultist) — II ранг, дальний бой. Здоровье: 15, атака: 5, защита: 4, урон: 4–6, инициатива: 4, скорость: 4. Стоимость: 160 золота, прирост: +12.',
+          'Способности Культиста: атака на расстоянии (через один гекс, без контратаки) и активная способность «Взор Бездны» — проклинает врага, нанося урон в начале его хода.',
+          'Улучшения Культиста: Связыватель (Binder) — улучшенная защита, и Последователь (Votary) — усиленная атака.',
+          'Важно: Ра\'Шот — ключевой юнит для механики «Ритуал призыва». Используйте его на Великих шотхах, чтобы возвращать их с 50% здоровья.'
+        ],
+        tip: 'Ра\'Шот и Культист — ваша стартовая пара для накопления Причастия. Старайтесь защищать Ра\'Шотов. Культисты дают хороший дальний урон и могут проклинать врагов через «Взор Бездны».',
+        quizzes: [
+          { q: 'Какой ранг у Культиста?', options: ['I ранг', 'II ранг', 'III ранг'], correct: 1 },
+          { q: 'Какой юнит I ранга является ключевым для воскрешения?', options: ['Культист', 'Ра\'Шот', 'Всадник Ага\'Шотов'], correct: 1 },
+          { q: 'Какая активная способность есть у Культиста?', options: ['Взор Бездны', 'Ритуал призыва', 'Оковы'], correct: 0 }
+        ]
+      },
+      en: {
+        title: 'Units I–II: The Army Backbone',
+        eyebrow: 'Ra\'Shoth and Cultist',
+        body: [
+          'Ra\'Shoth — Tier I, melee. One of the most important units you get from the start. Health: 10, attack: 3, defense: 3, damage: 3–3, initiative: 4, speed: 4. Cost: 80 gold, growth: +20.',
+          'Ra\'Shoth upgrades: Stinging Ra\'Shoth (ranged) and Ferocious Ra\'Shoth (enhanced melee).',
+          'Cultist — Tier II, ranged. Health: 15, attack: 5, defense: 4, damage: 4–6, initiative: 4, speed: 4. Cost: 160 gold, growth: +12.',
+          'Cultist abilities: Long Reach attack (through one hex, no counterattack) and active ability «Glance of the Abyss» — curses enemy, dealing damage at start of their turn.',
+          'Cultist upgrades: Binder (improved defense) and Votary (improved attack).',
+          'Important: Ra\'Shoth is the key unit for the «Summoning Rite» mechanic. Use it on Grand Shoths to return them with 50% health.'
+        ],
+        tip: 'Ra\'Shoth and Cultist are your starting pair for building up Communion. Protect Ra\'Shoths. Cultists provide good ranged damage and can curse enemies with «Glance of the Abyss».',
+        quizzes: [
+          { q: 'What tier is the Cultist?', options: ['Tier I', 'Tier II', 'Tier III'], correct: 1 },
+          { q: 'Which Tier I unit is key for resurrection?', options: ['Cultist', 'Ra\'Shoth', 'Aga\'Shoth Rider'], correct: 1 },
+          { q: 'What active ability does the Cultist have?', options: ['Glance of the Abyss', 'Summoning Rite', 'Handcuffs'], correct: 0 }
+        ]
+      }
+    },
+    {
+      id: 'schism-units-3-5',
+      image: 'images/schism-units-3-5.jpg',
+      ru: {
+        title: 'Юниты III–V ранга: развитие армии',
+        eyebrow: 'Всадник, Великий шотх и Конкубина',
+        body: [
+          'Всадник Ага\'Шотов (Aga\'Shoth Rider) — III ранг, ближний бой. Здоровье: 20, атака: 7, защита: 7, урон: 5–7, инициатива: 6, скорость: 4. Стоимость: 195, прирост: +8.',
+          'Улучшения: Ага\'Шотов Теймер (защита, инициатива 9, скорость 7) и Ага\'Шотов Мат\'ха (здоровье 25, инициатива 7).',
+          'Великий шотх (Grand Shoth) — IV ранг. Это центральный элемент фракции. Здоровье: 50, атака: 11, защита: 11, урон: 10–13, инициатива: 8, скорость: 5.',
+          'Улучшения Великого шотха: Невыразимый шотх (скорость 8) и Немыслимый шотх (инициатива 13).',
+          'Конкубина (Concubus) — V ранг, дальний бой. Здоровье: 60, атака: 16, защита: 13, урон: 14–20, инициатива: 5, скорость: 2. Стоимость: 580, прирост: +3.',
+          'Способности Конкубины: «Магию надо заслужить» — заклинания врага стоят на 1 ману дороже, «Оковы» — блокирует активные способности врага на 2 раунда.',
+          'Улучшения Конкубины: Госпожа цепей (защита) и Искусительница (урон 20–20, без штрафа в ближнем бою).'
+        ],
+        tip: 'Великий шотх — ключевой юнит для воскрешения через Ра\'Шотов. Конкубина полезна против магов, но если золота мало — пропускайте её и стройте Арбитров.',
+        quizzes: [
+          { q: 'Какой юнит IV ранга является центральным для фракции?', options: ['Всадник Ага\'Шотов', 'Великий шотх', 'Конкубина'], correct: 1 },
+          { q: 'Какой юнит V ранга увеличивает стоимость заклинаний врага?', options: ['Конкубина', 'Великий шотх', 'Арбитр'], correct: 0 },
+          { q: 'Какая способность есть у Конкубины?', options: ['Магию надо заслужить', 'Ритуал призыва', 'Взор Бездны'], correct: 0 }
+        ]
+      },
+      en: {
+        title: 'Units III–V: Army Development',
+        eyebrow: 'Rider, Grand Shoth and Concubus',
+        body: [
+          'Aga\'Shoth Rider — Tier III, melee. Health: 20, attack: 7, defense: 7, damage: 5–7, initiative: 6, speed: 4. Cost: 195, growth: +8.',
+          'Upgrades: Aga\'Shoth Tamer (defense, initiative 9, speed 7) and Aga\'Shoth Mat\'ha (health 25, initiative 7).',
+          'Grand Shoth — Tier IV. This is the central element of the faction. Health: 50, attack: 11, defense: 11, damage: 10–13, initiative: 8, speed: 5.',
+          'Grand Shoth upgrades: Unspeakable Shoth (speed 8) and Unthinkable Shoth (initiative 13).',
+          'Concubus — Tier V, ranged. Health: 60, attack: 16, defense: 13, damage: 14–20, initiative: 5, speed: 2. Cost: 580, growth: +3.',
+          'Concubus abilities: «Earn Your Magic, Dear» — enemy spells cost 1 more mana, «Handcuffs» — blocks enemy active abilities for 2 rounds.',
+          'Concubus upgrades: Mistress of Chains (defense) and Bewitcher (damage 20–20, no melee penalty).'
+        ],
+        tip: 'Grand Shoth is the key unit for resurrection through Ra\'Shoths. Concubus is useful against mages, but if gold is scarce — skip it and build Arbitrators.',
+        quizzes: [
+          { q: 'Which Tier IV unit is central to the faction?', options: ['Aga\'Shoth Rider', 'Grand Shoth', 'Concubus'], correct: 1 },
+          { q: 'Which Tier V unit increases enemy spell costs?', options: ['Concubus', 'Grand Shoth', 'Arbitrator'], correct: 0 },
+          { q: 'What ability does Concubus have?', options: ['Earn Your Magic, Dear', 'Summoning Rite', 'Glance of the Abyss'], correct: 0 }
+        ]
+      }
+    },
+    {
+      id: 'schism-units-6-7',
+      image: 'images/schism-units-6-7.jpg',
+      ru: {
+        title: 'Юниты VI–VII ранга: элита Раскола',
+        eyebrow: 'Арбитр и Посланник Бездны',
+        body: [
+          'Арбитр (Arbitrator) — VI ранг, элитный дальнобойный юнит. Здоровье: 75, атака: 20, защита: 20, урон: 18–22, инициатива: 5, скорость: 4. Стоимость: 1200, прирост: +2.',
+          'Улучшения Арбитра: Арбитр Разлома (защита 28, инициатива 10) и Раздутый арбитр (урон 22–26, инициатива 8).',
+          'Посланник Бездны (Abyssal Envoy) — VII ранг, вершина фракции. Здоровье: 250, атака: 30, защита: 30, урон: 40–60, инициатива: 9, скорость: 5. Стоимость: 2500, прирост: +1.',
+          'Ключевые способности Посланника: Абсолютное сопротивление — иммунитет к магическому урону. «Воля Бездны» — возможность сделать дополнительный ход сразу после завершения текущего.',
+          'Обряд призыва: Посланники — один раз за бой призывает отряд Посланников Бездны на месте дружественного трупа. Призванный отряд остаётся в армии после боя.',
+          'Посланник позволяет реализовать стратегию «Армагеддон»: герой наносит массовый урон заклинаниями, а Посланники остаются невредимыми благодаря иммунитету к магии.'
+        ],
+        tip: 'Арбитры — ваша главная ударная сила в поздней игре. Защищайте их ближними юнитами. Посланник Бездны — мощнейший юнит с иммунитетом к магии и способностью призывать новых Посланников.',
+        quizzes: [
+          { q: 'Какой юнит VI ранга является элитным дальнобойным юнитом Раскола?', options: ['Арбитр', 'Посланник Бездны', 'Ра\'Шот'], correct: 0 },
+          { q: 'Какая ключевая способность у Посланника Бездны?', options: ['Иммунитет к магии', 'Воскрешение союзников', 'Двойная атака'], correct: 0 },
+          { q: 'Что делает «Обряд призыва: Посланники»?', options: ['Призывает новых Посланников на месте трупа', 'Воскрешает всех союзников', 'Удваивает урон армии'], correct: 0 }
+        ]
+      },
+      en: {
+        title: 'Units VI–VII: Schism Elite',
+        eyebrow: 'Arbitrator and Abyssal Envoy',
+        body: [
+          'Arbitrator — Tier VI, elite ranged unit. Health: 75, attack: 20, defense: 20, damage: 18–22, initiative: 5, speed: 4. Cost: 1200, growth: +2.',
+          'Arbitrator upgrades: Rift Arbitrator (defense 28, initiative 10) and Bloated Arbitrator (damage 22–26, initiative 8).',
+          'Abyssal Envoy — Tier VII, the pinnacle of the faction. Health: 250, attack: 30, defense: 30, damage: 40–60, initiative: 9, speed: 5. Cost: 2500, growth: +1.',
+          'Key Abyssal Envoy abilities: Absolute Resistance — immunity to magic damage. Will of the Abyss — ability to take an extra turn immediately after the current one.',
+          'Summoning Rite: Envoy — once per battle summons a stack of Abyssal Envoys in place of a friendly corpse. The summoned stack remains in the army after battle.',
+          'The Envoy allows for an «Armageddon» strategy: the hero deals massive spell damage while Envoys remain unharmed due to magic immunity.'
+        ],
+        tip: 'Arbitrators are your main late-game striking force. Protect them with melee units. Abyssal Envoy is the most powerful unit with magic immunity and the ability to summon new Envoys.',
+        quizzes: [
+          { q: 'Which Tier VI unit is Schism\'s elite ranged unit?', options: ['Arbitrator', 'Abyssal Envoy', 'Ra\'Shoth'], correct: 0 },
+          { q: 'What is the key ability of the Abyssal Envoy?', options: ['Magic immunity', 'Resurrection of allies', 'Double attack'], correct: 0 },
+          { q: 'What does «Summoning Rite: Envoy» do?', options: ['Summons new Envoys on a corpse spot', 'Resurrects all allies', 'Doubles army damage'], correct: 0 }
+        ]
+      }
+    },
+    {
+      id: 'schism-laws-buildings',
+      image: 'images/schism-laws-buildings.jpg',
+      ru: {
+        title: 'Законы и постройки Раскола',
+        eyebrow: 'Стратегия развития города',
+        body: [
+          'Законы Раскола направлены на лишение врагов ресурсов и повышение тактической гибкости в бою.',
+          'Ключевые законы: «Чернолёд» — заклинания противника стоят +1 маны за уровень Причастия героя. Берите его первым!',
+          '«Глубины Бездны» — уровень Причастия повышается ещё на 1 за каждую победу. Позволяет быстрее наращивать силу.',
+          '«Наш настоящий дом» — существа Раскола наносят +10% и получают –10% урона на родной земле (Снег).',
+          'Оптимальная стратегия развития (первые 7 дней): фокус на экономике и доступе к юнитам. Стройте здания, дающие золото и очки законов, затем жилища ключевых юнитов.',
+          'Вторая неделя: Рынок, Склад ресурсов (ртуть для элитных юнитов), Гильдия магов I-II, Ритуал Призыва (Великие шотхи), Стены II-III (+100% к приросту юнитов).'
+        ],
+        tip: 'Стройте экономику в первую неделю! Закон «Чернолёд» — один из лучших, берите его первым. Стены II и III уровня дают +100% к приросту юнитов — критически важно для Раскола.',
+        quizzes: [
+          { q: 'Какой закон увеличивает стоимость заклинаний противника?', options: ['Чернолёд', 'Глубины Бездны', 'Наш настоящий дом'], correct: 0 },
+          { q: 'Что дают стены III уровня для Раскола?', options: ['+100% к защите героя', '+100% к приросту юнитов', 'Бесплатные юниты'], correct: 1 },
+          { q: 'Какой родной рельеф у Раскола?', options: ['Трава', 'Снег', 'Пустыня'], correct: 1 }
+        ]
+      },
+      en: {
+        title: 'Schism Laws and Buildings',
+        eyebrow: 'Town Development Strategy',
+        body: [
+          'Schism laws are aimed at depriving enemies of resources and increasing tactical flexibility in battle.',
+          'Key laws: «Black Ice» — enemy spells cost +1 mana per hero\'s Communion level. Take it first!',
+          '«Abyssal Depths» — Communion level increases by 1 for each victory. Allows faster strength building.',
+          '«Our True Home» — Schism creatures deal +10% and receive -10% damage on native terrain (Snow).',
+          'Optimal development strategy (first 7 days): focus on economy and unit access. Build gold and law point buildings, then key unit dwellings.',
+          'Week 2: Marketplace, Resource Depot (Mercury for elite units), Mage Guild I-II, Summoning Rite (Grand Shoths), Walls II-III (+100% unit growth).'
+        ],
+        tip: 'Build economy in week 1! The «Black Ice» law is one of the best — take it first. Walls II and III give +100% unit growth — critical for Schism.',
+        quizzes: [
+          { q: 'Which law increases enemy spell costs?', options: ['Black Ice', 'Abyssal Depths', 'Our True Home'], correct: 0 },
+          { q: 'What do Walls III give for Schism?', options: ['+100% to hero defense', '+100% to unit growth', 'Free units'], correct: 1 },
+          { q: 'What is Schism\'s native terrain?', options: ['Grass', 'Snow', 'Desert'], correct: 1 }
+        ]
+      }
+    },
+    {
+      id: 'schism-strategy',
+      image: 'images/schism-strategy.jpg',
+      ru: {
+        title: 'Стратегия игры за Раскол',
+        eyebrow: 'Как выжить и победить',
+        body: [
+          'Раскол — самая сложная фракция в Olden Era. Она требует глубокого понимания игры и не прощает ошибок. Вот ключевые советы:',
+          '1. Никогда не проигрывайте! Каждое поражение сбрасывает уровень Причастия и разрушает серию побед.',
+          '2. Начинайте с лёгких боёв. Используйте Ра\'Шотов с воскрешением на Великих шотхах, чтобы побеждать без потерь.',
+          '3. Играйте на картах со Снегом. Это родной рельеф Раскола, дающий серьёзное преимущество.',
+          '4. Контролируйте ресурсы. Раскол требует много ртути и кристаллов — стройте Рынок и Склад ресурсов вовремя.',
+          '5. Ключевая цель — сделать жилище Арбитров доступным к началу второй недели.',
+          '6. Если стоите перед выбором между зданием и наймом юнитов, выбирайте найм — «Причастие» приносит больше пользы, когда в армии достаточно отрядов.'
+        ],
+        tip: 'Раскол — марафон, а не спринт. Играйте осторожно, выбирайте лёгкие цели, наращивайте Причастие и только потом атакуйте сильных врагов. Помните: Раскол не для новичков!',
+        quizzes: [
+          { q: 'Что происходит при поражении за Раскол?', options: ['Ничего', 'Сбрасывается серия побед и уровень Причастия', 'Герой погибает навсегда'], correct: 1 },
+          { q: 'Какой рельеф даёт преимущество Расколу?', options: ['Трава', 'Снег', 'Пустыня'], correct: 1 },
+          { q: 'На ком лучше всего использовать «Ритуал призыва»?', options: ['На Культистах', 'На Великих шотхах', 'На Арбитрах'], correct: 1 }
+        ]
+      },
+      en: {
+        title: 'Schism Strategy',
+        eyebrow: 'How to Survive and Win',
+        body: [
+          'Schism is the most difficult faction in Olden Era. It requires deep understanding and does not forgive mistakes. Key tips:',
+          '1. Never lose! Every defeat resets the Communion level and destroys your win streak.',
+          '2. Start with easy battles. Use Ra\'Shoths with resurrection on Grand Shoths to win without losses.',
+          '3. Play on Snow maps. This is Schism\'s native terrain, giving a serious advantage.',
+          '4. Control resources. Schism requires a lot of Mercury and Crystals — build Marketplace and Resource Depot on time.',
+          '5. Key goal — make the Arbitrator dwelling available by the start of week 2.',
+          '6. If you have to choose between building and hiring units, choose hiring — «Communion» brings more benefit when there are enough squads in the army.'
+        ],
+        tip: 'Schism is a marathon, not a sprint. Play cautiously, choose easy targets, build up Communion, and only then attack strong enemies. Remember: Schism is not for beginners!',
+        quizzes: [
+          { q: 'What happens when you lose as Schism?', options: ['Nothing', 'The win streak and Communion level reset', 'The hero dies permanently'], correct: 1 },
+          { q: 'Which terrain gives Schism an advantage?', options: ['Grass', 'Snow', 'Desert'], correct: 1 },
+          { q: 'Who is it best to use «Summoning Rite» on?', options: ['Cultists', 'Grand Shoths', 'Arbitrators'], correct: 1 }
+        ]
+      }
+    }
+  ]
+},
   {
-    id: 'coming-soon-magic-guide',
-    icon: '🔮',
-    ru: { title: 'Магия: как выжать максимум из 1 заклинания' },
-    en: { title: 'Magic: How to Max Out 1 Spell' },
-    lessons: []
-  },
+  id: 'magic-maximize',
+  icon: '🔮',
+  ru: { title: 'Магия: как выжать максимум из 1 заклинания' },
+  en: { title: 'Magic: How to Max Out 1 Spell' },
+  lessons: [
+    {
+      id: 'magic-maximize-spell',
+      image: 'images/magic-maximize.jpg',
+      ru: {
+        title: 'Как превратить одно заклинание в оружие массового поражения',
+        eyebrow: 'Система улучшения заклинаний',
+        body: [
+          'В Olden Era одно и то же заклинание может быть либо слабой искрой, либо сметающим всё на своём пути ураганом. Всё зависит от того, насколько хорошо вы его прокачали. Разберём, как выжать максимум из одного заклинания.',
+
+          'У каждого заклинания есть ранг (от 1 до 5) и уровень (от 1 до 4). Ранг определяет, нужны ли вам специальные навыки для изучения заклинания. А вот уровень — это то, что действительно меняет силу заклинания.',
+
+          'Что даёт повышение уровня заклинания?',
+          'Каждый уровень кардинально меняет свойства заклинания. Вот несколько примеров:',
+          '- Молния на 1-м уровне: 25 + 5 x Сила магии урона. На 4-м уровне: 100 + 5 x Сила магии урона.',
+          '- Огненный шар на 1-м уровне: 50 + 5 x Сила магии урона в радиусе 1 гекса. На 4-м уровне: 200 + 5 x Сила магии урона.',
+          '- Отчаяние на 1-м уровне действует на 1 отряд. На 4-м уровне — на все вражеские отряды.',
+          '- Армия теней на 1-м уровне: +15% численности отряда. На 4-м уровне: можно усилить сразу 2 отряда, а бонус от Силы магии удваивается.',
+          '- Кристальная корона: на 1-м уровне ставит 2 преграды. На 4-м уровне — 3 преграды, которые нужно разрушать 2 ударами.',
+
+          'Теперь главный вопрос: как поднять уровень заклинания? Есть 4 способа:',
+
+          '1. Улучшение за Алхимическую пыль',
+          'Самый простой способ — зайти в Обсерваторию и улучшить заклинание за 25 Алхимической пыли. Это даёт +1 уровень. Важно: улучшить заклинание вручную можно только один раз. Дальше придётся использовать другие методы.',
+
+          '2. Навыки героя и поднавыки',
+          'Прокачайте навык Волшебство до Экспертного уровня и возьмите поднавык «Великий колдун» — он даёт +1 к уровню всех заклинаний школ магии.',
+          'Прокачайте навык Чародейство до Экспертного уровня и возьмите поднавык «Архимаг» — ещё +1 к уровню всех заклинаний.',
+          'Итого: +2 к уровню всех заклинаний от двух поднавыков.',
+
+          '3. Артефакты',
+          'Некоторые артефакты дают прямой бонус к уровню заклинаний:',
+          '- «Семь глаз» — +1 к уровню всех заклинаний героя.',
+          '- «Сумеречная сфера» — +1 к уровню заклинаний Магии ночи.',
+
+          '4. Фракционные законы',
+          'У Подземелья есть закон «Магическое образование» (Т5). Он даёт +1 к уровню всех заклинаний героев. Стоит 5 печатей, но до него нужно добраться.',
+
+          'Как всё это работает вместе? Все методы суммируются! Если вы улучшили заклинание за пыль (+1), взяли поднавыки «Великий колдун» и «Архимаг» (+2), надели «Семь глаз» (+1) и открыли закон «Магическое образование» (+1), то ваше заклинание будет на 5 уровней выше базового.',
+
+          'Пример: базовое заклинание Молния на 1-м уровне. С бонусом +5 уровней оно становится 4-го уровня (максимальный). И вместо 25 урона наносит 100 + 5 x Сила магии. А Огненный шар с бонусом +3 уровня будет бить на 200 + 5 x Сила магии.'
+        ],
+        tip: 'Не пытайтесь улучшать все заклинания сразу! Выберите 2-3 ключевых заклинания под вашу стратегию и вкладывайтесь в них. Если вы играете за мага, обязательно качайте «Волшебство» до Эксперта и берите «Великого колдуна» — это даст +1 ко всем заклинаниям бесплатно. И помните про «Семь глаз» — один из лучших артефактов для мага.',
+        quizzes: [
+          { q: 'Сколько уровней может иметь заклинание в Olden Era?', options: ['2 уровня', '3 уровня', '4 уровня'], correct: 2 },
+          { q: 'Какой поднавык даёт +1 к уровню заклинаний?', options: ['Великий колдун', 'Антимаг', 'Ловкость рук'], correct: 0 },
+          { q: 'Сколько Алхимической пыли стоит ручное улучшение заклинания?', options: ['15', '25', '50'], correct: 1 },
+          { q: 'Какой артефакт даёт +1 к уровню всех заклинаний?', options: ['Семь глаз', 'Нагрудник орла', 'Антимагический щит'], correct: 0 }
+        ]
+      },
+      en: {
+        title: 'How to Turn One Spell into a Mass Destruction Weapon',
+        eyebrow: 'Spell Upgrade System',
+        body: [
+          'In Olden Era, the same spell can be either a weak spark or a devastating hurricane. It all depends on how well you upgrade it. Let\'s break down how to get the most out of a single spell.',
+
+          'Every spell has a tier (from 1 to 5) and a level (from 1 to 4). Tier determines if you need special skills to learn the spell. But level is what really changes the spell\'s power.',
+
+          'What does increasing spell level give?',
+          'Each level dramatically changes the spell\'s properties. Here are some examples:',
+          '- Lightning at level 1: 25 + 5 x Spell Power damage. At level 4: 100 + 5 x Spell Power damage.',
+          '- Fireball at level 1: 50 + 5 x Spell Power damage in a 1-hex radius. At level 4: 200 + 5 x Spell Power damage.',
+          '- Despair at level 1 affects 1 squad. At level 4 affects all enemy squads.',
+          '- Army of Shadows at level 1: +15% unit count. At level 4: can buff 2 squads, and the Spell Power bonus doubles.',
+          '- Crystal Crown: at level 1 places 2 barriers. At level 4 — 3 barriers that need to be destroyed with 2 hits.',
+
+          'Now the main question: how to increase spell level? There are 4 ways:',
+
+          '1. Upgrade with Alchemical Dust',
+          'The easiest way — go to the Observatory and upgrade the spell for 25 Alchemical Dust. This gives +1 level. Important: you can manually upgrade a spell only once. For further levels, use other methods.',
+
+          '2. Hero Skills and Subskills',
+          'Level up Sorcery to Expert and take the subskill Great Wizard — it gives +1 to all spell schools levels.',
+          'Level up Wizardry to Expert and take the subskill Archmage — another +1 to all spells.',
+          'Total: +2 to all spell levels from two subskills.',
+
+          '3. Artifacts',
+          'Some artifacts give a direct bonus to spell levels:',
+          '- Seven Eyes — +1 to all hero spells.',
+          '- Twilight Sphere — +1 to Night Magic spells.',
+
+          '4. Faction Laws',
+          'Dungeon has the law Higher Education (T5). It gives +1 to all hero spell levels. Costs 5 seals.',
+
+          'How does this all work together? All methods stack! If you upgraded with dust (+1), took Great Wizard and Archmage (+2), equipped Seven Eyes (+1), and unlocked Higher Education (+1), your spell will be 5 levels higher than base.',
+
+          'Example: base Lightning at level 1. With +5 bonus it becomes level 4 (max). Instead of 25 damage, it deals 100 + 5 x Spell Power. And Fireball with +3 bonus deals 200 + 5 x Spell Power.'
+        ],
+        tip: 'Don\'t try to upgrade all spells at once! Choose 2-3 key spells for your strategy and invest in them. If you play as a mage, level Sorcery to Expert and take Great Wizard — it gives +1 to all spells for free. And remember about Seven Eyes — one of the best artifacts for a mage.',
+        quizzes: [
+          { q: 'How many levels can a spell have in Olden Era?', options: ['2 levels', '3 levels', '4 levels'], correct: 2 },
+          { q: 'Which subskill gives +1 to spell levels?', options: ['Great Wizard', 'Antimage', 'Sleight of Hand'], correct: 0 },
+          { q: 'How much Alchemical Dust does a manual spell upgrade cost?', options: ['15', '25', '50'], correct: 1 },
+          { q: 'Which artifact gives +1 to all spell levels?', options: ['Seven Eyes', 'Eagle\'s Cuirass', 'Antimagic Shield'], correct: 0 }
+        ]
+      }
+    }
+  ]
+},
   {
     id: 'coming-soon-no-army-tactic',
     icon: '🏃',
@@ -4129,6 +4767,13 @@ const TOPICS = [
     en: { title: 'Secret Tactic: Victory Without Army' },
     lessons: []
   },
+  {
+  id: 'coming-soon-global-magic',
+  icon: '🌍',
+  ru: { title: 'Глобальная магия: скоро!' },
+  en: { title: 'Global Magic: coming soon!' },
+  lessons: []
+},
   
 ]
 
