@@ -1461,7 +1461,7 @@
 
   <!-- ПРЕМИУМ: ЗАКРЫТЫЙ ГАЙД -->
   <div id="premium-guide-view" class="hidden">
-    <button class="back-btn" onclick="goGuidesHub()" id="premium-guide-back-label">← Гайды</button>
+    <button class="back-btn" onclick="goPremiumGuideBack()" id="premium-guide-back-label">← Гайды</button>
     <div class="page-divider"></div>
     <div id="premium-guide-body"></div>
   </div>
@@ -1764,6 +1764,7 @@ const STRINGS = {
     premiumTitle: 'Закрытые материалы',
     premiumBackToTopics: '← Темы',
     premiumBackToHub: '← Премиум',
+    backToGuidesLabel: '← Гайды',
     premiumIntroTitle: '⭐ Премиум CharmRoad',
     premiumIntroText: 'Всё, что помогает не просто смотреть про Olden Era, а сразу играть лучше.',
     premiumIntroPerks: [
@@ -1888,6 +1889,7 @@ const STRINGS = {
     premiumTitle: 'Locked content',
     premiumBackToTopics: '← Themes',
     premiumBackToHub: '← Premium',
+    backToGuidesLabel: '← Guides',
     premiumIntroTitle: '⭐ CharmRoad Premium',
     premiumIntroText: 'Everything that helps you not just watch Olden Era content, but play better right away.',
     premiumIntroPerks: [
@@ -5885,7 +5887,7 @@ function openSandboxHub() {
   document.getElementById('sandbox-play-view').classList.add('hidden');
   document.getElementById('sandbox-hub-view').classList.remove('hidden');
   renderSandboxHub();
-  checkSubscription().then(renderSandboxHub);
+  if (isSubscribed === null) checkSubscription().then(renderSandboxHub);
   forceScrollTop();
 }
 
@@ -6027,7 +6029,7 @@ function sandboxGoNext() {
         <button class="support-link" onclick="openFeedbackPage()">✉️ ${currentLang === 'ru' ? 'Обратная связь' : 'Feedback'}</button>
       </div>
     `;
-    window.scrollTo(0, 0);
+    forceScrollTop();
     return;
   }
 
@@ -6042,7 +6044,7 @@ function sandboxGoNext() {
         <button class="primary-btn show" onclick="openSubscribe('sandbox')">${t('lockedBtn')}</button>
       </div>
     `;
-    window.scrollTo(0, 0);
+    forceScrollTop();
     return;
   }
   
@@ -6159,6 +6161,7 @@ function openTopic(index) {
   document.getElementById('topics-view').classList.add('hidden');
   document.getElementById('home-view').classList.remove('hidden');
   renderHome();
+  forceScrollTop();
 }
 
 function goTopics() {
@@ -6287,7 +6290,7 @@ function openLesson(index) {
   });
 
   if (tg && tg.HapticFeedback) tg.HapticFeedback.impactOccurred('light');
-  window.scrollTo(0, 0);
+  forceScrollTop();
 }
 
 function answerQuiz(quizIndex, chosen, correct) {
@@ -6358,9 +6361,14 @@ async function checkSubscription() {
   if (PREVIEW_MODE_UNLOCK_ALL) { isSubscribed = true; return true; }
   if (!tg || !tg.initData) { isSubscribed = false; return false; }
   try {
-    const res = await fetch(`${WORKER_URL}/check-subscription?initData=${encodeURIComponent(tg.initData)}`);
-    const data = await res.json();
-    isSubscribed = !!(data.ok && data.subscribed);
+    // Таймаут на случай, если Worker/сеть отвечают медленно — иначе экран
+    // мог зависнуть в ожидании без ограничения по времени. При таймауте
+    // трактуем как "не подписан" (безопасный дефолт — не откроем платный
+    // контент по ошибке); при следующей проверке статус переопределится.
+    const fetchPromise = fetch(`${WORKER_URL}/check-subscription?initData=${encodeURIComponent(tg.initData)}`)
+      .then(res => res.json());
+    const data = await withTimeout(fetchPromise, 6000, null);
+    isSubscribed = !!(data && data.ok && data.subscribed);
   } catch (e) {
     isSubscribed = false;
   }
@@ -6383,7 +6391,7 @@ function openPremium() {
   if (isSubscribed === null) {
     checkSubscription().then(renderPremiumHub);
   }
-  window.scrollTo(0, 0);
+  forceScrollTop();
 }
 
 function goPremium() {
@@ -6395,7 +6403,7 @@ function goPremium() {
   document.getElementById('premium-cheatsheets-view').classList.add('hidden'); // ← НОВАЯ СТРОКА
   document.getElementById('premium-view').classList.remove('hidden');
   renderPremiumHub();
-  window.scrollTo(0, 0);
+  forceScrollTop();
 }
 
 function renderPremiumHub() {
@@ -6495,17 +6503,30 @@ function renderLockScreen(container, source) {
 }
 
 // ---------- Хаб гайдов ----------
+let premiumGuideBackTarget = 'guides';
+
 function goGuidesHub() {
   document.getElementById('premium-guide-view').classList.add('hidden');
   document.getElementById('premium-guides-hub-view').classList.remove('hidden');
   renderGuidesHub();
-  window.scrollTo(0, 0);
+  forceScrollTop();
+}
+
+// Кнопка "назад" на premium-guide-view переиспользуется разными экранами
+// (обычный гайд → назад в хаб гайдов; "привет в шортсе" → назад в премиум-хаб),
+// поэтому направление зависит от того, кто именно открыл этот контейнер.
+function goPremiumGuideBack() {
+  if (premiumGuideBackTarget === 'premium') {
+    goPremium();
+  } else {
+    goGuidesHub();
+  }
 }
 
 async function openGuidesHub() {
   document.getElementById('premium-view').classList.add('hidden');
   document.getElementById('premium-guides-hub-view').classList.remove('hidden');
-  window.scrollTo(0, 0);
+  forceScrollTop();
   if (isSubscribed === null) await checkSubscription();
   renderGuidesHub();
 }
@@ -6546,10 +6567,12 @@ function renderGuidesHub() {
 // ---------- Гайд ----------
 async function openPremiumGuide(guideId) {
   currentGuideId = guideId;
+  premiumGuideBackTarget = 'guides';
+  setText('premium-guide-back-label', t('backToGuidesLabel'));
   document.getElementById('premium-view').classList.add('hidden');
   document.getElementById('premium-guides-hub-view').classList.add('hidden');
   document.getElementById('premium-guide-view').classList.remove('hidden');
-  window.scrollTo(0, 0);
+  forceScrollTop();
   const body = document.getElementById('premium-guide-body');
   body.innerHTML = `<p style="color:var(--parchment-dim); text-align:center; padding:30px 0;">${t('checkingAccess')}</p>`;
 
@@ -6617,7 +6640,7 @@ async function openPremiumGuide(guideId) {
 async function openPremiumCalc() {
   document.getElementById('premium-view').classList.add('hidden');
   document.getElementById('premium-calc-view').classList.remove('hidden');
-  window.scrollTo(0, 0);
+  forceScrollTop();
   const body = document.getElementById('premium-calc-body');
   body.innerHTML = `<p style="color:var(--parchment-dim); text-align:center; padding:30px 0;">${t('checkingAccess')}</p>`;
 
@@ -6825,7 +6848,7 @@ let defenseDef = 0;
 async function openBattleCalc() {
   document.getElementById('premium-view').classList.add('hidden');
   document.getElementById('premium-battle-calc-view').classList.remove('hidden');
-  window.scrollTo(0, 0);
+  forceScrollTop();
   const body = document.getElementById('premium-battle-calc-body');
   body.innerHTML = `<p style="color:var(--parchment-dim); text-align:center; padding:30px 0;">${t('checkingAccess')}</p>`;
 
@@ -7058,7 +7081,7 @@ function openSubscribe(source) {
   document.getElementById('premium-battle-calc-view').classList.add('hidden');
   document.getElementById('subscribe-view').classList.remove('hidden');
   renderSubscribeTiers(source);
-  window.scrollTo(0, 0);
+  forceScrollTop();
 }
 
 function renderSubscribeTiers(source) {
@@ -7147,10 +7170,14 @@ async function buyTier(tier) {
 
 // ---------- Привет в шортсе ----------
 async function openPremiumShoutout() {
+  currentGuideId = null;
+  premiumGuideBackTarget = 'premium';
+  setText('premium-guide-back-label', t('premiumBackToHub'));
   document.getElementById('premium-view').classList.add('hidden');
   document.getElementById('premium-guide-view').classList.remove('hidden');
   const body = document.getElementById('premium-guide-body');
   body.innerHTML = `<p style="color:var(--parchment-dim); text-align:center; padding:30px 0;">${t('checkingAccess')}</p>`;
+  forceScrollTop();
 
   if (isSubscribed === null) await checkSubscription();
   if (!isSubscribed) { renderLockScreen(body, 'shoutout'); return; }
@@ -7242,6 +7269,7 @@ function sendFeedback() {
 function openFeedbackPage() {
   document.getElementById('topics-view').classList.add('hidden');
   document.getElementById('feedback-view').classList.remove('hidden');
+  forceScrollTop();
 }
 
 function sendFeedbackNew() {
@@ -7338,19 +7366,28 @@ goTopics = function() {
 
 // Функция init
 async function init() {
-  await ensureGuestId();
-  const savedLang = await Storage.get('lang');
-  const saved = await Storage.get('completed_lessons');
+  // Эти 4 запроса ничего не читают друг у друга — раньше шли строго
+  // последовательно (await за await), и в худшем случае (медленный
+  // CloudStorage) это суммировалось до нескольких секунд ожидания перед
+  // тем, как вообще открыть список тем. Теперь идут параллельно.
+  const [, savedLang, saved, savedSandbox] = await Promise.all([
+    ensureGuestId(),
+    Storage.get('lang'),
+    Storage.get('completed_lessons'),
+    Storage.get('sandbox_completed')
+  ]);
+
   if (saved) {
     try { completed = new Set(JSON.parse(saved)); } catch(e) {}
   }
-  const savedSandbox = await Storage.get('sandbox_completed');
   if (savedSandbox) {
     try { sandboxCompleted = new Set(JSON.parse(savedSandbox)); } catch(e) {}
   }
 
-  await countFirstVisit();
-
+  // countFirstVisit зависит от guestId (уже готов после Promise.all выше),
+  // сам по себе ни на что не блокирует дальнейшую отрисовку — не ждём его
+  // здесь, чтобы не задерживать открытие приложения ради статистики визита.
+  countFirstVisit();
 
   updateProgress();
 
@@ -7405,7 +7442,7 @@ function answerPremiumQuiz(quizIndex, chosen, correct) {
 function openPremiumCheatsheets() {
   document.getElementById('premium-view').classList.add('hidden');
   document.getElementById('premium-cheatsheets-view').classList.remove('hidden');
-  window.scrollTo(0, 0);
+  forceScrollTop();
   renderCheatsheets();
 }
 
