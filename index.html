@@ -508,6 +508,22 @@
     font-size: 48px;
     margin-bottom: 12px;
   }
+  .completion .badge.premium-glow{
+    text-shadow: 0 0 18px rgba(201,161,92,0.7), 0 0 36px rgba(201,161,92,0.35);
+  }
+  .completion .insider-tag{
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    border: 1px solid rgba(201,161,92,0.4);
+    background: rgba(201,161,92,0.1);
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+  }
 
   /* ===== ПРЕМИУМ ===== */
   .premium-btn{
@@ -581,6 +597,28 @@
   .tier-perks{ list-style: none; padding: 0; margin: 0 0 14px; }
   .tier-perks li{ font-size: 13.5px; color: var(--parchment-dim); padding: 4px 0; }
   .tier-perks li::before{ content: '✓ '; color: var(--success); font-weight: 700; }
+  .tier-perks-featured{ margin-bottom: 6px; }
+  .tier-perks-featured li{
+    font-size: 14.5px;
+    font-weight: 700;
+    color: var(--parchment);
+  }
+  .tier-perks-featured li::before{ content: '🔓 '; color: var(--gold); }
+  .tier-bonus-label{
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--parchment-dim);
+    margin: 4px 0 6px;
+    opacity: 0.8;
+  }
+  .tier-cancel-note{
+    font-size: 11.5px;
+    color: var(--parchment-dim);
+    text-align: center;
+    margin-top: 10px;
+    opacity: 0.75;
+  }
   .tier-buy-btn{
     width: 100%;
     padding: 13px;
@@ -757,7 +795,15 @@
     cursor:pointer;
   }
   .sb-scenario-card.done{ border-color: rgba(111,169,122,0.4); }
-  .sb-scenario-card.locked{ opacity: 0.6; }
+  .sb-scenario-card.locked{ opacity: 0.75; }
+  .sb-scenario-card.locked .lesson-title{ opacity: 0.75; }
+  .sb-scenario-hint{
+    font-size: 12px;
+    color: var(--gold);
+    font-weight: 700;
+    margin-top: 3px;
+    opacity: 1;
+  }
   .sb-scenario-num{
     width: 32px; height: 32px;
     border-radius: 50%;
@@ -1519,7 +1565,11 @@
     <h2 id="completion-title"></h2>
     <p style="color:var(--parchment-dim); font-size:14px;" id="completion-text"></p>
     <button class="primary-btn show" onclick="goHome()" id="completion-btn"></button>
+    <button class="premium-btn" onclick="openPremium()" id="completion-premium-label">⭐ Премиум</button>
     <button class="support-link" onclick="openDonate()" id="completion-support-label"></button>
+    <button class="youtube-btn" onclick="openYouTube()">
+      <span id="completion-youtube-label">▶️ Подписаться на YouTube</span>
+    </button>
     <button class="support-link" onclick="openFeedbackPage()">✉️ Обратная связь</button>
   </div>
 
@@ -1717,13 +1767,23 @@ const STRINGS = {
     premiumIntroTitle: '⭐ Премиум CharmRoad',
     premiumIntroText: 'Всё, что помогает не просто смотреть про Olden Era, а сразу играть лучше.',
     premiumIntroPerks: [
-      '📜 Закрытые гайды и разборы шаблонов',
-      '🧮 Калькулятор синергий навыков',
-      '⚔️ Боевые калькуляторы ',
-      '🏋️ Полная Песочница — 8 заданий + новые каждую неделю',
-      '📋 Шпаргалки по фракциям',
-      '📣 Твой привет в шортсе'
+      { key: 'guide', text: '📜 Закрытые гайды и разборы шаблонов' },
+      { key: 'calc', text: '🧮 Калькулятор синергий навыков' },
+      { key: 'battleCalc', text: '⚔️ Боевые калькуляторы' },
+      { key: 'sandbox', text: '🏋️ Полная Песочница — все задания + новые каждую неделю' },
+      { key: 'cheatsheets', text: '📋 Шпаргалки по фракциям' },
+      { key: 'shoutout', text: '📣 Твой привет в шортсе' }
     ],
+    subscribeContext: {
+      sandbox: 'Открой все задания песочницы',
+      guide: 'Открой закрытые гайды и разборы',
+      calc: 'Открой калькулятор синергий навыков',
+      battleCalc: 'Открой боевые калькуляторы',
+      cheatsheets: 'Открой шпаргалки по фракциям',
+      shoutout: 'Получи свой привет в шортсе'
+    },
+    subscribeBonusLabel: '+ ещё в подписке',
+    subscribeCancelNote: 'Отменить можно в любой момент в настройках Telegram',
     tileSubscription: 'Оформить подписку',
     tileSubscriptionDesc: 'Открой доступ ко всем материалам',
     tileGuide: 'Гайды',
@@ -1794,11 +1854,12 @@ const STRINGS = {
     sandboxChooseLabel: 'Что делаешь?',
     sandboxStepLabel: (n, total) => `Задание ${n} из ${total}`,
     sandboxNext: 'Дальше →',
-    sandboxDone: 'Готово!',
-    sandboxDoneText: 'Задание пройдено. Разбор верного решения — ниже.',
+    sandboxDone: 'Песочница пройдена!',
+    sandboxDoneText: 'Ты закрыл все сценарии песочницы. Новые задания добавляются каждую неделю — загляни ещё.',
     sandboxLockedText: 'Это задание доступно по подписке "Инсайдер".',
+    sandboxCardHint: 'Нажми, чтобы открыть →',
     sandboxUpsellTitle: 'Бесплатные задания закончились',
-    sandboxUpsellText: 'Ещё 5 практических ситуаций (драфт, банки, финалка) ждут в Премиум.',
+    sandboxUpsellText: 'Больше практических ситуаций (драфт, банки, финалка) ждут в Премиум.',
     sandboxProgress: (done, total) => `${done}/${total}`
   },
   en: {
@@ -1830,11 +1891,23 @@ const STRINGS = {
     premiumIntroTitle: '⭐ CharmRoad Premium',
     premiumIntroText: 'Everything that helps you not just watch Olden Era content, but play better right away.',
     premiumIntroPerks: [
-      '📜 Locked guides and template breakdowns',
-      '🧮 Skill synergy calculator',
-      '🏋️ Full Sandbox — 8 tasks + new ones every week',
-      '📣 Your shoutout in a short'
+      { key: 'guide', text: '📜 Locked guides and template breakdowns' },
+      { key: 'calc', text: '🧮 Skill synergy calculator' },
+      { key: 'battleCalc', text: '⚔️ Battle calculators' },
+      { key: 'sandbox', text: '🏋️ Full Sandbox — every task + new ones every week' },
+      { key: 'cheatsheets', text: '📋 Faction cheatsheets' },
+      { key: 'shoutout', text: '📣 Your shoutout in a short' }
     ],
+    subscribeContext: {
+      sandbox: 'Unlock every sandbox task',
+      guide: 'Unlock the locked guides and breakdowns',
+      calc: 'Unlock the skill synergy calculator',
+      battleCalc: 'Unlock the battle calculators',
+      cheatsheets: 'Unlock the faction cheatsheets',
+      shoutout: 'Get your shoutout in a short'
+    },
+    subscribeBonusLabel: '+ also included',
+    subscribeCancelNote: 'Cancel anytime in your Telegram settings',
     tileSubscription: 'Get a subscription',
     tileSubscriptionDesc: 'Unlock every piece of content',
     tileGuide: 'Guides',
@@ -1905,11 +1978,12 @@ const STRINGS = {
     sandboxChooseLabel: 'What do you do?',
     sandboxStepLabel: (n, total) => `Task ${n} of ${total}`,
     sandboxNext: 'Next →',
-    sandboxDone: 'Done!',
-    sandboxDoneText: 'Task complete. The breakdown of the right call is below.',
+    sandboxDone: 'Sandbox complete!',
+    sandboxDoneText: 'You have cleared every sandbox scenario. New tasks are added every week — check back soon.',
     sandboxLockedText: 'This task is available with the "Insider" subscription.',
+    sandboxCardHint: 'Tap to unlock →',
     sandboxUpsellTitle: 'Free tasks are over',
-    sandboxUpsellText: '5 more practical situations (draft, banks, endgame) are waiting in Premium.',
+    sandboxUpsellText: 'More practical situations (draft, banks, endgame) are waiting in Premium.',
     sandboxProgress: (done, total) => `${done}/${total}`
   }
 };
@@ -5585,7 +5659,7 @@ const SANDBOX_SCENARIOS = [
     }
   },
   {
-    id: 'units-vs-archers', free: false,
+    id: 'units-vs-archers', free: true,
     ru: {
       title: 'Единички против стрелков', icon: '🏹',
       situation: 'Твой герой подошёл к охране из двух отрядов стрелков. У тебя есть основной боевой стек и несколько дешёвых «единичек».',
@@ -5602,7 +5676,7 @@ const SANDBOX_SCENARIOS = [
     }
   },
   {
-    id: 'medusa-bank', free: false,
+    id: 'medusa-bank', free: true,
     ru: {
       title: 'Медузятня — кого бить первым', icon: '🐍',
       situation: 'Заходишь в банк с минотаврами (есть риск потери морали). Один из отрядов улучшенный и особенно быстрый.',
@@ -5668,6 +5742,125 @@ const SANDBOX_SCENARIOS = [
       correct: 0,
       explain: 'Going through the alternative only makes sense if you\'re certain you\'ll reach the exit castle through it. Whenever unsure, the main guard is the safer bet.'
     }
+  },
+  {
+    id: 'dragon-utopia-wait', free: false,
+    ru: {
+      title: 'Утопия Драконов — идти сейчас или ждать?', icon: '🐉',
+      situation: 'Разведал банк «Утопия Драконов» — охрана из пещерных, чёрных и пепельных драконов. Награда — от золота до случайного легендарного артефакта. Текущая армия явно ещё не готова к такому бою.',
+      options: ['Атаковать сейчас — награда слишком хороша, чтобы ждать', 'Отметить банк и вернуться позже с усиленной армией', 'Разделить армию и брать банк по частям'],
+      correct: 1,
+      explain: 'Утопия Драконов — одна из самых тяжёлых охран в игре, банк никуда не денется. Награда (вплоть до легендарного артефакта) стоит того, чтобы дождаться действительно готовой армии, а не рисковать текущей.'
+    },
+    en: {
+      title: 'Dragon Utopia — Now or Later?', icon: '🐉',
+      situation: 'You scouted a Dragon Utopia bank — guarded by Cave, Black and Ashen Dragons. The reward ranges from gold to a random legendary artifact. Your current army clearly isn\'t ready for that fight.',
+      options: ['Attack now — the reward is too good to wait', 'Mark the bank and return later with a stronger army', 'Split the army and clear it in parts'],
+      correct: 1,
+      explain: 'Dragon Utopia is one of the toughest guards in the game, and the bank isn\'t going anywhere. The reward (up to a legendary artifact) is worth waiting for a truly ready army instead of risking your current one.'
+    }
+  },
+  {
+    id: 'raiders-camp-order', free: false,
+    ru: {
+      title: '«Лагерь налётчиков» — кого атаковать первым', icon: '🏕️',
+      situation: 'Заходишь в «Лагерь налётчиков»: охрана — стрелки-полурослики и крупные ближники-гроллы. У тебя есть быстрый ударный отряд и медленный танк.',
+      options: ['Быстрым отрядом сразу связать полуросликов ближним боем, танком принять гроллов', 'Танком первым идти на гроллов, быстрый отряд держать в резерве', 'Атаковать гроллов и полуросликов одновременно равными силами'],
+      correct: 0,
+      explain: 'Полурослики — дальнобойная угроза: чем раньше их блокируют в ближнем бою, тем меньше урона они успеют нанести за бой. Медленный танк тем временем спокойно принимает удары гроллов.'
+    },
+    en: {
+      title: 'Raiders\' Camp — Who to Hit First', icon: '🏕️',
+      situation: 'You enter the Raiders\' Camp: guards are Halfling shooters and heavy melee Grolls. You have a fast strike stack and a slow tank.',
+      options: ['Use the fast stack to lock the Halflings in melee immediately, let the tank absorb the Grolls', 'Send the tank at the Grolls first, keep the fast stack in reserve', 'Attack both Grolls and Halflings at once with equal force'],
+      correct: 0,
+      explain: 'Halflings are the ranged threat — the sooner they\'re locked in melee, the less damage they get to deal. Meanwhile the slow tank comfortably soaks the Grolls\' hits.'
+    }
+  },
+  {
+    id: 'law-points-priority', free: false,
+    ru: {
+      title: 'Очки закона — тратить сразу или копить?', icon: '⚖️',
+      situation: 'Накопилось 5 очков закона — как раз хватает на самый дешёвый закон 1 уровня. Чтобы открыть 2 уровень законов, нужно потратить 5 очков; всего за игру реально набрать около 100 очков на все уровни.',
+      options: ['Сразу потратить на доступный закон 1 уровня', 'Копить дальше и ничего не тратить, пока не наберётся на закон посильнее', 'Ждать, пока накопится вообще всё, и тратить разом в конце игры'],
+      correct: 0,
+      explain: 'Многие законы дают эффект каждый день (золото, опыт и т.д.) — чем раньше закон вступит в силу, тем больше суммарной пользы он принесёт за игру. К тому же трата очков — единственный способ открыть более сильный 2 уровень.'
+    },
+    en: {
+      title: 'Law Points — Spend Now or Save?', icon: '⚖️',
+      situation: 'You have 5 Law Points — just enough for the cheapest tier-1 law. Unlocking tier 2 requires spending 5 points total; across a whole game you can realistically gather around 100 points for all tiers.',
+      options: ['Spend it right away on the available tier-1 law', 'Keep saving and spend nothing until you can afford a stronger law', 'Wait until you\'ve gathered everything and spend it all at the end'],
+      correct: 0,
+      explain: 'Many laws give a daily effect (gold, XP, etc.) — the earlier a law is active, the more total value it produces over the game. Spending points is also the only way to unlock the stronger tier 2.'
+    }
+  },
+  {
+    id: 'skill-levelup-choice', free: false,
+    ru: {
+      title: 'Выбор навыка на level up', icon: '📈',
+      situation: 'При повышении уровня герою предлагают на выбор: апгрейд уже изученного полезного навыка до Advanced, совершенно новый навык, который пока не нужен, и «джокер»-слот (может дать любое из двух).',
+      options: ['Апгрейдить полезный навык до Advanced', 'Взять новый навык про запас', 'Джокер всегда выгоднее — брать его по умолчанию'],
+      correct: 0,
+      explain: 'Апгрейд навыка с Basic до Advanced — это ещё и выбор из 3 саб-скиллов, то есть реальное усиление билда, а не просто новая строчка в списке. Специализация на уже нужном навыке обычно выгоднее навыка, который пока не используется.'
+    },
+    en: {
+      title: 'Level-Up Skill Choice', icon: '📈',
+      situation: 'On level-up the hero is offered a choice: upgrade an already-learned useful skill to Advanced, a brand-new skill you don\'t need yet, or a "joker" slot (can be either).',
+      options: ['Upgrade the useful skill to Advanced', 'Take the new skill just in case', 'Always take the joker — it\'s better by definition'],
+      correct: 0,
+      explain: 'Upgrading a skill from Basic to Advanced also unlocks a choice of 3 sub-skills — a real power spike, not just a new line in the list. Specializing in a skill you already use usually beats a skill you\'re not using yet.'
+    }
+  },
+  {
+    id: 'relic-reroute-build', free: false,
+    ru: {
+      title: 'Реликвия на карте — перестраивать билд?', icon: '💠',
+      situation: 'Разведка показала на карте артефакт-реликвию — она мгновенно открывает ВСЕ саб-скиллы для 4 фиксированных навыков (обычно за игру можно выбрать только 2 саб-скилла в принципе).',
+      options: ['Прокачивать героя как обычно и просто подобрать реликвию, если получится', 'Целенаправленно вести героя именно к тем 4 навыкам, под которые заточена реликвия', 'Игнорировать реликвию — саб-скиллы не так важны'],
+      correct: 1,
+      explain: 'Реликвия разом даёт то, на что обычно уходит вся игра — все саб-скиллы четырёх навыков вместо стандартных двух. Если реликвия точно будет в зоне досягаемости, есть смысл заранее вести билд героя именно под неё.'
+    },
+    en: {
+      title: 'A Relic on the Map — Rebuild Your Plan?', icon: '💠',
+      situation: 'Scouting revealed a relic artifact on the map — it instantly unlocks ALL sub-skills for 4 fixed skills (normally you can only pick 2 sub-skills in an entire game).',
+      options: ['Level the hero normally and just grab the relic if it happens', 'Deliberately steer the hero toward those exact 4 skills', 'Ignore the relic — sub-skills aren\'t that important'],
+      correct: 1,
+      explain: 'The relic gives at once what normally takes an entire game — all sub-skills for four skills instead of the usual two. If the relic is reliably reachable, it\'s worth steering your build toward it in advance.'
+    }
+  },
+  {
+    id: 'travelling-circus-choice', free: false,
+    ru: {
+      title: 'Странствующий цирк — какой навык апгрейдить', icon: '🎪',
+      situation: 'Зашёл в «Странствующий цирк» — разовый за игру бесплатный апгрейд одного навыка на следующий уровень. Кандидат A уже на Advanced (апгрейд даст Expert). Кандидат B ещё на Basic (апгрейд даст Advanced).',
+      options: ['Апгрейдить кандидата A до Expert', 'Апгрейдить кандидата B до Advanced', 'Не тратить бесплатный апгрейд сейчас, отложить на потом'],
+      correct: 1,
+      explain: 'Переход с Basic на Advanced даёт выбор сразу из 3 саб-скиллов, а с Advanced на Expert — только из 2. Разовый бесплатный шанс за игру логичнее потратить на апгрейд, который открывает больше вариантов усиления.'
+    },
+    en: {
+      title: 'Travelling Circus — Which Skill to Upgrade', icon: '🎪',
+      situation: 'You entered the Travelling Circus — a once-per-game free upgrade of one skill to the next level. Candidate A is already Advanced (upgrade gives Expert). Candidate B is still Basic (upgrade gives Advanced).',
+      options: ['Upgrade Candidate A to Expert', 'Upgrade Candidate B to Advanced', 'Save the free upgrade for later'],
+      correct: 1,
+      explain: 'Going from Basic to Advanced opens a choice of 3 sub-skills, while Advanced to Expert only offers 2. The one free shot per game is better spent on the upgrade that opens more options.'
+    }
+  },
+  {
+    id: 'diplomacy-join-or-fight', free: false,
+    ru: {
+      title: 'Дипломатия — договориться или драться', icon: '🤝',
+      situation: 'У героя изучена Дипломатия (даёт шанс, что нейтральный отряд согласится присоединиться за золото вместо боя). Впереди нейтральный отряд, а армия героя сейчас не в лучшей форме для сражения.',
+      options: ['Подойти и дать шанс Дипломатии сработать, сохранив армию', 'Всё равно атаковать — не тратить время на переговоры', 'Обойти отряд стороной, не связываясь совсем'],
+      correct: 0,
+      explain: 'Дипломатия существует именно для таких ситуаций — шанс получить пополнение армии без потерь, когда состояние текущего войска не располагает к драке. Не пользоваться ей, когда она изучена, — терять её главный смысл.'
+    },
+    en: {
+      title: 'Diplomacy — Talk or Fight', icon: '🤝',
+      situation: 'The hero has Diplomacy (a chance that a neutral stack offers to join for gold instead of fighting). A neutral stack is ahead, and the hero\'s army isn\'t in great shape for a fight right now.',
+      options: ['Approach and let Diplomacy have its chance, keeping the army intact', 'Attack anyway — don\'t waste time negotiating', 'Avoid the stack entirely'],
+      correct: 0,
+      explain: 'Diplomacy exists exactly for situations like this — a chance to reinforce the army without losses when the current force isn\'t fit for a fight. Not using it once learned defeats its whole purpose.'
+    }
   }
 ];
 
@@ -5717,11 +5910,12 @@ function renderSandboxHub() {
     const locked = !sc.free && !isSubscribed;
     const card = document.createElement('div');
     card.className = 'sb-scenario-card' + (done ? ' done' : '') + (locked ? ' locked' : '');
-    card.onclick = () => (locked ? openSubscribe() : openSandboxScenario(i));
+    card.onclick = () => (locked ? openSubscribe('sandbox') : openSandboxScenario(i));
     card.innerHTML = `
       <div class="sb-scenario-num">${done ? '✓' : (i + 1)}</div>
       <div style="flex:1;">
         <div class="lesson-title">${content.icon} ${content.title}</div>
+        ${locked ? `<div class="sb-scenario-hint">${t('sandboxCardHint')}</div>` : ''}
       </div>
       ${locked ? '<div class="premium-tile-lock">🔒</div>' : ''}
     `;
@@ -5732,7 +5926,7 @@ function renderSandboxHub() {
 function openSandboxScenario(index) {
   const sc = SANDBOX_SCENARIOS[index];
   if (!sc.free && !isSubscribed) { 
-    openSubscribe(); 
+    openSubscribe('sandbox'); 
     return; 
   }
 
@@ -5821,10 +6015,16 @@ function sandboxGoNext() {
     const body = document.getElementById('sandbox-play-body');
     body.innerHTML = `
       <div class="completion show" style="display:block;">
-        <div class="badge">🏆</div>
+        <div class="insider-tag">⭐ Инсайдер</div>
+        <div class="badge premium-glow">🏆</div>
         <h2>${t('sandboxDone')}</h2>
         <p style="color:var(--parchment-dim); font-size:14px;">${t('sandboxDoneText')}</p>
-        <button class="primary-btn show" onclick="goSandboxHub()" style="display:block;">Вернуться в песочницу</button>
+        <button class="primary-btn show" onclick="goSandboxHub()" style="display:block;">${t('sandboxBackToList')}</button>
+        <button class="support-link" onclick="openDonate()">${t('supportLink')}</button>
+        <button class="youtube-btn" onclick="openYouTube()">
+          <span>${t('youtubeBtn')}</span>
+        </button>
+        <button class="support-link" onclick="openFeedbackPage()">✉️ ${currentLang === 'ru' ? 'Обратная связь' : 'Feedback'}</button>
       </div>
     `;
     window.scrollTo(0, 0);
@@ -5839,7 +6039,7 @@ function sandboxGoNext() {
         <div class="lock-icon">🔒</div>
         <h2>${t('sandboxUpsellTitle')}</h2>
         <p style="color:var(--parchment-dim);">${t('sandboxUpsellText')}</p>
-        <button class="primary-btn show" onclick="openSubscribe()">${t('lockedBtn')}</button>
+        <button class="primary-btn show" onclick="openSubscribe('sandbox')">${t('lockedBtn')}</button>
       </div>
     `;
     window.scrollTo(0, 0);
@@ -5984,6 +6184,7 @@ function renderHome(forceList) {
   setText('completion-title', t('completionTitle'));
   setText('completion-text', t('completionText'));
   setText('completion-btn', t('completionBtn'));
+  setText('completion-youtube-label', t('youtubeBtn'));
   setText('completion-support-label', t('supportLink'));
 
   const chargesRow = document.getElementById('charges-row');
@@ -6206,7 +6407,7 @@ function renderPremiumHub() {
   introBox.innerHTML = `
     <h2>${t('premiumIntroTitle')}</h2>
     <p>${t('premiumIntroText')}</p>
-    <ul>${t('premiumIntroPerks').map(p => `<li>${p}</li>`).join('')}</ul>
+    <ul>${t('premiumIntroPerks').map(p => `<li>${p.text}</li>`).join('')}</ul>
   `;
 
   const list = document.getElementById('premium-tiles-list');
@@ -6218,21 +6419,24 @@ function renderPremiumHub() {
       title: t('tileGuide'), 
       desc: t('tileGuideDesc'), 
       onClick: openGuidesHub, 
-      locked: !isSubscribed 
+      locked: !isSubscribed,
+      source: 'guide'
     },
     { 
       icon: '🧮', 
       title: t('tileCalc'), 
       desc: 'Подбери идеальную комбинацию из 8 навыков. Визуальная шкала синергии!', 
       onClick: openPremiumCalc, 
-      locked: !isSubscribed 
+      locked: !isSubscribed,
+      source: 'calc'
     },
     { 
       icon: '⚔️', 
       title: t('tileBattleCalc'), 
       desc: t('tileBattleCalcDesc'), 
       onClick: openBattleCalc, 
-      locked: !isSubscribed 
+      locked: !isSubscribed,
+      source: 'battleCalc'
     },
     
     { 
@@ -6240,7 +6444,8 @@ function renderPremiumHub() {
      title: 'Шпаргалки по фракциям', 
      desc: 'Быстрые карточки: стартеры, здания, законы, советы по объектам', 
      onClick: openPremiumCheatsheets, 
-     locked: !isSubscribed 
+     locked: !isSubscribed,
+     source: 'cheatsheets'
      },
     
     {  
@@ -6248,7 +6453,8 @@ function renderPremiumHub() {
       title: t('tileShoutout'), 
       desc: 'Попади в следующий шортс CharmRoad. Твое имя увидит вся аудитория!', 
       onClick: openPremiumShoutout, 
-      locked: !isSubscribed 
+      locked: !isSubscribed,
+      source: 'shoutout'
     }
   ];
 
@@ -6269,7 +6475,7 @@ function renderPremiumHub() {
         ${tile.locked ? `<div class="card-lock">🔒</div>` : `<div class="card-status">✅</div>`}
       </div>
       ${tile.locked ? 
-        `<button class="card-btn unlock" onclick="event.stopPropagation(); openSubscribe();">${t('lockedBtn')}</button>` : 
+        `<button class="card-btn unlock" onclick="event.stopPropagation(); openSubscribe('${tile.source}');">${t('lockedBtn')}</button>` : 
         `<button class="card-btn open" onclick="event.stopPropagation(); ${tile.onClick.name}();">Открыть →</button>`
       }
     `;
@@ -6277,13 +6483,13 @@ function renderPremiumHub() {
   });
 }
 
-function renderLockScreen(container) {
+function renderLockScreen(container, source) {
   container.innerHTML = `
     <div class="lock-screen">
       <div class="lock-icon">🔒</div>
       <h2>${t('lockedTitle')}</h2>
       <p style="color:var(--parchment-dim);">${t('lockedText')}</p>
-      <button class="primary-btn show" onclick="openSubscribe()">${t('lockedBtn')}</button>
+      <button class="primary-btn show" onclick="openSubscribe('${source || ''}')">${t('lockedBtn')}</button>
     </div>
   `;
 }
@@ -6329,7 +6535,7 @@ function renderGuidesHub() {
         ${!isSubscribed ? `<div class="card-lock">🔒</div>` : `<div class="card-status">✅</div>`}
       </div>
       ${!isSubscribed ?
-        `<button class="card-btn unlock" onclick="event.stopPropagation(); openSubscribe();">${t('lockedBtn')}</button>` :
+        `<button class="card-btn unlock" onclick="event.stopPropagation(); openSubscribe('guide');">${t('lockedBtn')}</button>` :
         `<button class="card-btn open" onclick="event.stopPropagation(); openPremiumGuide('${guide.id}');">${currentLang === 'ru' ? 'Открыть →' : 'Open →'}</button>`
       }
     `;
@@ -6348,7 +6554,7 @@ async function openPremiumGuide(guideId) {
   body.innerHTML = `<p style="color:var(--parchment-dim); text-align:center; padding:30px 0;">${t('checkingAccess')}</p>`;
 
   if (isSubscribed === null) await checkSubscription();
-  if (!isSubscribed) { renderLockScreen(body); return; }
+  if (!isSubscribed) { renderLockScreen(body, 'guide'); return; }
 
   const content = GUIDES_CONTENT[guideId][currentLang];
   body.innerHTML = `
@@ -6416,7 +6622,7 @@ async function openPremiumCalc() {
   body.innerHTML = `<p style="color:var(--parchment-dim); text-align:center; padding:30px 0;">${t('checkingAccess')}</p>`;
 
   if (isSubscribed === null) await checkSubscription();
-  if (!isSubscribed) { renderLockScreen(body); return; }
+  if (!isSubscribed) { renderLockScreen(body, 'calc'); return; }
 
   selectedSkills = [];
   const lang = currentLang;
@@ -6624,7 +6830,7 @@ async function openBattleCalc() {
   body.innerHTML = `<p style="color:var(--parchment-dim); text-align:center; padding:30px 0;">${t('checkingAccess')}</p>`;
 
   if (isSubscribed === null) await checkSubscription();
-  if (!isSubscribed) { renderLockScreen(body); return; }
+  if (!isSubscribed) { renderLockScreen(body, 'battleCalc'); return; }
 
   renderBattleCalc();
 }
@@ -6842,7 +7048,7 @@ function renderDefenseResult() {
 }
 
 // ---------- Подписка ----------
-function openSubscribe() {
+function openSubscribe(source) {
   document.getElementById('premium-view').classList.add('hidden');
   document.getElementById('sandbox-hub-view').classList.add('hidden');
   document.getElementById('sandbox-play-view').classList.add('hidden');
@@ -6851,23 +7057,45 @@ function openSubscribe() {
   document.getElementById('premium-calc-view').classList.add('hidden');
   document.getElementById('premium-battle-calc-view').classList.add('hidden');
   document.getElementById('subscribe-view').classList.remove('hidden');
-  renderSubscribeTiers();
+  renderSubscribeTiers(source);
   window.scrollTo(0, 0);
 }
 
-function renderSubscribeTiers() {
+function renderSubscribeTiers(source) {
   setText('subscribe-eyebrow', t('subscribeEyebrow'));
-  setText('subscribe-title', t('subscribeTitle'));
   setText('subscribe-back-label', t('premiumBackToHub'));
 
   const perks = t('premiumIntroPerks');
+  const contextMap = t('subscribeContext') || {};
+  const contextText = source && contextMap[source];
+
+  // Заголовок: если знаем, откуда пришёл клик — говорим прямо про это,
+  // иначе (например, кнопка "⭐ Премиум" на главном экране) — обычный заголовок.
+  setText('subscribe-title', contextText || t('subscribeTitle'));
+
+  let featured = null;
+  let rest = perks;
+  if (source) {
+    featured = perks.find(p => p.key === source);
+    rest = perks.filter(p => p.key !== source);
+  }
+
+  const perksHtml = featured
+    ? `
+      <ul class="tier-perks tier-perks-featured"><li>${featured.text}</li></ul>
+      <div class="tier-bonus-label">${t('subscribeBonusLabel')}</div>
+      <ul class="tier-perks">${rest.map(p => `<li>${p.text}</li>`).join('')}</ul>
+    `
+    : `<ul class="tier-perks">${perks.map(p => `<li>${p.text}</li>`).join('')}</ul>`;
+
   const list = document.getElementById('subscribe-tiers-list');
   list.innerHTML = `
     <div class="tier-card">
       <div class="tier-name">Инсайдер</div>
       <div class="tier-price">⭐ ${SUB_PRICES.insider.stars} / ${currentLang === 'ru' ? 'мес' : 'mo'}</div>
-      <ul class="tier-perks">${perks.map(p => `<li>${p}</li>`).join('')}</ul>
+      ${perksHtml}
       <button class="tier-buy-btn" onclick="buyTier('insider')" id="buy-btn-insider">${t('payBtn')}</button>
+      <div class="tier-cancel-note">${t('subscribeCancelNote')}</div>
     </div>
   `;
 
@@ -6925,7 +7153,7 @@ async function openPremiumShoutout() {
   body.innerHTML = `<p style="color:var(--parchment-dim); text-align:center; padding:30px 0;">${t('checkingAccess')}</p>`;
 
   if (isSubscribed === null) await checkSubscription();
-  if (!isSubscribed) { renderLockScreen(body); return; }
+  if (!isSubscribed) { renderLockScreen(body, 'shoutout'); return; }
 
   body.innerHTML = `
     <div class="premium-badge">Premium</div>
