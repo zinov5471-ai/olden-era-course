@@ -22,12 +22,21 @@
   }
   *{box-sizing:border-box; -webkit-tap-highlight-color: transparent;}
   html,body{margin:0; padding:0; overflow-anchor: none;}
+  /* ВАЖНО: html/body больше не скроллятся сами — весь скролл идёт
+     внутри #app. Так рекомендует сама документация Telegram Mini Apps:
+     когда tg.disableVerticalSwipes() активен (нужен, чтобы человек не
+     закрывал бота случайным свайпом вниз), а страницу скроллит body
+     напрямую, WebView иногда перехватывает жест и не отдаёт его обычной
+     прокрутке — из-за этого страница "зависает" и не листается с первого
+     свайпа. Отдельный внутренний скролл-контейнер убирает этот конфликт. */
+  html,body{
+    height: 100%;
+    overflow: hidden;
+  }
   body{
     background: radial-gradient(ellipse at top, #201C33 0%, var(--bg) 55%);
     color: var(--parchment);
     font-family: 'Manrope', sans-serif;
-    min-height: 100vh;
-    overflow-x: hidden;
   }
   h1,h2,h3, .display{
     font-family: 'Cinzel', serif;
@@ -37,9 +46,11 @@
     max-width: 560px;
     margin: 0 auto;
     padding: 20px 18px 40px;
-    min-height: 100vh;
+    height: 100%;
     position: relative;
     overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   /* ---------- Language select screen ---------- */
@@ -1018,7 +1029,7 @@
   width: 100%;
   min-height: 80vh;
 }
-#premium-cheatsheets-view:not(.hidden)
+#premium-cheatsheets-view:not(.hidden),
 #feedback-view:not(.hidden),
 #premium-view:not(.hidden),
 #subscribe-view:not(.hidden),
@@ -1287,6 +1298,11 @@
     background: rgba(201,161,92,0.1);
     border-radius: 12px;
     flex-shrink: 0;
+  }
+  .premium-card .card-icon img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
   }
   .premium-card .card-title {
     font-size: 16px;
@@ -6423,7 +6439,7 @@ function renderPremiumHub() {
 
   const tiles = [
     { 
-      icon: '📜', 
+      icon: '<img src="images/icon-guide.webp" alt="">', 
       title: t('tileGuide'), 
       desc: t('tileGuideDesc'), 
       onClick: openGuidesHub, 
@@ -6431,7 +6447,7 @@ function renderPremiumHub() {
       source: 'guide'
     },
     { 
-      icon: '🧮', 
+      icon: '<img src="images/icon-calc.webp" alt="">', 
       title: t('tileCalc'), 
       desc: 'Подбери идеальную комбинацию из 8 навыков. Визуальная шкала синергии!', 
       onClick: openPremiumCalc, 
@@ -6439,8 +6455,7 @@ function renderPremiumHub() {
       source: 'calc'
     },
     { 
-      icon: '⚔️', 
-      title: t('tileBattleCalc'), 
+      icon: '<img src="images/icon-battle-calc.webp" alt="">', 
       desc: t('tileBattleCalcDesc'), 
       onClick: openBattleCalc, 
       locked: !isSubscribed,
@@ -6448,7 +6463,7 @@ function renderPremiumHub() {
     },
     
     { 
-     icon: '📋', 
+     icon: '<img src="images/icon-cheatsheets.webp" alt="">', 
      title: 'Шпаргалки по фракциям', 
      desc: 'Быстрые карточки: стартеры, здания, законы, советы по объектам', 
      onClick: openPremiumCheatsheets, 
@@ -6457,7 +6472,7 @@ function renderPremiumHub() {
      },
     
     {  
-      icon: '📣', 
+      icon: '<img src="images/icon-shoutout.webp" alt="">', 
       title: t('tileShoutout'), 
       desc: 'Попади в следующий шортс CharmRoad. Твое имя увидит вся аудитория!', 
       onClick: openPremiumShoutout, 
@@ -7316,7 +7331,8 @@ function sendFeedbackNew() {
 const scrollBtn = document.getElementById('scrollTopBtn');
 
 function updateScrollBtn() {
-  const scrolled = (window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0);
+  const appEl = document.getElementById('app');
+  const scrolled = appEl ? appEl.scrollTop : 0;
   if (scrolled > 300) {
     scrollBtn.classList.add('visible');
   } else {
@@ -7324,7 +7340,7 @@ function updateScrollBtn() {
   }
 }
 
-window.addEventListener('scroll', updateScrollBtn, { passive: true });
+document.getElementById('app').addEventListener('scroll', updateScrollBtn, { passive: true });
 
 // Пересчитываем видимость кнопки при любой смене экрана
 // (важно для песочницы и коротких страниц, где scroll может не сработать сам)
@@ -7343,11 +7359,13 @@ scrollBtnObserver.observe(document.getElementById('app'), {
 // Используется и кнопкой "наверх", и всеми программными переходами
 // (в т.ч. песочницей), где раньше стоял голый window.scrollTo(0,0).
 function forceScrollTop() {
+  const appEl = document.getElementById('app');
+  if (appEl) appEl.scrollTop = 0;
   window.scrollTo(0, 0);
   document.documentElement.scrollTop = 0;
   document.body.scrollTop = 0;
   requestAnimationFrame(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (appEl) appEl.scrollTo({ top: 0, behavior: 'smooth' });
   });
 }
 
