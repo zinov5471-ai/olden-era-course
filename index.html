@@ -1288,6 +1288,11 @@
     border-radius: 12px;
     flex-shrink: 0;
   }
+  .premium-card .card-icon img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+  }
   .premium-card .card-title {
     font-size: 16px;
     font-weight: 700;
@@ -6423,7 +6428,7 @@ function renderPremiumHub() {
 
   const tiles = [
     { 
-      icon: '📜', 
+      icon: '<img src="images/icon-guide.webp" alt="">', 
       title: t('tileGuide'), 
       desc: t('tileGuideDesc'), 
       onClick: openGuidesHub, 
@@ -6431,7 +6436,7 @@ function renderPremiumHub() {
       source: 'guide'
     },
     { 
-      icon: '🧮', 
+      icon: '<img src="images/icon-calc.webp" alt="">', 
       title: t('tileCalc'), 
       desc: 'Подбери идеальную комбинацию из 8 навыков. Визуальная шкала синергии!', 
       onClick: openPremiumCalc, 
@@ -6439,8 +6444,7 @@ function renderPremiumHub() {
       source: 'calc'
     },
     { 
-      icon: '⚔️', 
-      title: t('tileBattleCalc'), 
+      icon: '<img src="images/icon-battle-calc.webp" alt="">', 
       desc: t('tileBattleCalcDesc'), 
       onClick: openBattleCalc, 
       locked: !isSubscribed,
@@ -6448,7 +6452,7 @@ function renderPremiumHub() {
     },
     
     { 
-     icon: '📋', 
+     icon: '<img src="images/icon-cheatsheets.webp" alt="">', 
      title: 'Шпаргалки по фракциям', 
      desc: 'Быстрые карточки: стартеры, здания, законы, советы по объектам', 
      onClick: openPremiumCheatsheets, 
@@ -6457,7 +6461,7 @@ function renderPremiumHub() {
      },
     
     {  
-      icon: '📣', 
+      icon: '<img src="images/icon-shoutout.webp" alt="">', 
       title: t('tileShoutout'), 
       desc: 'Попади в следующий шортс CharmRoad. Твое имя увидит вся аудитория!', 
       onClick: openPremiumShoutout, 
