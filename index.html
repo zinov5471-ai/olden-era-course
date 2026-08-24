@@ -2085,6 +2085,149 @@ function updateProgress() {
 // ==========================================
 const TOPICS = [
    {
+    id: 'patch-13',
+    icon: '🔧',
+    ru: { title: 'Патч 13: Таинственный остров' },
+    en: { title: 'Patch 13: The Mysterious Island' },
+    lessons: [
+      {
+        id: 'patch-13-mysterious-island',
+        image: 'images/patch-13-mysterious-island.jpg',
+        ru: {
+          title: 'Новая карта: Таинственный остров',
+          eyebrow: 'Патч 13 — новый контент',
+          body: [
+            'Патч 13 добавил крупную новую одиночную карту — «Таинственный остров». Её делает Papyjama, автор одной из самых популярных карт с таким же названием для Heroes III.',
+            'Карта сюжетно отсылает к роману Жюля Верна и доступна сразу с 6 фракциями. Это масштабный сценарий — история будет дополняться в будущих обновлениях, в том числе появится подземный уровень.',
+            'Заодно с патчем вернулась горячая клавиша скрытия интерфейса — Shift+U. Удобно для скриншотов и записи роликов без лишних элементов на экране.'
+          ],
+          tip: 'Если любишь атмосферные одиночные карты — «Таинственный остров» стоит попробовать сразу, не дожидаясь, пока сюжет будет полностью доработан.',
+          quizzes: [
+            { q: 'Кто автор карты «Таинственный остров»?', options: ['Papyjama', 'Студия Unfrozen целиком', 'Сообщество игроков'], correct: 0 },
+            { q: 'Какая горячая клавиша теперь скрывает интерфейс?', options: ['Shift+U', 'Ctrl+H', 'Alt+I'], correct: 0 }
+          ]
+        },
+        en: {
+          title: 'New Map: The Mysterious Island',
+          eyebrow: 'Patch 13 — New Content',
+          body: [
+            'Patch 13 added a large new single-player map — "The Mysterious Island". It was made by Papyjama, the creator of one of the most popular Heroes III maps with the same name.',
+            'The map is narratively inspired by Jules Verne\'s novel and launches with all 6 factions available. This is a large-scale scenario — its story will keep expanding in future updates, including an underground level.',
+            'The patch also brought back the hotkey to hide the interface — Shift+U. Handy for screenshots and clean footage without UI clutter.'
+          ],
+          tip: 'If you love atmospheric single-player maps, try "The Mysterious Island" right away — no need to wait for the full story to be finished.',
+          quizzes: [
+            { q: 'Who created the "Mysterious Island" map?', options: ['Papyjama', 'The whole Unfrozen studio', 'The player community'], correct: 0 },
+            { q: 'Which hotkey now hides the interface?', options: ['Shift+U', 'Ctrl+H', 'Alt+I'], correct: 0 }
+          ]
+        }
+      },
+      {
+        id: 'patch-13-arena',
+        image: 'images/patch-13-arena.jpg',
+        ru: {
+          title: 'Обновление режима Арены',
+          eyebrow: 'Патч 13 — Арена',
+          body: [
+            'Некоторые герои получили стартовый бонус к характеристикам в зависимости от текущей силы в Арене. Разработчики обещают донастраивать эти бонусы в следующих обновлениях.',
+            'Появилась система перевыбора: на этапах выбора артефактов, заклинаний и существ можно обновить предложенные варианты. По умолчанию доступно 4 очка перевыбора — по 1 на этапах артефактов и существ.',
+            'Герои-специалисты по существам теперь гарантированно приносят существ своего ранга в выбор войск для ОБОИХ игроков — то есть специализация вашего героя теперь влияет и на то, что увидит соперник.',
+            'Некоторые мощные заклинания на выбор по умолчанию ограничены 1-м уровнем, а количество существ, предлагаемых на этапе сбора армии, скорректировано.'
+          ],
+          tip: 'Если у тебя специалист по существам конкретного ранга — учитывай, что теперь и противник гарантированно увидит существ этого ранга в своём выборе, не только ты.',
+          quizzes: [
+            { q: 'Сколько очков перевыбора доступно по умолчанию в Арене?', options: ['2', '4', '6'], correct: 1 },
+            { q: 'Что теперь гарантируют герои-специалисты по существам в Арене?', options: ['Появление существ их ранга у обоих игроков', 'Бесплатный найм существ', 'Двойную силу существ'], correct: 0 }
+          ]
+        },
+        en: {
+          title: 'Arena Mode Update',
+          eyebrow: 'Patch 13 — Arena',
+          body: [
+            'Some heroes received a starting stat bonus depending on their current Arena strength. The developers promise to keep tuning these bonuses in future updates.',
+            'A reroll system was added: at the artifact, spell, and creature selection stages you can refresh the offered options. By default you get 4 reroll points — 1 each for the artifact and creature stages.',
+            'Heroes specialized in creatures now guarantee that creatures of their specialty tier appear in the draft for BOTH players — meaning your hero\'s specialty now affects what your opponent sees too.',
+            'Some powerful spells offered by default are now capped at level 1, and the number of creatures offered at the army-gathering stage has been adjusted.'
+          ],
+          tip: 'If your hero specializes in a specific creature tier, keep in mind your opponent is now guaranteed to see creatures of that tier too, not just you.',
+          quizzes: [
+            { q: 'How many reroll points are available by default in Arena?', options: ['2', '4', '6'], correct: 1 },
+            { q: 'What do creature-specialist heroes now guarantee in Arena?', options: ['Creatures of their tier appear for both players', 'Free creature recruitment', 'Double creature strength'], correct: 0 }
+          ]
+        }
+      },
+      {
+        id: 'patch-13-laws-balance',
+        image: 'images/patch-13-laws-balance.jpg',
+        ru: {
+          title: 'Баланс: законы фракций',
+          eyebrow: 'Патч 13 — законы',
+          body: [
+            'Храм получил заметную переработку законов на позднюю игру: почти все законы, усиливающие существ, получили дополнительный уровень, а часть законов подешевела (например, «Сборщики податей» и «Стремление к совершенству» — с 3/3 до 2/2 очков).',
+            'У Некрополя недельный прирост существ от героев-специалистов снижен с 2 до 1, а закон «Загробные дары» подешевел на уровень, но подорожал по очкам (было 3 уровня по 2/2/2, стало 2 уровня по 3/3).',
+            'Законы Роя «Пожирание маны», «Магия Роя» и «Великий поход» теперь действуют только на героев и существ самого Роя — раньше эффект мог захватывать и другие фракции в смешанной армии.',
+            'Подземелье получило новый закон «Тайные знания» (+15 к максимальному запасу маны всех героев), а старый закон с этим названием переименован в «Небесные карты».'
+          ],
+          tip: 'Если играешь за Храм в затяжных партиях — присмотрись к обновлённым законам ещё раз: подешевели именно те, что усиливают существ на поздних стадиях.',
+          quizzes: [
+            { q: 'На сколько снижен недельный прирост существ у героев-специалистов Некрополя в патче 13?', options: ['С 3 до 2', 'С 2 до 1', 'Не изменился'], correct: 1 },
+            { q: 'На кого теперь действуют законы Роя «Пожирание маны» и «Магия Роя»?', options: ['На всех героев армии', 'Только на героев и существ Роя', 'Только на героя-владельца'], correct: 1 }
+          ]
+        },
+        en: {
+          title: 'Balance: Faction Laws',
+          eyebrow: 'Patch 13 — Laws',
+          body: [
+            'Temple got a notable late-game law rework: almost all creature-boosting laws gained an extra tier, and several laws became cheaper (e.g. "Tax Collectors" and "Striving for Perfection" — down from 3/3 to 2/2 points).',
+            'Necropolis: the weekly creature growth bonus from specialist heroes was reduced from 2 to 1, and the "Grave Gifts" law lost a tier but became more expensive per tier (was 3 tiers at 2/2/2, now 2 tiers at 3/3).',
+            'The Hive laws "Mana Devour", "Hive Magic" and "The Great March" now only affect Hive heroes and creatures — previously the effect could also reach other factions in a mixed army.',
+            'Dungeon got a new law "Higher Education" (+15 max mana for all heroes), while the old law with that name was renamed to "Celestial Charts".'
+          ],
+          tip: 'If you play Temple in long games, take another look at the reworked laws — the ones that got cheaper are specifically the late-game creature boosts.',
+          quizzes: [
+            { q: 'How much was the weekly creature growth bonus for Necropolis specialist heroes reduced in patch 13?', options: ['From 3 to 2', 'From 2 to 1', 'It wasn\'t changed'], correct: 1 },
+            { q: 'Who do the Hive laws "Mana Devour" and "Hive Magic" now affect?', options: ['All heroes in the army', 'Only Hive heroes and creatures', 'Only the owning hero'], correct: 1 }
+          ]
+        }
+      },
+      {
+        id: 'patch-13-creature-balance',
+        image: 'images/patch-13-creature-balance.jpg',
+        ru: {
+          title: 'Баланс: существа и навыки',
+          eyebrow: 'Патч 13 — существа и навыки',
+          body: [
+            'Роща: у Кирина (базового и обоих улучшений) немного снижены здоровье, защита и удача — фракция была сильна в поздней игре, и разработчики слегка её придержали. Также ослаблен поднавык «Ещё разок» (Шёпот стихий): бонус к урону удара героя за потраченный заряд концентрации снижен с 15% до 10%.',
+            'Рой: разработчики специально перераспределили силу фракции — паразиты (1 ранг) и чревень с апгрейдами (6 ранг) немного ослаблены по скорости/инициативе, а взамен усилены скорпионы (4 ранг), которые были самым невостребованным отрядом. У скорпионов выросла инициатива, у чревеня/пожирателя/пиробороса — снизилась.',
+            'Раскол: Свирепый Ра\'шотх (улучшение Ра\'шотха) немного ослаблен в атаке и защите, но получил выше инициативу — более хрупкий, но более быстрый юнит.',
+            'Некрополь: способность «Объятия смерти» Чумного лича заметно ослаблена — периодический урон теперь вдвое слабее, кулдаун вырос с 1 до 2 раундов, а стоимость применения — с 1 до 2 зарядов концентрации.'
+          ],
+          tip: 'Если у тебя была стратегия на Чумном личе через «Объятия смерти» в затяжных боях — способность стала слабее и по эффекту, и по концентрации, пересчитай экономику зарядов под новые цифры.',
+          quizzes: [
+            { q: 'Что произошло с поднавыком «Ещё разок» Рощи в патче 13?', options: ['Бонус к урону снижен с 15% до 10%', 'Навык убрали из игры', 'Бонус увеличен до 20%'], correct: 0 },
+            { q: 'Что изменилось у способности «Объятия смерти» Чумного лича?', options: ['Урон, кулдаун и стоимость снижены', 'Периодический урон и кулдаун снижены, а стоимость выросла', 'Периодический урон снижен вдвое, кулдаун и стоимость выросли'], correct: 2 }
+          ]
+        },
+        en: {
+          title: 'Balance: Creatures and Skills',
+          eyebrow: 'Patch 13 — Creatures & Skills',
+          body: [
+            'Grove: the Qilin (base and both upgrades) had health, defense and luck slightly reduced — the faction was strong in the late game and got gently reined in. The "One More Time" Murmuring subskill was also nerfed: the hero strike damage bonus per spent focus charge dropped from 15% to 10%.',
+            'Hive: the developers deliberately redistributed the faction\'s power — tier 1 Parasites and tier 6 Waurm upgrades had their speed/initiative slightly reduced, while tier 4 Scorpions, previously the most underused unit, got buffed. Scorpions gained initiative, while Waurm/Devourer/Pyroboros lost some.',
+            'Schism: the Fierce Ra\'Shoth (Ra\'Shoth upgrade) was slightly weakened in attack and defense but gained higher initiative — more fragile but faster.',
+            'Necropolis: the Plague Lich\'s "Embrace of Death" ability was noticeably nerfed — periodic damage is now half as strong, cooldown increased from 1 to 2 rounds, and the focus cost went from 1 to 2 charges.'
+          ],
+          tip: 'If you had a Plague Lich strategy built around "Embrace of Death" in long fights, the ability is now weaker both in effect and in focus cost — recalculate your charge economy around the new numbers.',
+          quizzes: [
+            { q: 'What happened to Grove\'s "One More Time" subskill in patch 13?', options: ['Damage bonus reduced from 15% to 10%', 'The subskill was removed', 'Bonus increased to 20%'], correct: 0 },
+            { q: 'What changed for the Plague Lich\'s "Embrace of Death" ability?', options: ['Damage, cooldown and cost all decreased', 'Periodic damage and cooldown decreased, cost increased', 'Periodic damage halved, cooldown and cost both increased'], correct: 2 }
+          ]
+        }
+      }
+    ]
+  }
+  ,
+   {
     id: 'patch-12',
     icon: '🔧',
     ru: { title: 'Патч 12: Баланс и исправления' },
@@ -2550,12 +2693,14 @@ const TOPICS = [
       body: [
         'Alt на карте мира подсвечивает все интерактивные объекты — легко что-то пропустить без этого. O — гильдия магов, B — книга заклинаний, Tab — следующий герой/город.',
         'В бою: W — пропустить ход юнита и дать ему походить позже, D — защитная стойка.',
-        'Отдельная панель зарядов концентрации привязана к клавишам 1–0 — можно активировать способности без наведения мышью, что сильно ускоряет бой в поздней игре с большим количеством способностей.'
+        'Отдельная панель зарядов концентрации привязана к клавишам 1–0 — можно активировать способности без наведения мышью, что сильно ускоряет бой в поздней игре с большим количеством способностей.',
+        'С патча #13 добавлена клавиша Shift+U — она скрывает весь пользовательский интерфейс. Удобно для чистых скриншотов и записи роликов без HUD на экране.'
       ],
       tip: 'Горячие клавиши можно переназначить в меню игры, если стандартные неудобны.',
       quizzes: [
         { q: 'Какая клавиша подсвечивает все интерактивные объекты на карте мира?', options: ['Tab', 'Alt', 'O'], correct: 1 },
-        { q: 'Какие клавиши соответствуют панели зарядов концентрации?', options: ['Стрелки', 'F1–F12', 'Цифры 1–0'], correct: 2 }
+        { q: 'Какие клавиши соответствуют панели зарядов концентрации?', options: ['Стрелки', 'F1–F12', 'Цифры 1–0'], correct: 2 },
+        { q: 'Что делает клавиша Shift+U (добавлена в патче #13)?', options: ['Скрывает пользовательский интерфейс', 'Открывает книгу заклинаний', 'Ускоряет анимации боя'], correct: 0 }
       ]
     },
     en: {
@@ -2564,12 +2709,14 @@ const TOPICS = [
       body: [
         'Alt on the world map highlights all interactive objects — easy to miss something without it. O opens the Mage Guild, B opens the spellbook, Tab switches to the next hero or town.',
         'In combat: W skips a unit turn to act later, D is defensive stance.',
-        'A dedicated concentration charge panel is bound to keys 1 through 0 — you can activate abilities without aiming with the mouse, which speeds up combat a lot once you have many abilities in the late game.'
+        'A dedicated concentration charge panel is bound to keys 1 through 0 — you can activate abilities without aiming with the mouse, which speeds up combat a lot once you have many abilities in the late game.',
+        'Since patch #13, Shift+U hides the entire user interface — handy for clean screenshots and footage without any HUD on screen.'
       ],
       tip: 'Hotkeys can be rebound in the game menu if the defaults do not suit you.',
       quizzes: [
         { q: 'Which key highlights all interactive objects on the world map?', options: ['Tab', 'Alt', 'O'], correct: 1 },
-        { q: 'Which keys map to the concentration charge panel?', options: ['Arrow keys', 'F1–F12', 'Number keys 1–0'], correct: 2 }
+        { q: 'Which keys map to the concentration charge panel?', options: ['Arrow keys', 'F1–F12', 'Number keys 1–0'], correct: 2 },
+        { q: 'What does Shift+U do (added in patch #13)?', options: ['Hides the user interface', 'Opens the spellbook', 'Speeds up combat animations'], correct: 0 }
       ]
     }
   },
@@ -3884,7 +4031,7 @@ const TOPICS = [
           title: 'Юниты 6–7 уровня: элита Рощи',
           eyebrow: 'Сильные юниты поздней игры',
           body: [
-            'Кирин (Qilin) — это юнит 6-го уровня с высокими характеристиками. У него 135 здоровья, атака 22, защита 22, урон 24-30. У Кирина +3 к удаче, что даёт хороший шанс на двойной урон.',
+            'Кирин (Qilin) — это юнит 6-го уровня с высокими характеристиками. У него 130 здоровья (стало так после патча #13, было 135), атака 22, защита 20 (стало так после патча #13, было 22), урон 24-30. У Кирина +2 к удаче (стало так после патча #13, было +3), что даёт хороший шанс на двойной урон.',
             'Апгрейды: Громовой кирин (инициатива 11, скорость 8, урон 30-36) — агрессивная версия; Туманный кирин (инициатива 13, урон 27-36) — быстрая и смертоносная версия.',
             'Феникс (Phoenix) — это вершина фракции Роща, юнит 7-го уровня. У него 200 здоровья, атака 28, защита 26, урон 45-65, инициатива 14, скорость 7. Это один из самых быстрых юнитов в игре!',
             'Апгрейды: Пылающий феникс (здоровье 300, инициатива 16, скорость 9) — мощная атакующая версия; Энергетический феникс (защита 36, инициатива 15, скорость 9) — защитная версия.',
@@ -3900,7 +4047,7 @@ const TOPICS = [
           title: 'Units 6–7: Grove Elite',
           eyebrow: 'Strong Late-Game Units',
           body: [
-            'Qilin is a tier 6 unit with high stats. Has 135 health, attack 22, defense 22, damage 24-30. Qilin has +3 luck, giving a good chance for double damage.',
+            'Qilin is a tier 6 unit with high stats. Has 130 health (became this after patch #13, was 135), attack 22, defense 20 (became this after patch #13, was 22), damage 24-30. Qilin has +2 luck (became this after patch #13, was +3), giving a good chance for double damage.',
             'Upgrades: Thunder Qilin (initiative 11, speed 8, damage 30-36) — aggressive version; Mist Qilin (initiative 13, damage 27-36) — fast and deadly version.',
             'Phoenix is the pinnacle of the Grove faction, a tier 7 unit. Has 200 health, attack 28, defense 26, damage 45-65, initiative 14, speed 7. This is one of the fastest units in the game!',
             'Upgrades: Blazing Phoenix (health 300, initiative 16, speed 9) — powerful offensive version; Energy Phoenix (defense 36, initiative 15, speed 9) — defensive version.',
@@ -4085,8 +4232,8 @@ const TOPICS = [
           title: 'Юниты 4–5 уровня: ударная сила',
           eyebrow: 'Основная армия',
           body: [
-            'Скорпион (Scorpion) — юнит 4-го уровня. У него 45 здоровья, атака 11, защита 11, урон 10-12. Особенность: «Адаптация» — можно выбрать бонус к атаке (+20%), защите (-20% урона) или скорости (+2).',
-            'Апгрейды: Вулканический скорпион (защита 14, здоровье 60) — защитная версия;  Глубинный скорпион (атака 13, урон 11-13) — атакующая версия.',
+            'Скорпион (Scorpion) — юнит 4-го уровня. У него 40 здоровья (стало так после патча #13, было 45), атака 11, защита 11, урон 10-12. Особенность: «Адаптация» — можно выбрать бонус к атаке (+20%), защите (-20% урона) или скорости (+2).',
+            'Апгрейды: Вулканический скорпион (защита 14, здоровье 55 (стало так после патча #13, было 60)) — защитная версия;  Глубинный скорпион (атака 13, урон 11-13) — атакующая версия.',
             'Разоритель (Reaver) — юнит 5-го уровня. У него 45 здоровья, атака 18, защита 12, урон 10-40 (огромный разброс!). Инициатива 11 — очень высоко.',
             'Апгрейды: Жуткий разоритель (защита 18, мораль 3) — защитная версия; Кровожадный разоритель (атака 18, урон 10-40) — атакующая версия.',
             'Разоритель  — это главные убийцы в армии Роя. Их огромный разброс урона (10-40) делает их непредсказуемыми, но при удаче они выносят любую цель.'
@@ -4101,8 +4248,8 @@ const TOPICS = [
           title: 'Units 4–5: Striking Force',
           eyebrow: 'Main Army',
           body: [
-            'Scorpion is a tier 4 unit. Has 45 health, attack 11, defense 11, damage 10-12. Special: "Adaptation" — can choose bonus to attack (+20%), defense (-20% damage taken), or speed (+2).',
-            'Upgrades: Volcanic Scorpion (defense 14, health 60) — defensive version; Spelaean Scorpion (attack 13, damage 11-13) — offensive version.',
+            'Scorpion is a tier 4 unit. Has 40 health (became this after patch #13, was 45), attack 11, defense 11, damage 10-12. Special: "Adaptation" — can choose bonus to attack (+20%), defense (-20% damage taken), or speed (+2).',
+            'Upgrades: Volcanic Scorpion (defense 14, health 55 (became this after patch #13, was 60)) — defensive version; Spelaean Scorpion (attack 13, damage 11-13) — offensive version.',
             'Reaver is a tier 5 unit. Has 45 health, attack 18, defense 12, damage 10-40 (huge range!). Initiative 11 — very high.',
             'Upgrades: Menacing Reaver (defense 18, morale 3) — defensive version; Maniacal Reaver (attack 18, damage 10-40) — offensive version.',
             'Reavers are the main killers in the Hive army. Their huge damage range (10-40) makes them unpredictable, but with luck they destroy any target.'
@@ -4121,8 +4268,8 @@ const TOPICS = [
           title: 'Юниты 6–7 уровня: элита Роя',
           eyebrow: 'Сильные юниты поздней игры',
           body: [
-            'Чревень(Waurms) — юнит 6-го уровня. У них 120 здоровья, атака 20, защита 20, урон 21-23. Инициатива 8, скорость 8.',
-            'Ключевой апгрейд: Пироборос — единственный юнит Роя с дальним боем! У него нет штрафа за стрельбу в ближнем бою, урон 21-23, инициатива 9. Он стреляет огненными шарами по площади.',
+            'Чревень(Waurms) — юнит 6-го уровня. У них 120 здоровья, атака 20, защита 20, урон 21-23. Инициатива 7 (стало так после патча #13, было 8), скорость 8.',
+            'Ключевой апгрейд: Пироборос — единственный юнит Роя с дальним боем! У него нет штрафа за стрельбу в ближнем бою, урон 21-23, инициатива 8 (стало так после патча #13, было 9). Он стреляет огненными шарами по площади.',
             'Альтернативный апгрейд: Пожиратель — остаётся в ближнем бою, но получает бонусы от поедания трупов.',
             'Королева роя (Hive Queen) — юнит 7-го уровня. У неё 200 здоровья, атака 25, защита 25, урон 60-60.',
             'Апгрейды: Мать роя (здоровье 275, инициатива 13) — усиливает всю армию, делится вампиризмом с союзниками; Охотница роя (здоровье 250, урон 70-70, скорость 9) — убивает без контратаки, получает бонусы от вражеских фракций.',
@@ -4138,8 +4285,8 @@ const TOPICS = [
           title: 'Units 6–7: Hive Elite',
           eyebrow: 'Strong Late-Game Units',
           body: [
-            'Waurms are tier 6 units. Have 120 health, attack 20, defense 20, damage 21-23. Initiative 8, speed 8.',
-            'Key upgrade: Pyroboros — the only Hive unit with ranged combat! Has no melee penalty, damage 21-23, initiative 9. Shoots fireballs in an area.',
+            'Waurms are tier 6 units. Have 120 health, attack 20, defense 20, damage 21-23. Initiative 7 (became this after patch #13, was 8), speed 8.',
+            'Key upgrade: Pyroboros — the only Hive unit with ranged combat! Has no melee penalty, damage 21-23, initiative 8 (became this after patch #13, was 9). Shoots fireballs in an area.',
             'Alternative upgrade: Devourer — stays in melee but gains bonuses from consuming corpses.',
             'Hive Queen is a tier 7 unit. Has 200 health, attack 25, defense 25, damage 60-60.',
             'Upgrades: Hive Mother (health 275, initiative 13) — strengthens the whole army, shares vampirism with allies; Hive Huntress (health 250, damage 70-70, speed 9) — kills without counterattack, gains bonuses from enemy factions.',
