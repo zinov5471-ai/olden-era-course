@@ -2791,13 +2791,13 @@ const TOPICS = [
       title: 'Магия: школы, тиры, уровни',
       eyebrow: 'Механика 7',
       body: [
-        'Пять школ магии: Магия дня (баффы), Магия ночи (дебаффы), Боевая магия (прямой урон), Тайная магия (контроль поля) и нейтральная магия отдельно.',
+        'Всего в игре пять категорий магии: четыре школы заклинаний — Магия дня, Магия ночи, Первородная магия и Арканная магия — плюс отдельная Нейтральная магия (доступна всем героям через объекты на карте, а не через фракционную гильдию).',
         'Тир и уровень заклинания — разные вещи! Тир — постоянное свойство, открывается стройкой гильдии магов (1–5). Уровень — от 1 до 4, зависит от навыков героя, артефактов и объектов на карте.',
         'У заклинаний есть кулдаун после использования, а иногда в кулдаун уходит вся школа целиком на раунд — сильный маг умеет миксовать разные школы, а не спамить одно и то же заклинание.'
       ],
       tip: 'Когда герой возвращается в город с гильдией магов — оставьте его там на ход, чтобы бесплатно восстановить ману.',
       quizzes: [
-        { q: 'Чем отличается тир заклинания от его уровня?', options: ['Это одно и то же', 'Тир — постоянное свойство от гильдии, уровень меняется от навыков и артефактов', 'Уровень определяет школу магии'], correct: 1 },
+        { q: 'Сколько всего школ заклинаний (без учёта нейтральной магии) в игре?', options: ['3', '4', '5'], correct: 1 },
         { q: 'Что происходит, если школа магии ушла в кулдаун?', options: ['Ничего, кулдаун только у отдельных заклинаний', 'Все заклинания этой школы недоступны раунд', 'Мана героя обнуляется'], correct: 1 }
       ]
     },
@@ -2805,13 +2805,13 @@ const TOPICS = [
       title: 'Magic: Schools, Tiers, Levels',
       eyebrow: 'Mechanic 7',
       body: [
-        'There are five schools of magic: Day Magic (buffs), Night Magic (debuffs), Battle Magic (direct damage), Arcane Magic (battlefield control), and Neutral Magic as a separate category.',
+        'The game has five magic categories in total: four spell schools — Day Magic, Night Magic, Primal Magic, and Arcane Magic — plus a separate Neutral Magic (available to all heroes through map objects rather than a faction guild).',
         'Tier and level are not the same thing! Tier is a permanent property, unlocked by building the Mage Guild (levels 1–5). Level ranges from 1 to 4 and depends on hero skills, artifacts, and map objects.',
         'Spells have a cooldown after use, and sometimes an entire school goes on cooldown for a round — a strong mage knows how to mix schools instead of spamming the same spell.'
       ],
       tip: 'When your hero returns to a town with a Mage Guild, leave them there for a turn to restore mana for free.',
       quizzes: [
-        { q: 'What is the difference between a spell tier and its level?', options: ['They are the same thing', 'Tier is a fixed property from the guild, level changes with skills and artifacts', 'Level determines the school of magic'], correct: 1 },
+        { q: 'How many spell schools (not counting neutral magic) are in the game?', options: ['3', '4', '5'], correct: 1 },
         { q: 'What happens when a school of magic goes on cooldown?', options: ['Nothing, only individual spells have cooldowns', 'All spells from that school are unavailable for a round', 'The hero mana resets to zero'], correct: 1 }
       ]
     }
@@ -3292,15 +3292,14 @@ const TOPICS = [
           eyebrow: 'Фракционный навык',
           body: [
             'Некромантия — это ключевая механика Некрополя. После победы в бою часть сильнейшего отряда врага превращается в нежить того же уровня, усиливая твою армию без затрат золота.',
-            'Количество поднимаемых существ зависит от уровня навыка некромантии и силы вражеского отряда. Базовый уровень даёт 10%, Продвинутый — 15% от сильнейшего стека врага.',
-            'Некромантия работает только с отрядами 3-го уровня и выше. Слабые нейтралы не дадут скелетов — фокусируйся на сильных противниках.',
-            'Начальный запас энергии некромантии: 3000 (Базовый) / 4000 (Продвинутый) / 5000 (Экспертный). Стоимость поднятия существ: Скелет — 20 энергии, Вампир — 2000 энергии.',
-            'За каждый уровень некромантии скелеты получают +2 к защите. Это делает их значительно живучее в поздней игре.'
+            'Количество поднимаемых существ зависит от уровня навыка некромантии и силы вражеского отряда. Базовый уровень даёт 10%, Продвинутый — 15%, Экспертный — 20% от сильнейшего стека врага.',
+            'Начальный запас энергии некромантии: 3000 (Базовый) / 4000 (Продвинутый) / 5000 (Экспертный), восполняется каждую неделю.',
+            'У навыка есть поднавыки: «Мёртвая земля» усиливает существ Некрополя на родной территории (+10% урона / −10% получаемого урона); «Жатва душ» даёт герою 4 временной маны после победы; ещё один поднавык увеличивает максимальный запас энергии некромантии на 1000; «Мрачный жнец» снижает мораль и удачу врага на 1; «Вечная служба» открывает способность лечить или воскрешать союзную нежить в бою.'
           ],
-          tip: 'Некромантия — это снежный ком. Чем больше и сильнее врагов ты побеждаешь, тем быстрее растёт армия. В начале игры выбирай бои с отрядами 3-го уровня и выше, чтобы получить максимальную отдачу. Закон "Бессмертие" увеличивает генерацию очков законов — бери его первым.',
+          tip: 'Некромантия — это снежный ком. Чем больше и сильнее врагов ты побеждаешь, тем быстрее растёт армия. Закон "Бессмертие" увеличивает генерацию очков законов — бери его первым.',
           quizzes: [
             { q: 'Сколько процентов от сильнейшего стека врага даёт Продвинутая некромантия?', options: ['5%', '10%', '15%'], correct: 2 },
-            { q: 'Сколько энергии стоит поднятие Вампира в патче 11?', options: ['500', '1000', '2000'], correct: 2 }
+            { q: 'Что делает поднавык «Вечная служба»?', options: ['Лечит или воскрешает союзную нежить в бою', 'Даёт +2 к защите скелетам', 'Снижает стоимость поднятия существ'], correct: 0 }
           ]
         },
         en: {
@@ -3308,15 +3307,14 @@ const TOPICS = [
           eyebrow: 'Faction Skill',
           body: [
             'Necromancy is the key mechanic of Necropolis. After victory, part of the strongest enemy stack is transformed into undead of the same tier, strengthening your army without spending gold.',
-            'The number of raised creatures depends on the necromancy skill level and the enemy stack\'s strength. Basic gives 10%, Advanced gives 15% of the strongest enemy stack.',
-            'Necromancy only works against tier 3 and above. Weak neutrals won\'t give skeletons — focus on stronger opponents.',
-            'Starting necromancy energy: 3000 (Basic) / 4000 (Advanced) / 5000 (Expert). Raising cost: Skeleton — 20 energy, Vampire — 2000 energy.',
-            'For each level of necromancy, skeletons get +2 defense. This makes them much more survivable in the late game.'
+            'The number of raised creatures depends on the necromancy skill level and the enemy stack\'s strength. Basic gives 10%, Advanced gives 15%, Expert gives 20% of the strongest enemy stack.',
+            'Starting necromancy energy: 3000 (Basic) / 4000 (Advanced) / 5000 (Expert), refilled every week.',
+            'Subskills include: "Barren Land" boosts Necropolis creatures on native terrain (+10% damage dealt / −10% damage taken); "Harvest of Souls" grants the hero 4 temporary mana after a victory; another subskill increases max necromancy energy by 1000; "Grim Reaper" lowers enemy morale and luck by 1; "Eternal Servitude" grants an ability to heal or resurrect allied undead in combat.'
           ],
-          tip: 'Necromancy is a snowball. The more and stronger enemies you defeat, the faster your army grows. At the start, choose battles against tier 3 and above to get the most value. The "Laws of the Immortals" law increases law point generation — take it first.',
+          tip: 'Necromancy is a snowball. The more and stronger enemies you defeat, the faster your army grows. The "Laws of the Immortals" law increases law point generation — take it first.',
           quizzes: [
             { q: 'What percentage of the strongest enemy stack does Advanced Necromancy give?', options: ['5%', '10%', '15%'], correct: 2 },
-            { q: 'How much energy does raising a Vampire cost in patch 11?', options: ['500', '1000', '2000'], correct: 2 }
+            { q: 'What does the "Eternal Servitude" subskill do?', options: ['Heals or resurrects allied undead in combat', 'Gives +2 defense to skeletons', 'Reduces the cost of raising creatures'], correct: 0 }
           ]
         }
       },
@@ -3440,15 +3438,15 @@ const TOPICS = [
           eyebrow: 'Элитный юнит 7-го уровня',
           body: [
             'Вампир (Vampire) — это вершина фракции Некрополь, юнит 7-го уровня. Это элитный боец ближнего боя с уникальными способностями.',
-            'Здоровье: 150, урон: 25-25. Вампиры не получают ответного удара при атаке — это их главная тактическая фишка. Они могут вырезать вражеских стрелков и магов без потерь.',
-            'Вампиризм: восстанавливает здоровье за каждый нанесённый урон. В патче 11 вампиризм увеличен с 40% до 50%.',
+            'Здоровье: 150, урон: 25-25. Атака Вампира — обычная ближняя атака, она провоцирует стандартную контратаку, как у большинства бойцов ближнего боя — распространённое заблуждение, что у Вампира иммунитет к контратакам, это не так.',
+            'Вампиризм: восстанавливает здоровье Вампира на 40% от нанесённого урона (до патча #11 было 40%, в самом патче 11 заявлялось повышение до 50%, но по актуальным официальным данным сейчас показатель снова 40% — стоит перепроверить в игре, могли откатить). Способность также умеет воскрешать павших союзных существ через отряд Вампира.',
             'Апгрейды: Вампир-лорд (здоровье 175, защита 26, урон 30-30, инициатива 13) — мощный боец; Вампир-учёный (атака 27, урон 30-30) — магический уклон.',
-            'Закон "Кровавая жажда" (Bloodthirst) увеличивает вампиризм на 60%. Это делает Вампиров практически бессмертными в затяжных боях.'
+            'Закон "Кровавая жажда" (Bloodthirst) усиливает вампиризм. Это делает Вампиров ещё более живучими в затяжных боях.'
           ],
-          tip: 'Вампир — король против стрелков и магов. Отправляй его в тыл врага, он не получит контратаку и восстановит здоровье за счёт вампиризма. Вампир-лорд — лучший выбор для ближнего боя, Вампир-учёный — для магической поддержки. Закон Bloodthirst обязателен в поздней игре.',
+          tip: 'Вампир — король против стрелков и магов за счёт вампиризма, восстанавливающего здоровье в бою. Отправляй его в тыл врага и не забывай про контратаку — она у него обычная, просто высокая живучесть компенсирует потери. Вампир-лорд — лучший выбор для ближнего боя, Вампир-учёный — для магической поддержки. Закон Bloodthirst обязателен в поздней игре.',
           quizzes: [
             { q: 'Какого тира Вампир в Некрополе?', options: ['5-го тира', '6-го тира', '7-го тира'], correct: 2 },
-            { q: 'Какой закон усиливает вампиризм Вампиров?', options: ['Бессмертие (Laws of the Immortals)', 'Кровавая жажда (Bloodthirst)', 'Лунная благодать (Moon\'s Grace)'], correct: 1 }
+            { q: 'Получает ли Вампир контратаку при своей ближней атаке?', options: ['Нет, у него иммунитет к контратакам', 'Да, обычная контратака как у большинства бойцов ближнего боя', 'Только от стрелков'], correct: 1 }
           ]
         },
         en: {
@@ -3456,15 +3454,15 @@ const TOPICS = [
           eyebrow: 'Elite Unit Tier 7',
           body: [
             'Vampire is the pinnacle of the Necropolis faction, a tier 7 unit. This is an elite melee fighter with unique abilities.',
-            'Health: 150, damage: 25-25. Vampires do not receive a counterattack — this is their main tactical feature. They can take out enemy shooters and mages without losses.',
-            'Vampirism: restores health for each damage dealt. In patch 11, vampirism increased from 40% to 50%.',
+            'Health: 150, damage: 25-25. The Vampire\'s attack is a regular melee attack that provokes a standard counterattack, like most melee fighters — the idea that Vampires are immune to counterattacks is a common misconception, not true.',
+            'Vampirism: restores 40% of damage dealt as health to the Vampire (before patch #11 it was 40%, patch 11 itself claimed an increase to 50%, but current official data shows 40% again — worth double-checking in-game, it may have been reverted). The ability can also revive fallen allied creatures within the Vampire\'s stack.',
             'Upgrades: Vampire Lord (health 175, defense 26, damage 30-30, initiative 13) — powerful fighter; Vampire Scholar (attack 27, damage 30-30) — magic evasion.',
-            'The "Bloodthirst" law increases vampirism by 60%. This makes Vampires nearly immortal in prolonged battles.'
+            'The "Bloodthirst" law increases vampirism. This makes Vampires even more resilient in prolonged battles.'
           ],
-          tip: 'The Vampire is the king against shooters and mages. Send him into the enemy rear — he won\'t get counterattacked and will restore health through vampirism. Vampire Lord is the best choice for melee combat, Vampire Scholar for magic support. The Bloodthirst law is mandatory in the late game.',
+          tip: 'The Vampire is the king against shooters and mages thanks to vampirism healing it in combat. Send him into the enemy rear, but remember he still takes a counterattack — his high sustain just makes up for the losses. Vampire Lord is the best choice for melee combat, Vampire Scholar for magic support. The Bloodthirst law is mandatory in the late game.',
           quizzes: [
             { q: 'What tier is the Vampire in Necropolis?', options: ['Tier 5', 'Tier 6', 'Tier 7'], correct: 2 },
-            { q: 'Which law enhances Vampire vampirism?', options: ['Laws of the Immortals', 'Bloodthirst', 'Moon\'s Grace'], correct: 1 }
+            { q: 'Does the Vampire take a counterattack from its melee attack?', options: ['No, it is immune to counterattacks', 'Yes, a standard counterattack like most melee fighters', 'Only from ranged units'], correct: 1 }
           ]
         }
       },
@@ -3576,8 +3574,7 @@ const TOPICS = [
           ],
           tip: 'Заранее изучите всех героев в пользовательском лобби. Знание сильных сторон и слабостей каждой фракции — это половина победы в PvP.',
           quizzes: [
-            // ПРОВЕРИТЬ ЛИЧНО: точное число банов (1 фракция + 3 героя) нигде во внешних источниках не подтвердилось,
-            // хотя внутри бота цифра используется последовательно. Рекомендую свериться в игре перед тем, как оставлять "правильный" ответ в квизе.
+            // ПОДТВЕРЖДЕНО ЛИЧНО: 3 бана героев — верно, каждый игрок банит по 3 героя
             { q: 'Сколько героев можно запретить (забанить) на этапе выбора?', options: ['1', '2', '3'], correct: 2 },
             { q: 'Почему важно уметь играть за 3 фракции?', options: ['За каждую фракцию дают больше опыта', 'Чтобы была запасная фракция, если любимую забанят или заберут', 'Это требуется для входа в рейтинговый режим'], correct: 1 }
           ]
@@ -3684,16 +3681,15 @@ const TOPICS = [
             'Воины: Их сила в постоянных пассивных бонусах к армии. Ключевые навыки — Атака (Offense), Защита (Defense), Тактика (Tactics) и Логистика (Logistics). Они могут взять навыки, ослабляющие магию противника (например, "Страж реальности"), чтобы нивелировать преимущество магов.',
             // ОБНОВЛЕНО: добавлены изменения патча #11 (в оригинале урока была только версия патча #8)
             'Маги: Полагаются на заклинания. В патче 8 навык "Призыв Аватара" был полностью переработан — стал исключительно магической способностью без бонуса к защите, сила которой зависит от Силы магии героя, а вместо здоровья — фиксированное число "жизней". В патче 11 его дополнительно понерфили: базовая версия теперь жёстко держит 3 удара живучести независимо от уровня навыка, а базовый урон срезали с 12-12 до 10-10 — зато появились ситуативные подскилы для доп. усиления.',
-            // ПРОВЕРИТЬ ЛИЧНО: "Ос (Heroic Strike)" здесь указан как герой Подземелья, но по гайду другого топового игрока
-            // герой с похожим именем ("Оос") — это герой Храма, а не Подземелья. Явная путаница в имени, нужна проверка в ростере.
+            // ПОДТВЕРЖДЕНО ЛИЧНО: "Ос" — неподтверждённое имя, убран отовсюду из бота (был только в квизе ниже, там уже заменён на Кирен)
             'Лучшие герои фракций: Подземелье — Тифона (гидры),Храм — Пип (урон), Пустельга (стрелки), Старый лорд Мандал (удар героя). Некрополь в PvP считается сложной фракцией из-за медленных юнитов, но сильна в затяжных играх.'
           ],
           tip: 'Если вы не знаете, кого банить — баньте сильных магов и героев с сильным "Ударом героя". Если не знаете, кого пикать — берите воина с прокачкой армии, это самый надёжный вариант для новичка.',
           quizzes: [
             // ОБНОВЛЕНО: старый ответ отражал только патч #8, добавлена актуальная деталь патча #11 в варианты
             { q: 'Как изменился навык "Призыв Аватара" в патчах 8 и 11?', options: ['Стал зависеть от атаки героя', 'Стал зависеть от силы магии героя, фиксированное число ударов (сейчас — строго 3)', 'Был полностью удалён из игры'], correct: 1 },
-            // ПРОВЕРИТЬ ЛИЧНО: корректность этого ответа зависит от неподтверждённой путаницы с Ос/Тифона выше
-            { q: 'Какой герой Подземелья считается абсолютным приоритетом для пика?', options: ['Ос', 'Тифона', 'Мотлей'], correct: 1 }
+            // ПОДТВЕРЖДЕНО ЛИЧНО: бан 3 героев (по одному от каждого игрока за раунд) — верно, вопрос не трогаем. "Ос" убран как неподтверждённый герой, заменён на Кирен
+            { q: 'Какой герой Подземелья считается абсолютным приоритетом для пика?', options: ['Кирен', 'Тифона', 'Мотлей'], correct: 1 }
           ]
         },
         en: {
@@ -3708,7 +3704,7 @@ const TOPICS = [
           tip: 'If you don\'t know who to ban — ban strong mages and heroes with a strong Hero Strike. If you don\'t know who to pick — choose a warrior with army buffs; this is the most reliable option for a beginner.',
           quizzes: [
             { q: 'How did the "Summon Avatar" skill change across patches 8 and 11?', options: ['Started depending on hero attack', 'Started depending on spell power, fixed number of hits (now strictly 3)', 'Was completely removed from the game'], correct: 1 },
-            { q: 'Which Dungeon hero is considered a top priority pick?', options: ['Os', 'Tifona', 'Motley'], correct: 1 }
+            { q: 'Which Dungeon hero is considered a top priority pick?', options: ['Kiren', 'Tifona', 'Motley'], correct: 1 }
           ]
         }
       },
@@ -5022,6 +5018,25 @@ let isSubscribed = null;
 const PREVIEW_MODE_UNLOCK_ALL = false; // true — режим предпросмотра (всё разблокировано без оплаты); false — боевой режим, проверка подписки через Worker
 const WORKER_URL = 'https://oldenera-bot-backend.zinov5471.workers.dev';
 
+// ---------- АНАЛИТИКА ----------
+// Отправляет событие в /track на Worker (Cloudflare Analytics Engine).
+// Всегда fire-and-forget: не ждём ответ, не блокируем интерфейс,
+// любая ошибка сети/сервера тихо игнорируется — аналитика никогда
+// не должна ломать или тормозить сам бот.
+function trackEvent(event, meta) {
+  try {
+    fetch(`${WORKER_URL}/track`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        event,
+        meta: meta || '',
+        initData: (tg && tg.initData) || ''
+      })
+    }).catch(() => {});
+  } catch (e) {}
+}
+
 // ---------- БИБЛИОТЕКА ГАЙДОВ ----------
 // Список карточек гайдов в хабе "Гайды". Чтобы добавить новый гайд:
 // 1) добавить сюда одну запись с id/icon/title/desc,
@@ -6040,6 +6055,7 @@ const SANDBOX_SCENARIOS = [
 // ===== ПЕСОЧНИЦА =====
 
 function openSandboxHub() {
+  trackEvent('open_sandbox');
   document.getElementById('topics-view').classList.add('hidden');
   document.getElementById('premium-view').classList.add('hidden');
   document.getElementById('subscribe-view').classList.add('hidden');
@@ -6321,6 +6337,7 @@ function openTopic(index) {
   const topic = TOPICS[index];
   if (topic.lessons.length === 0) return;
   currentTopicIndex = index;
+  trackEvent('open_topic', topic.id);
   document.getElementById('topics-view').classList.add('hidden');
   document.getElementById('home-view').classList.remove('hidden');
   renderHome();
@@ -7235,6 +7252,7 @@ function renderDefenseResult() {
 
 // ---------- Подписка ----------
 function openSubscribe(source) {
+  trackEvent('open_subscribe', source || 'unknown');
   document.getElementById('premium-view').classList.add('hidden');
   document.getElementById('sandbox-hub-view').classList.add('hidden');
   document.getElementById('sandbox-play-view').classList.add('hidden');
@@ -7298,6 +7316,8 @@ async function buyTier(tier) {
     status.textContent = t('notInTelegram');
     return;
   }
+
+  trackEvent('pay_click', tier);
 
   btn.disabled = true;
   btn.textContent = t('payingBtn');
