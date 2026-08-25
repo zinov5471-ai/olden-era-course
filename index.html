@@ -3055,15 +3055,15 @@ const TOPICS = [
         body: [
           'Фракционный навык Храма называется «Праведность». Это главная фишка, которая делает фракцию такой сильной и прощающей ошибки.',
           'Каждый раз, когда твой отряд убивает противника или сам погибает в бою — герой получает +1 к атаке, защите, силе магии и знанию. Эффект суммируется! За один бой можно накопить очень серьёзную прибавку.',
-          'Базовая длительность эффекта — 2 раунда. Прокачка навыка может увеличить её до 3–4 раундов, что делает навык ещё более ценным в затяжных сражениях.',
-          'В дереве развития есть две главные развилки. Первая работает только на родной земле Храма (зелёный ландшафт). Она даёт либо временную ману за каждое срабатывание, либо способность снимать все негативные эффекты с цели и снижать урон в ближнем бою на 15%.',
-          'Вторая развилка — «Смертельный распад» — полностью блокирует лечение выбранного вражеского отряда. Это мощно против фракций с сильным лечением.',
-          'На верхнем уровне есть «Сила веры» — она увеличивает сам эффект: вместо +1 к статам даёт +2. Это лучший выбор для долгих боёв, потому что разница в силе становится абсурдной.'
+          'Базовая длительность эффекта — 2 раунда. Прокачка навыка увеличивает её до 3 раундов (продвинутый уровень) и 4 раундов (экспертный уровень).',
+          'У навыка шесть отдельных поднавыков, а не «две развилки», как можно подумать. «Поля безмятежности» дают существам +10% урона и −10% получаемого урона на родной территории Храма. «Праведная жертва» даёт герою 3 временной маны при каждом срабатывании эффекта. «Очищающая длань» открывает новую способность — снять с цели все отрицательные эффекты (без бонуса к урону в ближнем бою).',
+          '«Блюститель» — дружественный отряд, убивший противника, полностью восстанавливает своё здоровье (но не воскрешает павших существ). «Избранный» открывает способность: до конца раунда атака выбранного отряда повышается на 50% от атаки и силы магии героя, а его защита — на 50% от защиты и знаний героя.',
+          'Верхний поднавык называется «Сила веры» — при каждом срабатывании Праведности герой дополнительно получает +1 ко всем характеристикам до конца раунда, сверх обычного эффекта. Не путайте его с одноимённым городским законом Храма — это два разных объекта с одинаковым названием.'
         ],
         tip: 'Следи за счётчиком! Если герой получил +6 к атаке за бой — ты всё делаешь правильно. Праведность особенно сильно раскрывается в затяжных сражениях с большим количеством убийств.',
         quizzes: [
           { q: 'Что даёт герою фракционный навык «Праведность» при убийстве врага или гибели своего отряда?', options: ['Только золото', '+1 к атаке, защите, силе магии и знанию', 'Временную неуязвимость'], correct: 1 },
-          { q: 'Как называется развилка навыка, которая полностью блокирует лечение выбранного вражеского отряда?', options: ['Сила веры', 'Смертельный распад', 'Блюститель'], correct: 1 }
+          { q: 'Что делает поднавык «Блюститель»?', options: ['Полностью восстанавливает здоровье отряда, убившего врага', 'Блокирует лечение вражеского отряда', 'Даёт герою временную ману'], correct: 0 }
         ]
       },
       en: {
@@ -3072,15 +3072,15 @@ const TOPICS = [
         body: [
           'Temple\'s faction skill is called "Righteousness". This is the main feature that makes the faction so strong and forgiving of mistakes.',
           'Every time your squad kills an enemy or dies in battle — the hero gains +1 to attack, defense, spell power, and knowledge. The effect stacks! In one fight, you can accumulate a very serious bonus.',
-          'The base duration is 2 rounds. Upgrading the skill can increase it to 3–4 rounds, making it even more valuable in prolonged battles.',
-          'The skill tree has two main forks. The first one only works on Temple\'s native terrain (green landscape). It gives either temporary mana per trigger, or the ability to remove all negative effects from a target and reduce melee damage taken by 15%.',
-          'The second fork — "Fatal Decay" — completely blocks healing for the chosen enemy squad. This is powerful against factions with strong healing.',
-          'At the top level there is "Power of Faith" — it increases the effect itself: instead of +1 to stats it gives +2. This is the best choice for long battles, because the difference in power becomes absurd.'
+          'The base duration is 2 rounds. Upgrading the skill extends it to 3 rounds (Advanced) and 4 rounds (Expert).',
+          'The skill has six separate subskills, not "two forks" as it might seem. "Fields of Serenity" gives friendly creatures +10% damage dealt and −10% damage taken on Temple\'s native terrain. "Righteous Sacrifice" grants the hero 3 temporary mana each time the effect triggers. "Purging Touch" grants a new ability that dispels all negative effects from the target (no melee damage reduction attached).',
+          '"Guardian" fully restores the HP of a creature that kills an enemy (it cannot revive fallen units). "The Chosen One" grants a new ability that boosts an ally creature\'s Attack by 50% of the hero\'s Attack and Spell Power, and its Defense by 50% of the hero\'s Defense and Knowledge, until the end of the round.',
+          'The top subskill is "Strong Faith" — whenever Righteousness triggers, the hero additionally gains +1 to all attributes until the end of the round, on top of the normal effect. Don\'t confuse it with Temple\'s city law of the same name — these are two different things sharing an identical name.'
         ],
         tip: 'Watch the counter! If your hero got +6 to attack in one battle — you\'re doing everything right. Righteousness is especially strong in prolonged battles with a lot of kills.',
         quizzes: [
           { q: 'What does the faction skill "Righteousness" give the hero when an enemy is killed or an allied squad dies?', options: ['Only gold', '+1 to attack, defense, spell power, and knowledge', 'Temporary invulnerability'], correct: 1 },
-          { q: 'What is the name of the skill fork that completely blocks healing for the chosen enemy squad?', options: ['Power of Faith', 'Fatal Decay', 'Keeper'], correct: 1 }
+          { q: 'What does the "Guardian" subskill do?', options: ['Fully restores HP of a creature that kills an enemy', 'Blocks healing for an enemy squad', 'Gives the hero temporary mana'], correct: 0 }
         ]
       }
     },
