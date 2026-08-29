@@ -6261,6 +6261,7 @@ const SANDBOX_SCENARIOS = [
 
 function openSandboxHub() {
   trackEvent('open_sandbox');
+  document.getElementById('completion-view').classList.remove('show');
   document.getElementById('topics-view').classList.add('hidden');
   document.getElementById('premium-view').classList.add('hidden');
   document.getElementById('subscribe-view').classList.add('hidden');
@@ -6642,6 +6643,7 @@ function renderHome(forceList) {
   }
   
   updateProgress(); // <-- обновляем прогресс
+  forceScrollTop(); // НОВОЕ: без этого страница оставалась прокрученной вниз после "Урок пройден" — экран казался пустым
 }
 
 function openLesson(index) {
@@ -6789,6 +6791,7 @@ async function checkSubscription() {
 
 function openPremium() {
   trackEvent('open_premium_hub');
+  document.getElementById('completion-view').classList.remove('show'); // НОВОЕ: иначе экран "Тема пройдена" оставался виден под премиум-разделом
   document.getElementById('topics-view').classList.add('hidden');
   document.getElementById('subscribe-view').classList.add('hidden');
   document.getElementById('premium-guide-view').classList.add('hidden');
@@ -6937,6 +6940,7 @@ function goPremiumGuideBack() {
 }
 
 async function openGuidesHub() {
+  document.getElementById('completion-view').classList.remove('show');
   document.getElementById('premium-view').classList.add('hidden');
   document.getElementById('premium-guides-hub-view').classList.remove('hidden');
   forceScrollTop();
@@ -7051,6 +7055,7 @@ async function openPremiumGuide(guideId) {
 // ---------- Калькулятор ----------
 
 async function openPremiumCalc() {
+  document.getElementById('completion-view').classList.remove('show');
   document.getElementById('premium-view').classList.add('hidden');
   document.getElementById('premium-calc-view').classList.remove('hidden');
   forceScrollTop();
@@ -7259,6 +7264,7 @@ let defenseAtk = 0;
 let defenseDef = 0;
 
 async function openBattleCalc() {
+  document.getElementById('completion-view').classList.remove('show');
   document.getElementById('premium-view').classList.add('hidden');
   document.getElementById('premium-battle-calc-view').classList.remove('hidden');
   forceScrollTop();
@@ -7486,6 +7492,7 @@ function renderDefenseResult() {
 // ---------- Подписка ----------
 function openSubscribe(source) {
   trackEvent('open_subscribe', source || 'unknown');
+  document.getElementById('completion-view').classList.remove('show');
   document.getElementById('premium-view').classList.add('hidden');
   document.getElementById('sandbox-hub-view').classList.add('hidden');
   document.getElementById('sandbox-play-view').classList.add('hidden');
@@ -7592,6 +7599,7 @@ async function openPremiumShoutout() {
   currentGuideId = null;
   premiumGuideBackTarget = 'premium';
   setText('premium-guide-back-label', t('premiumBackToHub'));
+  document.getElementById('completion-view').classList.remove('show');
   document.getElementById('premium-view').classList.add('hidden');
   document.getElementById('premium-guide-view').classList.remove('hidden');
   const body = document.getElementById('premium-guide-body');
@@ -7686,6 +7694,7 @@ function sendFeedback() {
 }
 
 function openFeedbackPage() {
+  document.getElementById('completion-view').classList.remove('show');
   document.getElementById('topics-view').classList.add('hidden');
   document.getElementById('feedback-view').classList.remove('hidden');
   forceScrollTop();
@@ -7862,6 +7871,7 @@ function answerPremiumQuiz(quizIndex, chosen, correct) {
 
 // ===== ШПАРГАЛКИ ПО ФРАКЦИЯМ =====
 function openPremiumCheatsheets() {
+  document.getElementById('completion-view').classList.remove('show');
   document.getElementById('premium-view').classList.add('hidden');
   document.getElementById('premium-cheatsheets-view').classList.remove('hidden');
   forceScrollTop();
