@@ -826,6 +826,31 @@
     padding: 3px 9px;
     border-radius: 20px;
   }
+  .getting-started-tile{
+    display:flex;
+    align-items:center;
+    gap: 14px;
+    background: linear-gradient(135deg, rgba(201,161,92,0.16), rgba(201,161,92,0.04));
+    border: 1px solid rgba(201,161,92,0.4);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    cursor:pointer;
+    margin-bottom: 14px;
+    position: relative;
+  }
+  .getting-started-tile:active{ transform: scale(0.98); }
+  .getting-started-hint{
+    margin-left:auto;
+    font-size: 12px;
+    color: var(--gold);
+    white-space: nowrap;
+    animation: gs-pulse 1.6s ease-in-out infinite;
+  }
+  .getting-started-hint:empty{ display:none; }
+  @keyframes gs-pulse{
+    0%, 100% { opacity: 0.55; transform: translateX(0); }
+    50% { opacity: 1; transform: translateX(-3px); }
+  }
   .sb-scenario-card{
     background: var(--bg-elevated);
     border: 1px solid rgba(201,161,92,0.15);
@@ -1435,6 +1460,16 @@
       </div>
     </div>
 
+    <!-- НОВОЕ: "С чего начать" — плитка выше песочницы, ведёт на отдельную тему-онбординг -->
+    <div class="getting-started-tile" id="getting-started-tile" onclick="openGettingStarted()">
+      <div class="topic-icon">🧭</div>
+      <div>
+        <div class="lesson-title" id="getting-started-tile-title"></div>
+        <div class="topic-progress" id="getting-started-tile-desc"></div>
+      </div>
+      <div class="getting-started-hint" id="getting-started-hint"></div>
+    </div>
+
     <!-- ПЕСОЧНИЦА (плитка над списком тем) -->
     <div class="sandbox-btn-tile" onclick="openSandboxHub()">
       <div class="topic-icon">🏋️</div>
@@ -1908,6 +1943,9 @@ const STRINGS = {
 
     sandboxTileTitle: '🏋️ Песочница',
     sandboxTileDesc: 'Тренируй решения на реальных ситуациях',
+    gettingStartedTileTitle: '🧭 С чего начать',
+    gettingStartedTileDesc: 'Что тут есть и как этим пользоваться',
+    gettingStartedHint: '👋 Начни отсюда',
     sandboxHubEyebrow: 'CharmRoad · Песочница',
     sandboxHubTitle: 'Тренировочные задания',
     sandboxHubIntro: 'Здесь не теория, а практика: реальные игровые ситуации от топовых игроков. Выбери действие — бот проверит и объяснит, почему так.',
@@ -2040,6 +2078,9 @@ const STRINGS = {
 
     sandboxTileTitle: '🏋️ Sandbox',
     sandboxTileDesc: 'Train your decisions on real situations',
+    gettingStartedTileTitle: '🧭 Where to Start',
+    gettingStartedTileDesc: "What's here and how to use it",
+    gettingStartedHint: '👋 Start here',
     sandboxHubEyebrow: 'CharmRoad · Sandbox',
     sandboxHubTitle: 'Training scenarios',
     sandboxHubIntro: 'No theory here, just practice: real in-game situations from top players. Pick an action — the bot checks it and explains why.',
@@ -2136,6 +2177,118 @@ function updateProgress() {
 // const TOPICS = [ ... ];
 // ==========================================
 const TOPICS = [
+   {
+    id: 'getting-started',
+    icon: '🧭',
+    ru: { title: 'С чего начать' },
+    en: { title: 'Where to Start' },
+    lessons: [
+      {
+        id: 'getting-started-whats-here',
+        image: 'images/getting-started-whats-here.jpg',
+        ru: {
+          title: 'Что есть в этом боте',
+          eyebrow: 'Знакомство',
+          body: [
+            'Бот помогает разобраться в механиках Heroes of Might and Magic: Olden Era — от базовых вещей (концентрация, мораль, законы фракций) до тонкостей PvP и разбора каждого патча.',
+            'Все обычные темы — бесплатно и навсегда.',
+            'Есть Песочница — практические ситуации «как поступить в бою», первые 5 бесплатны, чтобы попробовать формат.',
+            'У каждой темы есть шкала прогресса — видно, сколько уроков уже пройдено. Удобно возвращаться.',
+            'Есть кнопка обратной связи внизу — если чего-то не хватает или нашли неточность, можно написать прямо сюда.'
+          ],
+          tip: 'Начни с любой темы, которая ближе всего к твоей текущей проблеме в игре — не обязательно идти по порядку.',
+          quizzes: [
+            { q: 'Сколько заданий песочницы доступны бесплатно?', options: ['Все', '5', '0'], correct: 1 },
+            { q: 'Что показывает шкала прогресса у темы?', options: ['Сколько времени займёт тема', 'Сколько уроков уже пройдено', 'Рейтинг темы среди других игроков'], correct: 1 }
+          ]
+        },
+        en: {
+          title: "What's in this bot",
+          eyebrow: 'Getting to Know It',
+          body: [
+            'This bot helps you understand Heroes of Might and Magic: Olden Era mechanics — from the basics (concentration, morale, faction laws) to PvP nuances and breakdowns of each patch.',
+            'All regular topics are free, forever.',
+            'There\'s a Sandbox — practical "what would you do" combat situations, the first 5 are free so you can try the format.',
+            'Every topic has a progress bar — you can see how many lessons you\'ve completed. Handy for picking up where you left off.',
+            'There\'s a feedback button at the bottom — if something\'s missing or you spot an inaccuracy, you can write in directly.'
+          ],
+          tip: 'Start with whatever topic is closest to your current in-game problem — no need to go in order.',
+          quizzes: [
+            { q: 'How many sandbox tasks are free?', options: ['All of them', '5', 'None'], correct: 1 },
+            { q: 'What does a topic\'s progress bar show?', options: ['How long the topic takes', 'How many lessons you\'ve completed', 'The topic\'s rating among other players'], correct: 1 }
+          ]
+        }
+      },
+      {
+        id: 'getting-started-premium',
+        image: 'images/getting-started-premium.jpg',
+        ru: {
+          title: 'Что даёт Премиум',
+          eyebrow: 'Знакомство',
+          body: [
+            'Полная Песочница — все практические задания, плюс новые добавляются регулярно.',
+            'Закрытые гайды — разборы шаблонов и стратегий.',
+            'Калькулятор синергий навыков и Боевые калькуляторы.',
+            'Шпаргалки по каждой фракции.',
+            'Твой привет в шортсе — напиши сообщение, и если оно попадёт в подборку, автор канала озвучит его в новом шортсе.'
+          ],
+          tip: 'Премиум — это не «доступ ради доступа», а инструменты, которые реально экономят время в игре.',
+          quizzes: [
+            { q: 'Что из этого входит в Премиум?', options: ['Калькулятор синергий навыков', 'Обратная связь', 'Прогресс-бар у тем'], correct: 0 },
+            { q: 'Что такое "Твой привет в шортсе"?', options: ['Личное сообщение от автора бота', 'Возможность попасть в подборку и услышать своё сообщение в шортсе на канале', 'Функция чата с другими игроками'], correct: 1 }
+          ]
+        },
+        en: {
+          title: 'What Premium gives you',
+          eyebrow: 'Getting to Know It',
+          body: [
+            'Full Sandbox — every practical task, plus new ones added regularly.',
+            'Exclusive guides — template and strategy breakdowns.',
+            'Skill synergy calculator and Battle calculators.',
+            'Cheat sheets for every faction.',
+            'Your shoutout in a short — write a message, and if it\'s picked, the channel author reads it out in a new short.'
+          ],
+          tip: 'Premium isn\'t "access for the sake of access" — it\'s tools that actually save time in the game.',
+          quizzes: [
+            { q: 'Which of these is part of Premium?', options: ['Skill synergy calculator', 'Feedback button', 'Topic progress bar'], correct: 0 },
+            { q: 'What is "Your shoutout in a short"?', options: ['A private message from the bot author', 'A chance to be picked and have your message read out in a channel short', 'A chat feature with other players'], correct: 1 }
+          ]
+        }
+      },
+      {
+        id: 'getting-started-stars',
+        image: 'images/getting-started-stars.jpg',
+        ru: {
+          title: 'Что такое Telegram Stars и как оплатить',
+          eyebrow: 'Знакомство',
+          body: [
+            'Telegram Stars (⭐) — встроенная валюта Telegram для покупок внутри ботов и каналов. Это не отдельное приложение и не крипта — платёж проходит прямо в Telegram, в один клик.',
+            'Оплата возможна российской картой — Stars не привязаны жёстко к одной платёжной системе, есть несколько способов их получить.',
+            'Если что-то не получается — на экране подписки есть блок «Нет звёзд?» с рабочими альтернативами.'
+          ],
+          tip: 'Если сомневаешься — сначала просто открой экран подписки и посмотри, сработает ли оплата с первого раза, прежде чем искать обходные пути.',
+          quizzes: [
+            { q: 'Что такое Telegram Stars?', options: ['Отдельное приложение для оплаты', 'Встроенная валюта Telegram для покупок в ботах и каналах', 'Криптовалюта'], correct: 1 },
+            { q: 'Что делать, если не получается купить звёзды?', options: ['Ничего не поделать, оплата недоступна', 'Посмотреть блок "Нет звёзд?" на экране подписки', 'Написать в поддержку Apple'], correct: 1 }
+          ]
+        },
+        en: {
+          title: 'What Telegram Stars are and how to pay',
+          eyebrow: 'Getting to Know It',
+          body: [
+            'Telegram Stars (⭐) are Telegram\'s built-in currency for purchases inside bots and channels. It\'s not a separate app and not crypto — the payment happens right inside Telegram, in one click.',
+            'Payment with a Russian card is possible — Stars aren\'t rigidly tied to one payment system, there are several ways to get them.',
+            'If something isn\'t working — the subscription screen has a "No Stars?" section with working alternatives.'
+          ],
+          tip: "If you're unsure, just open the subscription screen first and see if payment works on the first try before looking for workarounds.",
+          quizzes: [
+            { q: 'What are Telegram Stars?', options: ['A separate payment app', "Telegram's built-in currency for purchases in bots and channels", 'A cryptocurrency'], correct: 1 },
+            { q: "What should you do if you can't buy Stars?", options: ['Nothing can be done, payment is unavailable', 'Check the "No Stars?" section on the subscription screen', 'Contact Apple support'], correct: 1 }
+          ]
+        }
+      }
+    ]
+  },
    {
     id: 'patch-13',
     icon: '🔧',
@@ -6361,10 +6514,14 @@ function renderTopics() {
   setText('sandbox-tile-title', t('sandboxTileTitle'));
   setText('sandbox-tile-desc', t('sandboxTileDesc'));
   setText('sandbox-tile-progress', t('sandboxProgress', sandboxCompleted.size, SANDBOX_SCENARIOS.length));
+  setText('getting-started-tile-title', t('gettingStartedTileTitle'));
+  setText('getting-started-tile-desc', t('gettingStartedTileDesc'));
+  renderGettingStartedHint();
 
   const list = document.getElementById('topics-list');
   list.innerHTML = '';
   TOPICS.forEach((topic, i) => {
+    if (topic.id === 'getting-started') return; // рендерится отдельной плиткой выше песочницы, не в общем списке
     const content = topic[currentLang];
     const isEmpty = topic.lessons.length === 0;
     const { done, total } = topicProgress(topic);
@@ -6394,6 +6551,29 @@ function openTopic(index) {
   document.getElementById('home-view').classList.remove('hidden');
   renderHome();
   forceScrollTop();
+}
+
+// НОВОЕ: открытие темы "С чего начать" + отметка, что подсказку-стрелку больше показывать не нужно
+function openGettingStarted() {
+  Storage.set('getting_started_hint_seen', '1').catch(() => {});
+  const hintEl = document.getElementById('getting-started-hint');
+  if (hintEl) hintEl.textContent = '';
+  const index = TOPICS.findIndex(topic => topic.id === 'getting-started');
+  if (index === -1) return;
+  openTopic(index);
+}
+
+// НОВОЕ: показывает лёгкую пульсирующую подсказку "Начни отсюда" тем, кто ещё
+// не открывал тему "С чего начать" — исчезает навсегда после первого клика.
+async function renderGettingStartedHint() {
+  const hintEl = document.getElementById('getting-started-hint');
+  if (!hintEl) return;
+  try {
+    const seen = await Storage.get('getting_started_hint_seen');
+    hintEl.textContent = seen ? '' : t('gettingStartedHint');
+  } catch (e) {
+    hintEl.textContent = '';
+  }
 }
 
 function goTopics() {
